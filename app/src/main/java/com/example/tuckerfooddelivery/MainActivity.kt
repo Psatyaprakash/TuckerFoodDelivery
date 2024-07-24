@@ -22,9 +22,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
             AppNavigation()
-            //Start()
         }
     }
 }
@@ -43,10 +41,6 @@ fun AppNavigation() {
         exitTransition = { fadeOut(animationSpec = tween(200))  +
                 slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-//        popEnterTransition = enterTransition,
-//        popExitTransition = exitTransition,
-
-
         startDestination = "Start"
     ) {
         composable("Start") { Start(navController) }
