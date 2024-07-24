@@ -21,57 +21,51 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun CircularButtonWithSymbol() {
-    Box(
+fun CircularButtonWithSymbol(onClick: () -> Unit) {
+    TextButton(
+        onClick = onClick,
+        colors = ButtonDefaults.buttonColors(Color.Gray),
+        shape = CircleShape,
+        contentPadding = PaddingValues(0.dp),
         modifier = Modifier
-            .size(50.dp) // Size of the circle
-            .background(Color.Transparent, CircleShape) // Circle background color
-            .padding(10.dp) // Padding inside the circle
+            .size(50.dp)
+            .background(Color.Transparent, CircleShape)
     ) {
-        TextButton(
-            onClick = { /* handle click */ },
-            colors = ButtonDefaults.buttonColors(Color.Black), // Button color (optional)
-            shape = CircleShape, // Circle shape
-            modifier = Modifier
-                .fillMaxSize() // Fills the size of the Box
-                .padding(0.dp) // No extra padding for the button
-        ) {
-            Text(
-                text = "<", // Symbol inside the button
-                fontSize = 68.sp, // Font size of the symbol
-                color = Color.Red, // Color of the symbol
-            )
-        }
+        Text(
+            text = "<",
+            fontSize = 24.sp,
+            color = Color.White,
+        )
     }
 }
 
 @Composable
 fun PersonalInfoDetails() {
-    var text by remember { mutableStateOf("") }
+    var fullName by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var phoneNumber by remember { mutableStateOf("") }
+    var bio by remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(17.dp) // Padding for the whole Box
+            .padding(17.dp)
     ) {
-        // Add the circular button
         Box(
             modifier = Modifier
                 .align(Alignment.TopStart)
-                .padding(16.dp) // Padding to place the button inside the box
+                .padding(16.dp)
         ) {
-            CircularButtonWithSymbol()
+            CircularButtonWithSymbol(onClick = { /* handle click */ })
         }
 
-        // Center Text
         Text(
             text = "Personal Info",
             color = Color.Black,
             fontSize = 24.sp,
             modifier = Modifier
-                .align(Alignment.TopCenter) // Align text to the top center
-                .padding(top = 70.dp)
-                .fillMaxWidth()
+                .align(Alignment.TopCenter)
+                .padding(top = 24.dp) // Adjust spacing if needed
         )
 
         // Form Content
@@ -79,14 +73,14 @@ fun PersonalInfoDetails() {
             modifier = Modifier
                 .align(Alignment.Center)
                 .fillMaxSize()
-                .padding(top = 120.dp) // Adjust to avoid overlapping with the centered text
+                .padding(top = 120.dp)
         ) {
             Text(text = "FULL NAME", color = Color.Black, fontSize = 18.sp)
             Spacer(modifier = Modifier.height(10.dp))
             // Name
             TextField(
-                value = text,
-                onValueChange = { text = it },
+                value = fullName,
+                onValueChange = { fullName = it },
                 label = { Text("Enter your name") },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -97,8 +91,8 @@ fun PersonalInfoDetails() {
             Text(text = "E-MAIL", color = Color.Black, fontSize = 18.sp)
             Spacer(modifier = Modifier.height(10.dp))
             TextField(
-                value = text,
-                onValueChange = { text = it },
+                value = email,
+                onValueChange = { email = it },
                 label = { Text("Enter your Email") },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -109,8 +103,8 @@ fun PersonalInfoDetails() {
             Text(text = "PHONE NUMBER", color = Color.Black, fontSize = 18.sp)
             Spacer(modifier = Modifier.height(10.dp))
             TextField(
-                value = text,
-                onValueChange = { text = it },
+                value = phoneNumber,
+                onValueChange = { phoneNumber = it },
                 label = { Text("Enter your Phone Number") },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -121,8 +115,8 @@ fun PersonalInfoDetails() {
             Text(text = "BIO", color = Color.Black, fontSize = 18.sp)
             Spacer(modifier = Modifier.height(10.dp))
             TextField(
-                value = text,
-                onValueChange = { text = it },
+                value = bio,
+                onValueChange = { bio = it },
                 label = { Text("Enter your bio") },
                 modifier = Modifier
                     .fillMaxWidth()
