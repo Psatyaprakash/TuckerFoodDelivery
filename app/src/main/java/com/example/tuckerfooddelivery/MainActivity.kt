@@ -77,6 +77,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.compose.ui.focus.focusModifier
 import androidx.navigation.compose.rememberNavController
+
+import com.example.tuckerfooddelivery.View.LoginScreen
+import com.example.tuckerfooddelivery.View.PersonalInfoDetails
+
 import com.example.tuckerfooddelivery.View.Start
 import com.example.tuckerfooddelivery.View.Start2
 import com.example.tuckerfooddelivery.View.Start3
@@ -93,9 +97,7 @@ class MainActivity : ComponentActivity() {
         //enableEdgeToEdge()
         setContent {
             TuckerFoodDeliveryTheme {
-               // var navController = rememberNavController()
-                //navController = navController
-            AppNavigation()
+                AppNavigation()
             }
         }
     }
@@ -120,6 +122,7 @@ fun AppNavigation() {
         composable("Start") { Start(navController) }
         composable("Start2") { Start2(navController) }
         composable("Start3") { Start3(navController) }
+        composable("LoginScreen") { LoginScreen(navController) }
         composable("Start") { Start(navController) }
         composable("HomePage"){ HomePage(navController) }
         composable("Pizza"){ Pizza(navController)}
