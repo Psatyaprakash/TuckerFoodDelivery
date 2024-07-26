@@ -59,8 +59,7 @@ fun Start(navController: NavHostController) {
                 )
             Text(text = "All your favorites" , fontSize = 26.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier .height(20.dp) )
-            Text(text = "Get all your loved foods in one once place,\n" +
-                    "you just place the order we do the rest" ,
+            Text(text = "Get all your loved foods in one once place you just place the order we do the rest" ,
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center ,
                 color = Color.Gray ,
