@@ -49,6 +49,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.ui.theme.PurpleGrey40
+
 @Composable
 fun Rosegardenrestaurant_landingpage() {
     Column(
@@ -68,7 +69,7 @@ fun Rosegardenrestaurant_landingpage() {
             CircularButtonWithSymbol(onClick = { /* handle click */ })
             Spacer(modifier = Modifier.width(16.dp))
             Text(
-                text = "Rose Garden Restaurant",
+                text = "SkyHigh Way Restaurant",
                 color = Color(0xFFD4AF37),
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp,
