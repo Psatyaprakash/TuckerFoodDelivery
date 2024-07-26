@@ -55,23 +55,23 @@ import com.example.tuckerfooddelivery.ui.theme.PurpleGrey40
 @Composable
 fun fionah_landingpage() {
     Column(
-            modifier = Modifier
-                    .fillMaxWidth()
-                    .verticalScroll(rememberScrollState())
-                    .padding(6.dp),
-            verticalArrangement = Arrangement.Top
+        modifier = Modifier
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState())
+            .padding(6.dp),
+        verticalArrangement = Arrangement.Top
     ) {
         Row(
-                modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(1.dp),
-                horizontalArrangement = Arrangement.Start,
-                verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(1.dp),
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             CircularButtonWithSymbol(onClick = { /* handle click */ })
             Spacer(modifier = Modifier.width(16.dp))
             Text(
-                text = "Fiona High Restaurant",
+                text = "Fiona Hastty Restaurant",
                 color = Color(0xFFD4AF37),
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp,
@@ -80,109 +80,284 @@ fun fionah_landingpage() {
         }
         Spacer(modifier = Modifier.height(5.dp))
         Text(
-                text = "Patel Nagar, New Delhi \nPincode: 115800",
-                textAlign = TextAlign.Center,
-                color = Color.Black,
-                fontSize = 14.sp,
-                modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(3.dp)
+            text = "Patel Nagar, New Delhi \nPincode: 115800",
+            textAlign = TextAlign.Center,
+            color = Color.Black,
+            fontSize = 14.sp,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(3.dp)
         )
         Image(
-                painter = painterResource(R.drawable.group_598),
-                contentDescription = "Rose Garden Restaurant title",
-                modifier = Modifier
-                        .fillMaxWidth()
-                        .height(200.dp)
+            painter = painterResource(R.drawable.group_597),
+            contentDescription = "Rose Garden Restaurant title",
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp)
         )
         Card(
-                modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(15.dp),
-                shape = RectangleShape,
-                colors = CardDefaults.cardColors(Color.Transparent),
-                border = BorderStroke(3.dp, Color(0xFFD4AF37))
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(15.dp),
+            shape = RectangleShape,
+            colors = CardDefaults.cardColors(Color.Transparent),
+            border = BorderStroke(3.dp, Color(0xFFD4AF37))
         ) {
             Column(
-                    modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp)
             ) {
                 Row(
-                        modifier = Modifier
-                                .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center,
-                        verticalAlignment = Alignment.CenterVertically
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                            text = "Rating",
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Bold
+                        text = "Rating",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold
                     )
                     Spacer(modifier = Modifier.width(50.dp))
                     Text(
-                            text = "Delivery",
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Bold
+                        text = "Delivery",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold
                     )
                 }
                 Row(
-                        modifier = Modifier
-                                .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceEvenly,
-                        verticalAlignment = Alignment.CenterVertically
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Row(
-                            verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
-                                painter = painterResource(R.drawable.star),
-                                contentDescription = "Rating",
-                                modifier = Modifier.size(24.dp),
-                                tint = Color(0xFFD4AF37)
+                            painter = painterResource(R.drawable.star),
+                            contentDescription = "Rating",
+                            modifier = Modifier.size(24.dp),
+                            tint = Color(0xFFD4AF37)
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                                text = "4.7",
-                                fontSize = 16.sp
+                            text = "4.7",
+                            fontSize = 16.sp
                         )
                     }
                     Row(
-                            verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
 
                         Icon(
-                                painter = painterResource(R.drawable.truck),
-                                contentDescription = "delivery fee",
-                                modifier = Modifier.size(24.dp),
-                                tint = Color(0xFFD4AF37)
+                            painter = painterResource(R.drawable.truck),
+                            contentDescription = "delivery fee",
+                            modifier = Modifier.size(24.dp),
+                            tint = Color(0xFFD4AF37)
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                                text = "Free",
-                                fontSize = 16.sp
+                            text = "Free",
+                            fontSize = 16.sp
                         )
                         Spacer(modifier = Modifier.width(30.dp))
                         Icon(
-                                painter = painterResource(R.drawable.clock),
-                                contentDescription = "Delivery Time",
-                                modifier = Modifier.size(20.dp),
-                                tint = Color(0xFFD4AF37)
+                            painter = painterResource(R.drawable.clock),
+                            contentDescription = "Delivery Time",
+                            modifier = Modifier.size(20.dp),
+                            tint = Color(0xFFD4AF37)
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                                text = "20mins",
-                                fontSize = 16.sp
+                            text = "20mins",
+                            fontSize = 16.sp
                         )
                     }
                 }
             }
         }
         Spacer(modifier = Modifier.height(20.dp))
-        CategoryCard("Burger")
-        CategoryCard("Chicken")
-        CategoryCard("Hotdogs")
-        CategoryCard("Wings")
-        CategoryCard("Pizza")
+
+        // Burger Button
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp),
+            shape = RectangleShape,
+            colors = CardDefaults.cardColors(Color.Transparent),
+            border = BorderStroke(1.dp, Color.LightGray)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextButton(onClick = { /* Navigate to Burger page */ }) {
+                    Text(
+                        text = "Burger",
+                        fontSize = 22.sp,
+                        color = Color.Black,
+                        textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
+                IconButton(onClick = { /* Navigate to Burger page */ }) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = "Go to Burger category",
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
+            }
+        }
+
+        // Chicken Button
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp),
+            shape = RectangleShape,
+            colors = CardDefaults.cardColors(Color.Transparent),
+            border = BorderStroke(1.dp, Color.LightGray)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextButton(onClick = { /* Navigate to Chicken page */ }) {
+                    Text(
+                        text = "Chicken",
+                        fontSize = 22.sp,
+                        color = Color.Black,
+                        textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
+                IconButton(onClick = { /* Navigate to Chicken page */ }) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = "Go to Chicken category",
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
+            }
+        }
+
+        // Hotdogs Button
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp),
+            shape = RectangleShape,
+            colors = CardDefaults.cardColors(Color.Transparent),
+            border = BorderStroke(1.dp, Color.LightGray)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextButton(onClick = { /* Navigate to Hotdogs page */ }) {
+                    Text(
+                        text = "Hotdogs",
+                        fontSize = 22.sp,
+                        color = Color.Black,
+                        textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
+                IconButton(onClick = { /* Navigate to Hotdogs page */ }) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = "Go to Hotdogs category",
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
+            }
+        }
+
+        // Wings Button
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp),
+            shape = RectangleShape,
+            colors = CardDefaults.cardColors(Color.Transparent),
+            border = BorderStroke(1.dp, Color.LightGray)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextButton(onClick = { /* Navigate to Wings page */ }) {
+                    Text(
+                        text = "Wings",
+                        fontSize = 22.sp,
+                        color = Color.Black,
+                        textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
+                IconButton(onClick = { /* Navigate to Wings page */ }) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = "Go to Wings category",
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
+            }
+        }
+
+        // Pizza Button
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp),
+            shape = RectangleShape,
+            colors = CardDefaults.cardColors(Color.Transparent),
+            border = BorderStroke(1.dp, Color.LightGray)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextButton(onClick = { /* Navigate to Pizza page */ }) {
+                    Text(
+                        text = "Pizza",
+                        fontSize = 22.sp,
+                        color = Color.Black,
+                        textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
+                IconButton(onClick = { /* Navigate to Pizza page */ }) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = "Go to Pizza category",
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
+            }
+        }
     }
 }
