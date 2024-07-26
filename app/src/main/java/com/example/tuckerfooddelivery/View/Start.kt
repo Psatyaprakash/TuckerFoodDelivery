@@ -221,7 +221,7 @@ fun Start3(navController: NavHostController) {
                 }
             }
             Spacer(modifier = Modifier .height(10.dp) )
-            Button(onClick = { navController.navigate("ItemDetails") },
+            Button(onClick = { navController.navigate("HomePage") },
                 Modifier
                     .fillMaxWidth()
                     .padding(30.dp)

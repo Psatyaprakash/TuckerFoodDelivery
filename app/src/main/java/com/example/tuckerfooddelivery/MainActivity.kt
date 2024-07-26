@@ -82,6 +82,9 @@ import com.example.tuckerfooddelivery.View.Start2
 import com.example.tuckerfooddelivery.View.Start3
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.HomePage
+import com.example.tuckerfooddelivery.View.Pizza
+import com.example.tuckerfooddelivery.View.Pizza_2
+import com.example.tuckerfooddelivery.View.Pizza_3
 
 
 class MainActivity : ComponentActivity() {
@@ -92,17 +95,13 @@ class MainActivity : ComponentActivity() {
             TuckerFoodDeliveryTheme {
                // var navController = rememberNavController()
                 //navController = navController
-
-                HomePage()
-                 // PersonalInfoDetails()
-            //AppNavigation()
+            AppNavigation()
             }
         }
     }
 }
 
-
-    //Navigation
+//Navigation
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
@@ -122,6 +121,11 @@ fun AppNavigation() {
         composable("Start2") { Start2(navController) }
         composable("Start3") { Start3(navController) }
         composable("Start") { Start(navController) }
+        composable("HomePage"){ HomePage(navController) }
+        composable("Pizza"){ Pizza(navController)}
+        composable("Pizza_2"){ Pizza_2(navController)}
+        composable("Pizza_3"){ Pizza_3(navController)}
+
     }
 }
 
