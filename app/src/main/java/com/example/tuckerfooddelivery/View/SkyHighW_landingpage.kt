@@ -46,11 +46,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.ui.theme.PurpleGrey40
 @Composable
-fun SkyHighW_landingpage() {
+fun SkyHighW_landingpage(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -65,7 +66,7 @@ fun SkyHighW_landingpage() {
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            CircularButtonWithSymbol(onClick = { /* handle click */ })
+            CircularButtonWithSymbol(onClick = { navController.navigate("HomePage") })
             Spacer(modifier = Modifier.width(16.dp))
             Text(
                 text = "SkyHigh Way Restaurant",

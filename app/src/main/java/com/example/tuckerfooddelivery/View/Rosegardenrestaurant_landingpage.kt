@@ -46,11 +46,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberImagePainter
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.ui.theme.PurpleGrey40
 @Composable
-fun Rosegardenrestaurant_landingpage() {
+fun Rosegardenrestaurant_landingpage(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -65,7 +69,7 @@ fun Rosegardenrestaurant_landingpage() {
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            CircularButtonWithSymbol(onClick = { /* handle click */ })
+            CircularButtonWithSymbol(onClick = { navController.navigate("HomePage") })
             Spacer(modifier = Modifier.width(16.dp))
             Text(
                 text = "Rose Garden Restaurant",
@@ -186,7 +190,9 @@ fun Rosegardenrestaurant_landingpage() {
 
 @Composable
 fun CategoryCard(category: String) {
+
     Card(
+
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp),
@@ -211,13 +217,13 @@ fun CategoryCard(category: String) {
                 )
             }
 
-            IconButton(onClick = { /*TODO*/ }) {
-                Icon(
-                    imageVector = Icons.Default.PlayArrow,
-                    contentDescription = "Go to $category category",
-                    modifier = Modifier.size(22.dp)
-                )
+            IconButton(onClick = { } ) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = "Go to $category category",
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
             }
         }
     }
-}
