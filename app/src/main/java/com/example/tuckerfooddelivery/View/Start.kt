@@ -15,8 +15,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -48,6 +50,7 @@ fun Start(navController: NavHostController) {
         Column(modifier = Modifier
             .padding(40.dp)
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
             .background(Color.White),
             verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -114,6 +117,7 @@ fun Start2(navController: NavHostController) {
         Column(modifier = Modifier
             .padding(40.dp)
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
             .background(Color.White),
             verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -180,6 +184,7 @@ fun Start3(navController: NavHostController) {
         Column(modifier = Modifier
             .padding(40.dp)
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
             .background(Color.White),
             verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -216,7 +221,7 @@ fun Start3(navController: NavHostController) {
                 }
             }
             Spacer(modifier = Modifier .height(10.dp) )
-            Button(onClick = { navController.navigate("Login") },
+            Button(onClick = { navController.navigate("ItemDetails") },
                 Modifier
                     .fillMaxWidth()
                     .padding(30.dp)
