@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 
 @Composable
@@ -47,7 +48,7 @@ fun CircularButtonWithSymbol(onClick: () -> Unit) {
 }
 
 @Composable
-fun PersonalInfoDetails() {
+fun PersonalInfoDetails(navController: NavController) {
     var fullName by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var phoneNumber by remember { mutableStateOf("") }

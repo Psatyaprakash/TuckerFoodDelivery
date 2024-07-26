@@ -20,11 +20,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.ui.theme.TuckerFoodDeliveryTheme
 
 
 @Composable
-fun LoginScreen(navController : navHostController) {
+fun LoginScreen(navController : NavController) {
     var phoneNumber by remember { mutableStateOf("+91 9876543210") }
     var otp by remember { mutableStateOf("") }
 
@@ -153,7 +154,7 @@ fun LoginScreen(navController : navHostController) {
                 Spacer(modifier = Modifier.height(76.dp))
 
                 Button(
-                    onClick = { /* Handle verify action */ },
+                    onClick = { navController.navigate("HomePage") },
                     colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFFFD700)),
                     modifier = Modifier
                         .fillMaxWidth()
@@ -173,10 +174,10 @@ fun LoginScreen(navController : navHostController) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun LoginScreenPreview() {
-    TuckerFoodDeliveryTheme{
-        LoginScreen()
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun LoginScreenPreview() {
+//    TuckerFoodDeliveryTheme{
+//        LoginScreen()
+//    }
+//}

@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -60,16 +61,21 @@ fun HomePage(navController: NavController) {
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     Column(
         modifier = Modifier
-            .padding(15.dp)
+            .padding(horizontal = 15.dp)
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
     ) {
-        Row {
+        Spacer(modifier = Modifier.height(15.dp))
+        Row (
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.End)
+        ){
             Box(
                 modifier = Modifier
                     .size(45.dp)
                     .clip(CircleShape)
-                    .background(Color.Gray)
+                    .background(Color.Gray).fillMaxWidth()
             ) {
                 Image(
                     painter = painterResource(R.drawable.menu),
@@ -343,7 +349,7 @@ fun HomePage(navController: NavController) {
                 disabledContentColor = Mustard_yellow,
                 disabledContainerColor = Mustard_yellow
             ),
-            onClick = {navController.navigate("Pizza")}
+            onClick = {navController.navigate("Rosegardenrestaurant_landingpage")}
         ) {
             Image(
                 painter = painterResource(id = R.drawable.restaurant_img_1),
@@ -428,6 +434,7 @@ fun HomePage(navController: NavController) {
                 modifier = Modifier.padding(horizontal = 2.dp)
             )
         }
+        Spacer(modifier = Modifier.height(10.dp))
 
         //Restaurant2 card
         Card(
@@ -442,7 +449,8 @@ fun HomePage(navController: NavController) {
                 contentColor = Color.Black,
                 disabledContentColor = Mustard_yellow,
                 disabledContainerColor = Mustard_yellow
-            )
+            ),
+            onClick = {navController.navigate("Fionah_landingpage")}
         ) {
             Box(
                 modifier = Modifier
@@ -544,7 +552,7 @@ fun HomePage(navController: NavController) {
         }
 
         Spacer(modifier = Modifier.height(10.dp))
-        //Card for Restaurant 1
+        //Card for Restaurant 3
         Card(
             shape = RoundedCornerShape(16.dp),
             modifier = Modifier
@@ -557,13 +565,14 @@ fun HomePage(navController: NavController) {
                 contentColor = Color.Black,
                 disabledContentColor = Mustard_yellow,
                 disabledContainerColor = Mustard_yellow
-            )
+            ),
+            onClick = {navController.navigate("SkyHighW_landingpage")}
         ) {
             Image(
                 painter = painterResource(id = R.drawable.restaurant_img_3),
                 contentDescription = "Pizza",
                 modifier = Modifier
-                    .align(Alignment.Start)
+                    .align(Alignment.CenterHorizontally)
                     .size(450.dp)
             )
         }
@@ -643,5 +652,6 @@ fun HomePage(navController: NavController) {
                 modifier = Modifier.padding(horizontal = 2.dp)
             )
         }
+        Spacer(modifier = Modifier.height(20.dp))
     }
 }

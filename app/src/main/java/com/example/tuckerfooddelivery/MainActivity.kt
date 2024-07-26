@@ -89,6 +89,9 @@ import com.example.tuckerfooddelivery.View.HomePage
 import com.example.tuckerfooddelivery.View.Pizza
 import com.example.tuckerfooddelivery.View.Pizza_2
 import com.example.tuckerfooddelivery.View.Pizza_3
+import com.example.tuckerfooddelivery.View.Rosegardenrestaurant_landingpage
+import com.example.tuckerfooddelivery.View.SkyHighW_landingpage
+import com.example.tuckerfooddelivery.View.Fionah_landingpage
 
 
 class MainActivity : ComponentActivity() {
@@ -128,6 +131,9 @@ fun AppNavigation() {
         composable("Pizza"){ Pizza(navController)}
         composable("Pizza_2"){ Pizza_2(navController)}
         composable("Pizza_3"){ Pizza_3(navController)}
+        composable("Rosegardenrestaurant_landingpage"){ Rosegardenrestaurant_landingpage(navController)}
+        composable("SkyHighW_landingpage"){ SkyHighW_landingpage(navController)}
+        composable("Fionah_landingpage"){ Fionah_landingpage(navController)}
 
     }
 }
