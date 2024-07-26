@@ -95,7 +95,6 @@ class MainActivity : ComponentActivity() {
             TuckerFoodDeliveryTheme {
                // var navController = rememberNavController()
                 //navController = navController
-                //rosengarden
             AppNavigation()
             }
         }
