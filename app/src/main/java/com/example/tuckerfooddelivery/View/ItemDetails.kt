@@ -132,7 +132,7 @@ import com.example.tuckerfooddelivery.View.Start3
 
 
 @Composable
-fun ItemDetails(navController: NavController) {
+fun Pizza(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     Column {
@@ -188,7 +188,7 @@ fun ItemDetails(navController: NavController) {
                         .wrapContentHeight()
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.pizza),
+                        painter = painterResource(id = R.drawable.pizza_img),
                         contentDescription = "Pizza",
                         modifier = Modifier
                             .align(Alignment.Center)
@@ -301,7 +301,7 @@ fun ItemDetails(navController: NavController) {
 //                    Text(text = "10''", modifier = Modifier.align(Alignment.Center))
 //                }
                 Spacer(modifier = Modifier.width(30.dp))
-                TextButton(onClick = { navController.navigate("ItemDetails2") },
+                TextButton(onClick = { navController.navigate("Pizza_2") },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray),
                     modifier = Modifier
                         .size(60.dp),
@@ -319,7 +319,7 @@ fun ItemDetails(navController: NavController) {
 //                    Text(text = "14''", modifier = Modifier.align(Alignment.Center))
 //                }
                 Spacer(modifier = Modifier.width(30.dp))
-                TextButton(onClick = { navController.navigate("ItemDetails3") },
+                TextButton(onClick = { navController.navigate("Pizza_3") },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray),
                     modifier = Modifier
                         .size(60.dp),
@@ -430,45 +430,45 @@ fun ItemDetails(navController: NavController) {
                 }
                 //Spacer(modifier = Modifier.width(20.dp))
             }
-           // Spacer(modifier = Modifier.height(75.dp))
-//            Card(  //for scrolling purpose
-//                shape = RoundedCornerShape(16.dp),
-//                backgroundColor = Mustard_yellow,
-//                modifier = Modifier
-//                    .padding(10.dp)
-//                    .fillMaxWidth()
-//                    .wrapContentHeight(),
+            Spacer(modifier = Modifier.height(75.dp))
+            Card(  //for scrolling purpose
+                shape = RoundedCornerShape(16.dp),
+                backgroundColor = Mustard_yellow,
+                modifier = Modifier
+                    .padding(10.dp)
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
 //            colors = CardColors(
 //                containerColor = Mustard_yellow_light, contentColor = Color.Black,
 //                disabledContentColor = Mustard_yellow,
 //                disabledContainerColor = Mustard_yellow
 //            )
-//            ) {
-//                Box(
-//                    modifier = Modifier
-//                        .padding(16.dp)
-//                        .fillMaxWidth()
-//                        .wrapContentHeight()
-//                ) {
-//                    Image(
-//                        painter = painterResource(id = R.drawable.pizza),
-//                        contentDescription = "Pizza",
-//                        modifier = Modifier
-//                            .align(Alignment.Center)
-//                            .size(100.dp)
-//                    )
-//                    Icon(
-//                        imageVector = Icons.Default.Favorite,
-//                        contentDescription = "Add",
-//                        tint = Color.White,
-//                        modifier = Modifier
-//                            .align(Alignment.BottomEnd)
-//                            .size(40.dp)
-//                            .background(Color.Red, shape = CircleShape)
-//                            .padding(8.dp)
-//                    )
-//                }
-//            }
+            ) {
+                Box(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.pizza_img),
+                        contentDescription = "Pizza",
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .size(200.dp)
+                    )
+                    Icon(
+                        imageVector = Icons.Default.Favorite,
+                        contentDescription = "Add",
+                        tint = Color.White,
+                        modifier = Modifier
+                            .align(Alignment.BottomEnd)
+                            .size(40.dp)
+                            .background(Color.Red, shape = CircleShape)
+                            .padding(8.dp)
+                    )
+                }
+            }
 
         }
         Column(
@@ -538,7 +538,7 @@ fun ItemDetails(navController: NavController) {
         }
     }
 @Composable
-fun ItemDetails2(navController: NavController){
+fun Pizza_2(navController: NavController){
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     Column {
@@ -684,7 +684,7 @@ fun ItemDetails2(navController: NavController){
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "SIZE:", modifier = Modifier.padding(horizontal = 10.dp))
-                TextButton(onClick = { navController.navigate("ItemDetails") },
+                TextButton(onClick = { navController.navigate("Pizza") },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray),
                     modifier = Modifier
                         .size(60.dp),
@@ -702,7 +702,7 @@ fun ItemDetails2(navController: NavController){
                     Text(text = "14''", fontSize = 25.sp)
                 }
                 Spacer(modifier = Modifier.width(30.dp))
-                TextButton(onClick = { navController.navigate("ItemDetails3") },
+                TextButton(onClick = { navController.navigate("Pizza_3") },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray),
                     modifier = Modifier
                         .size(60.dp),
@@ -872,7 +872,7 @@ fun ItemDetails2(navController: NavController){
     }
 }
 @Composable
-fun ItemDetails3(navController: NavController){
+fun Pizza_3(navController: NavController){
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     Column {
@@ -1023,7 +1023,7 @@ fun ItemDetails3(navController: NavController){
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "SIZE:", modifier = Modifier.padding(horizontal = 10.dp))
-                TextButton(onClick = { navController.navigate("ItemDetails") },
+                TextButton(onClick = { navController.navigate("Pizza") },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray),
                     modifier = Modifier
                         .size(60.dp),
@@ -1032,7 +1032,7 @@ fun ItemDetails3(navController: NavController){
                     Text(text = "10''", fontSize = 25.sp)
                 }
                 Spacer(modifier = Modifier.width(30.dp))
-                TextButton(onClick = { navController.navigate("ItemDetails2")},
+                TextButton(onClick = { navController.navigate("Pizza_2")},
                     colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray),
                     modifier = Modifier
                         .size(60.dp),
