@@ -12,6 +12,9 @@ import androidx.compose.animation.fadeOut
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.tuckerfooddelivery.View.ItemDetails
+import com.example.tuckerfooddelivery.View.ItemDetails2
+import com.example.tuckerfooddelivery.View.ItemDetails3
 import com.example.tuckerfooddelivery.View.PersonalInfoDetails
 import com.example.tuckerfooddelivery.View.Start
 import com.example.tuckerfooddelivery.View.Start2
@@ -24,8 +27,9 @@ class MainActivity : ComponentActivity() {
         //enableEdgeToEdge()
         setContent {
             TuckerFoodDeliveryTheme {
-                PersonalInfoDetails()
-            //AppNavigation()
+                //ItemDetails()
+               // PersonalInfoDetails()
+            AppNavigation()
             }
         }
     }
@@ -52,6 +56,10 @@ fun AppNavigation() {
         composable("Start2") { Start2(navController) }
         composable("Start3") { Start3(navController) }
         composable("Start") { Start(navController) }
+        composable("ItemDetails"){ ItemDetails(navController)}
+        composable("ItemDetails2"){ ItemDetails2(navController)}
+        composable("ItemDetails3"){ ItemDetails3(navController)}
+
     }
 }
 
