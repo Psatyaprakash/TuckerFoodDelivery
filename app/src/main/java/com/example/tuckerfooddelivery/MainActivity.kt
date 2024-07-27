@@ -77,10 +77,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.compose.ui.focus.focusModifier
 import androidx.navigation.compose.rememberNavController
-
-import com.example.tuckerfooddelivery.View.LoginScreen
-import com.example.tuckerfooddelivery.View.PersonalInfoDetails
-
 import com.example.tuckerfooddelivery.View.Start
 import com.example.tuckerfooddelivery.View.Start2
 import com.example.tuckerfooddelivery.View.Start3
@@ -89,9 +85,6 @@ import com.example.tuckerfooddelivery.View.HomePage
 import com.example.tuckerfooddelivery.View.Pizza
 import com.example.tuckerfooddelivery.View.Pizza_2
 import com.example.tuckerfooddelivery.View.Pizza_3
-import com.example.tuckerfooddelivery.View.Rosegardenrestaurant_landingpage
-import com.example.tuckerfooddelivery.View.SkyHighW_landingpage
-import com.example.tuckerfooddelivery.View.Fionah_landingpage
 
 
 class MainActivity : ComponentActivity() {
@@ -100,7 +93,9 @@ class MainActivity : ComponentActivity() {
         //enableEdgeToEdge()
         setContent {
             TuckerFoodDeliveryTheme {
-                AppNavigation()
+               // var navController = rememberNavController()
+                //navController = navController
+            AppNavigation()
             }
         }
     }
@@ -125,16 +120,19 @@ fun AppNavigation() {
         composable("Start") { Start(navController) }
         composable("Start2") { Start2(navController) }
         composable("Start3") { Start3(navController) }
-        composable("LoginScreen") { LoginScreen(navController) }
         composable("Start") { Start(navController) }
         composable("HomePage"){ HomePage(navController) }
         composable("Pizza"){ Pizza(navController)}
         composable("Pizza_2"){ Pizza_2(navController)}
         composable("Pizza_3"){ Pizza_3(navController)}
+
         composable("Rosegardenrestaurant_landingpage"){ Rosegardenrestaurant_landingpage(navController)}
         composable("SkyHighW_landingpage"){ SkyHighW_landingpage(navController)}
         composable("Fionah_landingpage"){ Fionah_landingpage(navController)}
 //
+
+
+
     }
 }
 

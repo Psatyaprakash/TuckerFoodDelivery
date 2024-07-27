@@ -62,7 +62,8 @@ fun Start(navController: NavHostController) {
                 )
             Text(text = "All your favorites" , fontSize = 26.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier .height(20.dp) )
-            Text(text = "Get all your loved foods in one once place you just place the order we do the rest" ,
+            Text(text = "Get all your loved foods in one once place,\n" +
+                    "you just place the order we do the rest" ,
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center ,
                 color = Color.Gray ,
@@ -96,7 +97,7 @@ fun Start(navController: NavHostController) {
             ) {
                 Text(text = "Next" , fontSize = 22.sp)
             }
-            TextButton(onClick = { navController.navigate("LoginScreen" )}) {
+            TextButton(onClick = { navController.navigate("Login") }) {
                 Text(text = "Skip", fontSize = 25.sp, fontFamily = FontFamily.SansSerif , color = Color.Black)
             }
             Spacer(modifier = Modifier.height(50.dp))
@@ -163,7 +164,7 @@ fun Start2(navController: NavHostController) {
             ) {
                 Text(text = "Next" , fontSize = 22.sp)
             }
-            TextButton(onClick = {navController.navigate("LoginScreen" )}) {
+            TextButton(onClick = { navController.navigate("Login") }) {
                 Text(text = "Skip", fontSize = 25.sp, fontFamily = FontFamily.SansSerif , color = Color.Black)
             }
             Spacer(modifier = Modifier.height(50.dp))
@@ -220,7 +221,7 @@ fun Start3(navController: NavHostController) {
                 }
             }
             Spacer(modifier = Modifier .height(10.dp) )
-            Button(onClick = { navController.navigate("LoginScreen") },
+            Button(onClick = { navController.navigate("HomePage") },
                 Modifier
                     .fillMaxWidth()
                     .padding(30.dp)

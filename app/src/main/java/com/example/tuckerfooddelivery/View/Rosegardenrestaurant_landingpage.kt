@@ -46,15 +46,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberImagePainter
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.ui.theme.PurpleGrey40
+
 @Composable
-fun Rosegardenrestaurant_landingpage(navController: NavController) {
+fun Rosegardenrestaurant_landingpage() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -69,10 +66,10 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            CircularButtonWithSymbol(onClick = { navController.navigate("HomePage") })
+            CircularButtonWithSymbol(onClick = { /* handle click */ })
             Spacer(modifier = Modifier.width(16.dp))
             Text(
-                text = "Rose Garden Restaurant",
+                text = "SkyHigh Way Restaurant",
                 color = Color(0xFFD4AF37),
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp,
@@ -180,50 +177,185 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
             }
         }
         Spacer(modifier = Modifier.height(20.dp))
-        CategoryCard("Burger")
-        CategoryCard("Chicken")
-        CategoryCard("Hotdogs")
-        CategoryCard("Wings")
-        CategoryCard("Pizza")
-    }
-}
 
-@Composable
-fun CategoryCard(category: String) {
-
-    Card(
-
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 4.dp),
-        shape = RectangleShape,
-        colors = CardDefaults.cardColors(Color.Transparent),
-        border = BorderStroke(1.dp, Color.LightGray)
-    ) {
-        Row(
+        // Burger Button
+        Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(10.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+                .padding(vertical = 4.dp),
+            shape = RectangleShape,
+            colors = CardDefaults.cardColors(Color.Transparent),
+            border = BorderStroke(1.dp, Color.LightGray)
         ) {
-            TextButton(onClick = { /*TODO*/ }) {
-                Text(
-                    text = category,
-                    fontSize = 22.sp,
-                    color = Color.Black,
-                    textAlign = TextAlign.Start,
-                    fontWeight = FontWeight.Bold
-                )
-            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextButton(onClick = { /* Navigate to Burger page */ }) {
+                    Text(
+                        text = "Burger",
+                        fontSize = 22.sp,
+                        color = Color.Black,
+                        textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
 
-            IconButton(onClick = { } ) {
+                IconButton(onClick = { /* Navigate to Burger page */ }) {
                     Icon(
                         imageVector = Icons.Default.PlayArrow,
-                        contentDescription = "Go to $category category",
+                        contentDescription = "Go to Burger category",
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
+            }
+        }
+
+        // Chicken Button
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp),
+            shape = RectangleShape,
+            colors = CardDefaults.cardColors(Color.Transparent),
+            border = BorderStroke(1.dp, Color.LightGray)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextButton(onClick = { /* Navigate to Chicken page */ }) {
+                    Text(
+                        text = "Chicken",
+                        fontSize = 22.sp,
+                        color = Color.Black,
+                        textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
+                IconButton(onClick = { /* Navigate to Chicken page */ }) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = "Go to Chicken category",
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
+            }
+        }
+
+        // Hotdogs Button
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp),
+            shape = RectangleShape,
+            colors = CardDefaults.cardColors(Color.Transparent),
+            border = BorderStroke(1.dp, Color.LightGray)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextButton(onClick = { /* Navigate to Hotdogs page */ }) {
+                    Text(
+                        text = "Hotdogs",
+                        fontSize = 22.sp,
+                        color = Color.Black,
+                        textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
+                IconButton(onClick = { /* Navigate to Hotdogs page */ }) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = "Go to Hotdogs category",
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
+            }
+        }
+
+        // Wings Button
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp),
+            shape = RectangleShape,
+            colors = CardDefaults.cardColors(Color.Transparent),
+            border = BorderStroke(1.dp, Color.LightGray)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextButton(onClick = { /* Navigate to Wings page */ }) {
+                    Text(
+                        text = "Wings",
+                        fontSize = 22.sp,
+                        color = Color.Black,
+                        textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
+                IconButton(onClick = { /* Navigate to Wings page */ }) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = "Go to Wings category",
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
+            }
+        }
+
+        // Pizza Button
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp),
+            shape = RectangleShape,
+            colors = CardDefaults.cardColors(Color.Transparent),
+            border = BorderStroke(1.dp, Color.LightGray)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextButton(onClick = { /* Navigate to Pizza page */ }) {
+                    Text(
+                        text = "Pizza",
+                        fontSize = 22.sp,
+                        color = Color.Black,
+                        textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
+                IconButton(onClick = { /* Navigate to Pizza page */ }) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = "Go to Pizza category",
                         modifier = Modifier.size(22.dp)
                     )
                 }
             }
         }
     }
+}
