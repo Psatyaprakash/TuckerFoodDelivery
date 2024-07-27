@@ -126,6 +126,13 @@ fun AppNavigation() {
         composable("Pizza_2"){ Pizza_2(navController)}
         composable("Pizza_3"){ Pizza_3(navController)}
 
+        composable("Rosegardenrestaurant_landingpage"){ Rosegardenrestaurant_landingpage(navController)}
+        composable("SkyHighW_landingpage"){ SkyHighW_landingpage(navController)}
+        composable("Fionah_landingpage"){ Fionah_landingpage(navController)}
+//
+
+
+
     }
 }
 
