@@ -27,6 +27,8 @@ class MainActivity : ComponentActivity() {
         //enableEdgeToEdge()
         setContent {
             TuckerFoodDeliveryTheme {
+                //Rosegardenrestaurant_landingpage()
+                fionah_landingpage()
             }
         }
     }
