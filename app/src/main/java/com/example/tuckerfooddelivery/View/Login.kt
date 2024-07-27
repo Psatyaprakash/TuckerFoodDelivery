@@ -22,19 +22,10 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.tuckerfooddelivery.ui.theme.TuckerFoodDeliveryTheme
 
-class LoginActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            TuckerFoodDeliveryTheme {
-                LoginScreen()
-            }
-        }
-    }
-}
+
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController : navHostController) {
     var phoneNumber by remember { mutableStateOf("+91 9876543210") }
     var otp by remember { mutableStateOf("") }
 
