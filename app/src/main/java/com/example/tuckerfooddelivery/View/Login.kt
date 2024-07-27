@@ -21,12 +21,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.tuckerfooddelivery.ui.theme.TuckerFoodDeliveryTheme
+import androidx.navigation.NavHostController
 
 
 
 @Composable
-fun LoginScreen(navController : navHostController) {
-    var phoneNumber by remember { mutableStateOf("+91 9876543210") }
+fun LoginScreen(navController: NavHostController) {
+    var phoneNumber by remember { mutableStateOf("") }
     var otp by remember { mutableStateOf("") }
 
     Box(
@@ -84,20 +85,22 @@ fun LoginScreen(navController : navHostController) {
                        fontWeight = FontWeight.W500
                     )
 
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(30.dp))
                     Text(
                         text = "Enter Phone Number",
                         color = Color.Black,
-                        fontSize = 16.sp
+                        fontSize = 18.sp
                     )
                     Spacer(modifier = Modifier.height(15.dp))
-                    TextField(
+                    OutlinedTextField(
                         value = phoneNumber,
                         onValueChange = { phoneNumber = it },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .background(Color(0xFFF0E68C), shape = RoundedCornerShape(70.dp)),
-                        placeholder = { Text(text = "+91 987654321" ) },
+//                            .background(Color(0xFFF0E68C))
+                        ,
+                        shape = RoundedCornerShape(14.dp),
+                        placeholder = { Text(text = "+91 9876-543-211" , fontSize = 20.sp) },
 
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
                         singleLine = true,
@@ -115,7 +118,7 @@ fun LoginScreen(navController : navHostController) {
                     Text(
                         text = "Enter OTP",
                         color = Color.Black,
-                        fontSize = 16.sp
+                        fontSize = 18.sp
                     )
 
                     Spacer(modifier = Modifier.height(20.dp))
@@ -135,7 +138,10 @@ fun LoginScreen(navController : navHostController) {
                                 },
                                 modifier = Modifier
                                     .width(70.dp)
-                                    .background(Color(0xFFF0E68C), shape = RoundedCornerShape(20.dp))
+                                    .background(
+                                        Color(0xFFF0E68C),
+                                        shape = RoundedCornerShape(20.dp)
+                                    )
                                     .padding(4.dp),
                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                                 singleLine = true,
@@ -157,16 +163,18 @@ fun LoginScreen(navController : navHostController) {
                     onClick = { /* Handle verify action */ },
                     colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFFFD700)),
                     modifier = Modifier
-                        .fillMaxWidth()
-                        //.width(100.dp)
+                        .width(300.dp)
                         .padding(20.dp)
-                        .align(Alignment.CenterHorizontally)
+
+                        .align(Alignment.CenterHorizontally),
+                    shape = RoundedCornerShape(16.dp),
+
 
                 ) {
                     Text(
                         text = "Verify",
                         color = Color.White,
-                        fontSize = 16.sp
+                        fontSize = 20.sp
                     )
                 }
             }
@@ -174,10 +182,10 @@ fun LoginScreen(navController : navHostController) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun LoginScreenPreview() {
-    TuckerFoodDeliveryTheme{
-        LoginScreen()
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun LoginScreenPreview() {
+//    TuckerFoodDeliveryTheme{
+//        LoginScreen()
+//    }
+//}
