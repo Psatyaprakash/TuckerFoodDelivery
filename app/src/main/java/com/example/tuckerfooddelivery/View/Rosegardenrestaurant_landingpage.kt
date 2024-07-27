@@ -42,8 +42,10 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.InspectableModifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
@@ -93,6 +95,36 @@ fun Rosegardenrestaurant_landingpage() {
                 .fillMaxWidth()
                 .height(200.dp)
         )
+        Spacer(modifier = Modifier.height(5.dp))
+        Text(
+            text = "Perfect for breakfast, lunch, or dinner. They have an onsite bar, serve a variety of alcoholic beverages, and provide convenient options like curbside pickup and dine-in cozy atmosphere and friendly staff make you feel like part of the family.",
+            textAlign = TextAlign.Justify,
+            color = Color.Black,
+            fontSize = 13.sp,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(3.dp)
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            text = "all you can eat",
+            textAlign = TextAlign.Center,
+            color = Color.Black,
+            fontSize = 16.sp,
+            modifier = Modifier
+                .fillMaxWidth()
+        )
+        Text(
+            text = "MENU",
+            textDecoration = TextDecoration.Underline,
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black,
+            fontSize = 18.sp,
+            modifier = Modifier
+                .fillMaxWidth()
+        )
+
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -142,6 +174,7 @@ fun Rosegardenrestaurant_landingpage() {
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
                             text = "4.7",
+                            fontStyle = FontStyle.Italic,
                             fontSize = 16.sp
                         )
                     }
@@ -158,6 +191,7 @@ fun Rosegardenrestaurant_landingpage() {
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
                             text = "Free",
+                            fontStyle = FontStyle.Italic,
                             fontSize = 16.sp
                         )
                         Spacer(modifier = Modifier.width(30.dp))
@@ -170,23 +204,16 @@ fun Rosegardenrestaurant_landingpage() {
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
                             text = "20mins",
+                            fontStyle = FontStyle.Italic,
                             fontSize = 16.sp
                         )
                     }
                 }
             }
         }
-        Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
         // Burger Button
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 4.dp),
-            shape = RectangleShape,
-            colors = CardDefaults.cardColors(Color.Transparent),
-            border = BorderStroke(1.dp, Color.LightGray)
-        ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -212,17 +239,8 @@ fun Rosegardenrestaurant_landingpage() {
                     )
                 }
             }
-        }
 
         // Chicken Button
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 4.dp),
-            shape = RectangleShape,
-            colors = CardDefaults.cardColors(Color.Transparent),
-            border = BorderStroke(1.dp, Color.LightGray)
-        ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -248,17 +266,9 @@ fun Rosegardenrestaurant_landingpage() {
                     )
                 }
             }
-        }
+
 
         // Hotdogs Button
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 4.dp),
-            shape = RectangleShape,
-            colors = CardDefaults.cardColors(Color.Transparent),
-            border = BorderStroke(1.dp, Color.LightGray)
-        ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -284,17 +294,9 @@ fun Rosegardenrestaurant_landingpage() {
                     )
                 }
             }
-        }
+
 
         // Wings Button
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 4.dp),
-            shape = RectangleShape,
-            colors = CardDefaults.cardColors(Color.Transparent),
-            border = BorderStroke(1.dp, Color.LightGray)
-        ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -320,17 +322,8 @@ fun Rosegardenrestaurant_landingpage() {
                     )
                 }
             }
-        }
 
         // Pizza Button
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 4.dp),
-            shape = RectangleShape,
-            colors = CardDefaults.cardColors(Color.Transparent),
-            border = BorderStroke(1.dp, Color.LightGray)
-        ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -356,6 +349,5 @@ fun Rosegardenrestaurant_landingpage() {
                     )
                 }
             }
-        }
     }
 }
