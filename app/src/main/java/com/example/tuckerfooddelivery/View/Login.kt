@@ -1,34 +1,118 @@
 package com.example.tuckerfooddelivery.View
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import android.app.Activity
+import android.content.ContentValues.TAG
+import android.content.Context
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.tuckerfooddelivery.ui.theme.TuckerFoodDeliveryTheme
 import androidx.navigation.NavHostController
+import com.example.tuckerfooddelivery.R
+import com.google.firebase.FirebaseException
+import com.google.firebase.FirebaseTooManyRequestsException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthMissingActivityForRecaptchaException
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
+import java.util.concurrent.TimeUnit
 
+//Auth
 
+val auth = FirebaseAuth.getInstance()
+
+var storedVerificationId: String? = null
+lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
+val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+    override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+        Log.d(TAG, "onVerificationCompleted:$credential")
+    }
+
+    override fun onVerificationFailed(e: FirebaseException) {
+        Log.w(TAG, "onVerificationFailed", e)
+
+        if (e is FirebaseAuthInvalidCredentialsException) {
+            // Invalid request
+        } else if (e is FirebaseTooManyRequestsException) {
+            // The SMS quota for the project has been exceeded
+        } else if (e is FirebaseAuthMissingActivityForRecaptchaException) {
+            // reCAPTCHA verification attempted with null Activity
+        }
+
+    }
+
+    override fun onCodeSent(
+        verificationId: String,
+        token: PhoneAuthProvider.ForceResendingToken,
+    ) {
+        Log.d(TAG, "onCodeSent:$verificationId")
+
+        // Save verification ID and resending token so we can use them later
+        storedVerificationId = verificationId
+        resendToken = token
+    }
+}
+
+fun startPhoneNumberVerification(context: Context , phoneNumber: String) {
+    val options = PhoneAuthOptions.newBuilder(auth)
+        .setPhoneNumber(phoneNumber) // Phone number to verify
+        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+        .setActivity(context as Activity) // Activity (for callback binding)
+        .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
+        .build()
+    PhoneAuthProvider.verifyPhoneNumber(options)
+}
+
+fun verifyOTP(context: Context , otp: String) {
+    val credential = PhoneAuthProvider.getCredential(storedVerificationId!!, otp)
+    signInWithPhoneAuthCredential(context,credential)
+}
+var check : Int = 0
+fun signInWithPhoneAuthCredential(context: Context , credential: PhoneAuthCredential) {
+
+    auth.signInWithCredential(credential)
+        .addOnCompleteListener(context as Activity) { task ->
+            if (task.isSuccessful) {
+                // Sign in success, update UI with the signed-in user's information
+                Log.d(TAG, "signInWithCredential:success")
+                val user = task.result?.user
+                check = 1
+            } else {
+                // Sign in failed, display a message and update the UI
+                Log.w(TAG, "signInWithCredential:failure", task.exception)
+                if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                    Log.w(TAG,"The verification code entered was invalid")
+                }
+                // Update UI
+                check = 0
+            }
+        }
+}
+
+//AuthEnd
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
-    var phoneNumber by remember { mutableStateOf("") }
+    val phoneNumber = remember { mutableStateOf("") }
     var otp by remember { mutableStateOf("") }
+
+    val context = LocalContext.current
 
     Box(
         modifier = Modifier
@@ -93,8 +177,8 @@ fun LoginScreen(navController: NavHostController) {
                     )
                     Spacer(modifier = Modifier.height(15.dp))
                     OutlinedTextField(
-                        value = phoneNumber,
-                        onValueChange = { phoneNumber = it },
+                        value = phoneNumber.value,
+                        onValueChange = { phoneNumber.value = it },
                         modifier = Modifier
                             .fillMaxWidth()
 //                            .background(Color(0xFFF0E68C))
@@ -112,7 +196,16 @@ fun LoginScreen(navController: NavHostController) {
                         )
 
                     )
-//                }
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Button(onClick = { startPhoneNumberVerification(context,phoneNumber.value) },
+                        colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFFFD700)),
+                        shape = RoundedCornerShape(10.dp),
+                        modifier = Modifier
+                            .width(200.dp)
+                            .align(Alignment.CenterHorizontally)
+                        ) {
+                        Text(text = "Send OTP", fontSize = 20.sp , color = Color.White)
+                    }
 
                     Spacer(modifier = Modifier.height(46.dp))
                     Text(
@@ -160,7 +253,12 @@ fun LoginScreen(navController: NavHostController) {
                 Spacer(modifier = Modifier.height(76.dp))
 
                 Button(
-                    onClick = { /* Handle verify action */ },
+                    onClick = {
+                        verifyOTP(context,otp)
+                        if(check == 1 ){
+                            navController.navigate("HomePage")
+                        }
+                    },
                     colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFFFD700)),
                     modifier = Modifier
                         .width(300.dp)
