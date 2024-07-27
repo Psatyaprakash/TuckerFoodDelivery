@@ -14,6 +14,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tuckerfooddelivery.View.LoginScreen
 import com.example.tuckerfooddelivery.View.PersonalInfoDetails
+import com.example.tuckerfooddelivery.View.SaveLocationScreen
 import com.example.tuckerfooddelivery.View.Start
 import com.example.tuckerfooddelivery.View.Start2
 import com.example.tuckerfooddelivery.View.Start3
@@ -25,7 +26,8 @@ class MainActivity : ComponentActivity() {
         //enableEdgeToEdge()
         setContent {
             TuckerFoodDeliveryTheme {
-                LoginScreen()
+                SaveLocationScreen()
+              //  LoginScreen()
             // PersonalInfoDetails()
             //AppNavigation()
             }
