@@ -3,6 +3,7 @@ package com.example.tuckerfooddelivery.View
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -350,7 +351,7 @@ fun HomePage(navController: NavController) {
                 disabledContentColor = Mustard_yellow,
                 disabledContainerColor = Mustard_yellow
             ),
-            onClick = {navController.navigate("Pizza")}
+            onClick = {navController.navigate("Rosegardenrestaurant_landingpage")}
         ) {
             Image(
                 painter = painterResource(id = R.drawable.restaurant_img_1),
@@ -456,6 +457,8 @@ fun HomePage(navController: NavController) {
                     .size(height = 400.dp, width = 500.dp)
                     .clip(RoundedCornerShape(5.dp))
                     .background(Color.Transparent)
+                    .clickable  {navController.navigate("Fionah_landingpage")},
+
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.restaurant_bg_2),
@@ -480,7 +483,7 @@ fun HomePage(navController: NavController) {
                 .width(10.dp)
         )
         Text(
-            text = "Billu Da Dhaba",
+            text = "Fionah Restrauant",//Billu Da Dhaba
             fontWeight = FontWeight.Bold,
             color = Color.Black,
             fontSize = 20.sp,
@@ -564,7 +567,8 @@ fun HomePage(navController: NavController) {
                 contentColor = Color.Black,
                 disabledContentColor = Mustard_yellow,
                 disabledContainerColor = Mustard_yellow
-            )
+            ),
+            onClick = { navController.navigate("SkyHighW_landingpage") }
         ) {
             Image(
                 painter = painterResource(id = R.drawable.restaurant_img_3),

@@ -84,6 +84,7 @@ fun verifyOTP(context: Context , otp: String) {
     signInWithPhoneAuthCredential(context,credential)
 }
 var check : Int = 0
+
 fun signInWithPhoneAuthCredential(context: Context , credential: PhoneAuthCredential) {
 
     auth.signInWithCredential(credential)
@@ -109,8 +110,8 @@ fun signInWithPhoneAuthCredential(context: Context , credential: PhoneAuthCreden
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
-    val phoneNumber = remember { mutableStateOf("") }
-    var otp by remember { mutableStateOf("") }
+    val phoneNumber = remember { mutableStateOf("" ) }
+    val otp = remember { mutableStateOf("") }
 
     val context = LocalContext.current
 
@@ -179,6 +180,7 @@ fun LoginScreen(navController: NavHostController) {
                     OutlinedTextField(
                         value = phoneNumber.value,
                         onValueChange = { phoneNumber.value = it },
+
                         modifier = Modifier
                             .fillMaxWidth()
 //                            .background(Color(0xFFF0E68C))
@@ -196,9 +198,9 @@ fun LoginScreen(navController: NavHostController) {
                         )
 
                     )
-                    Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(30.dp))
                     Button(onClick = { startPhoneNumberVerification(context,phoneNumber.value) },
-                        colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFFFD700)),
+                        colors = ButtonDefaults.buttonColors(colorResource(id = R.color.Mustard_yellow)),
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier
                             .width(200.dp)
@@ -216,11 +218,26 @@ fun LoginScreen(navController: NavHostController) {
 
                     Spacer(modifier = Modifier.height(20.dp))
 
+                    OutlinedTextField(
+                        value = otp.value,
+                        onValueChange = { otp.value = it },
+                        label = { Text(text = "Enter Otp") },
+                        modifier = Modifier
+                            .fillMaxWidth() ,
+                        shape = RoundedCornerShape(10.dp),
+                        colors = TextFieldDefaults.textFieldColors(
+                            backgroundColor = Color(0xFFF0E68C),
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent,
+                            textColor = Color.Black
+                        )
+                    )
+                    /*
                     Row(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        repeat(4) {
+                        repeat(6) {
                             TextField(
                                 value = otp.getOrNull(it)?.toString() ?: "",
                                 onValueChange = { newValue ->
@@ -230,12 +247,14 @@ fun LoginScreen(navController: NavHostController) {
                                     }
                                 },
                                 modifier = Modifier
-                                    .width(70.dp)
+                                    .width(60.dp)
+                                    .height(60.dp)
                                     .background(
                                         Color(0xFFF0E68C),
-                                        shape = RoundedCornerShape(20.dp)
+                                        shape = RoundedCornerShape(10.dp)
                                     )
-                                    .padding(4.dp),
+                                    .padding(1.dp)
+                                ,
                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                                 singleLine = true,
                                 textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
@@ -248,22 +267,23 @@ fun LoginScreen(navController: NavHostController) {
                             )
                         }
                     }
+                    */
                 }
 
-                Spacer(modifier = Modifier.height(76.dp))
+                Spacer(modifier = Modifier.height(50.dp))
 
                 Button(
                     onClick = {
-                        verifyOTP(context,otp)
+                        verifyOTP(context,otp.value)
                         if(check == 1 ){
                             navController.navigate("HomePage")
                         }
                     },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFFFD700)),
+                    colors = ButtonDefaults.buttonColors(colorResource(id = R.color.Mustard_yellow)),
                     modifier = Modifier
-                        .width(300.dp)
+                        .width(250.dp)
                         .padding(20.dp)
-
+                        .height(50.dp)
                         .align(Alignment.CenterHorizontally),
                     shape = RoundedCornerShape(16.dp),
 
@@ -272,7 +292,8 @@ fun LoginScreen(navController: NavHostController) {
                     Text(
                         text = "Verify",
                         color = Color.White,
-                        fontSize = 20.sp
+                        fontSize = 20.sp,
+                        lineHeight = 10.sp
                     )
                 }
             }

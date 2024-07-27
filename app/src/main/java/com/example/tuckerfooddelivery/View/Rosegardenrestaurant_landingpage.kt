@@ -72,7 +72,7 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
             CircularButtonWithSymbol(onClick = { /* handle click */ })
             Spacer(modifier = Modifier.width(16.dp))
             Text(
-                text = "SkyHigh Way Restaurant",
+                text = "Rose Garden Restaurant",
                 color = Color(0xFFD4AF37),
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp,
