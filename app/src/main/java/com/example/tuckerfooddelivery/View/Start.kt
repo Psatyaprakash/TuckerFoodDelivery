@@ -43,22 +43,22 @@ fun Start(navController: NavHostController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     Box(modifier = Modifier
-        .fillMaxSize()
+        //.fillMaxSize()
         .background(Color.White),
 //        slideOutHorizontally {  }
     ){
         Column(modifier = Modifier
             .padding(40.dp)
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+            //.fillMaxSize()
+            //.verticalScroll(rememberScrollState())
             .background(Color.White),
-            verticalArrangement = Arrangement.Bottom,
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(painter = painterResource(R.drawable.all_your_fav),
                 contentDescription = "" ,
                 Modifier
-                    .size(500.dp)
+                    .size(400.dp)
                 )
             Text(text = "All your favorites" , fontSize = 26.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier .height(20.dp) )
@@ -69,7 +69,7 @@ fun Start(navController: NavHostController) {
                 color = Color.Gray ,
                 fontWeight = FontWeight.W700
             )
-            Spacer(modifier = Modifier .height(100.dp) )
+            Spacer(modifier = Modifier .height(40.dp) )
             Row{
                 for (i in 1..3) {
                     var col_mus = Mustard_yellow_light
@@ -97,7 +97,7 @@ fun Start(navController: NavHostController) {
             ) {
                 Text(text = "Next" , fontSize = 22.sp)
             }
-            TextButton(onClick = { navController.navigate("Login") }) {
+            TextButton(onClick = { navController.navigate("LoginScreen") }) {
                 Text(text = "Skip", fontSize = 25.sp, fontFamily = FontFamily.SansSerif , color = Color.Black)
             }
             Spacer(modifier = Modifier.height(50.dp))
@@ -111,32 +111,31 @@ fun Start2(navController: NavHostController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     Box(modifier = Modifier
-        .fillMaxSize()
+//        .fillMaxSize()
         .background(Color.White)
     ){
         Column(modifier = Modifier
             .padding(40.dp)
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+//            .fillMaxSize()
+//            .verticalScroll(rememberScrollState())
             .background(Color.White),
-            verticalArrangement = Arrangement.Bottom,
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(painter = painterResource(R.drawable.order),
                 contentDescription = "" ,
                 Modifier
-                    .size(500.dp)
+                    .size(400.dp)
                 )
             Text(text = "Order from chosen chef" , fontSize = 26.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier .height(20.dp) )
-            Text(text = "Get all your loved foods in one once place,\n" +
-                    "you just place the order we do the rest" ,
+            Text(text = "Get all your loved foods in one once place, you just place the order we do the rest" ,
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center ,
                 color = Color.Gray ,
                 fontWeight = FontWeight.W700
             )
-            Spacer(modifier = Modifier .height(100.dp) )
+            Spacer(modifier = Modifier .height(40.dp) )
             Row{
                 for (i in 1..3) {
                     var col_mus = Mustard_yellow_light
@@ -164,7 +163,7 @@ fun Start2(navController: NavHostController) {
             ) {
                 Text(text = "Next" , fontSize = 22.sp)
             }
-            TextButton(onClick = { navController.navigate("Login") }) {
+            TextButton(onClick = { navController.navigate("LoginScreen") }) {
                 Text(text = "Skip", fontSize = 25.sp, fontFamily = FontFamily.SansSerif , color = Color.Black)
             }
             Spacer(modifier = Modifier.height(50.dp))
@@ -178,21 +177,21 @@ fun Start3(navController: NavHostController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     Box(modifier = Modifier
-        .fillMaxSize()
+//        .fillMaxSize()
         .background(Color.White)
     ){
         Column(modifier = Modifier
             .padding(40.dp)
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+//            .fillMaxSize()
+//            .verticalScroll(rememberScrollState())
             .background(Color.White),
-            verticalArrangement = Arrangement.Bottom,
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(painter = painterResource(R.drawable.delivery),
                 contentDescription = "" ,
                 Modifier
-                    .size(500.dp)
+                    .size(400.dp)
                 )
             Text(text = "Free delivery offers" , fontSize = 26.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier .height(20.dp) )
@@ -221,7 +220,7 @@ fun Start3(navController: NavHostController) {
                 }
             }
             Spacer(modifier = Modifier .height(10.dp) )
-            Button(onClick = { navController.navigate("HomePage") },
+            Button(onClick = { navController.navigate("LoginScreen") },
                 Modifier
                     .fillMaxWidth()
                     .padding(30.dp)
