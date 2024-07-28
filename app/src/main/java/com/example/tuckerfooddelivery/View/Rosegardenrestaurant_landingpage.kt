@@ -48,12 +48,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.ui.theme.PurpleGrey40
 
 @Composable
-fun Rosegardenrestaurant_landingpage() {
+fun Rosegardenrestaurant_landingpage(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -71,7 +72,7 @@ fun Rosegardenrestaurant_landingpage() {
             CircularButtonWithSymbol(onClick = { /* handle click */ })
             Spacer(modifier = Modifier.width(16.dp))
             Text(
-                text = "SkyHigh Way Restaurant",
+                text = "Rose Garden Restaurant",
                 color = Color(0xFFD4AF37),
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp,

@@ -3,9 +3,11 @@ package com.example.tuckerfooddelivery.View
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+//import androidx.compose.foundation.layout.FlowColumnScopeInstance.align
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,6 +24,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -29,9 +32,11 @@ import androidx.compose.material3.CardColors
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -69,7 +74,7 @@ fun HomePage(navController: NavController) {
                 modifier = Modifier
                     .size(45.dp)
                     .clip(CircleShape)
-                    .background(Color.Gray)
+                    .background(colorResource(id = R.color.Blue_Slight))
             ) {
                 Image(
                     painter = painterResource(R.drawable.menu),
@@ -95,12 +100,15 @@ fun HomePage(navController: NavController) {
                     color = Color.Black
                 )
             }
+
             Spacer(modifier = Modifier.width(180.dp))
             Box(
                 modifier = Modifier
                     .size(45.dp)
                     .clip(CircleShape)
-                    .background(Color.Gray)
+                    .background(colorResource(id = R.color.Blue_Slight))
+
+
             ) {
                 Image(
                     painter = painterResource(R.drawable.shopping_bag__2),
@@ -138,24 +146,24 @@ fun HomePage(navController: NavController) {
 
         var searchQuery by remember { mutableStateOf("") }
 
-        TextField(
+        OutlinedTextField(
             value = searchQuery,
             onValueChange = { searchQuery = it },
             modifier = Modifier
                 .fillMaxWidth()
-                //.clip(RoundedCornerShape(corner = CornerSize(20.dp)))
-                .padding(10.dp),
-            placeholder = { Text("Search dishes, restaurants") },
-            leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
+                .padding(10.dp) ,
+            placeholder = { Text("Search dishes, restaurants", color = Color.Black) },
+            leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null, tint = Color.Black) },
             trailingIcon = {
                 IconButton(onClick = { /* TODO: Add action for microphone */ }) {
-                    Icon(Icons.Default.Settings, contentDescription = null)
+                    Icon(Icons.Default.Settings, contentDescription = null, tint = Color.Black)
                 }
             },
-            colors = TextFieldDefaults.textFieldColors(
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
-            ),
+//            colors = TextFieldDefaults.textFieldColors(
+//                focusedIndicatorColor = colorResource(id = R.color.Blue_Slight),
+//                unfocusedIndicatorColor = colorResource(id = R.color.Blue_Slight)
+//            )
+            colors = TextFieldDefaults.textFieldColors(containerColor = colorResource(id = R.color.Blue_Slight)),
             shape = RoundedCornerShape(20.dp)
         )
         Spacer(modifier = Modifier.height(5.dp))
@@ -343,7 +351,7 @@ fun HomePage(navController: NavController) {
                 disabledContentColor = Mustard_yellow,
                 disabledContainerColor = Mustard_yellow
             ),
-            onClick = {navController.navigate("Pizza")}
+            onClick = {navController.navigate("Rosegardenrestaurant_landingpage")}
         ) {
             Image(
                 painter = painterResource(id = R.drawable.restaurant_img_1),
@@ -449,6 +457,8 @@ fun HomePage(navController: NavController) {
                     .size(height = 400.dp, width = 500.dp)
                     .clip(RoundedCornerShape(5.dp))
                     .background(Color.Transparent)
+                    .clickable  {navController.navigate("Fionah_landingpage")},
+
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.restaurant_bg_2),
@@ -473,7 +483,7 @@ fun HomePage(navController: NavController) {
                 .width(10.dp)
         )
         Text(
-            text = "Billu Da Dhaba",
+            text = "Fionah Restrauant",//Billu Da Dhaba
             fontWeight = FontWeight.Bold,
             color = Color.Black,
             fontSize = 20.sp,
@@ -557,7 +567,8 @@ fun HomePage(navController: NavController) {
                 contentColor = Color.Black,
                 disabledContentColor = Mustard_yellow,
                 disabledContainerColor = Mustard_yellow
-            )
+            ),
+            onClick = { navController.navigate("SkyHighW_landingpage") }
         ) {
             Image(
                 painter = painterResource(id = R.drawable.restaurant_img_3),
