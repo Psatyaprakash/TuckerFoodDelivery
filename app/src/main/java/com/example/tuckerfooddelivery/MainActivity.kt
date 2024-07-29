@@ -12,6 +12,7 @@ import androidx.compose.animation.fadeOut
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.tuckerfooddelivery.View.Burger_Category
 import com.example.tuckerfooddelivery.View.ItemDetails
 import com.example.tuckerfooddelivery.View.ItemDetails2
 import com.example.tuckerfooddelivery.View.ItemDetails3
@@ -29,7 +30,8 @@ class MainActivity : ComponentActivity() {
             TuckerFoodDeliveryTheme {
                 //ItemDetails()
                // PersonalInfoDetails()
-            AppNavigation()
+                Burger_Category()
+            //AppNavigation()
             }
         }
     }
