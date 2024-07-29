@@ -13,10 +13,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tuckerfooddelivery.View.Burger_Category
-import com.example.tuckerfooddelivery.View.ItemDetails
-import com.example.tuckerfooddelivery.View.ItemDetails2
-import com.example.tuckerfooddelivery.View.ItemDetails3
+//import com.example.tuckerfooddelivery.View.ItemDetails
+//import com.example.tuckerfooddelivery.View.ItemDetails2
+//import com.example.tuckerfooddelivery.View.ItemDetails3
 import com.example.tuckerfooddelivery.View.PersonalInfoDetails
+import com.example.tuckerfooddelivery.View.Pizza
+import com.example.tuckerfooddelivery.View.Pizza_2
+import com.example.tuckerfooddelivery.View.Pizza_3
 import com.example.tuckerfooddelivery.View.Start
 import com.example.tuckerfooddelivery.View.Start2
 import com.example.tuckerfooddelivery.View.Start3
@@ -58,9 +61,9 @@ fun AppNavigation() {
         composable("Start2") { Start2(navController) }
         composable("Start3") { Start3(navController) }
         composable("Start") { Start(navController) }
-        composable("ItemDetails"){ ItemDetails(navController)}
-        composable("ItemDetails2"){ ItemDetails2(navController)}
-        composable("ItemDetails3"){ ItemDetails3(navController)}
+        composable("Pizza"){ Pizza(navController) }
+        composable("Pizza2"){ Pizza_2(navController) }
+        composable("Pizza_3"){ Pizza_3(navController)}
 
     }
 }
