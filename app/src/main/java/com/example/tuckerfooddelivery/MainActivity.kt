@@ -13,6 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tuckerfooddelivery.View.PersonalInfoDetails
+import com.example.tuckerfooddelivery.View.ProfileView
 import com.example.tuckerfooddelivery.View.Start
 import com.example.tuckerfooddelivery.View.Start2
 import com.example.tuckerfooddelivery.View.Start3
@@ -24,8 +25,9 @@ class MainActivity : ComponentActivity() {
         //enableEdgeToEdge()
         setContent {
             TuckerFoodDeliveryTheme {
-                PersonalInfoDetails()
-            //AppNavigation()
+               // ProfileView()
+               // PersonalInfoDetails()
+            AppNavigation()
             }
         }
     }
@@ -52,6 +54,8 @@ fun AppNavigation() {
         composable("Start2") { Start2(navController) }
         composable("Start3") { Start3(navController) }
         composable("Start") { Start(navController) }
+        composable("ProfileView") { ProfileView(navController) }
+        composable("PersonalInfoDetails") { PersonalInfoDetails(navController) }
     }
 }
 
