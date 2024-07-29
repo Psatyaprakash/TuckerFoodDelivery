@@ -19,8 +19,8 @@ import com.example.tuckerfooddelivery.View.HomePage
 //import com.example.tuckerfooddelivery.View.ItemDetails3
 import com.example.tuckerfooddelivery.View.PersonalInfoDetails
 import com.example.tuckerfooddelivery.View.PizzaCalzone
-import com.example.tuckerfooddelivery.View.Pizza_2
-import com.example.tuckerfooddelivery.View.Pizza_3
+//import com.example.tuckerfooddelivery.View.Pizza_2
+//import com.example.tuckerfooddelivery.View.Pizza_3
 import com.example.tuckerfooddelivery.View.Start
 import com.example.tuckerfooddelivery.View.Start2
 import com.example.tuckerfooddelivery.View.Start3
@@ -64,8 +64,6 @@ fun AppNavigation() {
         composable("Start3") { Start3(navController) }
         composable("HomePage") { HomePage(navController) }
         composable("PizzaCalzone"){ PizzaCalzone(navController) }
-        composable("Pizza_2"){ Pizza_2(navController) }
-        composable("Pizza_3"){ Pizza_3(navController)}
 
     }
 }
