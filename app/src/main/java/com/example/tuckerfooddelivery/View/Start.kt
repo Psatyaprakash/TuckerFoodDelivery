@@ -97,7 +97,7 @@ fun Start(navController: NavHostController) {
             ) {
                 Text(text = "Next" , fontSize = 22.sp)
             }
-            TextButton(onClick = { navController.navigate("Login") }) {
+            TextButton(onClick = { navController.navigate("HomePage") }) {
                 Text(text = "Skip", fontSize = 25.sp, fontFamily = FontFamily.SansSerif , color = Color.Black)
             }
             Spacer(modifier = Modifier.height(50.dp))

@@ -132,7 +132,7 @@ import com.example.tuckerfooddelivery.View.Start3
 
 
 @Composable
-fun Pizza(navController: NavController) {
+fun PizzaCalzone(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     Column {
@@ -188,7 +188,7 @@ fun Pizza(navController: NavController) {
                         .wrapContentHeight()
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.pizza_img),
+                        painter = painterResource(id = R.drawable.pizza_calzone),
                         contentDescription = "Pizza",
                         modifier = Modifier
                             .align(Alignment.Center)
@@ -283,7 +283,7 @@ fun Pizza(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "SIZE:", modifier = Modifier.padding(horizontal = 10.dp))
-                TextButton(onClick = {  },
+                TextButton(onClick = { navController.navigate("PizzaCalzone") },
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     modifier = Modifier
                         .size(60.dp),
@@ -451,7 +451,7 @@ fun Pizza(navController: NavController) {
                         .wrapContentHeight()
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.pizza_img),
+                        painter = painterResource(id = R.drawable.pizza_calzone),
                         contentDescription = "Pizza",
                         modifier = Modifier
                             .align(Alignment.Center)
@@ -589,7 +589,7 @@ fun Pizza_2(navController: NavController){
                         .wrapContentHeight()
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.pizza),
+                        painter = painterResource(id = R.drawable.pizza_calzone),
                         contentDescription = "Pizza",
                         modifier = Modifier
                             .align(Alignment.Center)
@@ -684,7 +684,7 @@ fun Pizza_2(navController: NavController){
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "SIZE:", modifier = Modifier.padding(horizontal = 10.dp))
-                TextButton(onClick = { navController.navigate("Pizza") },
+                TextButton(onClick = { navController.navigate("PizzaCalzone") },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray),
                     modifier = Modifier
                         .size(60.dp),
@@ -693,7 +693,7 @@ fun Pizza_2(navController: NavController){
                     Text(text = "10''", fontSize = 25.sp)
                 }
                 Spacer(modifier = Modifier.width(30.dp))
-                TextButton(onClick = { /*TODO*/ },
+                TextButton(onClick = { navController.navigate("Pizza_2") },
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     modifier = Modifier
                         .size(60.dp),
@@ -928,7 +928,7 @@ fun Pizza_3(navController: NavController){
                         .wrapContentHeight()
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.pizza),
+                        painter = painterResource(id = R.drawable.pizza_calzone),
                         contentDescription = "Pizza",
                         modifier = Modifier
                             .align(Alignment.Center)
@@ -1023,7 +1023,7 @@ fun Pizza_3(navController: NavController){
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "SIZE:", modifier = Modifier.padding(horizontal = 10.dp))
-                TextButton(onClick = { navController.navigate("Pizza") },
+                TextButton(onClick = { navController.navigate("PizzaCalzone") },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray),
                     modifier = Modifier
                         .size(60.dp),
@@ -1041,7 +1041,7 @@ fun Pizza_3(navController: NavController){
                     Text(text = "14''", fontSize = 25.sp)
                 }
                 Spacer(modifier = Modifier.width(30.dp))
-                TextButton(onClick = { /*TODO*/ },
+                TextButton(onClick = { navController.navigate("Pizza_3") },
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     modifier = Modifier
                         .size(60.dp),

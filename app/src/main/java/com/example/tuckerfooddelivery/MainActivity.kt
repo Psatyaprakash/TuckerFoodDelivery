@@ -13,11 +13,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tuckerfooddelivery.View.Burger_Category
+import com.example.tuckerfooddelivery.View.HomePage
 //import com.example.tuckerfooddelivery.View.ItemDetails
 //import com.example.tuckerfooddelivery.View.ItemDetails2
 //import com.example.tuckerfooddelivery.View.ItemDetails3
 import com.example.tuckerfooddelivery.View.PersonalInfoDetails
-import com.example.tuckerfooddelivery.View.Pizza
+import com.example.tuckerfooddelivery.View.PizzaCalzone
 import com.example.tuckerfooddelivery.View.Pizza_2
 import com.example.tuckerfooddelivery.View.Pizza_3
 import com.example.tuckerfooddelivery.View.Start
@@ -32,9 +33,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             TuckerFoodDeliveryTheme {
                 //ItemDetails()
+                //PizzaCalzone()
                // PersonalInfoDetails()
-                Burger_Category()
-            //AppNavigation()
+               // Burger_Category()
+            AppNavigation()
             }
         }
     }
@@ -55,14 +57,14 @@ fun AppNavigation() {
         exitTransition = { fadeOut(animationSpec = tween(200))  +
                 slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "Start"
+        startDestination = "HomePage"
     ) {
         composable("Start") { Start(navController) }
         composable("Start2") { Start2(navController) }
         composable("Start3") { Start3(navController) }
-        composable("Start") { Start(navController) }
-        composable("Pizza"){ Pizza(navController) }
-        composable("Pizza2"){ Pizza_2(navController) }
+        composable("HomePage") { HomePage(navController) }
+        composable("PizzaCalzone"){ PizzaCalzone(navController) }
+        composable("Pizza_2"){ Pizza_2(navController) }
         composable("Pizza_3"){ Pizza_3(navController)}
 
     }
