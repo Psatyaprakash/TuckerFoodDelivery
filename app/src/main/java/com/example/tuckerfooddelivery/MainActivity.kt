@@ -13,6 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tuckerfooddelivery.View.Burger_Category
+import com.example.tuckerfooddelivery.View.ClassicFrenchFries
 import com.example.tuckerfooddelivery.View.HomePage
 //import com.example.tuckerfooddelivery.View.ItemDetails
 //import com.example.tuckerfooddelivery.View.ItemDetails2
@@ -36,7 +37,8 @@ class MainActivity : ComponentActivity() {
                 //PizzaCalzone()
                // PersonalInfoDetails()
                // Burger_Category()
-            AppNavigation()
+                ClassicFrenchFries()
+           // AppNavigation()
             }
         }
     }
