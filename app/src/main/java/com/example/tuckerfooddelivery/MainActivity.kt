@@ -5,27 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.example.tuckerfooddelivery.ViewModel.AppNavigation
 import com.example.tuckerfooddelivery.ui.theme.TuckerFoodDeliveryTheme
-import androidx.compose.animation.AnimatedContentTransitionScope
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.example.tuckerfooddelivery.View.Burger_Category
-import com.example.tuckerfooddelivery.View.ClassicFrenchFries
-import com.example.tuckerfooddelivery.View.HomePage
-//import com.example.tuckerfooddelivery.View.ItemDetails
-//import com.example.tuckerfooddelivery.View.ItemDetails2
-//import com.example.tuckerfooddelivery.View.ItemDetails3
-import com.example.tuckerfooddelivery.View.PersonalInfoDetails
-import com.example.tuckerfooddelivery.View.PizzaCalzone
-//import com.example.tuckerfooddelivery.View.Pizza_2
-//import com.example.tuckerfooddelivery.View.Pizza_3
-import com.example.tuckerfooddelivery.View.Start
-import com.example.tuckerfooddelivery.View.Start2
-import com.example.tuckerfooddelivery.View.Start3
-
 
 
 class MainActivity : ComponentActivity() {

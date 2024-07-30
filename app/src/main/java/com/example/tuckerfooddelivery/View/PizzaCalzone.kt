@@ -1,10 +1,5 @@
 package com.example.tuckerfooddelivery.View
 
-//import androidx.compose.material3.Text
-
-//import androidx.test.espresso.*
-//import androidx.test.espresso.base.Default
-import android.content.ContentValues.TAG
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -62,10 +57,11 @@ fun PizzaCalzone(navController: NavController) {
     var star by remember { mutableStateOf(0.0) }
     val deliver by remember { mutableStateOf("") }
     var deliveryTime by remember { mutableStateOf(0) }
-    var price by remember { mutableStateOf(0) }
+    var price by remember { mutableStateOf(199) }
     var count by remember { mutableStateOf(0) }
 
-    var selectedButtonIndex by remember { mutableStateOf(0) }
+
+    var selectedButtonIndex by remember { mutableStateOf(1) }
 
     fun getButtonColor(index: Int): Color {
         return if (index == selectedButtonIndex) Mustard_yellow else Color.LightGray
@@ -83,7 +79,7 @@ fun PizzaCalzone(navController: NavController) {
 
     star = 4.7
     deliveryTime = 20
-    price = 199
+    //price = 199
 
 
     Column {
@@ -241,7 +237,7 @@ fun PizzaCalzone(navController: NavController) {
                     fontWeight = FontWeight.Bold
                 )
                 TextButton(
-                    onClick = { onButtonClick(1) },
+                    onClick = { onButtonClick(1) ; price = 199 },
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(1)
                     ),
@@ -254,7 +250,7 @@ fun PizzaCalzone(navController: NavController) {
 
                 Spacer(modifier = Modifier.width(30.dp))
                 TextButton(
-                    onClick = { onButtonClick(2) },
+                    onClick = { onButtonClick(2); price = 239  },
                     colors = ButtonDefaults.textButtonColors(getButtonColor(2)),
                     modifier = Modifier
                         .size(60.dp),
@@ -265,7 +261,7 @@ fun PizzaCalzone(navController: NavController) {
 
                 Spacer(modifier = Modifier.width(30.dp))
                 TextButton(
-                    onClick = { onButtonClick(3) },
+                    onClick = { onButtonClick(3) ; price = 259 },
                     colors = ButtonDefaults.textButtonColors(getButtonColor(3)),
                     modifier = Modifier
                         .size(60.dp),
