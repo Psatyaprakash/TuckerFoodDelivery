@@ -27,6 +27,7 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.TextButton
@@ -58,7 +59,7 @@ fun PizzaCalzone(navController: NavController) {
     val deliver by remember { mutableStateOf("") }
     var deliveryTime by remember { mutableStateOf(0) }
     var price by remember { mutableStateOf(199) }
-    var count by remember { mutableStateOf(0) }
+    var count by remember { mutableStateOf(1) }
 
 
     var selectedButtonIndex by remember { mutableStateOf(1) }
@@ -79,7 +80,6 @@ fun PizzaCalzone(navController: NavController) {
 
     star = 4.7
     deliveryTime = 20
-    //price = 199
 
 
     Column {
@@ -417,7 +417,7 @@ fun PizzaCalzone(navController: NavController) {
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "Rs. $price",
+                    text = "Rs. ${price * count}",
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(20.dp),
                     fontSize = 25.sp

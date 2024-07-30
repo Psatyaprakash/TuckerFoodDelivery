@@ -48,6 +48,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
 
+
+
 var ClassicFrenchFries_Cart=0
 @Composable
 fun ClassicFrenchFries(navController: NavController) {
@@ -80,18 +82,7 @@ fun ClassicFrenchFries(navController: NavController) {
         mutableStateOf<Int>(1)
     }
 
-    fun Increment() {
-        if (count < 100) {
-            count = count + 1
-            totalprice = unitprice * count
-        }
-    }
-    fun Decrement() {
-        if (count > 1) {
-            count = count - 1
-            totalprice = unitprice * count
-        }
-    }
+
 
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     Column {
@@ -387,7 +378,7 @@ fun ClassicFrenchFries(navController: NavController) {
                         .align(Alignment.CenterVertically)
                 ) {
                     Row {
-                        IconButton(onClick = { Decrement() }) {
+                        IconButton(onClick = { count-- }) {
                             Icon(
                                 Icons.Default.KeyboardArrowDown,
                                 contentDescription = null,
@@ -403,7 +394,7 @@ fun ClassicFrenchFries(navController: NavController) {
                             fontSize = 20.sp
                         )
                         Spacer(modifier = Modifier.width(1.dp))
-                        IconButton(onClick = { Increment() }) {
+                        IconButton(onClick = { count++ }) {
                             Icon(
                                 Icons.Default.KeyboardArrowUp,
                                 contentDescription = null,
@@ -481,20 +472,6 @@ fun ClassicFrenchFriesCart() {
         mutableStateOf<Int>(1)
     }
 
-    fun Increment() {
-        if (count < 100) {
-            count = count + 1
-            totalprice = unitprice * count
-        }
-    }
-
-    fun Decrement() {
-        if (count > 1) {
-            count = count - 1
-            totalprice = unitprice * count
-        }
-    }
-
     Card(
         shape = RoundedCornerShape(16.dp),
         backgroundColor = Mustard_yellow,
@@ -554,7 +531,7 @@ fun ClassicFrenchFriesCart() {
 
                     ) {
                         Row {
-                            IconButton(onClick = { Decrement() }) {
+                            IconButton(onClick = { count-- }) {
                                 Icon(
                                     Icons.Default.KeyboardArrowDown,
                                     contentDescription = null,
@@ -569,7 +546,7 @@ fun ClassicFrenchFriesCart() {
                                 fontSize = 20.sp
                             )
                             Spacer(modifier = Modifier.width(1.dp))
-                            IconButton(onClick = { Increment() }) {
+                            IconButton(onClick = { count++ }) {
                                 Icon(
                                     Icons.Default.KeyboardArrowUp,
                                     contentDescription = null,

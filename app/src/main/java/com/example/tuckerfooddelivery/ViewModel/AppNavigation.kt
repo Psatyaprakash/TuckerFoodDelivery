@@ -36,12 +36,11 @@ fun AppNavigation() {
                 slideOutOfContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "HomePage"
+        startDestination = "PizzaCalzone"
     ) {
         composable("Start") { Start(navController) }
         composable("Start2") { Start2(navController) }
         composable("Start3") { Start3(navController) }
-        composable("Start") { Start(navController) }
         composable("LoginScreen") { LoginScreen(navController) }
         composable("HomePage"){ HomePage(navController) }
         composable("PizzaCalzone"){ PizzaCalzone(navController) }

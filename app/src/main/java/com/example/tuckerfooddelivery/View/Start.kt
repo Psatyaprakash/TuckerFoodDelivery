@@ -60,7 +60,7 @@ fun Start(navController: NavHostController) {
                 Modifier
                     .size(400.dp)
                     .fillMaxWidth()
-                )
+            )
             Text(text = "All your favorites" , fontSize = 26.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier .height(20.dp) )
             Text(text = "Get all your loved foods in one once place,\n" +
@@ -98,7 +98,7 @@ fun Start(navController: NavHostController) {
             ) {
                 Text(text = "Next" , fontSize = 22.sp , color = Color.White)
             }
-           // TextButton(onClick = { navController.navigate("LoginScreen") }) { 
+            // TextButton(onClick = { navController.navigate("LoginScreen") }) {
             // Navigating to HomePage for testing. Later will change navigation to LoginScreen
 
             TextButton(onClick = { navController.navigate("HomePage") }) {
@@ -130,7 +130,7 @@ fun Start2(navController: NavHostController) {
                 contentDescription = "" ,
                 Modifier
                     .size(400.dp)
-                )
+            )
             Text(text = "Order from chosen chef" , fontSize = 26.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier .height(20.dp) )
             Text(text = "Get all your loved foods in one once place, you just place the order we do the rest" ,
@@ -196,7 +196,7 @@ fun Start3(navController: NavHostController) {
                 contentDescription = "" ,
                 Modifier
                     .size(400.dp)
-                )
+            )
             Text(text = "Free delivery offers" , fontSize = 26.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier .height(20.dp) )
             Text(text = "Get all your loved foods in one once place,\n" +
