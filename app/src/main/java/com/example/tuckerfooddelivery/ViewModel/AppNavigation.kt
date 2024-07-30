@@ -63,7 +63,7 @@ fun AppNavigation() {
         composable("HomePage"){ HomePage(navController) }
         composable("PizzaCalzone"){ PizzaCalzone(navController) }
         composable("ClassicFrenchFries"){ ClassicFrenchFries(navController) }
-        composable("Burger_Category"){ Burger_Category(navController) }
+        //composable("Burger_Category"){ Burger_Category(navController) }
         composable("Cart"){ Cart(navController) }
         composable("BurgerBistro"){ BurgerBistro(navController) }
         composable("TibetanMomos"){ TibetanMomos(navController) }
