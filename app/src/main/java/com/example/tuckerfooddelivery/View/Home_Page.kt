@@ -351,7 +351,11 @@ fun HomePage(navController: NavController) {
                 disabledContentColor = Mustard_yellow,
                 disabledContainerColor = Mustard_yellow
             ),
+
             onClick = {navController.navigate("Rosegardenrestaurant_landingpage")}
+
+            //onClick = {navController.navigate("PizzaCalzone")}
+
         ) {
             Image(
                 painter = painterResource(id = R.drawable.restaurant_img_1),
