@@ -44,7 +44,7 @@ fun Start(navController: NavHostController) {
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     Box(modifier = Modifier
         .fillMaxSize()
-        .background(Color.White),
+        .background(Color.White)
 //        slideOutHorizontally {  }
     ){
         Column(modifier = Modifier
@@ -98,7 +98,10 @@ fun Start(navController: NavHostController) {
             ) {
                 Text(text = "Next" , fontSize = 22.sp , color = Color.White)
             }
-            TextButton(onClick = { navController.navigate("LoginScreen") }) {
+           // TextButton(onClick = { navController.navigate("LoginScreen") }) { 
+            // Navigating to HomePage for testing. Later will change navigation to LoginScreen
+
+            TextButton(onClick = { navController.navigate("HomePage") }) {
                 Text(text = "Skip", fontSize = 25.sp, fontFamily = FontFamily.SansSerif , color = Color.Black)
             }
             Spacer(modifier = Modifier.height(50.dp))
@@ -236,6 +239,3 @@ fun Start3(navController: NavHostController) {
         }
     }
 }
-
-
-

@@ -222,7 +222,7 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                TextButton(onClick = { /* Navigate to Burger page */ }) {
+                TextButton(onClick = { navController.navigate("Burger_Category") }) {
                     Text(
                         text = "Burger",
                         fontSize = 22.sp,
@@ -332,7 +332,7 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                TextButton(onClick = { /* Navigate to Pizza page */ }) {
+                TextButton(onClick = { navController.navigate("PizzaCalzone") }) {
                     Text(
                         text = "Pizza",
                         fontSize = 22.sp,
