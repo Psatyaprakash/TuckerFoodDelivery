@@ -3,7 +3,6 @@ package com.example.tuckerfooddelivery.View
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,8 +25,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.TextButton
@@ -40,6 +39,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -48,20 +48,20 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
 
-var PizzaCalzone_Cart=0
+
+
+var ClassicFrenchFries_Cart=0
 @Composable
-fun PizzaCalzone(navController: NavController) {
-
+fun ClassicFrenchFries(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
-    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
-
-    var star by remember { mutableStateOf(0.0) }
-    val deliver by remember { mutableStateOf("") }
-    var deliveryTime by remember { mutableStateOf(0) }
-    var price by remember { mutableStateOf(199) }
-    var count by remember { mutableStateOf(1) }
-
-
+    var  Fries_image: Any = Image(
+       painter = painterResource(id = R.drawable.classic_french_fries),
+       contentDescription = "Pizza",
+       modifier = Modifier
+           .padding(100.dp)
+//            .align(Alignment.Center)
+           .size(100.dp)
+   )
     var selectedButtonIndex by remember { mutableStateOf(1) }
 
     fun getButtonColor(index: Int): Color {
@@ -71,29 +71,35 @@ fun PizzaCalzone(navController: NavController) {
     fun onButtonClick(index: Int) {
         selectedButtonIndex = index
     }
+    val Item_Name = "Classic French Fries"
+    var UnitRegularPrice : Int by remember {
+        mutableStateOf<Int>(35)
+    }
+    var UnitLargePrice : Int by remember {
+        mutableStateOf<Int>(60)
+    }
+    var totalprice : Int by remember {
+        mutableStateOf<Int>(35)
+    }
+    var count by remember {
+        mutableStateOf<Int>(1)
+    }
 
-    /*
-    All the values of the above variables will be retrieved from database
-    So need not be hard coded
-    For testing variables will be declared explicitly
-    */
-
-    star = 4.7
-    deliveryTime = 20
 
 
+    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     Column {
         Column(
             modifier = Modifier
-                .padding(15.dp)
-                .size(width = 500.dp, height = 655.dp)
+                .padding(horizontal = 15.dp)
+                .size(width = 500.dp, height = 670.dp)
                 .verticalScroll(rememberScrollState())
         ) {
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(15.dp))
             Row {
                 TextButton(
-                    onClick = {},
-                    colors = ButtonDefaults.buttonColors(Color.Gray),
+                    onClick = {navController.navigate("HomePage") },
+                    colors = ButtonDefaults.buttonColors(Color.LightGray),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
                     modifier = Modifier
@@ -114,172 +120,154 @@ fun PizzaCalzone(navController: NavController) {
                     modifier = Modifier.padding(16.dp)
                 )
             }
-            Spacer(modifier = Modifier.height(10.dp))
-            Card(
-                shape = RoundedCornerShape(16.dp),
-                backgroundColor = Mustard_yellow,
-                modifier = Modifier
-                    .padding(10.dp)
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-//                colors = CardColors(
-//                    containerColor = Mustard_yellow_light, contentColor = Color.Black,
-//                    disabledContentColor = Mustard_yellow,
-//                    disabledContainerColor = Mustard_yellow
-//                )
-            ) {
-                Box(
+                Spacer(modifier = Modifier.height(10.dp))
+                Card(
+                    shape = RoundedCornerShape(16.dp),
+                    backgroundColor = Mustard_yellow,
                     modifier = Modifier
-                        .padding(16.dp)
+                        .padding(10.dp)
                         .fillMaxWidth()
-                        .wrapContentHeight()
+                        .wrapContentHeight(),
                 ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.pizza_calzone),
-                        contentDescription = "Pizza",
+                    Box(
                         modifier = Modifier
-                            .align(Alignment.Center)
-                            .size(200.dp)
-                    )
-                    Icon(
-                        imageVector = Icons.Default.Favorite,
-                        contentDescription = "Add",
-                        tint = Color.White,
-                        modifier = Modifier
-                            .align(Alignment.BottomEnd)
-                            .size(40.dp)
-                            .background(Color.Red, shape = CircleShape)
-                            .padding(8.dp)
-                    )
+                            .padding(16.dp)
+                            .fillMaxWidth()
+                            .wrapContentHeight()
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.classic_french_fries),
+                            contentDescription = "Pizza",
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .size(220.dp)
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Favorite,
+                            contentDescription = "Add",
+                            tint = Color.White,
+                            modifier = Modifier
+                                .align(Alignment.BottomEnd)
+                                .size(40.dp)
+                                .background(Color.Red, shape = CircleShape)
+                                .padding(8.dp)
+                        )
+                    }
                 }
-            }
             Spacer(modifier = Modifier.height(15.dp))
+
             Text(
-                text = "Pizza Calzone European",
+                text = "$Item_Name",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
                 modifier = Modifier.padding(10.dp)
             )
-            Spacer(modifier = Modifier.height(13.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Prosciutto e funghi is a pizza variety that is topped with tomato sauce.",
+                text = "Crunch into perfection with our classic salted French fries. Golden and crispy on the outside, soft and fluffy on the inside.",
                 modifier = Modifier.padding(horizontal = 10.dp)
             )
             Spacer(modifier = Modifier.height(15.dp))
             Row(
                 modifier = Modifier
-                    .padding(horizontal = 1.dp)
+                    .padding(horizontal = 8.dp)
                     .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
+                //horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.star),
-                    contentDescription = "star",
+                    painter = painterResource(id = R.drawable.star__),
+                    contentDescription = "Pizza",
                     modifier = Modifier
                         //.align(Alignment.Top)
                         .size(30.dp)
                         .padding(0.dp)
                 )
+                Spacer(modifier = Modifier.width(5.dp))
 
                 Text(
-                    text = "$star",
+                    text = "4.7",
                     fontWeight = FontWeight.Medium,
                     color = Color.Black,
-                    fontSize = 18.sp,
+                    fontSize = 22.sp,
                     modifier = Modifier.padding(horizontal = 2.dp)
                 )
                 Spacer(modifier = Modifier.width(40.dp))
                 Image(
-                    painter = painterResource(id = R.drawable.truck),
-                    contentDescription = "delivery",
+                    painter = painterResource(id = R.drawable.truck__),
+                    contentDescription = "Pizza",
                     modifier = Modifier
                         .size(35.dp)
                         .padding(0.dp)
                 )
+                Spacer(modifier = Modifier.width(5.dp))
                 Text(
-                    text = if (deliver == "") "Free" else deliver,
+                    text = "Free",
                     fontWeight = FontWeight.Normal,
                     color = Color.Black,
-                    fontSize = 18.sp,
+                    fontSize = 22.sp,
                     modifier = Modifier.padding(horizontal = 2.dp)
                 )
 
                 Spacer(modifier = Modifier.width(40.dp))
                 Image(
-                    painter = painterResource(id = R.drawable.clock),
-                    contentDescription = "delivery_time",
+                    painter = painterResource(id = R.drawable.clock__),
+                    contentDescription = "Pizza",
                     modifier = Modifier
                         .size(35.dp)
                         .padding(0.dp)
                 )
+                Spacer(modifier = Modifier.width(5.dp))
                 Text(
-                    text = "$deliveryTime",
+                    text = "20 min",
                     fontWeight = FontWeight.Normal,
                     color = Color.Black,
-                    fontSize = 18.sp,
+                    fontSize = 22.sp,
                     modifier = Modifier.padding(horizontal = 2.dp)
                 )
             }
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(25.dp))
             Row(
                 modifier = Modifier
                     .padding(horizontal = 1.dp)
                     .fillMaxWidth()
                     .align(Alignment.CenterHorizontally),
-                horizontalArrangement = Arrangement.Start,
+                horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = "SIZE : ",
-                    modifier = Modifier.padding(horizontal = 10.dp),
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                TextButton(
-                    onClick = { onButtonClick(1) ; price = 199 },
+                Text(text = "SIZE:", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
+                TextButton(onClick = { onButtonClick(1) },
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(1)
                     ),
                     modifier = Modifier
-                        .size(60.dp),
-                    shape = CircleShape
-                ) {
-                    Text(text = "10''", fontSize = 25.sp)
+                        .size(height = 50.dp, width = 100.dp),
+                    shape = RoundedCornerShape(15.dp)
+                ){
+                    Text(text = "Regular", fontSize = 20.sp)
                 }
-
                 Spacer(modifier = Modifier.width(30.dp))
-                TextButton(
-                    onClick = { onButtonClick(2); price = 239  },
-                    colors = ButtonDefaults.textButtonColors(getButtonColor(2)),
+                TextButton(onClick = { onButtonClick(2) },
+                    colors = ButtonDefaults.textButtonColors(
+                        getButtonColor(2)
+                    ),
                     modifier = Modifier
-                        .size(60.dp),
-                    shape = CircleShape
-                ) {
-                    Text(text = "14''", fontSize = 25.sp)
+                        .size(height = 50.dp, width = 100.dp),
+                    shape = RoundedCornerShape(15.dp)
+                ){
+                    Text(text = "Large", fontSize = 20.sp)
                 }
-
-                Spacer(modifier = Modifier.width(30.dp))
-                TextButton(
-                    onClick = { onButtonClick(3) ; price = 259 },
-                    colors = ButtonDefaults.textButtonColors(getButtonColor(3)),
-                    modifier = Modifier
-                        .size(60.dp),
-                    shape = CircleShape
-                ) {
-                    Text(text = "16''", fontSize = 25.sp)
-                }
-
                 Spacer(modifier = Modifier.width(20.dp))
             }
-            Spacer(modifier = Modifier.height(10.dp))
-            Text(text = "INGRIDENTS", modifier = Modifier.padding(horizontal = 10.dp))
+            Spacer(modifier = Modifier.height(20.dp))
+            Text(text = "INGRIDENTS", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
             Spacer(modifier = Modifier.height(25.dp))
             Row(
                 modifier = Modifier
                     .padding(horizontal = 0.dp)
-                    .fillMaxWidth()
-                    .align(Alignment.CenterHorizontally),
+                    .fillMaxWidth(),
+                    //.align(Alignment.CenterHorizontally),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -307,10 +295,10 @@ fun PizzaCalzone(navController: NavController) {
                         .align(Alignment.CenterVertically)
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.kfc),
+                        painter = painterResource(id = R.drawable.potato_icon),
                         contentDescription = "",
                         modifier = Modifier
-                            .size(50.dp)
+                            .size(40.dp)
                             .align(Alignment.Center)
                     )
                 }
@@ -365,64 +353,27 @@ fun PizzaCalzone(navController: NavController) {
                 //Spacer(modifier = Modifier.width(20.dp))
             }
             Spacer(modifier = Modifier.height(75.dp))
-            Card(
-                //for scrolling purpose
-                shape = RoundedCornerShape(16.dp),
-                backgroundColor = Mustard_yellow,
-                modifier = Modifier
-                    .padding(10.dp)
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-//            colors = CardColors(
-//                containerColor = Mustard_yellow_light, contentColor = Color.Black,
-//                disabledContentColor = Mustard_yellow,
-//                disabledContainerColor = Mustard_yellow
-//            )
-            ) {
-                Box(
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.pizza_calzone),
-                        contentDescription = "Pizza",
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .size(200.dp)
-                    )
-                    Icon(
-                        imageVector = Icons.Default.Favorite,
-                        contentDescription = "Add",
-                        tint = Color.White,
-                        modifier = Modifier
-                            .align(Alignment.BottomEnd)
-                            .size(40.dp)
-                            .background(Color.Red, shape = CircleShape)
-                            .padding(8.dp)
-                    )
-                }
-            }
 
-        }
+            }
         Column(
             modifier = Modifier
                 .background(Color.LightGray)
                 .fillMaxWidth()
-                .size(height = 350.dp, width = 700.dp)
+                .size(height = 200.dp, width = 700.dp)
+                .verticalScroll(rememberScrollState())
         ) {
             Row(
                 modifier = Modifier.padding(10.dp),
                 horizontalArrangement = Arrangement.Center
             ) {
+
                 Text(
-                    text = "Rs. ${price * count}",
+                    text = "PRICE : Rs $totalprice",
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(20.dp),
+                    modifier = Modifier.padding(vertical = 20.dp, horizontal = 10.dp),
                     fontSize = 25.sp
                 )
-                Spacer(modifier = Modifier.width(150.dp))
+                Spacer(modifier = Modifier.width(50.dp))
                 Box(
                     modifier = Modifier
                         .size(height = 50.dp, width = 150.dp)
@@ -430,16 +381,15 @@ fun PizzaCalzone(navController: NavController) {
                         .align(Alignment.CenterVertically)
                 ) {
                     Row {
-                        IconButton(onClick = { /* TODO: Add action for microphone */ }) {
+                        IconButton(onClick = { count-- }) {
                             Icon(
                                 Icons.Default.KeyboardArrowDown,
                                 contentDescription = null,
                                 modifier = Modifier.size(50.dp)
-                                    .clickable { if (count == 0) count = 0 else count-- }
                             )
                         }
                         Spacer(modifier = Modifier.width(5.dp))
-//                        var count = 0
+                        //var count = 0
                         Text(
                             text = "$count", modifier = Modifier
                                 .padding(vertical = 15.dp)
@@ -447,45 +397,72 @@ fun PizzaCalzone(navController: NavController) {
                             fontSize = 20.sp
                         )
                         Spacer(modifier = Modifier.width(1.dp))
-                        IconButton(onClick = { /* TODO: Add action for microphone */ }) {
+                        IconButton(onClick = { count++ }) {
                             Icon(
                                 Icons.Default.KeyboardArrowUp,
                                 contentDescription = null,
                                 modifier = Modifier.size(50.dp)
-                                    .clickable { count++ }
                             )
                         }
                     }
                 }
 
             }
-            TextButton(
-                onClick = { /*TODO*/ },
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
+            ){
+                var value=0
+            TextButton(onClick = { ClassicFrenchFries_Cart=1}
+            ,
                 colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                 border = BorderStroke(width = 0.dp, color = Color.Transparent),
                 elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
                 modifier = Modifier
                     .padding(horizontal = 20.dp, vertical = 20.dp)
                     //.size(height = 40.dp, width = 400.dp),
-                    .fillMaxWidth()
+                    // .fillMaxWidth()
                     .height(54.dp),
                 shape = RoundedCornerShape(15.dp)
             ) {
                 Text(
-                    text = "ADD TO CART",
+                    text = " ADD TO CART ",
                     fontWeight = FontWeight.Bold,
                     color = Color.White,
                     fontSize = 20.sp
                 )
-                Spacer(modifier = Modifier.height(100.dp))
+            }
+            TextButton(onClick = {
+                /*Add_to_cart(Item_Name, unitprice, count ,Fries_image)*/
+
+                navController.navigate("Cart")
+            }
+                ,
+                colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
+                border = BorderStroke(width = 0.dp, color = Color.Transparent),
+                elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+                modifier = Modifier
+                    .padding(horizontal = 20.dp, vertical = 20.dp)
+                    //.size(height = 40.dp, width = 400.dp),
+                    //.fillMaxWidth()
+                    .height(54.dp),
+                shape = RoundedCornerShape(15.dp)
+            ) {
+                Text(
+                    text = " GO TO CART ",
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                    fontSize = 20.sp
+                )
+            }
             }
         }
     }
 }
 
 @Composable
-fun PizzaCalzone_Cart()
-{
+fun ClassicFrenchFriesCart() {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     var unitprice: Int by remember {
@@ -496,20 +473,6 @@ fun PizzaCalzone_Cart()
     }
     var count by remember {
         mutableStateOf<Int>(1)
-    }
-
-    fun Increment() {
-        if (count < 100) {
-            count = count + 1
-            totalprice = unitprice * count
-        }
-    }
-
-    fun Decrement() {
-        if (count > 1) {
-            count = count - 1
-            totalprice = unitprice * count
-        }
     }
 
     Card(
@@ -536,7 +499,7 @@ fun PizzaCalzone_Cart()
                         .wrapContentHeight(),
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.pizza_calzone),
+                        painter = painterResource(id = R.drawable.classic_french_fries),
                         contentDescription = "classic_french_fries",
                         modifier = Modifier
                             //.align(Alignment.Center)
@@ -571,7 +534,7 @@ fun PizzaCalzone_Cart()
 
                     ) {
                         Row {
-                            IconButton(onClick = { Decrement() }) {
+                            IconButton(onClick = { count-- }) {
                                 Icon(
                                     Icons.Default.KeyboardArrowDown,
                                     contentDescription = null,
@@ -581,6 +544,115 @@ fun PizzaCalzone_Cart()
                             Spacer(modifier = Modifier.width(5.dp))
                             Text(
                                 text = "$count", modifier = Modifier
+                                    .padding(vertical = 5.dp)
+                                    .padding(horizontal = 15.dp),
+                                fontSize = 20.sp
+                            )
+                            Spacer(modifier = Modifier.width(1.dp))
+                            IconButton(onClick = { count++ }) {
+                                Icon(
+                                    Icons.Default.KeyboardArrowUp,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(50.dp)
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+@Composable
+fun Add_to_cart(itemName:String, unit_price:Int, count:Int, image: Any) {
+    val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
+    val Fries_image = Image(
+        painter = painterResource(id = R.drawable.classic_french_fries),
+        contentDescription = "Pizza",
+        modifier = Modifier
+            .padding(100.dp)
+            .size(100.dp)
+    )
+    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
+    var totalprice: Int by remember {
+        mutableStateOf<Int>(unit_price)
+    }
+    var Count=count
+    fun Increment() {
+        if (Count < 100) {
+            Count =Count+1
+            totalprice = unit_price * Count
+        }
+    }
+    fun Decrement() {
+        if (Count > 1) {
+            Count = Count - 1
+            totalprice = unit_price * Count
+        }
+    }
+    Card(
+        shape = RoundedCornerShape(16.dp),
+        backgroundColor = Mustard_yellow,
+        modifier = Modifier
+            .padding(10.dp)
+            .fillMaxWidth()
+            .wrapContentHeight()
+    ) {
+        Box(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .background(color = Mustard_yellow_light)
+        ) {
+            Row {
+                Card(
+                    shape = RoundedCornerShape(15.dp),
+                    modifier = Modifier
+                        .padding(0.dp)
+                        .size(100.dp)
+                        .wrapContentHeight(),
+                ) {
+                    image
+                }
+                Spacer(modifier = Modifier.width(10.dp))
+                Column(
+                    modifier = Modifier
+                        .padding(horizontal = 5.dp)
+                        .fillMaxWidth()
+                ) {
+                    Text(
+                        text = "$itemName",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 22.sp
+                    )
+
+                    Text(
+                        text = "PRICE : Rs $totalprice",
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(vertical = 10.dp, horizontal = 2.dp),
+                        fontSize = 15.sp
+                    )
+                    Box(
+                        modifier = Modifier
+                            .size(height = 30.dp, width = 150.dp)
+                            .background(color = Color.White, shape = CircleShape)
+
+                    ) {
+                        Row {
+                            IconButton(onClick = { Decrement() }) {
+                                Icon(
+                                    Icons.Default.KeyboardArrowDown,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(50.dp)
+                                )
+                            }
+                            Spacer(modifier = Modifier.width(5.dp))
+                            Text(
+                                text = "$Count", modifier = Modifier
                                     .padding(vertical = 5.dp)
                                     .padding(horizontal = 15.dp),
                                 fontSize = 20.sp

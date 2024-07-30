@@ -37,11 +37,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.example.tuckerfooddelivery.R
 
 @Composable
-fun Burger_Category(){
+fun Burger_Category(navController: NavController){
     Column(
         modifier = Modifier
             .fillMaxWidth()
