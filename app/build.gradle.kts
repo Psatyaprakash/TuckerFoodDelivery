@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.firebase.storage.ktx)
 
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.firebase.auth.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -6,13 +6,16 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import com.example.tuckerfooddelivery.ui.theme.TuckerFoodDeliveryTheme
 import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.AnimatedContentTransitionScope.SlideDirection.Companion.Start
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.interaction.DragInteraction
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tuckerfooddelivery.View.Burger_Category
+import com.example.tuckerfooddelivery.View.Cart
 import com.example.tuckerfooddelivery.View.ClassicFrenchFries
 import com.example.tuckerfooddelivery.View.HomePage
 //import com.example.tuckerfooddelivery.View.ItemDetails
@@ -22,9 +25,9 @@ import com.example.tuckerfooddelivery.View.PersonalInfoDetails
 import com.example.tuckerfooddelivery.View.PizzaCalzone
 //import com.example.tuckerfooddelivery.View.Pizza_2
 //import com.example.tuckerfooddelivery.View.Pizza_3
-import com.example.tuckerfooddelivery.View.Start
-import com.example.tuckerfooddelivery.View.Start2
-import com.example.tuckerfooddelivery.View.Start3
+//import com.example.tuckerfooddelivery.View.Start
+//import com.example.tuckerfooddelivery.View.Start2
+//import com.example.tuckerfooddelivery.View.Start3
 
 
 class MainActivity : ComponentActivity() {
@@ -33,7 +36,13 @@ class MainActivity : ComponentActivity() {
         //enableEdgeToEdge()
         setContent {
             TuckerFoodDeliveryTheme {
-                AppNavigation()
+                //ItemDetails()
+                //PizzaCalzone()
+               // PersonalInfoDetails()
+               // Burger_Category()
+                //ClassicFrenchFries()
+                //Cart()
+           AppNavigation()
             }
         }
     }
@@ -56,14 +65,20 @@ fun AppNavigation() {
                     tween(200) )},
         startDestination = "ClassicFrenchFries"
     ) {
-        composable("Start") { Start(navController) }
-        composable("Start2") { Start2(navController) }
-        composable("Start3") { Start3(navController) }
+//        composable("Start") { DragInteraction.Start() }
+//        composable("Start2") { Start2(navController) }
+//        composable("Start3") { Start3(navController) }
         composable("HomePage") { HomePage(navController) }
         composable("PizzaCalzone"){ PizzaCalzone(navController) }
         composable("ClassicFrenchFries"){ ClassicFrenchFries(navController) }
+        composable("Cart"){ Cart(navController) }
 
     }
 }
+
+
+
+
+
 
 

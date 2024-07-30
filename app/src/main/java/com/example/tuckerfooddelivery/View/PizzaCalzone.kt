@@ -4,7 +4,6 @@ package com.example.tuckerfooddelivery.View
 
 //import androidx.test.espresso.*
 //import androidx.test.espresso.base.Default
-import android.content.ContentValues.TAG
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -52,7 +51,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
 
-
+var PizzaCalzone_Cart=0
 @Composable
 fun PizzaCalzone(navController: NavController) {
 
@@ -96,8 +95,8 @@ fun PizzaCalzone(navController: NavController) {
             Spacer(modifier = Modifier.height(10.dp))
             Row {
                 TextButton(
-                    onClick = { navController.navigate("HomePage") },
-                    colors = ButtonDefaults.buttonColors(Color.LightGray),
+                    onClick = {},
+                    colors = ButtonDefaults.buttonColors(Color.Gray),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
                     modifier = Modifier
@@ -421,7 +420,7 @@ fun PizzaCalzone(navController: NavController) {
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = if(count == 0) "Rs. $price" else "Rs. ${price * count}",
+                    text = "Rs. $price",
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(20.dp),
                     fontSize = 25.sp
@@ -433,16 +432,12 @@ fun PizzaCalzone(navController: NavController) {
                         .background(color = Mustard_yellow, shape = CircleShape)
                         .align(Alignment.CenterVertically)
                 ) {
-                    Row(Modifier.matchParentSize(),
-                        horizontalArrangement = Arrangement.SpaceEvenly,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
+                    Row {
                         IconButton(onClick = { /* TODO: Add action for microphone */ }) {
                             Icon(
                                 Icons.Default.KeyboardArrowDown,
                                 contentDescription = null,
-                                modifier = Modifier
-                                    .size(40.dp)
+                                modifier = Modifier.size(50.dp)
                                     .clickable { if (count == 0) count = 0 else count-- }
                             )
                         }
@@ -450,17 +445,16 @@ fun PizzaCalzone(navController: NavController) {
 //                        var count = 0
                         Text(
                             text = "$count", modifier = Modifier
-                                .padding(1.dp),
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.W700
+                                .padding(vertical = 15.dp)
+                                .padding(horizontal = 15.dp),
+                            fontSize = 20.sp
                         )
                         Spacer(modifier = Modifier.width(1.dp))
                         IconButton(onClick = { /* TODO: Add action for microphone */ }) {
                             Icon(
                                 Icons.Default.KeyboardArrowUp,
                                 contentDescription = null,
-                                modifier = Modifier
-                                    .size(40.dp)
+                                modifier = Modifier.size(50.dp)
                                     .clickable { count++ }
                             )
                         }
@@ -487,6 +481,124 @@ fun PizzaCalzone(navController: NavController) {
                     fontSize = 20.sp
                 )
                 Spacer(modifier = Modifier.height(100.dp))
+            }
+        }
+    }
+}
+
+@Composable
+fun PizzaCalzone_Cart()
+{
+    val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
+    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
+    var unitprice: Int by remember {
+        mutableStateOf<Int>(35)
+    }
+    var totalprice: Int by remember {
+        mutableStateOf<Int>(35)
+    }
+    var count by remember {
+        mutableStateOf<Int>(1)
+    }
+
+    fun Increment() {
+        if (count < 100) {
+            count = count + 1
+            totalprice = unitprice * count
+        }
+    }
+
+    fun Decrement() {
+        if (count > 1) {
+            count = count - 1
+            totalprice = unitprice * count
+        }
+    }
+
+    Card(
+        shape = RoundedCornerShape(16.dp),
+        backgroundColor = Mustard_yellow,
+        modifier = Modifier
+            .padding(10.dp)
+            .fillMaxWidth()
+            .wrapContentHeight(),
+    ) {
+        Box(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .background(color = Mustard_yellow_light)
+        ) {
+            Row {
+                Card(
+                    shape = RoundedCornerShape(15.dp),
+                    modifier = Modifier
+                        .padding(0.dp)
+                        .size(100.dp)
+                        .wrapContentHeight(),
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.pizza_calzone),
+                        contentDescription = "classic_french_fries",
+                        modifier = Modifier
+                            //.align(Alignment.Center)
+                            .size(220.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.width(10.dp))
+                Column(
+                    modifier = Modifier
+                        .padding(horizontal = 5.dp)
+                        .fillMaxWidth()
+                ) {
+                    Text(
+                        text = "Classic French Fries",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 22.sp
+                    )
+
+                    Text(
+                        text = "PRICE : Rs $totalprice",
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(
+                            vertical = 10.dp,
+                            horizontal = 2.dp
+                        ),
+                        fontSize = 15.sp
+                    )
+                    Box(
+                        modifier = Modifier
+                            .size(height = 30.dp, width = 150.dp)
+                            .background(color = Color.White, shape = CircleShape)
+
+                    ) {
+                        Row {
+                            IconButton(onClick = { Decrement() }) {
+                                Icon(
+                                    Icons.Default.KeyboardArrowDown,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(50.dp)
+                                )
+                            }
+                            Spacer(modifier = Modifier.width(5.dp))
+                            Text(
+                                text = "$count", modifier = Modifier
+                                    .padding(vertical = 5.dp)
+                                    .padding(horizontal = 15.dp),
+                                fontSize = 20.sp
+                            )
+                            Spacer(modifier = Modifier.width(1.dp))
+                            IconButton(onClick = { Increment() }) {
+                                Icon(
+                                    Icons.Default.KeyboardArrowUp,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(50.dp)
+                                )
+                            }
+                        }
+                    }
+                }
             }
         }
     }
