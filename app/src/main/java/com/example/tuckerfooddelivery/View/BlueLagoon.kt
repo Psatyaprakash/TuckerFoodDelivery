@@ -72,14 +72,8 @@ fun BlueLagoon(navController: NavController) {
         selectedButtonIndex = index
     }
     val Item_Name = "Blue Lagoon"
-    var UnitRegularPrice : Int by remember {
-        mutableStateOf<Int>(35)
-    }
-    var UnitLargePrice : Int by remember {
-        mutableStateOf<Int>(60)
-    }
     var totalprice : Int by remember {
-        mutableStateOf<Int>(35)
+        mutableStateOf<Int>(112)
     }
     var count by remember {
         mutableStateOf<Int>(1)
@@ -98,7 +92,7 @@ fun BlueLagoon(navController: NavController) {
             Spacer(modifier = Modifier.height(15.dp))
             Row {
                 TextButton(
-                    onClick = {navController.navigate("HomePage") },
+                    onClick = {navController.navigate("Mocktails_Category") },
                     colors = ButtonDefaults.buttonColors(Color.LightGray),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
@@ -237,7 +231,7 @@ fun BlueLagoon(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "SIZE:", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
-                TextButton(onClick = { onButtonClick(1) },
+                TextButton(onClick = { onButtonClick(1); totalprice = 112 }, //unitprice of half mocktail is Rs 112
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(1)
                     ),
@@ -248,7 +242,7 @@ fun BlueLagoon(navController: NavController) {
                     Text(text = "Half", fontSize = 20.sp)
                 }
                 Spacer(modifier = Modifier.width(30.dp))
-                TextButton(onClick = { onButtonClick(2) },
+                TextButton(onClick = { onButtonClick(2); totalprice = 173 }, //unit price of full is Rs 173
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(2)
                     ),
@@ -368,7 +362,7 @@ fun BlueLagoon(navController: NavController) {
             ) {
 
                 Text(
-                    text = "PRICE : Rs $totalprice",
+                    text = "PRICE : Rs ${totalprice * count}", //to get total price
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(vertical = 20.dp, horizontal = 10.dp),
                     fontSize = 25.sp
@@ -381,7 +375,7 @@ fun BlueLagoon(navController: NavController) {
                         .align(Alignment.CenterVertically)
                 ) {
                     Row {
-                        IconButton(onClick = { count-- }) {
+                        IconButton(onClick = { if(count == 1) count = 1 else count-- }) { //to set default limit as 1
                             Icon(
                                 Icons.Default.KeyboardArrowDown,
                                 contentDescription = null,
@@ -414,7 +408,7 @@ fun BlueLagoon(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ){
                 var value=0
-                TextButton(onClick = { ClassicFrenchFries_Cart=1}
+                TextButton(onClick = { BlueLagoon_Cart=1}
                     ,
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     border = BorderStroke(width = 0.dp, color = Color.Transparent),
@@ -534,7 +528,7 @@ fun BlueLagoonCart() {
 
                     ) {
                         Row {
-                            IconButton(onClick = { count-- }) {
+                            IconButton(onClick = { if(count == 1) count = 1 else count-- }) {
                                 Icon(
                                     Icons.Default.KeyboardArrowDown,
                                     contentDescription = null,

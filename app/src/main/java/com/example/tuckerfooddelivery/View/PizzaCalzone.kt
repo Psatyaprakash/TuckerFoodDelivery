@@ -92,8 +92,8 @@ fun PizzaCalzone(navController: NavController) {
             Spacer(modifier = Modifier.height(10.dp))
             Row {
                 TextButton(
-                    onClick = {},
-                    colors = ButtonDefaults.buttonColors(Color.Gray),
+                    onClick = {navController.navigate("Pizza_Category")},
+                    colors = ButtonDefaults.buttonColors(Color.LightGray),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
                     modifier = Modifier
@@ -429,21 +429,22 @@ fun PizzaCalzone(navController: NavController) {
                         .background(color = Mustard_yellow, shape = CircleShape)
                         .align(Alignment.CenterVertically)
                 ) {
-                    Row {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
                         IconButton(onClick = { /* TODO: Add action for microphone */ }) {
                             Icon(
                                 Icons.Default.KeyboardArrowDown,
                                 contentDescription = null,
                                 modifier = Modifier.size(50.dp)
-                                    .clickable { if (count == 0) count = 0 else count-- }
+                                    .clickable { if (count == 1) count = 1 else count-- }
                             )
                         }
                         Spacer(modifier = Modifier.width(5.dp))
 //                        var count = 0
                         Text(
-                            text = "$count", modifier = Modifier
-                                .padding(vertical = 15.dp)
-                                .padding(horizontal = 15.dp),
+                            text = "$count",
                             fontSize = 20.sp
                         )
                         Spacer(modifier = Modifier.width(1.dp))

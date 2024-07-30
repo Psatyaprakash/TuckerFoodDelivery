@@ -72,14 +72,8 @@ fun BurgerBistro(navController: NavController) {
         selectedButtonIndex = index
     }
     val Item_Name = "Burger Bistro"
-    var UnitRegularPrice : Int by remember {
-        mutableStateOf<Int>(35)
-    }
-    var UnitLargePrice : Int by remember {
-        mutableStateOf<Int>(60)
-    }
     var totalprice : Int by remember {
-        mutableStateOf<Int>(35)
+        mutableStateOf<Int>(116)
     }
     var count by remember {
         mutableStateOf<Int>(1)
@@ -98,7 +92,7 @@ fun BurgerBistro(navController: NavController) {
             Spacer(modifier = Modifier.height(15.dp))
             Row {
                 TextButton(
-                    onClick = {navController.navigate("HomePage") },
+                    onClick = {navController.navigate("Burger_Category") },
                     colors = ButtonDefaults.buttonColors(Color.LightGray),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
@@ -237,7 +231,7 @@ fun BurgerBistro(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "SIZE:", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
-                TextButton(onClick = { onButtonClick(1) },
+                TextButton(onClick = { onButtonClick(1); totalprice = 116},
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(1)
                     ),
@@ -248,7 +242,7 @@ fun BurgerBistro(navController: NavController) {
                     Text(text = "Regular", fontSize = 20.sp)
                 }
                 Spacer(modifier = Modifier.width(30.dp))
-                TextButton(onClick = { onButtonClick(2) },
+                TextButton(onClick = { onButtonClick(2); totalprice = 187 },
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(2)
                     ),
@@ -368,7 +362,7 @@ fun BurgerBistro(navController: NavController) {
             ) {
 
                 Text(
-                    text = "PRICE : Rs $totalprice",
+                    text = "PRICE : Rs ${totalprice * count}",
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(vertical = 20.dp, horizontal = 10.dp),
                     fontSize = 25.sp
@@ -381,7 +375,7 @@ fun BurgerBistro(navController: NavController) {
                         .align(Alignment.CenterVertically)
                 ) {
                     Row {
-                        IconButton(onClick = { count-- }) {
+                        IconButton(onClick = { if(count == 1) count = 1 else count-- }) {
                             Icon(
                                 Icons.Default.KeyboardArrowDown,
                                 contentDescription = null,
@@ -414,7 +408,7 @@ fun BurgerBistro(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ){
                 var value=0
-                TextButton(onClick = { ClassicFrenchFries_Cart=1}
+                TextButton(onClick = { BurgerBistro_Cart=1}
                     ,
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     border = BorderStroke(width = 0.dp, color = Color.Transparent),
@@ -534,7 +528,7 @@ fun BurgerBistroCart() {
 
                     ) {
                         Row {
-                            IconButton(onClick = { count-- }) {
+                            IconButton(onClick = { if(count == 1) count = 1 else count-- }) {
                                 Icon(
                                     Icons.Default.KeyboardArrowDown,
                                     contentDescription = null,
