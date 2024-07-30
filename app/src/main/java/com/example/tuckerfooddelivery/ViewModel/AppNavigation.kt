@@ -44,9 +44,8 @@ fun AppNavigation() {
         composable("Start") { Start(navController) }
         composable("LoginScreen") { LoginScreen(navController) }
         composable("HomePage"){ HomePage(navController) }
-        composable("Pizza"){ Pizza(navController) }
-        composable("Pizza_2"){ Pizza_2(navController) }
-        composable("Pizza_3"){ Pizza_3(navController) }
+        composable("PizzaCalzone"){ PizzaCalzone(navController) }
+        composable("ClassicFrenchFries"){ ClassicFrenchFries(navController) }
 
         composable("Rosegardenrestaurant_landingpage"){ Rosegardenrestaurant_landingpage(navController) }
         composable("SkyHighW_landingpage"){ SkyHighW_landingpage(navController) }
