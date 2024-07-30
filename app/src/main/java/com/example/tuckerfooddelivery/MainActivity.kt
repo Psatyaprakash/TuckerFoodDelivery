@@ -33,12 +33,7 @@ class MainActivity : ComponentActivity() {
         //enableEdgeToEdge()
         setContent {
             TuckerFoodDeliveryTheme {
-                //ItemDetails()
-                //PizzaCalzone()
-               // PersonalInfoDetails()
-               // Burger_Category()
-                ClassicFrenchFries()
-           // AppNavigation()
+                AppNavigation()
             }
         }
     }
@@ -59,13 +54,14 @@ fun AppNavigation() {
         exitTransition = { fadeOut(animationSpec = tween(200))  +
                 slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "HomePage"
+        startDestination = "ClassicFrenchFries"
     ) {
         composable("Start") { Start(navController) }
         composable("Start2") { Start2(navController) }
         composable("Start3") { Start3(navController) }
         composable("HomePage") { HomePage(navController) }
         composable("PizzaCalzone"){ PizzaCalzone(navController) }
+        composable("ClassicFrenchFries"){ ClassicFrenchFries(navController) }
 
     }
 }

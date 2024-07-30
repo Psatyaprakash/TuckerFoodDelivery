@@ -45,10 +45,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
 
 @Composable
-fun ClassicFrenchFries() {
+fun ClassicFrenchFries(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Fries_image = Image(
         painter = painterResource(id = R.drawable.classic_french_fries),
@@ -68,7 +69,7 @@ fun ClassicFrenchFries() {
             Spacer(modifier = Modifier.height(15.dp))
             Row {
                 TextButton(
-                    onClick = {},
+                    onClick = {navController.navigate("HomePage") },
                     colors = ButtonDefaults.buttonColors(Color.LightGray),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
