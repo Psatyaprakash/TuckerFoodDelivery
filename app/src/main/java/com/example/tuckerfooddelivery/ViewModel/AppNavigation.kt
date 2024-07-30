@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tuckerfooddelivery.View.Burger_Category
+import com.example.tuckerfooddelivery.View.Cart
 import com.example.tuckerfooddelivery.View.ClassicFrenchFries
 import com.example.tuckerfooddelivery.View.HomePage
 import com.example.tuckerfooddelivery.View.LoginScreen
@@ -36,7 +37,7 @@ fun AppNavigation() {
                 slideOutOfContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "PizzaCalzone"
+        startDestination = "ClassicFrenchFries"
     ) {
         composable("Start") { Start(navController) }
         composable("Start2") { Start2(navController) }
@@ -46,6 +47,7 @@ fun AppNavigation() {
         composable("PizzaCalzone"){ PizzaCalzone(navController) }
         composable("ClassicFrenchFries"){ ClassicFrenchFries(navController) }
         composable("Burger_Category"){ Burger_Category(navController) }
+        composable("Cart"){ Cart(navController) }
 
         composable("Rosegardenrestaurant_landingpage"){ Rosegardenrestaurant_landingpage(navController) }
         composable("SkyHighW_landingpage"){ SkyHighW_landingpage(navController) }

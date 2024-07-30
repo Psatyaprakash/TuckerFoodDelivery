@@ -72,8 +72,11 @@ fun ClassicFrenchFries(navController: NavController) {
         selectedButtonIndex = index
     }
     val Item_Name = "Classic French Fries"
-    var unitprice : Int by remember {
+    var UnitRegularPrice : Int by remember {
         mutableStateOf<Int>(35)
+    }
+    var UnitLargePrice : Int by remember {
+        mutableStateOf<Int>(60)
     }
     var totalprice : Int by remember {
         mutableStateOf<Int>(35)
