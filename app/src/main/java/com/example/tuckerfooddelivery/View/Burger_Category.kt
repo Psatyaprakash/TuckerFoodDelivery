@@ -431,7 +431,7 @@ fun Burger_Category(){
                 colors = CardDefaults.cardColors(Color.White)
             ) {
                 Column(
-                    modifier = Modifier.padding(10.dp) // Add some padding inside the card
+                    modifier = Modifier.padding(10.dp)
                 ) {
                     Image(
                         painter = painterResource(R.drawable.burger_bistro),
@@ -443,7 +443,7 @@ fun Burger_Category(){
                         text = "Burger Bistro",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(top = 8.dp) // Adjust top padding
+                        modifier = Modifier.padding(top = 8.dp)
                     )
                     Text(
                         text = "Rose Garden",
