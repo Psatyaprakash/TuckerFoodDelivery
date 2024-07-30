@@ -32,11 +32,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
 
 
 @Composable
-fun Pizza_Category(){//Pizza_Category(navController: NavController)
+fun Pizza_Category(navController: NavController){
     Column(
         modifier = Modifier
             .fillMaxWidth()

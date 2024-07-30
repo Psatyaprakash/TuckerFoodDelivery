@@ -42,7 +42,7 @@ import coil.compose.rememberImagePainter
 import com.example.tuckerfooddelivery.R
 
 @Composable
-fun Burger_Category(){//Burger_Category(navController: NavController)
+fun Burger_Category(navController: NavController){
     Column(
         modifier = Modifier
             .fillMaxWidth()
