@@ -44,7 +44,7 @@ fun Start(navController: NavHostController) {
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     Box(modifier = Modifier
         .fillMaxSize()
-        .background(Color.White),
+        .background(Color.White)
 //        slideOutHorizontally {  }
     ){
         Column(modifier = Modifier
@@ -239,6 +239,3 @@ fun Start3(navController: NavHostController) {
         }
     }
 }
-
-
-
