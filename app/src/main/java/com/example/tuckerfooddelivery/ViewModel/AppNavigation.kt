@@ -61,8 +61,9 @@ fun AppNavigation() {
                 slideOutOfContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "ClassicFrenchFries"
+        startDestination = "HomePage"
     ) {
+        //Starting Pages
         composable("Start") { Start(navController) }
         composable("Start2") { Start2(navController) }
         composable("Start3") { Start3(navController) }
@@ -96,10 +97,11 @@ fun AppNavigation() {
         composable("Fries_Category"){ Fries_Category(navController) }
         composable("Momos_Category"){ Momos_Category(navController) }
         composable("Mocktails_Category"){ Mocktails_Category(navController) }
-
+        //Restaurants
         composable("Rosegardenrestaurant_landingpage"){ Rosegardenrestaurant_landingpage(navController) }
         composable("SkyHighW_landingpage"){ SkyHighW_landingpage(navController) }
         composable("Fionah_landingpage"){ fionah_landingpage(navController) }
+        //Cart
         composable("Cart"){ Cart(navController) }
 
     }
