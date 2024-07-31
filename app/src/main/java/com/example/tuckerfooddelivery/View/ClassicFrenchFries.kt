@@ -47,11 +47,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Cart
+import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Large
+import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_LargePrice
+import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Regular
+import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_RegularPrice
+import com.example.tuckerfooddelivery.ViewModel.updatePrice
 
-
-var ClassicFrenchFries_Cart=0
-var ClassicFrenchFries_Regular=0
-var ClassicFrenchFries_Large=0
 @Composable
 fun ClassicFrenchFries(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
@@ -105,7 +107,6 @@ fun ClassicFrenchFries(navController: NavController) {
 
     totalprice_Regular=unitPrice_Regular*count_Regular
     totalprice_Large=unitPrice_Large*count_Large
-
 
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     Column {
@@ -556,8 +557,7 @@ fun ClassicFrenchFries(navController: NavController) {
     }
 }
 
-var ClassicFrenchFries_RegularPrice=0
-var ClassicFrenchFries_LargePrice=0
+
 @Composable
 fun ClassicFrenchFriesCart(Regular:Int,Large:Int) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
@@ -584,8 +584,6 @@ fun ClassicFrenchFriesCart(Regular:Int,Large:Int) {
         }
         updatePrice()
     }
-
-
 
     var unitprice_Large: Int by remember {
         mutableStateOf<Int>(55)
@@ -803,10 +801,10 @@ fun ClassicFrenchFriesCart(Regular:Int,Large:Int) {
     }
 }
 
-//Updating price in cart function
-fun updatePrice(){
-    totalCartPrice_global= ClassicFrenchFries_LargePrice+ ClassicFrenchFries_RegularPrice
-}
+////Updating price in cart function
+//fun updatePrice(){
+//    totalCartPrice_global= ClassicFrenchFries_LargePrice+ ClassicFrenchFries_RegularPrice
+//}
 
 
 //@Composable

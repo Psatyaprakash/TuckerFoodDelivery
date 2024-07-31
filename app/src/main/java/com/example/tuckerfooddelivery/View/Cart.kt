@@ -43,8 +43,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Cart
+import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Large
+import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Regular
+import com.example.tuckerfooddelivery.ViewModel.totalCartPrice_global
 
-var totalCartPrice_global=0
+
 @Composable
 fun Cart(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
@@ -58,7 +62,7 @@ fun Cart(navController: NavController) {
     var PizzaCalzone_Price : Int by remember {
         mutableStateOf<Int>(0)
     }
-    //totalCartPrice= ClassicFrenchFries_Price + PizzaCalzone_Price
+
     fun price_update() {
         totalCartPrice = totalCartPrice_global
     }
