@@ -485,7 +485,7 @@ fun PizzaCalzone(navController: NavController) {
 }
 
 @Composable
-fun PizzaCalzone_Cart()
+fun PizzaCalzone_Cart():Int
 {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
@@ -600,4 +600,5 @@ fun PizzaCalzone_Cart()
             }
         }
     }
+    return totalprice
 }

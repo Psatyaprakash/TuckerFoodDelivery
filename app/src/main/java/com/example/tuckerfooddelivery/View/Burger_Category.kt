@@ -75,10 +75,10 @@ fun Burger_Category(navController: NavController){
                 Box(
                     modifier = Modifier
                         .fillMaxSize(),
-                    contentAlignment = Alignment.CenterStart
+                    contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "  Burgers",
+                        text = "Burgers",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.ExtraBold,
                     )
