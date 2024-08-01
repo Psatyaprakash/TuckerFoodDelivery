@@ -13,6 +13,7 @@ android {
     defaultConfig {
         applicationId = "com.example.tuckerfooddelivery"
         minSdk = 24
+        //noinspection OldTargetApi
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -77,12 +78,13 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation (libs.androidx.material)
 
-        // Import the BoM for the Firebase platform
-        implementation(platform(libs.firebase.bom))
+    // Import the BoM for the Firebase platform
+    implementation(platform(libs.firebase.bom))
 
-        // Add the dependency for the Firebase Authentication library
-        // When using the BoM, you don't specify versions in Firebase library dependencies
-        implementation(libs.firebase.auth)
+    // Add the dependency for the Firebase Authentication library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation(libs.firebase.auth)
     implementation(libs.androidx.browser)
+
 
 }

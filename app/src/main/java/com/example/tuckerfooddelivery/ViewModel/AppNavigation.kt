@@ -16,6 +16,7 @@ import com.example.tuckerfooddelivery.View.HomePage
 import com.example.tuckerfooddelivery.View.LoginScreen
 import com.example.tuckerfooddelivery.View.Mocktails_Category
 import com.example.tuckerfooddelivery.View.Momos_Category
+import com.example.tuckerfooddelivery.View.NotificationScreen
 import com.example.tuckerfooddelivery.View.PizzaCalzone
 import com.example.tuckerfooddelivery.View.Pizza_Category
 import com.example.tuckerfooddelivery.View.Roll_Category
@@ -25,6 +26,7 @@ import com.example.tuckerfooddelivery.View.Start
 import com.example.tuckerfooddelivery.View.Start2
 import com.example.tuckerfooddelivery.View.Start3
 import com.example.tuckerfooddelivery.View.Starters_Category
+import com.example.tuckerfooddelivery.View.Storage
 import com.example.tuckerfooddelivery.View.Wings_Category
 import com.example.tuckerfooddelivery.View.fionah_landingpage
 
@@ -44,8 +46,11 @@ fun AppNavigation() {
                 slideOutOfContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "Momos_Category"
+        startDestination = "NotificationScreen"
     ) {
+        composable("Storage"){ Storage() }
+        composable("NotificationScreen"){ NotificationScreen() }
+
         composable("Start") { Start(navController) }
         composable("Start2") { Start2(navController) }
         composable("Start3") { Start3(navController) }
