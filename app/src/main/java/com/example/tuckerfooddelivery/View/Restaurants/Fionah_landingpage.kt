@@ -1,34 +1,23 @@
-package com.example.tuckerfooddelivery.View
+package com.example.tuckerfooddelivery.View.Restaurants
 
-import android.graphics.drawable.Icon
+
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardDefaults.shape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -36,11 +25,8 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.InspectableModifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -49,11 +35,11 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import coil.compose.rememberImagePainter
 import com.example.tuckerfooddelivery.R
-import com.example.tuckerfooddelivery.ui.theme.PurpleGrey40
+import com.example.tuckerfooddelivery.View.CircularButtonWithSymbol
+
 @Composable
-fun SkyHighW_landingpage(navController: NavController) {
+fun fionah_landingpage(navController: NavController){
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -71,7 +57,7 @@ fun SkyHighW_landingpage(navController: NavController) {
             CircularButtonWithSymbol(onClick = { /* handle click */ })
             Spacer(modifier = Modifier.width(16.dp))
             Text(
-                text = "SkyHighWay Restaurant",
+                text = "Fiona Hatty Restaurant",
                 color = Color(0xFFD4AF37),
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp,
@@ -89,7 +75,7 @@ fun SkyHighW_landingpage(navController: NavController) {
                 .padding(3.dp)
         )
         Image(
-            painter = painterResource(R.drawable.group_598),
+            painter = painterResource(R.drawable.group_599),
             contentDescription = "Rose Garden Restaurant title",
             modifier = Modifier
                 .fillMaxWidth()
@@ -98,7 +84,7 @@ fun SkyHighW_landingpage(navController: NavController) {
         Spacer(modifier = Modifier.height(5.dp))
         Text(
             text = "Perfect for breakfast, lunch, or dinner. They have an onsite bar, serve a variety of alcoholic beverages, and provide convenient options like curbside pickup and dine-in cozy atmosphere and friendly staff make you feel like part of the family.",
-            textAlign = TextAlign.Center,
+            textAlign = TextAlign.Justify,
             color = Color.Black,
             fontSize = 13.sp,
             modifier = Modifier

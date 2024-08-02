@@ -1,4 +1,4 @@
-package com.example.tuckerfooddelivery.View
+package com.example.tuckerfooddelivery.View.Category
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -34,9 +34,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.View.CircularButtonWithSymbol
+
 
 @Composable
-fun Starters_Category(navController: NavController){
+fun Wings_Category(navController: NavController){
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -71,7 +73,7 @@ fun Starters_Category(navController: NavController){
                     contentAlignment = Alignment.CenterStart
                 ) {
                     Text(
-                        text = "  Starters",
+                        text = "   Wings",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.ExtraBold,
                     )
@@ -88,7 +90,7 @@ fun Starters_Category(navController: NavController){
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Popular Starters",
+                text = "Popular Wings",
                 fontSize = 18.sp
             )
         }
@@ -113,19 +115,19 @@ fun Starters_Category(navController: NavController){
                     modifier = Modifier.padding(7.dp) // Add some padding inside the card
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.american_corn),
-                        contentDescription = "corn Image",
+                        painter = painterResource(R.drawable.chicken_wings),
+                        contentDescription = "classic_french_fries Image",
                         modifier = Modifier
                             .size(96.dp)
                     )
                     Text(
-                        text = "American Corn",
+                        text = "Chicken Wings",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 4.dp) // Adjust top padding
                     )
                     Text(
-                        text = "SkyHigh Way",
+                        text = "Rose Garden",
                         fontSize = 14.sp,
                         modifier = Modifier.padding(top = 1.dp)
                     )
@@ -170,22 +172,22 @@ fun Starters_Category(navController: NavController){
                 colors = CardDefaults.cardColors(Color.White)
             ) {
                 Column(
-                    modifier = Modifier.padding(4.dp) // Add some padding inside the card
+                    modifier = Modifier.padding(8.dp) // Add some padding inside the card
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.manchow_soup),
-                        contentDescription = "soup Image",
+                        painter = painterResource(R.drawable.buffalo_wings),
+                        contentDescription = "buffalo_wing Image",
                         modifier = Modifier
                             .size(97.dp)
                     )
                     Text(
-                        text = "Manchow Soup",
+                        text = "Buffalo Wings",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 8.dp) // Adjust top padding
                     )
                     Text(
-                        text = "SkyHigh Way",
+                        text = "Fiona Hatty",
                         fontSize = 14.sp,
                         modifier = Modifier.padding(top = 1.dp)
                     )

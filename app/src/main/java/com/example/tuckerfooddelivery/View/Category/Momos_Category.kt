@@ -1,4 +1,4 @@
-package com.example.tuckerfooddelivery.View
+package com.example.tuckerfooddelivery.View.Category
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -34,9 +34,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.View.CircularButtonWithSymbol
 
 @Composable
-fun Roll_Category(navController: NavController){
+fun Momos_Category(navController: NavController){
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -71,7 +72,7 @@ fun Roll_Category(navController: NavController){
                     contentAlignment = Alignment.CenterStart
                 ) {
                     Text(
-                        text = "    Rolls",
+                        text = "   Momos",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.ExtraBold,
                     )
@@ -88,7 +89,7 @@ fun Roll_Category(navController: NavController){
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Popular Rolls",
+                text = "Popular Momos",
                 fontSize = 18.sp
             )
         }
@@ -113,19 +114,19 @@ fun Roll_Category(navController: NavController){
                     modifier = Modifier.padding(7.dp) // Add some padding inside the card
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.chickencrispy_roll),
-                        contentDescription = "roollImage",
+                        painter = painterResource(R.drawable.tibetianmomos),
+                        contentDescription = "tibetan momos image",
                         modifier = Modifier
                             .size(96.dp)
                     )
                     Text(
-                        text = "Crispy Chicken Roll",
+                        text = "Tibetan Momos",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 4.dp) // Adjust top padding
                     )
                     Text(
-                        text = "Fiona Hatty",
+                        text = "Rose Garden",
                         fontSize = 14.sp,
                         modifier = Modifier.padding(top = 1.dp)
                     )
@@ -173,13 +174,13 @@ fun Roll_Category(navController: NavController){
                     modifier = Modifier.padding(4.dp) // Add some padding inside the card
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.paneer_roll),
-                        contentDescription = "Roll Image",
+                        painter = painterResource(R.drawable.nepalidumpling),
+                        contentDescription = "nepali dumpling Image",
                         modifier = Modifier
                             .size(97.dp)
                     )
                     Text(
-                        text = "Veg Paneer Roll",
+                        text = "Nepali Dumpling",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 8.dp) // Adjust top padding
