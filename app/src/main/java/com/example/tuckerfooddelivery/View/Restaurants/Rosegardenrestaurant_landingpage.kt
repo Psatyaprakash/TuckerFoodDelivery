@@ -1,5 +1,4 @@
-package com.example.tuckerfooddelivery.View
-
+package com.example.tuckerfooddelivery.View.Restaurants
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -36,9 +35,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.View.CircularButtonWithSymbol
 
 @Composable
-fun fionah_landingpage(navController: NavController){
+fun Rosegardenrestaurant_landingpage(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -56,7 +56,7 @@ fun fionah_landingpage(navController: NavController){
             CircularButtonWithSymbol(onClick = { /* handle click */ })
             Spacer(modifier = Modifier.width(16.dp))
             Text(
-                text = "Fiona Hatty Restaurant",
+                text = "Rose Garden Restaurant",
                 color = Color(0xFFD4AF37),
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp,
@@ -74,7 +74,7 @@ fun fionah_landingpage(navController: NavController){
                 .padding(3.dp)
         )
         Image(
-            painter = painterResource(R.drawable.group_599),
+            painter = painterResource(R.drawable.group_597),
             contentDescription = "Rose Garden Restaurant title",
             modifier = Modifier
                 .fillMaxWidth()
@@ -196,143 +196,143 @@ fun fionah_landingpage(navController: NavController){
                 }
             }
         }
-        Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
         // Burger Button
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            TextButton(onClick = { /* Navigate to Burger page */ }) {
-                Text(
-                    text = "Burger",
-                    fontSize = 22.sp,
-                    color = Color.Black,
-                    textAlign = TextAlign.Start,
-                    fontWeight = FontWeight.Bold
-                )
-            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextButton(onClick = { navController.navigate("Burger_Category") }) {
+                    Text(
+                        text = "Burger",
+                        fontSize = 22.sp,
+                        color = Color.Black,
+                        textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
 
-            IconButton(onClick = { /* Navigate to Burger page */ }) {
-                Icon(
-                    imageVector = Icons.Default.PlayArrow,
-                    contentDescription = "Go to Burger category",
-                    modifier = Modifier.size(22.dp)
-                )
+                IconButton(onClick = { /* Navigate to Burger page */ }) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = "Go to Burger category",
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
             }
-        }
 
         // Chicken Button
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            TextButton(onClick = { /* Navigate to Chicken page */ }) {
-                Text(
-                    text = "Chicken",
-                    fontSize = 22.sp,
-                    color = Color.Black,
-                    textAlign = TextAlign.Start,
-                    fontWeight = FontWeight.Bold
-                )
-            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextButton(onClick = { /* Navigate to Chicken page */ }) {
+                    Text(
+                        text = "Chicken",
+                        fontSize = 22.sp,
+                        color = Color.Black,
+                        textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
 
-            IconButton(onClick = { /* Navigate to Chicken page */ }) {
-                Icon(
-                    imageVector = Icons.Default.PlayArrow,
-                    contentDescription = "Go to Chicken category",
-                    modifier = Modifier.size(22.dp)
-                )
+                IconButton(onClick = { /* Navigate to Chicken page */ }) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = "Go to Chicken category",
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
             }
-        }
 
 
         // Hotdogs Button
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            TextButton(onClick = { /* Navigate to Hotdogs page */ }) {
-                Text(
-                    text = "Hotdogs",
-                    fontSize = 22.sp,
-                    color = Color.Black,
-                    textAlign = TextAlign.Start,
-                    fontWeight = FontWeight.Bold
-                )
-            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextButton(onClick = { /* Navigate to Hotdogs page */ }) {
+                    Text(
+                        text = "Hotdogs",
+                        fontSize = 22.sp,
+                        color = Color.Black,
+                        textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
 
-            IconButton(onClick = { /* Navigate to Hotdogs page */ }) {
-                Icon(
-                    imageVector = Icons.Default.PlayArrow,
-                    contentDescription = "Go to Hotdogs category",
-                    modifier = Modifier.size(22.dp)
-                )
+                IconButton(onClick = { /* Navigate to Hotdogs page */ }) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = "Go to Hotdogs category",
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
             }
-        }
 
 
         // Wings Button
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            TextButton(onClick = { /* Navigate to Wings page */ }) {
-                Text(
-                    text = "Wings",
-                    fontSize = 22.sp,
-                    color = Color.Black,
-                    textAlign = TextAlign.Start,
-                    fontWeight = FontWeight.Bold
-                )
-            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextButton(onClick = { /* Navigate to Wings page */ }) {
+                    Text(
+                        text = "Wings",
+                        fontSize = 22.sp,
+                        color = Color.Black,
+                        textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
 
-            IconButton(onClick = { /* Navigate to Wings page */ }) {
-                Icon(
-                    imageVector = Icons.Default.PlayArrow,
-                    contentDescription = "Go to Wings category",
-                    modifier = Modifier.size(22.dp)
-                )
+                IconButton(onClick = { /* Navigate to Wings page */ }) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = "Go to Wings category",
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
             }
-        }
 
         // Pizza Button
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            TextButton(onClick = { /* Navigate to Pizza page */ }) {
-                Text(
-                    text = "Pizza",
-                    fontSize = 22.sp,
-                    color = Color.Black,
-                    textAlign = TextAlign.Start,
-                    fontWeight = FontWeight.Bold
-                )
-            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextButton(onClick = { navController.navigate("PizzaCalzone") }) {
+                    Text(
+                        text = "Pizza",
+                        fontSize = 22.sp,
+                        color = Color.Black,
+                        textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
 
-            IconButton(onClick = { /* Navigate to Pizza page */ }) {
-                Icon(
-                    imageVector = Icons.Default.PlayArrow,
-                    contentDescription = "Go to Pizza category",
-                    modifier = Modifier.size(22.dp)
-                )
+                IconButton(onClick = { /* Navigate to Pizza page */ }) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = "Go to Pizza category",
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
             }
-        }
     }
 }

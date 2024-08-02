@@ -1,4 +1,4 @@
-package com.example.tuckerfooddelivery.View
+package com.example.tuckerfooddelivery.View.Category
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -34,10 +34,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
-
+import com.example.tuckerfooddelivery.View.CircularButtonWithSymbol
 
 @Composable
-fun Pizza_Category(navController: NavController){
+fun Starters_Category(navController: NavController){
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -72,7 +72,7 @@ fun Pizza_Category(navController: NavController){
                     contentAlignment = Alignment.CenterStart
                 ) {
                     Text(
-                        text = "  Pizzas",
+                        text = "  Starters",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.ExtraBold,
                     )
@@ -89,7 +89,7 @@ fun Pizza_Category(navController: NavController){
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Popular Pizzas",
+                text = "Popular Starters",
                 fontSize = 18.sp
             )
         }
@@ -114,19 +114,19 @@ fun Pizza_Category(navController: NavController){
                     modifier = Modifier.padding(7.dp) // Add some padding inside the card
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.pizza_calzone),
-                        contentDescription = "pizzaImage",
+                        painter = painterResource(R.drawable.american_corn),
+                        contentDescription = "corn Image",
                         modifier = Modifier
                             .size(96.dp)
                     )
                     Text(
-                        text = "Pizza Calzone Express",
+                        text = "American Corn",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 4.dp) // Adjust top padding
                     )
                     Text(
-                        text = "Rose Garden",
+                        text = "SkyHigh Way",
                         fontSize = 14.sp,
                         modifier = Modifier.padding(top = 1.dp)
                     )
@@ -174,13 +174,13 @@ fun Pizza_Category(navController: NavController){
                     modifier = Modifier.padding(4.dp) // Add some padding inside the card
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.margherita_corn_pizza),
-                        contentDescription = "pizza Image",
+                        painter = painterResource(R.drawable.manchow_soup),
+                        contentDescription = "soup Image",
                         modifier = Modifier
                             .size(97.dp)
                     )
                     Text(
-                        text = "Margherita Corn Pizza",
+                        text = "Manchow Soup",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 8.dp) // Adjust top padding
@@ -222,72 +222,6 @@ fun Pizza_Category(navController: NavController){
                 }
             }
         }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 40.dp, vertical = 15.dp),
-            verticalAlignment = Alignment.Top,
-            horizontalArrangement = Arrangement.Start
-        ) {
-            Card(
-                modifier = Modifier
-                    .height(230.dp)
-                    .width(130.dp),
-                shape = RoundedCornerShape(15.dp),
-                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-                colors = CardDefaults.cardColors(Color.White)
-            ) {
-                Column(
-                    modifier = Modifier.padding(7.dp) // Add some padding inside the card
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.mexican_pepperoni_pizza),
-                        contentDescription = "pizzaImage",
-                        modifier = Modifier
-                            .size(91.dp)
-                    )
-                    Text(
-                        text = "Mexican Pepperoni Pizza",
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(top = 4.dp) // Adjust top padding
-                    )
-                    Text(
-                        text = "Fiona Hatty",
-                        fontSize = 12.sp,
-                        modifier = Modifier.padding(top = 1.dp)
-                    )
-                    Row(
-                        modifier = Modifier.padding(top = 1.dp)
-                            .fillMaxWidth(),
-                        verticalAlignment = Alignment.Top,
-                        horizontalArrangement = Arrangement.Start
-                    ) {
-                        Text(
-                            text = "$10",
-                            modifier = Modifier.padding(top = 12.dp),
-                            fontSize = 22.sp,
-                            fontWeight = FontWeight.ExtraBold,
-                        )
-                        Spacer(modifier = Modifier.width(22.dp))
-                        TextButton(
-                            onClick = { /* add this item to cart */ },
-                            colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
-                            shape = CircleShape,
-                            contentPadding = PaddingValues(0.dp),
-                            modifier = Modifier
-                                .size(50.dp)
-                                .background(Color.Transparent, CircleShape)
-                        ) {
-                            Text(
-                                text = "+",
-                                fontSize = 30.sp,
-                                color = Color.Black,
-                            )
-                        }
-                    }
-                }
-            }
-        }
+
     }
 }

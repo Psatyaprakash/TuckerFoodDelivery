@@ -1,4 +1,4 @@
-package com.example.tuckerfooddelivery.View
+package com.example.tuckerfooddelivery.View.Category
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -34,10 +34,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
-
+import com.example.tuckerfooddelivery.View.CircularButtonWithSymbol
 
 @Composable
-fun Wings_Category(navController: NavController){
+fun Burger_Category(navController: NavController){
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -46,7 +46,7 @@ fun Wings_Category(navController: NavController){
         //first row of categories
         Row (
             modifier = Modifier
-                .fillMaxWidth(),
+            .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
 
@@ -72,7 +72,7 @@ fun Wings_Category(navController: NavController){
                     contentAlignment = Alignment.CenterStart
                 ) {
                     Text(
-                        text = "   Wings",
+                        text = "  Burgers",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.ExtraBold,
                     )
@@ -89,12 +89,12 @@ fun Wings_Category(navController: NavController){
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Popular Wings",
+                text = "Popular Burgers",
                 fontSize = 18.sp
             )
         }
 
-        //third row of two cards
+        //third row of two burger cards
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -111,19 +111,19 @@ fun Wings_Category(navController: NavController){
                 colors = CardDefaults.cardColors(Color.White)
             ) {
                 Column(
-                    modifier = Modifier.padding(7.dp) // Add some padding inside the card
+                    modifier = Modifier.padding(10.dp) // Add some padding inside the card
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.chicken_wings),
-                        contentDescription = "classic_french_fries Image",
+                        painter = painterResource(R.drawable.burger_bistro),
+                        contentDescription = "Burger Bistro Image",
                         modifier = Modifier
                             .size(96.dp)
                     )
                     Text(
-                        text = "Chicken Wings",
+                        text = "Burger Bistro",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(top = 4.dp) // Adjust top padding
+                        modifier = Modifier.padding(top = 8.dp) // Adjust top padding
                     )
                     Text(
                         text = "Rose Garden",
@@ -131,7 +131,7 @@ fun Wings_Category(navController: NavController){
                         modifier = Modifier.padding(top = 1.dp)
                     )
                     Row(
-                        modifier = Modifier.padding(top = 1.dp)
+                        modifier = Modifier.padding(top = 2.dp)
                             .fillMaxWidth(),
                         verticalAlignment = Alignment.Top,
                         horizontalArrangement = Arrangement.Start
@@ -174,13 +174,13 @@ fun Wings_Category(navController: NavController){
                     modifier = Modifier.padding(8.dp) // Add some padding inside the card
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.buffalo_wings),
-                        contentDescription = "buffalo_wing Image",
+                        painter = painterResource(R.drawable.smokinburger),
+                        contentDescription = "Smokin burger Image",
                         modifier = Modifier
                             .size(97.dp)
                     )
                     Text(
-                        text = "Buffalo Wings",
+                        text = "Smokin burger",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 8.dp) // Adjust top padding
@@ -221,6 +221,76 @@ fun Wings_Category(navController: NavController){
                     }
                 }
             }
+        }
+        //4th row of two burger cards
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 40.dp, vertical = 15.dp),
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.Start
+        ) {
+            Card(
+                modifier = Modifier
+                    .height(230.dp)
+                    .width(130.dp),
+                shape = RoundedCornerShape(15.dp),
+                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                colors = CardDefaults.cardColors(Color.White)
+            ) {
+                Column(
+                    modifier = Modifier.padding(7.dp) // Add some padding inside the card
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.classicburger),
+                        contentDescription = "Classic Burger Image",
+                        modifier = Modifier
+                            .size(90.dp)
+                    )
+                    Text(
+                        text = "Classic Burger",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(top = 8.dp) // Adjust top padding
+                    )
+                    Text(
+                        text = "SkyHigh Way",
+                        fontSize = 14.sp,
+                        modifier = Modifier.padding(top = 1.dp)
+                    )
+                    Row(
+                        modifier = Modifier
+                            .padding(top = 2.dp)
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.Top,
+                        horizontalArrangement = Arrangement.Start
+                    ) {
+                        Text(
+                            text = "$10",
+                            modifier = Modifier.padding(top = 12.dp),
+                            fontSize = 22.sp,
+                            fontWeight = FontWeight.ExtraBold,
+                        )
+                        Spacer(modifier = Modifier.width(25.dp))
+                        TextButton(
+                            onClick = { /* add this item to cart */ },
+                            colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
+                            shape = CircleShape,
+                            contentPadding = PaddingValues(0.dp),
+                            modifier = Modifier
+                                .size(50.dp)
+                                .background(Color.Transparent, CircleShape)
+                        ) {
+                            Text(
+                                text = "+",
+                                fontSize = 30.sp,
+                                color = Color.Black,
+                            )
+                        }
+                    }
+                }
+            }
+
         }
 
     }

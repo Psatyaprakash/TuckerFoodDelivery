@@ -1,4 +1,4 @@
-package com.example.tuckerfooddelivery.View
+package com.example.tuckerfooddelivery.View.Category
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -34,9 +34,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.View.CircularButtonWithSymbol
 
 @Composable
-fun Fries_Category(navController: NavController){
+fun Roll_Category(navController: NavController){
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -71,7 +72,7 @@ fun Fries_Category(navController: NavController){
                     contentAlignment = Alignment.CenterStart
                 ) {
                     Text(
-                        text = "  Fries",
+                        text = "    Rolls",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.ExtraBold,
                     )
@@ -88,7 +89,7 @@ fun Fries_Category(navController: NavController){
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Popular Fries",
+                text = "Popular Rolls",
                 fontSize = 18.sp
             )
         }
@@ -113,19 +114,19 @@ fun Fries_Category(navController: NavController){
                     modifier = Modifier.padding(7.dp) // Add some padding inside the card
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.classic_french_fries),
-                        contentDescription = "classic_french_fries Image",
+                        painter = painterResource(R.drawable.chickencrispy_roll),
+                        contentDescription = "roollImage",
                         modifier = Modifier
                             .size(96.dp)
                     )
                     Text(
-                        text = "Classic Fries",
+                        text = "Crispy Chicken Roll",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 4.dp) // Adjust top padding
                     )
                     Text(
-                        text = "Rose Garden",
+                        text = "Fiona Hatty",
                         fontSize = 14.sp,
                         modifier = Modifier.padding(top = 1.dp)
                     )
@@ -170,16 +171,16 @@ fun Fries_Category(navController: NavController){
                 colors = CardDefaults.cardColors(Color.White)
             ) {
                 Column(
-                    modifier = Modifier.padding(8.dp) // Add some padding inside the card
+                    modifier = Modifier.padding(4.dp) // Add some padding inside the card
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.peri_peri_fries),
-                        contentDescription = "peri_peri_fries Image",
+                        painter = painterResource(R.drawable.paneer_roll),
+                        contentDescription = "Roll Image",
                         modifier = Modifier
                             .size(97.dp)
                     )
                     Text(
-                        text = "Peri-peri Fries",
+                        text = "Veg Paneer Roll",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 8.dp) // Adjust top padding

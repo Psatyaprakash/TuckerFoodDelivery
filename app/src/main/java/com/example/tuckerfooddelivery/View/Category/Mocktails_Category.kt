@@ -1,4 +1,4 @@
-package com.example.tuckerfooddelivery.View
+package com.example.tuckerfooddelivery.View.Category
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -34,9 +34,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.View.CircularButtonWithSymbol
 
 @Composable
-fun Momos_Category(navController: NavController){
+fun Mocktails_Category(navController: NavController){
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -71,7 +72,7 @@ fun Momos_Category(navController: NavController){
                     contentAlignment = Alignment.CenterStart
                 ) {
                     Text(
-                        text = "   Momos",
+                        text = "  Mocktails",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.ExtraBold,
                     )
@@ -88,7 +89,7 @@ fun Momos_Category(navController: NavController){
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Popular Momos",
+                text = "Popular Mocktails",
                 fontSize = 18.sp
             )
         }
@@ -113,13 +114,13 @@ fun Momos_Category(navController: NavController){
                     modifier = Modifier.padding(7.dp) // Add some padding inside the card
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.tibetianmomos),
-                        contentDescription = "tibetan momos image",
+                        painter = painterResource(R.drawable.bluelagoon),
+                        contentDescription = "bluelagoonImage",
                         modifier = Modifier
                             .size(96.dp)
                     )
                     Text(
-                        text = "Tibetan Momos",
+                        text = "Blue Lagoon",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 4.dp) // Adjust top padding
@@ -173,13 +174,13 @@ fun Momos_Category(navController: NavController){
                     modifier = Modifier.padding(4.dp) // Add some padding inside the card
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.nepalidumpling),
-                        contentDescription = "nepali dumpling Image",
+                        painter = painterResource(R.drawable.orange_mimosa),
+                        contentDescription = "orange mimosa Image",
                         modifier = Modifier
                             .size(97.dp)
                     )
                     Text(
-                        text = "Nepali Dumpling",
+                        text = "Orange Mimosa",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 8.dp) // Adjust top padding
