@@ -8,25 +8,42 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.tuckerfooddelivery.View.Category.Burger_Category
+import com.example.tuckerfooddelivery.View.AmericanCorn
+import com.example.tuckerfooddelivery.View.AmericanCornCart
+import com.example.tuckerfooddelivery.View.BlueLagoon
+import com.example.tuckerfooddelivery.View.BuffaloWings
+import com.example.tuckerfooddelivery.View.BurgerBistro
+import com.example.tuckerfooddelivery.View.Burger_Category
 import com.example.tuckerfooddelivery.View.Cart
+import com.example.tuckerfooddelivery.View.ChickenWings
+import com.example.tuckerfooddelivery.View.ClassicBurger
 import com.example.tuckerfooddelivery.View.ClassicFrenchFries
-import com.example.tuckerfooddelivery.View.Category.Fries_Category
+import com.example.tuckerfooddelivery.View.CrispyChickenRoll
+import com.example.tuckerfooddelivery.View.Fries_Category
 import com.example.tuckerfooddelivery.View.HomePage
 import com.example.tuckerfooddelivery.View.LoginScreen
-import com.example.tuckerfooddelivery.View.Category.Mocktails_Category
-import com.example.tuckerfooddelivery.View.Category.Momos_Category
+import com.example.tuckerfooddelivery.View.ManchowSoup
+import com.example.tuckerfooddelivery.View.MargheritaCornPizza
+import com.example.tuckerfooddelivery.View.MexicanPepperoniPizza
+import com.example.tuckerfooddelivery.View.Mocktails_Category
+import com.example.tuckerfooddelivery.View.Momos_Category
+import com.example.tuckerfooddelivery.View.NepaliDumplingMomos
+import com.example.tuckerfooddelivery.View.OrangeMimosa
+import com.example.tuckerfooddelivery.View.PaneerRoll
+import com.example.tuckerfooddelivery.View.PeriPeriFries
 import com.example.tuckerfooddelivery.View.PizzaCalzone
-import com.example.tuckerfooddelivery.View.Category.Pizza_Category
-import com.example.tuckerfooddelivery.View.Category.Roll_Category
-import com.example.tuckerfooddelivery.View.Restaurants.Rosegardenrestaurant_landingpage
-import com.example.tuckerfooddelivery.View.Restaurants.SkyHighW_landingpage
+import com.example.tuckerfooddelivery.View.Pizza_Category
+import com.example.tuckerfooddelivery.View.Roll_Category
+import com.example.tuckerfooddelivery.View.Rosegardenrestaurant_landingpage
+import com.example.tuckerfooddelivery.View.SkyHighW_landingpage
+import com.example.tuckerfooddelivery.View.SmokingBurger
 import com.example.tuckerfooddelivery.View.Start
 import com.example.tuckerfooddelivery.View.Start2
 import com.example.tuckerfooddelivery.View.Start3
-import com.example.tuckerfooddelivery.View.Category.Starters_Category
-import com.example.tuckerfooddelivery.View.Category.Wings_Category
-import com.example.tuckerfooddelivery.View.Restaurants.fionah_landingpage
+import com.example.tuckerfooddelivery.View.Starters_Category
+import com.example.tuckerfooddelivery.View.TibetanMomos
+import com.example.tuckerfooddelivery.View.Wings_Category
+import com.example.tuckerfooddelivery.View.fionah_landingpage
 
 //Navigation
 @Composable
@@ -44,16 +61,34 @@ fun AppNavigation() {
                 slideOutOfContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "Momos_Category"
+        startDestination = "HomePage"
     ) {
+        //Starting Pages
         composable("Start") { Start(navController) }
         composable("Start2") { Start2(navController) }
         composable("Start3") { Start3(navController) }
         composable("LoginScreen") { LoginScreen(navController) }
         composable("HomePage"){ HomePage(navController) }
+        //items
         composable("PizzaCalzone"){ PizzaCalzone(navController) }
         composable("ClassicFrenchFries"){ ClassicFrenchFries(navController) }
-
+        composable("BurgerBistro"){ BurgerBistro(navController) }
+        composable("TibetanMomos"){ TibetanMomos(navController) }
+        composable("BlueLagoon"){ BlueLagoon(navController) }
+        composable("ChickenWings"){ ChickenWings(navController) }
+        composable("SmokingBurger"){ SmokingBurger(navController) }
+        composable("MexicanPepperoniPizza"){ MexicanPepperoniPizza(navController) }
+        composable("CrispyChickenRoll"){ CrispyChickenRoll(navController) }
+        composable("AmericanCorn"){ AmericanCorn(navController) }
+        composable("BuffaloWings"){ BuffaloWings(navController) }
+        composable("ManchowSoup"){ ManchowSoup(navController) }
+        composable("PaneerRoll"){ PaneerRoll(navController) }
+        composable("MargheritaCornPizza"){ MargheritaCornPizza(navController) }
+        composable("ClassicBurger"){ ClassicBurger(navController) }
+        composable("NepaliDumplingMomos"){ NepaliDumplingMomos(navController) }
+        composable("PeriPeriFries"){ PeriPeriFries(navController) }
+        composable("OrangeMimosa"){ OrangeMimosa(navController) }
+        //categories
         composable("Burger_Category"){ Burger_Category(navController) }
         composable("Wings_Category"){ Wings_Category(navController) }
         composable("Starters_Category"){ Starters_Category(navController) }
@@ -62,11 +97,12 @@ fun AppNavigation() {
         composable("Fries_Category"){ Fries_Category(navController) }
         composable("Momos_Category"){ Momos_Category(navController) }
         composable("Mocktails_Category"){ Mocktails_Category(navController) }
-
-        composable("Cart"){ Cart(navController) }
+        //Restaurants
         composable("Rosegardenrestaurant_landingpage"){ Rosegardenrestaurant_landingpage(navController) }
         composable("SkyHighW_landingpage"){ SkyHighW_landingpage(navController) }
         composable("Fionah_landingpage"){ fionah_landingpage(navController) }
+        //Cart
+        composable("Cart"){ Cart(navController) }
 
     }
 }

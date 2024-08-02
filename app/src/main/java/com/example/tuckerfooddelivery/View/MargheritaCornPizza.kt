@@ -48,9 +48,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
 
-var PizzaCalzone_Cart=0
+var MargheritaCornPizza_Cart=0
 @Composable
-fun PizzaCalzone(navController: NavController) {
+fun MargheritaCornPizza(navController: NavController) {
 
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
@@ -135,7 +135,7 @@ fun PizzaCalzone(navController: NavController) {
                         .wrapContentHeight()
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.pizza_calzone),
+                        painter = painterResource(id = R.drawable.margherita_corn_pizza),
                         contentDescription = "Pizza",
                         modifier = Modifier
                             .align(Alignment.Center)
@@ -155,7 +155,7 @@ fun PizzaCalzone(navController: NavController) {
             }
             Spacer(modifier = Modifier.height(15.dp))
             Text(
-                text = "Pizza Calzone European",
+                text = "Margherita Corn Pizza",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
@@ -163,7 +163,7 @@ fun PizzaCalzone(navController: NavController) {
             )
             Spacer(modifier = Modifier.height(13.dp))
             Text(
-                text = "Prosciutto e funghi is a pizza variety that is topped with tomato sauce.",
+                text = "Pizza topped with herb-infused signature pan sauce and 100% mozzarella cheese.",
                 modifier = Modifier.padding(horizontal = 10.dp)
             )
             Spacer(modifier = Modifier.height(15.dp))
@@ -307,7 +307,7 @@ fun PizzaCalzone(navController: NavController) {
                         .align(Alignment.CenterVertically)
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.kfc),
+                        painter = painterResource(id = R.drawable.cheese),
                         contentDescription = "",
                         modifier = Modifier
                             .size(50.dp)
@@ -355,7 +355,7 @@ fun PizzaCalzone(navController: NavController) {
                         .align(Alignment.CenterVertically)
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.chilli),
+                        painter = painterResource(id = R.drawable.tomato_),
                         contentDescription = "",
                         modifier = Modifier
                             .size(50.dp)
@@ -386,7 +386,7 @@ fun PizzaCalzone(navController: NavController) {
                         .wrapContentHeight()
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.pizza_calzone),
+                        painter = painterResource(id = R.drawable.margherita_corn_pizza),
                         contentDescription = "Pizza",
                         modifier = Modifier
                             .align(Alignment.Center)
@@ -444,7 +444,9 @@ fun PizzaCalzone(navController: NavController) {
                         Spacer(modifier = Modifier.width(5.dp))
 //                        var count = 0
                         Text(
-                            text = "$count",
+                            text = "$count", modifier = Modifier
+                                .padding(vertical = 15.dp)
+                                .padding(horizontal = 15.dp),
                             fontSize = 20.sp
                         )
                         Spacer(modifier = Modifier.width(1.dp))
@@ -485,7 +487,7 @@ fun PizzaCalzone(navController: NavController) {
 }
 
 @Composable
-fun PizzaCalzone_Cart():Int
+fun MargheritaCornPizza_Cart()
 {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
@@ -537,8 +539,8 @@ fun PizzaCalzone_Cart():Int
                         .wrapContentHeight(),
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.pizza_calzone),
-                        contentDescription = "classic_french_fries",
+                        painter = painterResource(id = R.drawable.margherita_corn_pizza),
+                        contentDescription = "margherita_corn_pizza",
                         modifier = Modifier
                             //.align(Alignment.Center)
                             .size(220.dp)
@@ -551,7 +553,7 @@ fun PizzaCalzone_Cart():Int
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = "Classic French Fries",
+                        text = "Margherita Corn Pizza",
                         fontWeight = FontWeight.Bold,
                         fontSize = 22.sp
                     )
@@ -600,5 +602,4 @@ fun PizzaCalzone_Cart():Int
             }
         }
     }
-    return totalprice
 }

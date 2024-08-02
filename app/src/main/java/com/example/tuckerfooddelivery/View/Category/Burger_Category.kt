@@ -1,14 +1,17 @@
-package com.example.tuckerfooddelivery.View.Category
+package com.example.tuckerfooddelivery.View
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -26,15 +29,18 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.TopStart
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import coil.compose.rememberImagePainter
 import com.example.tuckerfooddelivery.R
-import com.example.tuckerfooddelivery.View.CircularButtonWithSymbol
 
 @Composable
 fun Burger_Category(navController: NavController){
@@ -69,10 +75,10 @@ fun Burger_Category(navController: NavController){
                 Box(
                     modifier = Modifier
                         .fillMaxSize(),
-                    contentAlignment = Alignment.CenterStart
+                    contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "  Burgers",
+                        text = "Burgers",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.ExtraBold,
                     )
@@ -105,7 +111,8 @@ fun Burger_Category(navController: NavController){
             Card(
                 modifier = Modifier
                     .height(230.dp)
-                    .width(130.dp),
+                    .width(130.dp)
+                    .clickable { navController.navigate("BurgerBistro") },
                 shape = RoundedCornerShape(15.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 colors = CardDefaults.cardColors(Color.White)
@@ -165,7 +172,8 @@ fun Burger_Category(navController: NavController){
             Card(
                 modifier = Modifier
                     .height(230.dp)
-                    .width(130.dp),
+                    .width(130.dp)
+                    .clickable { navController.navigate("SmokingBurger") },
                 shape = RoundedCornerShape(15.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 colors = CardDefaults.cardColors(Color.White)
@@ -233,7 +241,8 @@ fun Burger_Category(navController: NavController){
             Card(
                 modifier = Modifier
                     .height(230.dp)
-                    .width(130.dp),
+                    .width(130.dp)
+                    .clickable { navController.navigate("ClassicBurger") },
                 shape = RoundedCornerShape(15.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 colors = CardDefaults.cardColors(Color.White)
