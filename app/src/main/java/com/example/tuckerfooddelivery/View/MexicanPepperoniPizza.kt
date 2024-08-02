@@ -1,5 +1,6 @@
 package com.example.tuckerfooddelivery.View
 
+
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -48,9 +49,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
 
-var PizzaCalzone_Cart=0
+var MexicanPepperoniPizza_Cart=0
 @Composable
-fun PizzaCalzone(navController: NavController) {
+fun MexicanPepperoniPizza(navController: NavController) {
 
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
@@ -135,7 +136,7 @@ fun PizzaCalzone(navController: NavController) {
                         .wrapContentHeight()
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.pizza_calzone),
+                        painter = painterResource(id = R.drawable.mexican_pepperoni_pizza),
                         contentDescription = "Pizza",
                         modifier = Modifier
                             .align(Alignment.Center)
@@ -155,7 +156,7 @@ fun PizzaCalzone(navController: NavController) {
             }
             Spacer(modifier = Modifier.height(15.dp))
             Text(
-                text = "Pizza Calzone European",
+                text = "Mexican Pepperoni Pizza",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
@@ -163,7 +164,7 @@ fun PizzaCalzone(navController: NavController) {
             )
             Spacer(modifier = Modifier.height(13.dp))
             Text(
-                text = "Prosciutto e funghi is a pizza variety that is topped with tomato sauce.",
+                text = "Pizza topped with classic signature pan sauce, chicken pepperoni, crunchy onion and cheesy dressing.",
                 modifier = Modifier.padding(horizontal = 10.dp)
             )
             Spacer(modifier = Modifier.height(15.dp))
@@ -386,7 +387,7 @@ fun PizzaCalzone(navController: NavController) {
                         .wrapContentHeight()
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.pizza_calzone),
+                        painter = painterResource(id = R.drawable.mexican_pepperoni_pizza),
                         contentDescription = "Pizza",
                         modifier = Modifier
                             .align(Alignment.Center)
@@ -429,10 +430,7 @@ fun PizzaCalzone(navController: NavController) {
                         .background(color = Mustard_yellow, shape = CircleShape)
                         .align(Alignment.CenterVertically)
                 ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceEvenly
-                    ) {
+                    Row {
                         IconButton(onClick = { /* TODO: Add action for microphone */ }) {
                             Icon(
                                 Icons.Default.KeyboardArrowDown,
@@ -444,7 +442,9 @@ fun PizzaCalzone(navController: NavController) {
                         Spacer(modifier = Modifier.width(5.dp))
 //                        var count = 0
                         Text(
-                            text = "$count",
+                            text = "$count", modifier = Modifier
+                                .padding(vertical = 15.dp)
+                                .padding(horizontal = 15.dp),
                             fontSize = 20.sp
                         )
                         Spacer(modifier = Modifier.width(1.dp))
@@ -485,7 +485,7 @@ fun PizzaCalzone(navController: NavController) {
 }
 
 @Composable
-fun PizzaCalzone_Cart():Int
+fun MexicanPepperoniPizza_Cart()
 {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
@@ -537,8 +537,8 @@ fun PizzaCalzone_Cart():Int
                         .wrapContentHeight(),
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.pizza_calzone),
-                        contentDescription = "classic_french_fries",
+                        painter = painterResource(id = R.drawable.mexican_pepperoni_pizza),
+                        contentDescription = "mexican_pepperoni_pizza",
                         modifier = Modifier
                             //.align(Alignment.Center)
                             .size(220.dp)
@@ -551,7 +551,7 @@ fun PizzaCalzone_Cart():Int
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = "Classic French Fries",
+                        text = "Mexican Pepperoni Pizza",
                         fontWeight = FontWeight.Bold,
                         fontSize = 22.sp
                     )
@@ -600,5 +600,4 @@ fun PizzaCalzone_Cart():Int
             }
         }
     }
-    return totalprice
 }

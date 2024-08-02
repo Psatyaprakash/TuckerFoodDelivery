@@ -104,17 +104,17 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
             fontSize = 13.sp,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(3.dp)
+                .padding(15.dp)
         )
         Spacer(modifier = Modifier.height(4.dp))
-        Text(
-            text = "all you can eat",
-            textAlign = TextAlign.Center,
-            color = Color.Black,
-            fontSize = 16.sp,
-            modifier = Modifier
-                .fillMaxWidth()
-        )
+//        Text(
+//            text = "all you can eat",
+//            textAlign = TextAlign.Center,
+//            color = Color.Black,
+//            fontSize = 16.sp,
+//            modifier = Modifier
+//                .fillMaxWidth()
+//        )
         Text(
             text = "MENU",
             textDecoration = TextDecoration.Underline,
