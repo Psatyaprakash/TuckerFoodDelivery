@@ -460,25 +460,56 @@ fun MexicanPepperoniPizza(navController: NavController) {
                 }
 
             }
-            TextButton(
-                onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
-                border = BorderStroke(width = 0.dp, color = Color.Transparent),
-                elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
-                modifier = Modifier
-                    .padding(horizontal = 20.dp, vertical = 20.dp)
-                    //.size(height = 40.dp, width = 400.dp),
-                    .fillMaxWidth()
-                    .height(54.dp),
-                shape = RoundedCornerShape(15.dp)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = "ADD TO CART",
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White,
-                    fontSize = 20.sp
-                )
-                Spacer(modifier = Modifier.height(100.dp))
+
+                TextButton(onClick = { //if((count_Regular!=0)||(count_Large!=0)){
+//                    ClassicFrenchFries_Large =count_Large
+//                    ClassicFrenchFries_Regular =count_Regular
+//                    ClassicFrenchFries_Cart =1}
+                },
+                    colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
+                    border = BorderStroke(width = 0.dp, color = Color.Transparent),
+                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+                    modifier = Modifier
+                        .padding(horizontal = 20.dp, vertical = 20.dp)
+                        .height(54.dp),
+                    shape = RoundedCornerShape(15.dp)
+                ) {
+//                  ClassicFrenchFriesCart(count_Regular,count_Large)
+//                    ClassicFrenchFries_Large=count_Large
+//                    ClassicFrenchFries_Regular=count_Regular
+                    Text(
+                        text = " ADD TO CART ",
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        fontSize = 20.sp
+                    )
+                }
+                TextButton(onClick = {
+                    navController.navigate("Cart")
+                },
+                    colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
+                    border = BorderStroke(width = 0.dp, color = Color.Transparent),
+                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+                    modifier = Modifier
+                        .padding(horizontal = 20.dp, vertical = 20.dp)
+                        //.size(height = 40.dp, width = 400.dp),
+                        //.fillMaxWidth()
+                        .height(54.dp),
+                    shape = RoundedCornerShape(15.dp)
+                ) {
+                    Text(
+                        text = " GO TO CART ",
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        fontSize = 20.sp
+                    )
+                }
+
             }
         }
     }
