@@ -47,10 +47,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Cart
+import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Large
+import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_LargePrice
+import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Regular
+import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_RegularPrice
+import com.example.tuckerfooddelivery.ViewModel.updatePrice
 
-
-
-var ClassicFrenchFries_Cart=0
 @Composable
 fun ClassicFrenchFries(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
@@ -72,20 +75,38 @@ fun ClassicFrenchFries(navController: NavController) {
         selectedButtonIndex = index
     }
     val Item_Name = "Classic French Fries"
-    var UnitRegularPrice : Int by remember {
-        mutableStateOf<Int>(35)
+    val unitPrice_Regular=35
+    val unitPrice_Large=55
+    var count_Regular by remember {
+        mutableStateOf<Int>(1)
     }
-    var UnitLargePrice : Int by remember {
-        mutableStateOf<Int>(60)
-    }
-    var totalprice : Int by remember {
-        mutableStateOf<Int>(35)
+    var count_Large by remember {
+        mutableStateOf<Int>(1)
     }
     var count by remember {
         mutableStateOf<Int>(1)
     }
+    var totalprice by remember {
+        mutableStateOf<Int>(0)
+    }
+    var totalprice_Regular : Int by remember {
+        mutableStateOf<Int>(unitPrice_Regular*count_Regular)
+    }
+    var totalprice_Large : Int by remember {
+        mutableStateOf<Int>(unitPrice_Large*count_Large)
+    }
 
+    if(getButtonColor(1)==Mustard_yellow)
+    {
+        count=count_Regular
+    }
+    else if(getButtonColor(2)==Mustard_yellow)
+    {
+        count=count_Large
+    }
 
+    totalprice_Regular=unitPrice_Regular*count_Regular
+    totalprice_Large=unitPrice_Large*count_Large
 
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     Column {
@@ -98,7 +119,7 @@ fun ClassicFrenchFries(navController: NavController) {
             Spacer(modifier = Modifier.height(15.dp))
             Row {
                 TextButton(
-                    onClick = {navController.navigate("HomePage") },
+                    onClick = {navController.navigate("Fries_Category") },
                     colors = ButtonDefaults.buttonColors(Color.LightGray),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
@@ -137,7 +158,7 @@ fun ClassicFrenchFries(navController: NavController) {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.classic_french_fries),
-                            contentDescription = "Pizza",
+                            contentDescription = "classic_french_fries",
                             modifier = Modifier
                                 .align(Alignment.Center)
                                 .size(220.dp)
@@ -163,7 +184,7 @@ fun ClassicFrenchFries(navController: NavController) {
                 color = Color.Black,
                 modifier = Modifier.padding(10.dp)
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(5.dp))
             Text(
                 text = "Crunch into perfection with our classic salted French fries. Golden and crispy on the outside, soft and fluffy on the inside.",
                 modifier = Modifier.padding(horizontal = 10.dp)
@@ -237,7 +258,7 @@ fun ClassicFrenchFries(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "SIZE:", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
-                TextButton(onClick = { onButtonClick(1) },
+                TextButton(onClick = { onButtonClick(1); totalprice = totalprice_Regular },
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(1)
                     ),
@@ -248,7 +269,7 @@ fun ClassicFrenchFries(navController: NavController) {
                     Text(text = "Regular", fontSize = 20.sp)
                 }
                 Spacer(modifier = Modifier.width(30.dp))
-                TextButton(onClick = { onButtonClick(2) },
+                TextButton(onClick = { onButtonClick(2); totalprice = totalprice_Large },
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(2)
                     ),
@@ -354,207 +375,423 @@ fun ClassicFrenchFries(navController: NavController) {
             }
             Spacer(modifier = Modifier.height(75.dp))
 
-            }
+        }
         Column(
             modifier = Modifier
                 .background(Color.LightGray)
                 .fillMaxWidth()
-                .size(height = 200.dp, width = 700.dp)
+                .size(height = 280.dp, width = 700.dp)
                 .verticalScroll(rememberScrollState())
         ) {
             Row(
-                modifier = Modifier.padding(10.dp),
+                modifier = Modifier
+                    .fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
-
-                Text(
-                    text = "PRICE : Rs $totalprice",
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(vertical = 20.dp, horizontal = 10.dp),
-                    fontSize = 25.sp
-                )
-                Spacer(modifier = Modifier.width(50.dp))
-                Box(
-                    modifier = Modifier
-                        .size(height = 50.dp, width = 150.dp)
-                        .background(color = Mustard_yellow, shape = CircleShape)
-                        .align(Alignment.CenterVertically)
+                Row(
+                    modifier = Modifier.padding(10.dp),
+                    horizontalArrangement = Arrangement.Start
                 ) {
-                    Row {
-                        IconButton(onClick = { count-- }) {
-                            Icon(
-                                Icons.Default.KeyboardArrowDown,
-                                contentDescription = null,
-                                modifier = Modifier.size(50.dp)
+
+                    Text(
+                        text = "Regular : Rs $totalprice_Regular",
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(vertical = 20.dp, horizontal = 10.dp),
+                        fontSize = 25.sp
+                    )
+                }
+                Row(
+                    modifier = Modifier.padding(20.dp),
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(height = 50.dp, width = 150.dp)
+                            .background(color = Mustard_yellow, shape = CircleShape)
+                            .align(Alignment.CenterVertically)
+                    ) {
+                        Row {
+                            IconButton(onClick = {
+                                if (count_Regular == 0) count_Regular = 0 else count_Regular--
+                            }) {
+                                Icon(
+                                    Icons.Default.KeyboardArrowDown,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(50.dp)
+                                )
+                            }
+                            Spacer(modifier = Modifier.width(5.dp))
+                            //var count = 0
+                            Text(
+                                text = "$count_Regular", modifier = Modifier
+                                    .padding(vertical = 15.dp)
+                                    .padding(horizontal = 15.dp),
+                                fontSize = 20.sp
                             )
+                            Spacer(modifier = Modifier.width(1.dp))
+                            IconButton(onClick = { count_Regular++ }) {
+                                Icon(
+                                    Icons.Default.KeyboardArrowUp,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(50.dp)
+                                )
+                            }
                         }
-                        Spacer(modifier = Modifier.width(5.dp))
-                        //var count = 0
-                        Text(
-                            text = "$count", modifier = Modifier
-                                .padding(vertical = 15.dp)
-                                .padding(horizontal = 15.dp),
-                            fontSize = 20.sp
-                        )
-                        Spacer(modifier = Modifier.width(1.dp))
-                        IconButton(onClick = { count++ }) {
-                            Icon(
-                                Icons.Default.KeyboardArrowUp,
-                                contentDescription = null,
-                                modifier = Modifier.size(50.dp)
+                    }
+
+                }
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Row(
+                    modifier = Modifier.padding(horizontal = 10.dp),
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+
+                    Text(
+                        text = "Large   : Rs $totalprice_Large",
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(vertical = 10.dp, horizontal = 10.dp),
+                        fontSize = 25.sp
+                    )
+                }
+                Row(
+                    modifier = Modifier.padding(horizontal = 20.dp),
+                    horizontalArrangement = Arrangement.Start
+                ) {
+
+                    Box(
+                        modifier = Modifier
+                            .size(height = 50.dp, width = 150.dp)
+                            .background(color = Mustard_yellow, shape = CircleShape)
+                            .align(Alignment.CenterVertically)
+                    ) {
+                        Row {
+                            IconButton(onClick = {
+                                if (count_Large == 0) count_Large = 0 else count_Large--
+                            }) {
+                                Icon(
+                                    Icons.Default.KeyboardArrowDown,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(50.dp)
+                                )
+                            }
+                            Spacer(modifier = Modifier.width(5.dp))
+                            //var count = 0
+                            Text(
+                                text = "$count_Large", modifier = Modifier
+                                    .padding(vertical = 15.dp)
+                                    .padding(horizontal = 15.dp),
+                                fontSize = 20.sp
                             )
+                            Spacer(modifier = Modifier.width(1.dp))
+                            IconButton(onClick = { count_Large++ }) {
+                                Icon(
+                                    Icons.Default.KeyboardArrowUp,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(50.dp)
+                                )
+                            }
                         }
                     }
                 }
 
+
             }
+            Spacer(modifier = Modifier.height(10.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
-            ){
-                var value=0
-            TextButton(onClick = { ClassicFrenchFries_Cart=1}
-            ,
-                colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
-                border = BorderStroke(width = 0.dp, color = Color.Transparent),
-                elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
-                modifier = Modifier
-                    .padding(horizontal = 20.dp, vertical = 20.dp)
-                    //.size(height = 40.dp, width = 400.dp),
-                    // .fillMaxWidth()
-                    .height(54.dp),
-                shape = RoundedCornerShape(15.dp)
             ) {
-                Text(
-                    text = " ADD TO CART ",
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White,
-                    fontSize = 20.sp
-                )
-            }
-            TextButton(onClick = {
-                /*Add_to_cart(Item_Name, unitprice, count ,Fries_image)*/
 
-                navController.navigate("Cart")
-            }
-                ,
-                colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
-                border = BorderStroke(width = 0.dp, color = Color.Transparent),
-                elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
-                modifier = Modifier
-                    .padding(horizontal = 20.dp, vertical = 20.dp)
-                    //.size(height = 40.dp, width = 400.dp),
-                    //.fillMaxWidth()
-                    .height(54.dp),
-                shape = RoundedCornerShape(15.dp)
-            ) {
-                Text(
-                    text = " GO TO CART ",
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White,
-                    fontSize = 20.sp
-                )
-            }
+                TextButton(onClick = { if((count_Regular!=0)||(count_Large!=0)){
+                    ClassicFrenchFries_Large=count_Large
+                    ClassicFrenchFries_Regular=count_Regular
+                    ClassicFrenchFries_Cart=1}},
+                    colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
+                    border = BorderStroke(width = 0.dp, color = Color.Transparent),
+                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+                    modifier = Modifier
+                        .padding(horizontal = 20.dp, vertical = 20.dp)
+                        .height(54.dp),
+                    shape = RoundedCornerShape(15.dp)
+                ) {
+//                  ClassicFrenchFriesCart(count_Regular,count_Large)
+//                    ClassicFrenchFries_Large=count_Large
+//                    ClassicFrenchFries_Regular=count_Regular
+                    Text(
+                        text = " ADD TO CART ",
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        fontSize = 20.sp
+                    )
+                }
+                TextButton(onClick = {
+                    navController.navigate("Cart")
+                },
+                    colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
+                    border = BorderStroke(width = 0.dp, color = Color.Transparent),
+                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+                    modifier = Modifier
+                        .padding(horizontal = 20.dp, vertical = 20.dp)
+                        //.size(height = 40.dp, width = 400.dp),
+                        //.fillMaxWidth()
+                        .height(54.dp),
+                    shape = RoundedCornerShape(15.dp)
+                ) {
+                    Text(
+                        text = " GO TO CART ",
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        fontSize = 20.sp
+                    )
+                }
+
             }
         }
     }
 }
 
+
 @Composable
-fun ClassicFrenchFriesCart() {
+fun ClassicFrenchFriesCart(Regular:Int,Large:Int) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
-    var unitprice: Int by remember {
+    var unitprice_Regular: Int by remember {
         mutableStateOf<Int>(35)
     }
+    var totalprice_Regular: Int by remember {
+        mutableStateOf<Int>(35)
+    }
+    var count_Regular by remember {
+        mutableStateOf<Int>(Regular)
+    }
+
+
+    fun updateRegularPrice() {
+        if(ClassicFrenchFries_Regular==0)
+        {
+            ClassicFrenchFries_RegularPrice=0
+        }
+        else {
+            totalprice_Regular = unitprice_Regular * count_Regular
+            ClassicFrenchFries_RegularPrice = totalprice_Regular
+        }
+        updatePrice()
+    }
+
+    var unitprice_Large: Int by remember {
+        mutableStateOf<Int>(55)
+    }
+    var totalprice_Large: Int by remember {
+        mutableStateOf<Int>(55)
+    }
+    var count_Large by remember {
+        mutableStateOf<Int>(Large)
+    }
+
+    fun updateLargePrice() {
+        if(ClassicFrenchFries_Large==0)
+        {
+            ClassicFrenchFries_LargePrice=0
+        }
+        else {
+            totalprice_Large = unitprice_Large * count_Large
+            ClassicFrenchFries_LargePrice = totalprice_Large
+        }
+        updatePrice()
+    }
+
     var totalprice: Int by remember {
-        mutableStateOf<Int>(35)
+        mutableStateOf<Int>(totalprice_Large+totalprice_Regular)
     }
-    var count by remember {
-        mutableStateOf<Int>(1)
-    }
+    totalprice=totalprice_Large+totalprice_Regular
+    Column {
+        if (Regular > 0) {
 
-    Card(
-        shape = RoundedCornerShape(16.dp),
-        backgroundColor = Mustard_yellow,
-        modifier = Modifier
-            .padding(10.dp)
-            .fillMaxWidth()
-            .wrapContentHeight(),
-    ) {
-        Box(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .background(color = Mustard_yellow_light)
-        ) {
-            Row {
-                Card(
-                    shape = RoundedCornerShape(15.dp),
+            Card(
+                shape = RoundedCornerShape(16.dp),
+                backgroundColor = Mustard_yellow,
+                modifier = Modifier
+                    .padding(10.dp)
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+            ) {
+                Box(
                     modifier = Modifier
-                        .padding(0.dp)
-                        .size(100.dp)
-                        .wrapContentHeight(),
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.classic_french_fries),
-                        contentDescription = "classic_french_fries",
-                        modifier = Modifier
-                            //.align(Alignment.Center)
-                            .size(220.dp)
-                    )
-                }
-                Spacer(modifier = Modifier.width(10.dp))
-                Column(
-                    modifier = Modifier
-                        .padding(horizontal = 5.dp)
+                        .padding(16.dp)
                         .fillMaxWidth()
+                        .wrapContentHeight()
+                        .background(color = Mustard_yellow_light)
                 ) {
-                    Text(
-                        text = "Classic French Fries",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 22.sp
-                    )
-
-                    Text(
-                        text = "PRICE : Rs $totalprice",
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(
-                            vertical = 10.dp,
-                            horizontal = 2.dp
-                        ),
-                        fontSize = 15.sp
-                    )
-                    Box(
-                        modifier = Modifier
-                            .size(height = 30.dp, width = 150.dp)
-                            .background(color = Color.White, shape = CircleShape)
-
-                    ) {
-                        Row {
-                            IconButton(onClick = { count-- }) {
-                                Icon(
-                                    Icons.Default.KeyboardArrowDown,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(50.dp)
-                                )
-                            }
-                            Spacer(modifier = Modifier.width(5.dp))
-                            Text(
-                                text = "$count", modifier = Modifier
-                                    .padding(vertical = 5.dp)
-                                    .padding(horizontal = 15.dp),
-                                fontSize = 20.sp
+                    Row {
+                        Card(
+                            shape = RoundedCornerShape(15.dp),
+                            modifier = Modifier
+                                .padding(0.dp)
+                                .size(120.dp)
+                                .wrapContentHeight(),
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.classic_french_fries),
+                                contentDescription = "classic_french_fries",
+                                modifier = Modifier
+                                    //.align(Alignment.Center)
+                                    .size(220.dp)
                             )
-                            Spacer(modifier = Modifier.width(1.dp))
-                            IconButton(onClick = { count++ }) {
-                                Icon(
-                                    Icons.Default.KeyboardArrowUp,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(50.dp)
-                                )
+                        }
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Column(
+                            modifier = Modifier
+                                .padding(horizontal = 5.dp)
+                                .fillMaxWidth()
+                        ) {
+                            Text(
+                                text = "Classic French Fries\n(Regular)",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 22.sp
+                            )
+
+                            Text(
+                                text = "PRICE : Rs $totalprice_Regular",
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier.padding(
+                                    vertical = 10.dp,
+                                    horizontal = 2.dp
+                                ),
+                                fontSize = 15.sp
+                            )
+                            Box(
+                                modifier = Modifier
+                                    .size(height = 30.dp, width = 150.dp)
+                                    .background(color = Color.White, shape = CircleShape)
+
+                            ) {
+                                Row {
+                                    IconButton(onClick = {
+                                        if (count_Regular == 1) count_Regular =
+                                            1 else count_Regular--;updateRegularPrice();updateLargePrice()
+                                    }) {
+                                        Icon(
+                                            Icons.Default.KeyboardArrowDown,
+                                            contentDescription = null,
+                                            modifier = Modifier.size(50.dp)
+                                        )
+                                    }
+                                    Spacer(modifier = Modifier.width(5.dp))
+                                    Text(
+                                        text = "$count_Regular", modifier = Modifier
+                                            .padding(vertical = 5.dp)
+                                            .padding(horizontal = 15.dp),
+                                        fontSize = 20.sp
+                                    )
+                                    Spacer(modifier = Modifier.width(1.dp))
+                                    IconButton(onClick = { count_Regular++;updateRegularPrice();updateLargePrice() }) {
+                                        Icon(
+                                            Icons.Default.KeyboardArrowUp,
+                                            contentDescription = null,
+                                            modifier = Modifier.size(50.dp)
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if(Large>0)
+        {
+            Card(
+                shape = RoundedCornerShape(16.dp),
+                backgroundColor = Mustard_yellow,
+                modifier = Modifier
+                    .padding(10.dp)
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+            ) {
+                Box(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .background(color = Mustard_yellow_light)
+                ) {
+                    Row {
+                        Card(
+                            shape = RoundedCornerShape(15.dp),
+                            modifier = Modifier
+                                .padding(0.dp)
+                                .size(120.dp)
+                                .wrapContentHeight(),
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.classic_french_fries),
+                                contentDescription = "classic_french_fries",
+                                modifier = Modifier
+                                    //.align(Alignment.Center)
+                                    .size(220.dp)
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Column(
+                            modifier = Modifier
+                                .padding(horizontal = 5.dp)
+                                .fillMaxWidth()
+                        ) {
+                            Text(
+                                text = "Classic French Fries\n(Large)",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 22.sp
+                            )
+
+                            Text(
+                                text = "PRICE : Rs $totalprice_Large",
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier.padding(
+                                    vertical = 10.dp,
+                                    horizontal = 2.dp
+                                ),
+                                fontSize = 15.sp
+                            )
+                            Box(
+                                modifier = Modifier
+                                    .size(height = 30.dp, width = 150.dp)
+                                    .background(color = Color.White, shape = CircleShape)
+
+                            ) {
+                                Row {
+                                    IconButton(onClick = {
+                                        if (count_Large == 1) count_Large=
+                                            1 else count_Large--;updateRegularPrice();updateLargePrice()
+                                    }) {
+                                        Icon(
+                                            Icons.Default.KeyboardArrowDown,
+                                            contentDescription = null,
+                                            modifier = Modifier.size(50.dp)
+                                        )
+                                    }
+                                    Spacer(modifier = Modifier.width(5.dp))
+                                    Text(
+                                        text = "$count_Large", modifier = Modifier
+                                            .padding(vertical = 5.dp)
+                                            .padding(horizontal = 15.dp),
+                                        fontSize = 20.sp
+                                    )
+                                    Spacer(modifier = Modifier.width(1.dp))
+                                    IconButton(onClick = { count_Large++ ;updateRegularPrice();updateLargePrice()}) {
+                                        Icon(
+                                            Icons.Default.KeyboardArrowUp,
+                                            contentDescription = null,
+                                            modifier = Modifier.size(50.dp)
+                                        )
+                                    }
+                                }
                             }
                         }
                     }
@@ -564,111 +801,115 @@ fun ClassicFrenchFriesCart() {
     }
 }
 
+////Updating price in cart function
+//fun updatePrice(){
+//    totalCartPrice_global= ClassicFrenchFries_LargePrice+ ClassicFrenchFries_RegularPrice
+//}
 
 
-@Composable
-fun Add_to_cart(itemName:String, unit_price:Int, count:Int, image: Any) {
-    val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
-    val Fries_image = Image(
-        painter = painterResource(id = R.drawable.classic_french_fries),
-        contentDescription = "Pizza",
-        modifier = Modifier
-            .padding(100.dp)
-            .size(100.dp)
-    )
-    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
-    var totalprice: Int by remember {
-        mutableStateOf<Int>(unit_price)
-    }
-    var Count=count
-    fun Increment() {
-        if (Count < 100) {
-            Count =Count+1
-            totalprice = unit_price * Count
-        }
-    }
-    fun Decrement() {
-        if (Count > 1) {
-            Count = Count - 1
-            totalprice = unit_price * Count
-        }
-    }
-    Card(
-        shape = RoundedCornerShape(16.dp),
-        backgroundColor = Mustard_yellow,
-        modifier = Modifier
-            .padding(10.dp)
-            .fillMaxWidth()
-            .wrapContentHeight()
-    ) {
-        Box(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .background(color = Mustard_yellow_light)
-        ) {
-            Row {
-                Card(
-                    shape = RoundedCornerShape(15.dp),
-                    modifier = Modifier
-                        .padding(0.dp)
-                        .size(100.dp)
-                        .wrapContentHeight(),
-                ) {
-                    image
-                }
-                Spacer(modifier = Modifier.width(10.dp))
-                Column(
-                    modifier = Modifier
-                        .padding(horizontal = 5.dp)
-                        .fillMaxWidth()
-                ) {
-                    Text(
-                        text = "$itemName",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 22.sp
-                    )
-
-                    Text(
-                        text = "PRICE : Rs $totalprice",
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(vertical = 10.dp, horizontal = 2.dp),
-                        fontSize = 15.sp
-                    )
-                    Box(
-                        modifier = Modifier
-                            .size(height = 30.dp, width = 150.dp)
-                            .background(color = Color.White, shape = CircleShape)
-
-                    ) {
-                        Row {
-                            IconButton(onClick = { Decrement() }) {
-                                Icon(
-                                    Icons.Default.KeyboardArrowDown,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(50.dp)
-                                )
-                            }
-                            Spacer(modifier = Modifier.width(5.dp))
-                            Text(
-                                text = "$Count", modifier = Modifier
-                                    .padding(vertical = 5.dp)
-                                    .padding(horizontal = 15.dp),
-                                fontSize = 20.sp
-                            )
-                            Spacer(modifier = Modifier.width(1.dp))
-                            IconButton(onClick = { Increment() }) {
-                                Icon(
-                                    Icons.Default.KeyboardArrowUp,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(50.dp)
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+//@Composable
+//fun Add_to_cart(Regular: Int,Large: Int) {
+//    val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
+//    val Fries_image = Image(
+//        painter = painterResource(id = R.drawable.classic_french_fries),
+//        contentDescription = "Pizza",
+//        modifier = Modifier
+//            .padding(100.dp)
+//            .size(100.dp)
+//    )
+//    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
+//    var totalprice: Int by remember {
+//        mutableStateOf<Int>(unit_price)
+//    }
+//    var Count=count
+//    fun Increment() {
+//        if (Count < 100) {
+//            Count =Count+1
+//            totalprice = unit_price * Count
+//        }
+//    }
+//    fun Decrement() {
+//        if (Count > 1) {
+//            Count = Count - 1
+//            totalprice = unit_price * Count
+//        }
+//    }
+//    Card(
+//        shape = RoundedCornerShape(16.dp),
+//        backgroundColor = Mustard_yellow,
+//        modifier = Modifier
+//            .padding(10.dp)
+//            .fillMaxWidth()
+//            .wrapContentHeight()
+//    ) {
+//        Box(
+//            modifier = Modifier
+//                .padding(16.dp)
+//                .fillMaxWidth()
+//                .wrapContentHeight()
+//                .background(color = Mustard_yellow_light)
+//        ) {
+//            Row {
+//                Card(
+//                    shape = RoundedCornerShape(15.dp),
+//                    modifier = Modifier
+//                        .padding(0.dp)
+//                        .size(100.dp)
+//                        .wrapContentHeight(),
+//                ) {
+//                    image
+//                }
+//                Spacer(modifier = Modifier.width(10.dp))
+//                Column(
+//                    modifier = Modifier
+//                        .padding(horizontal = 5.dp)
+//                        .fillMaxWidth()
+//                ) {
+//                    Text(
+//                        text = "$itemName",
+//                        fontWeight = FontWeight.Bold,
+//                        fontSize = 22.sp
+//                    )
+//
+//                    Text(
+//                        text = "PRICE : Rs $totalprice",
+//                        fontWeight = FontWeight.Bold,
+//                        modifier = Modifier.padding(vertical = 10.dp, horizontal = 2.dp),
+//                        fontSize = 15.sp
+//                    )
+//                    Box(
+//                        modifier = Modifier
+//                            .size(height = 30.dp, width = 150.dp)
+//                            .background(color = Color.White, shape = CircleShape)
+//
+//                    ) {
+//                        Row {
+//                            IconButton(onClick = { Decrement() }) {
+//                                Icon(
+//                                    Icons.Default.KeyboardArrowDown,
+//                                    contentDescription = null,
+//                                    modifier = Modifier.size(50.dp)
+//                                )
+//                            }
+//                            Spacer(modifier = Modifier.width(5.dp))
+//                            Text(
+//                                text = "$Count", modifier = Modifier
+//                                    .padding(vertical = 5.dp)
+//                                    .padding(horizontal = 15.dp),
+//                                fontSize = 20.sp
+//                            )
+//                            Spacer(modifier = Modifier.width(1.dp))
+//                            IconButton(onClick = { Increment() }) {
+//                                Icon(
+//                                    Icons.Default.KeyboardArrowUp,
+//                                    contentDescription = null,
+//                                    modifier = Modifier.size(50.dp)
+//                                )
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}

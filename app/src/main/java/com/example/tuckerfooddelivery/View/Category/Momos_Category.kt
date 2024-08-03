@@ -3,6 +3,7 @@ package com.example.tuckerfooddelivery.View.Category
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -105,7 +106,8 @@ fun Momos_Category(navController: NavController){
             Card(
                 modifier = Modifier
                     .height(230.dp)
-                    .width(130.dp),
+                    .width(130.dp)
+                    .clickable { navController.navigate("TibetanMomos") },
                 shape = RoundedCornerShape(15.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 colors = CardDefaults.cardColors(Color.White)
@@ -165,7 +167,8 @@ fun Momos_Category(navController: NavController){
             Card(
                 modifier = Modifier
                     .height(230.dp)
-                    .width(130.dp),
+                    .width(130.dp)
+                    .clickable { navController.navigate("NepaliDumplingMomos") }, //error
                 shape = RoundedCornerShape(15.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 colors = CardDefaults.cardColors(Color.White)

@@ -3,6 +3,8 @@ package com.example.tuckerfooddelivery.View.Category
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -69,10 +71,10 @@ fun Burger_Category(navController: NavController){
                 Box(
                     modifier = Modifier
                         .fillMaxSize(),
-                    contentAlignment = Alignment.CenterStart
+                    contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "  Burgers",
+                        text = "Burgers",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.ExtraBold,
                     )
@@ -105,7 +107,8 @@ fun Burger_Category(navController: NavController){
             Card(
                 modifier = Modifier
                     .height(230.dp)
-                    .width(130.dp),
+                    .width(130.dp)
+                    .clickable { navController.navigate("BurgerBistro") },
                 shape = RoundedCornerShape(15.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 colors = CardDefaults.cardColors(Color.White)
@@ -165,7 +168,8 @@ fun Burger_Category(navController: NavController){
             Card(
                 modifier = Modifier
                     .height(230.dp)
-                    .width(130.dp),
+                    .width(130.dp)
+                    .clickable { navController.navigate("SmokingBurger") },
                 shape = RoundedCornerShape(15.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 colors = CardDefaults.cardColors(Color.White)
@@ -233,7 +237,8 @@ fun Burger_Category(navController: NavController){
             Card(
                 modifier = Modifier
                     .height(230.dp)
-                    .width(130.dp),
+                    .width(130.dp)
+                    .clickable { navController.navigate("ClassicBurger") },
                 shape = RoundedCornerShape(15.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 colors = CardDefaults.cardColors(Color.White)
