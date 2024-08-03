@@ -104,8 +104,6 @@ fun Cart(navController: NavController) {
             if (ClassicFrenchFries_Cart == 1) {
                 ClassicFrenchFriesCart(ClassicFrenchFries_Regular, ClassicFrenchFries_Large)
             }
-
-
 //
 //            if (PizzaCalzone_Cart == 1) {
 //                PizzaCalzone_Price= PizzaCalzone_Cart()

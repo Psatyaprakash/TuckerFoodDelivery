@@ -428,8 +428,6 @@ fun BurgerBistro(navController: NavController) {
                     )
                 }
                 TextButton(onClick = {
-                    /*Add_to_cart(Item_Name, unitprice, count ,Fries_image)*/
-
                     navController.navigate("Cart")
                 }
                     ,
