@@ -1,5 +1,13 @@
 package com.example.tuckerfooddelivery.View
 
+import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -32,6 +40,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,15 +49,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.app.NotificationCompat
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
 
 var PizzaCalzone_Cart=0
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 fun PizzaCalzone(navController: NavController) {
 
@@ -92,7 +104,7 @@ fun PizzaCalzone(navController: NavController) {
             Spacer(modifier = Modifier.height(10.dp))
             Row {
                 TextButton(
-                    onClick = {navController.navigate("Pizza_Category")},
+                    onClick = { navController.navigate("Pizza_Category") },
                     colors = ButtonDefaults.buttonColors(Color.LightGray),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
@@ -237,7 +249,7 @@ fun PizzaCalzone(navController: NavController) {
                     fontWeight = FontWeight.Bold
                 )
                 TextButton(
-                    onClick = { onButtonClick(1) ; price = 199 },
+                    onClick = { onButtonClick(1); price = 199 },
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(1)
                     ),
@@ -250,7 +262,7 @@ fun PizzaCalzone(navController: NavController) {
 
                 Spacer(modifier = Modifier.width(30.dp))
                 TextButton(
-                    onClick = { onButtonClick(2); price = 239  },
+                    onClick = { onButtonClick(2); price = 239 },
                     colors = ButtonDefaults.textButtonColors(getButtonColor(2)),
                     modifier = Modifier
                         .size(60.dp),
@@ -261,7 +273,7 @@ fun PizzaCalzone(navController: NavController) {
 
                 Spacer(modifier = Modifier.width(30.dp))
                 TextButton(
-                    onClick = { onButtonClick(3) ; price = 259 },
+                    onClick = { onButtonClick(3); price = 259 },
                     colors = ButtonDefaults.textButtonColors(getButtonColor(3)),
                     modifier = Modifier
                         .size(60.dp),
@@ -437,7 +449,8 @@ fun PizzaCalzone(navController: NavController) {
                             Icon(
                                 Icons.Default.KeyboardArrowDown,
                                 contentDescription = null,
-                                modifier = Modifier.size(50.dp)
+                                modifier = Modifier
+                                    .size(50.dp)
                                     .clickable { if (count == 1) count = 1 else count-- }
                             )
                         }
@@ -452,7 +465,8 @@ fun PizzaCalzone(navController: NavController) {
                             Icon(
                                 Icons.Default.KeyboardArrowUp,
                                 contentDescription = null,
-                                modifier = Modifier.size(50.dp)
+                                modifier = Modifier
+                                    .size(50.dp)
                                     .clickable { count++ }
                             )
                         }
@@ -460,8 +474,27 @@ fun PizzaCalzone(navController: NavController) {
                 }
 
             }
+
+            val context = LocalContext.current
+            val notificationPermissionLauncher = rememberLauncherForActivityResult(
+                contract = ActivityResultContracts.RequestPermission()
+            ) { isGranted ->
+                if (isGranted) {
+                    // Permission granted, we can show notifications
+                } else {
+                    // Permission denied, handle as needed
+                }
+            }
+
+            LaunchedEffect(key1 = true) {
+                notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+
             TextButton(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    createNotification(context, "Pizza Calzone" , "Pizza Calzone added to cart" )
+//                    navController.navigate("createNotification")
+                },
                 colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                 border = BorderStroke(width = 0.dp, color = Color.Transparent),
                 elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
@@ -485,8 +518,7 @@ fun PizzaCalzone(navController: NavController) {
 }
 
 @Composable
-fun PizzaCalzone_Cart():Int
-{
+fun PizzaCalzone_Cart():Int {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     var unitprice: Int by remember {

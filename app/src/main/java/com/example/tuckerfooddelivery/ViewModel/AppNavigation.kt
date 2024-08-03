@@ -1,5 +1,6 @@
 package com.example.tuckerfooddelivery.ViewModel
 
+import android.os.Build
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -27,7 +28,6 @@ import com.example.tuckerfooddelivery.View.MargheritaCornPizza
 import com.example.tuckerfooddelivery.View.MexicanPepperoniPizza
 import com.example.tuckerfooddelivery.View.Mocktails_Category
 import com.example.tuckerfooddelivery.View.Momos_Category
-import com.example.tuckerfooddelivery.View.NotificationScreen
 import com.example.tuckerfooddelivery.View.NepaliDumplingMomos
 import com.example.tuckerfooddelivery.View.OrangeMimosa
 import com.example.tuckerfooddelivery.View.PaneerRoll
@@ -45,6 +45,7 @@ import com.example.tuckerfooddelivery.View.Starters_Category
 import com.example.tuckerfooddelivery.View.Storage
 import com.example.tuckerfooddelivery.View.TibetanMomos
 import com.example.tuckerfooddelivery.View.Wings_Category
+import com.example.tuckerfooddelivery.View.createNotification
 import com.example.tuckerfooddelivery.View.fionah_landingpage
 
 //Navigation
@@ -63,10 +64,10 @@ fun AppNavigation() {
                 slideOutOfContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "NotificationScreen"
+        startDestination = "HomePage"
     ) {
         composable("Storage"){ Storage() }
-        composable("NotificationScreen"){ NotificationScreen() }
+//        composable("NotificationScreen"){ NotificationScreen(NotificationTitle,NotiC ) }
 
         composable("Start") { Start(navController) }
         composable("Start2") { Start2(navController) }
@@ -74,7 +75,10 @@ fun AppNavigation() {
         composable("LoginScreen") { LoginScreen(navController) }
         composable("HomePage"){ HomePage(navController) }
         //items
-        composable("PizzaCalzone"){ PizzaCalzone(navController) }
+        composable("PizzaCalzone"){ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            PizzaCalzone(navController)
+        }
+        }
         composable("ClassicFrenchFries"){ ClassicFrenchFries(navController) }
         composable("BurgerBistro"){ BurgerBistro(navController) }
         composable("TibetanMomos"){ TibetanMomos(navController) }

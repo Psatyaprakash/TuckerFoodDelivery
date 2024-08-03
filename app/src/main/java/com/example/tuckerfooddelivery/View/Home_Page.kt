@@ -86,7 +86,7 @@ fun HomePage(navController: NavController) {
             }
 
             Spacer(modifier = Modifier.width(5.dp))
-            Column {
+            Column() {
                 Text(
                     text = "DELIVER TO",
                     fontSize = 17.sp,

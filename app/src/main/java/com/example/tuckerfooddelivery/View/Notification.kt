@@ -1,36 +1,20 @@
 package com.example.tuckerfooddelivery.View
 
-import android.Manifest
-import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.core.app.NotificationCompat
+import com.example.tuckerfooddelivery.CartActivity
 import com.example.tuckerfooddelivery.MainActivity
 import com.example.tuckerfooddelivery.R
-import java.lang.reflect.Modifier
 
-
+/*
 @SuppressLint("InlinedApi")
 @Composable
-fun NotificationScreen() {
+fun NotificationScreen(NotificationTitle: String, NotificationContent: String) {
     val context = LocalContext.current
     val notificationPermissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission()
@@ -53,14 +37,15 @@ fun NotificationScreen() {
         verticalArrangement = Arrangement.Center
         
     ){
-        Button(onClick = { createNotification(context) }) {
+        Button(onClick = { createNotification(context, NotificationTitle , NotificationContent ) }) {
             Text(text = "Show Notification", fontSize = 30.sp)
         }
     }
 
 }
+*/
 
-fun createNotification(context: Context) {
+fun createNotification(context: Context, NotificationTitle : String , NotificationContent: String) {
     // Create a notification channel if needed (API 26+)
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         val channelId = "default_channel_id"
@@ -73,20 +58,30 @@ fun createNotification(context: Context) {
         notificationManager.createNotificationChannel(channel)
     }
 
+    val intent = Intent(context, CartActivity::class.java).apply {
+        putExtra("data", "This is notification") // Add this extra to indicate navigation
+    }
+
+    val pendingIntent = PendingIntent.getActivity(
+        context, 100, intent,
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) PendingIntent.FLAG_IMMUTABLE
+        else PendingIntent.FLAG_UPDATE_CURRENT
+    )
+
     val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
     val notification = NotificationCompat.Builder(context, "default_channel_id")
-        .setContentTitle("Notification Title")
-        .setContentText("Notification content")
+        .setContentTitle(NotificationTitle)
+        .setContentText(NotificationContent)
         .setSmallIcon(R.drawable.ic_launcher_foreground)
         .setAutoCancel(true)
-        .addAction(0, "Start", createPendingIntent(context))
-        .setContentIntent(createPendingIntent(context))
+        .addAction(0, "Start", pendingIntent)
+        .setContentIntent(pendingIntent)
         .build()
 
     notificationManager.notify(100, notification)
 }
-
+/*
 fun createPendingIntent(context: Context): PendingIntent {
     val intent = Intent(context, MainActivity::class.java).apply {
         putExtra("data", "Hey this is notification")
@@ -100,3 +95,4 @@ fun createPendingIntent(context: Context): PendingIntent {
 
     return PendingIntent.getActivity(context, 100, intent, flag)
 }
+*/
