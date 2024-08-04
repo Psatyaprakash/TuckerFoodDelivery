@@ -1,4 +1,4 @@
-package com.example.tuckerfooddelivery.View
+package com.example.tuckerfooddelivery.View.Items
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -25,7 +25,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -39,7 +38,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -50,12 +48,12 @@ import com.example.tuckerfooddelivery.R
 
 
 
-var TibetanMomos_Cart=0
+var BurgerBistro_Cart=0
 @Composable
-fun TibetanMomos(navController: NavController) {
+fun BurgerBistro(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
-    var  TibetanMomos_image: Any = Image(
-        painter = painterResource(id = R.drawable.tibetianmomos),
+    var  Burger_image: Any = Image(
+        painter = painterResource(id = R.drawable.burger_bistro),
         contentDescription = "Pizza",
         modifier = Modifier
             .padding(100.dp)
@@ -71,9 +69,9 @@ fun TibetanMomos(navController: NavController) {
     fun onButtonClick(index: Int) {
         selectedButtonIndex = index
     }
-    val Item_Name = "Tibetan Momos"
+    val Item_Name = "Burger Bistro"
     var totalprice : Int by remember {
-        mutableStateOf<Int>(55)
+        mutableStateOf<Int>(116)
     }
     var count by remember {
         mutableStateOf<Int>(1)
@@ -92,7 +90,7 @@ fun TibetanMomos(navController: NavController) {
             Spacer(modifier = Modifier.height(15.dp))
             Row {
                 TextButton(
-                    onClick = {navController.navigate("Momos_Category") },
+                    onClick = {navController.navigate("Burger_Category") },
                     colors = ButtonDefaults.buttonColors(Color.LightGray),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
@@ -130,8 +128,8 @@ fun TibetanMomos(navController: NavController) {
                         .wrapContentHeight()
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.tibetianmomos),
-                        contentDescription = "Tibetan Momos",
+                        painter = painterResource(id = R.drawable.burger_bistro),
+                        contentDescription = "Burger Bistro",
                         modifier = Modifier
                             .align(Alignment.Center)
                             .size(220.dp)
@@ -159,7 +157,7 @@ fun TibetanMomos(navController: NavController) {
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Mouth-watering Tibetan Momos stuffed with Juicy boneless Chicken, Cheese and Herbs. Served with Spicy Red Sauce and Green Chutney.",
+                text = "Soft burger buns filled with spicy and juicy Grilled chicken beast with veggies and sauces.",
                 modifier = Modifier.padding(horizontal = 10.dp)
             )
             Spacer(modifier = Modifier.height(15.dp))
@@ -231,7 +229,7 @@ fun TibetanMomos(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "SIZE:", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
-                TextButton(onClick = { onButtonClick(1); totalprice = 55 },
+                TextButton(onClick = { onButtonClick(1); totalprice = 116},
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(1)
                     ),
@@ -239,10 +237,10 @@ fun TibetanMomos(navController: NavController) {
                         .size(height = 50.dp, width = 100.dp),
                     shape = RoundedCornerShape(15.dp)
                 ){
-                    Text(text = "Half", fontSize = 20.sp)
+                    Text(text = "Regular", fontSize = 20.sp)
                 }
                 Spacer(modifier = Modifier.width(30.dp))
-                TextButton(onClick = { onButtonClick(2); totalprice = 78 },
+                TextButton(onClick = { onButtonClick(2); totalprice = 187 },
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(2)
                     ),
@@ -250,7 +248,7 @@ fun TibetanMomos(navController: NavController) {
                         .size(height = 50.dp, width = 100.dp),
                     shape = RoundedCornerShape(15.dp)
                 ){
-                    Text(text = "Full", fontSize = 20.sp)
+                    Text(text = "Large", fontSize = 20.sp)
                 }
                 Spacer(modifier = Modifier.width(20.dp))
             }
@@ -408,7 +406,7 @@ fun TibetanMomos(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ){
                 var value=0
-                TextButton(onClick = { TibetanMomos_Cart=1}
+                TextButton(onClick = { BurgerBistro_Cart =1}
                     ,
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     border = BorderStroke(width = 0.dp, color = Color.Transparent),
@@ -428,8 +426,6 @@ fun TibetanMomos(navController: NavController) {
                     )
                 }
                 TextButton(onClick = {
-                    /*Add_to_cart(Item_Name, unitprice, count ,Fries_image)*/
-
                     navController.navigate("Cart")
                 }
                     ,
@@ -456,7 +452,7 @@ fun TibetanMomos(navController: NavController) {
 }
 
 @Composable
-fun TibetanMomosCart() {
+fun BurgerBistroCart() {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     var unitprice: Int by remember {
@@ -493,8 +489,8 @@ fun TibetanMomosCart() {
                         .wrapContentHeight(),
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.tibetianmomos),
-                        contentDescription = "tibetian_momos",
+                        painter = painterResource(id = R.drawable.burger_bistro),
+                        contentDescription = "burger_bistro",
                         modifier = Modifier
                             //.align(Alignment.Center)
                             .size(220.dp)
@@ -507,7 +503,7 @@ fun TibetanMomosCart() {
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = "Tibetan Momos",
+                        text = "Burger Bistro",
                         fontWeight = FontWeight.Bold,
                         fontSize = 22.sp
                     )
@@ -557,3 +553,6 @@ fun TibetanMomosCart() {
         }
     }
 }
+
+
+

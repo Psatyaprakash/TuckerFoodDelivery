@@ -1,4 +1,4 @@
-package com.example.tuckerfooddelivery.View
+package com.example.tuckerfooddelivery.View.Items
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -25,7 +25,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -39,7 +38,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -50,13 +48,13 @@ import com.example.tuckerfooddelivery.R
 
 
 
-var PaneerRoll_Cart=0
+var AmericanCorn_Cart=0
 @Composable
-fun PaneerRoll(navController: NavController) {
+fun AmericanCorn(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
-    var  PaneerRoll_image: Any = Image(
-        painter = painterResource(id = R.drawable.paneer_roll),
-        contentDescription = "Paneer Roll",
+    var  AmericanCorn_image: Any = Image(
+        painter = painterResource(id = R.drawable.american_corn),
+        contentDescription = "corn",
         modifier = Modifier
             .padding(100.dp)
 //            .align(Alignment.Center)
@@ -71,9 +69,9 @@ fun PaneerRoll(navController: NavController) {
     fun onButtonClick(index: Int) {
         selectedButtonIndex = index
     }
-    val Item_Name = "Veg Paneer Roll"
+    val Item_Name = "American Corn"
     var totalprice : Int by remember {
-        mutableStateOf<Int>(145)
+        mutableStateOf<Int>(35)
     }
     var count by remember {
         mutableStateOf<Int>(1)
@@ -92,7 +90,7 @@ fun PaneerRoll(navController: NavController) {
             Spacer(modifier = Modifier.height(15.dp))
             Row {
                 TextButton(
-                    onClick = {navController.navigate("Roll_Category") },
+                    onClick = {navController.navigate("Starters_Category") },
                     colors = ButtonDefaults.buttonColors(Color.LightGray),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
@@ -130,8 +128,8 @@ fun PaneerRoll(navController: NavController) {
                         .wrapContentHeight()
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.paneer_roll),
-                        contentDescription = "paneer roll",
+                        painter = painterResource(id = R.drawable.american_corn),
+                        contentDescription = "American corn",
                         modifier = Modifier
                             .align(Alignment.Center)
                             .size(220.dp)
@@ -159,7 +157,7 @@ fun PaneerRoll(navController: NavController) {
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Prepared with Paneer Vegetables Masala, Onion, Chilli Sauce and Tomato Sauce.",
+                text = "A simple decent crispy American corn starter.",
                 modifier = Modifier.padding(horizontal = 10.dp)
             )
             Spacer(modifier = Modifier.height(15.dp))
@@ -231,7 +229,7 @@ fun PaneerRoll(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "SIZE:", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
-                TextButton(onClick = { onButtonClick(1); totalprice = 145 },
+                TextButton(onClick = { onButtonClick(1); totalprice = 100 },
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(1)
                     ),
@@ -239,10 +237,10 @@ fun PaneerRoll(navController: NavController) {
                         .size(height = 50.dp, width = 100.dp),
                     shape = RoundedCornerShape(15.dp)
                 ){
-                    Text(text = "Regular", fontSize = 20.sp)
+                    Text(text = "Half", fontSize = 20.sp)
                 }
                 Spacer(modifier = Modifier.width(30.dp))
-                TextButton(onClick = { onButtonClick(2); totalprice = 198 },
+                TextButton(onClick = { onButtonClick(2); totalprice = 200 },
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(2)
                     ),
@@ -250,7 +248,7 @@ fun PaneerRoll(navController: NavController) {
                         .size(height = 50.dp, width = 100.dp),
                     shape = RoundedCornerShape(15.dp)
                 ){
-                    Text(text = "Large", fontSize = 20.sp)
+                    Text(text = "Full", fontSize = 20.sp)
                 }
                 Spacer(modifier = Modifier.width(20.dp))
             }
@@ -289,7 +287,7 @@ fun PaneerRoll(navController: NavController) {
                         .align(Alignment.CenterVertically)
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.cheese),
+                        painter = painterResource(id = R.drawable.corn),
                         contentDescription = "",
                         modifier = Modifier
                             .size(40.dp)
@@ -337,7 +335,7 @@ fun PaneerRoll(navController: NavController) {
                         .align(Alignment.CenterVertically)
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.tomato_),
+                        painter = painterResource(id = R.drawable.chilli),
                         contentDescription = "",
                         modifier = Modifier
                             .size(50.dp)
@@ -408,7 +406,7 @@ fun PaneerRoll(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ){
                 var value=0
-                TextButton(onClick = { PaneerRoll_Cart=1}
+                TextButton(onClick = { AmericanCorn_Cart =1}
                     ,
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     border = BorderStroke(width = 0.dp, color = Color.Transparent),
@@ -456,7 +454,7 @@ fun PaneerRoll(navController: NavController) {
 }
 
 @Composable
-fun PaneerRollCart() {
+fun AmericanCornCart() {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     var unitprice: Int by remember {
@@ -493,8 +491,8 @@ fun PaneerRollCart() {
                         .wrapContentHeight(),
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.paneer_roll),
-                        contentDescription = "paneer_roll",
+                        painter = painterResource(id = R.drawable.american_corn),
+                        contentDescription = "american_corn",
                         modifier = Modifier
                             //.align(Alignment.Center)
                             .size(220.dp)
@@ -507,7 +505,7 @@ fun PaneerRollCart() {
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = "Paneer Roll",
+                        text = "American Corn",
                         fontWeight = FontWeight.Bold,
                         fontSize = 22.sp
                     )
@@ -528,7 +526,7 @@ fun PaneerRollCart() {
 
                     ) {
                         Row {
-                            IconButton(onClick = { if(count == 1) count = 1 else count-- }) {
+                            IconButton(onClick = { if(count == 1) count = 1 else count--}) {
                                 Icon(
                                     Icons.Default.KeyboardArrowDown,
                                     contentDescription = null,
