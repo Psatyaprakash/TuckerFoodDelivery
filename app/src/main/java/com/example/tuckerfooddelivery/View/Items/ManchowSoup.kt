@@ -1,4 +1,4 @@
-package com.example.tuckerfooddelivery.View
+package com.example.tuckerfooddelivery.View.Items
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -25,7 +25,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -39,7 +38,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -50,13 +48,13 @@ import com.example.tuckerfooddelivery.R
 
 
 
-var BlueLagoon_Cart=0
+var ManchowSoup_Cart=0
 @Composable
-fun BlueLagoon(navController: NavController) {
+fun ManchowSoup(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
-    var  BlueLagoon_image: Any = Image(
-        painter = painterResource(id = R.drawable.bluelagoon),
-        contentDescription = "Mocktail",
+    var  ManchowSoup_image: Any = Image(
+        painter = painterResource(id = R.drawable.manchow_soup),
+        contentDescription = "Soup",
         modifier = Modifier
             .padding(100.dp)
 //            .align(Alignment.Center)
@@ -71,9 +69,9 @@ fun BlueLagoon(navController: NavController) {
     fun onButtonClick(index: Int) {
         selectedButtonIndex = index
     }
-    val Item_Name = "Blue Lagoon"
+    val Item_Name = "Manchow Soup"
     var totalprice : Int by remember {
-        mutableStateOf<Int>(112)
+        mutableStateOf<Int>(65)
     }
     var count by remember {
         mutableStateOf<Int>(1)
@@ -92,7 +90,7 @@ fun BlueLagoon(navController: NavController) {
             Spacer(modifier = Modifier.height(15.dp))
             Row {
                 TextButton(
-                    onClick = {navController.navigate("Mocktails_Category") },
+                    onClick = {navController.navigate("Starters_Category") },
                     colors = ButtonDefaults.buttonColors(Color.LightGray),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
@@ -130,8 +128,8 @@ fun BlueLagoon(navController: NavController) {
                         .wrapContentHeight()
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.bluelagoon),
-                        contentDescription = "Mocktail",
+                        painter = painterResource(id = R.drawable.manchow_soup),
+                        contentDescription = "Soup",
                         modifier = Modifier
                             .align(Alignment.Center)
                             .size(220.dp)
@@ -159,7 +157,7 @@ fun BlueLagoon(navController: NavController) {
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Freshly pressed Mocktail that is pulpy, tangy and so refreshing.",
+                text = "Thick soup made with freshly cut chopped vegetables in soy base served with crispy noodles.",
                 modifier = Modifier.padding(horizontal = 10.dp)
             )
             Spacer(modifier = Modifier.height(15.dp))
@@ -231,7 +229,7 @@ fun BlueLagoon(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "SIZE:", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
-                TextButton(onClick = { onButtonClick(1); totalprice = 112 }, //unitprice of half mocktail is Rs 112
+                TextButton(onClick = { onButtonClick(1); totalprice = 65 },
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(1)
                     ),
@@ -239,10 +237,10 @@ fun BlueLagoon(navController: NavController) {
                         .size(height = 50.dp, width = 100.dp),
                     shape = RoundedCornerShape(15.dp)
                 ){
-                    Text(text = "Half", fontSize = 20.sp)
+                    Text(text = "Regular", fontSize = 20.sp)
                 }
                 Spacer(modifier = Modifier.width(30.dp))
-                TextButton(onClick = { onButtonClick(2); totalprice = 173 }, //unit price of full is Rs 173
+                TextButton(onClick = { onButtonClick(2); totalprice = 112 },
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(2)
                     ),
@@ -250,7 +248,7 @@ fun BlueLagoon(navController: NavController) {
                         .size(height = 50.dp, width = 100.dp),
                     shape = RoundedCornerShape(15.dp)
                 ){
-                    Text(text = "Full", fontSize = 20.sp)
+                    Text(text = "Large", fontSize = 20.sp)
                 }
                 Spacer(modifier = Modifier.width(20.dp))
             }
@@ -289,7 +287,7 @@ fun BlueLagoon(navController: NavController) {
                         .align(Alignment.CenterVertically)
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.lemon_icon),
+                        painter = painterResource(id = R.drawable.kfc),
                         contentDescription = "",
                         modifier = Modifier
                             .size(40.dp)
@@ -362,7 +360,7 @@ fun BlueLagoon(navController: NavController) {
             ) {
 
                 Text(
-                    text = "PRICE : Rs ${totalprice * count}", //to get total price
+                    text = "PRICE : Rs ${totalprice * count}",
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(vertical = 20.dp, horizontal = 10.dp),
                     fontSize = 25.sp
@@ -375,7 +373,7 @@ fun BlueLagoon(navController: NavController) {
                         .align(Alignment.CenterVertically)
                 ) {
                     Row {
-                        IconButton(onClick = { if(count == 1) count = 1 else count-- }) { //to set default limit as 1
+                        IconButton(onClick = { if(count == 1) count = 1 else count-- }) {
                             Icon(
                                 Icons.Default.KeyboardArrowDown,
                                 contentDescription = null,
@@ -408,7 +406,7 @@ fun BlueLagoon(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ){
                 var value=0
-                TextButton(onClick = { BlueLagoon_Cart=1}
+                TextButton(onClick = { ManchowSoup_Cart =1}
                     ,
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     border = BorderStroke(width = 0.dp, color = Color.Transparent),
@@ -456,7 +454,7 @@ fun BlueLagoon(navController: NavController) {
 }
 
 @Composable
-fun BlueLagoonCart() {
+fun ManchowSoupCart() {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     var unitprice: Int by remember {
@@ -493,8 +491,8 @@ fun BlueLagoonCart() {
                         .wrapContentHeight(),
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.bluelagoon),
-                        contentDescription = "blue_lagoon",
+                        painter = painterResource(id = R.drawable.manchow_soup),
+                        contentDescription = "manchow_soup",
                         modifier = Modifier
                             //.align(Alignment.Center)
                             .size(220.dp)
@@ -507,7 +505,7 @@ fun BlueLagoonCart() {
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = "Blue Lagoon",
+                        text = "Manchow Soup",
                         fontWeight = FontWeight.Bold,
                         fontSize = 22.sp
                     )
