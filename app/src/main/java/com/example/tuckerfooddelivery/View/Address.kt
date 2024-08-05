@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.tuckerfooddelivery.ui.theme.TuckerFoodDeliveryTheme
 
-class MainActivity : ComponentActivity() {
+/*class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
+}*/
 
 @Composable
 fun SaveLocationScreen() {
