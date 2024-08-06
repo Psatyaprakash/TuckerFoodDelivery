@@ -2,6 +2,7 @@ package com.example.tuckerfooddelivery.View
 
 import android.content.ContentValues.TAG
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -22,6 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -31,6 +33,33 @@ import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 
 @Composable
+fun Firestore() {
+    Column(
+        Modifier
+            .padding(15.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        AddRestaurantScreen()
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = "Restaurant's List from Firestore",
+            textAlign = TextAlign.Center,
+            fontSize = 30.sp
+        )
+        RestaurantList()
+    }
+}
+
+
+
+
+
+
+
+
+
+/*@Composable
 fun Firestore(){
     Column(
         Modifier
@@ -47,8 +76,13 @@ fun Firestore(){
 }
 
 data class Restaurant(
-    val name: String = "",
-    val id: String = ""
+    val name: String ,
+    val id: String ,
+    val contact: Contact
+)
+data class Contact(
+    val phone: String,
+    val email: String
 )
 
 
@@ -56,6 +90,8 @@ data class Restaurant(
 fun AddRestaurantScreen() {
     var name by remember { mutableStateOf("") }
     var id by remember { mutableStateOf("") }
+    var phone by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier.padding(16.dp),
@@ -70,9 +106,25 @@ fun AddRestaurantScreen() {
         )
         Spacer(modifier = Modifier.height(8.dp))
         TextField(
+            value = phone,
+            onValueChange = { phone = it },
+            label = { Text(text = "ENTER PHONE") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        TextField(
+            value = email,
+            onValueChange = { email = it },
+            label = { Text(text = "ENTER EMAIL") },
+//            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        TextField(
             value = id,
             onValueChange = { id = it },
-            label = { Text(text = "ENTER id") },
+            label = { Text(text = "ENTER ID") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.fillMaxWidth()
         )
@@ -80,7 +132,7 @@ fun AddRestaurantScreen() {
 
 
         Button(onClick = {
-            addUser(name, id)
+            addUser(name, id, Contact(phone,email))
         }) {
             Text(text = "Add restaurant")
         }
@@ -103,15 +155,18 @@ fun fetchUsers(onResult: (List<Restaurant>) -> Unit) {
         }
 }
 
-fun addUser(name: String, id: String) {
+fun addUser(name: String, id: String, contact: Contact) {
     val restaurant = Restaurant(
         name,
-        id
+        id,
+        contact
     )  //user is an object of restaurant class which takes the parameters name and id passed in addUser
     db.collection("Restro")//"users" is the collection name
-        .add(restaurant)
+//        .add(restaurant)
+        .document(id+"_"+name)
+        .set(restaurant)
         .addOnSuccessListener { docRef ->
-            Log.d(TAG, "DOCUMENT SNAPSHOT ADDED WITH ID: ${docRef.id}")
+            Log.d(TAG, "DOCUMENT SNAPSHOT ADDED AT LOC : $id _ $name")
         }
         .addOnFailureListener { e ->
             Log.w(TAG, "Error Adding Document")
@@ -134,13 +189,16 @@ fun RestaurantList() {
     LazyColumn{
         items(restaurantList.value) { restaurant ->
             Text(
-                text = "NAME: ${restaurant.name}, id: ${restaurant.id}",
+                text = "NAME: ${restaurant.name}, ID: ${restaurant.id} ," +
+                        "PHONE: ${restaurant.contact.phone}, EMAIL: ${restaurant.contact.email}" +
+                        " ",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.W500
             )
         }
     }
-}
+}*/
+
 
 /*
 package com.example.tuckerfooddelivery
@@ -248,3 +306,7 @@ private suspend fun fetchUsers(onResult: (List<User>) -> Unit) {
     }
 }
 */
+
+
+
+
