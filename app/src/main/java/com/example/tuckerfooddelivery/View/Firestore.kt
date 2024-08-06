@@ -39,23 +39,23 @@ fun Firestore(){
         verticalArrangement = Arrangement.Center
     ) {
 
-        AddUserScreen()
-        Text(text = "User's List from Firestore", textAlign = TextAlign.Center, fontSize = 30.sp)
-        UserList()
+        AddRestaurantScreen()
+        Text(text = "Restaurant's List from Firestore", textAlign = TextAlign.Center, fontSize = 30.sp)
+        RestaurantList()
 
     }
 }
 
-data class User(
+data class Restaurant(
     val name: String = "",
-    val age: Int = 0
+    val id: String = ""
 )
 
 
 @Composable
-fun AddUserScreen() {
+fun AddRestaurantScreen() {
     var name by remember { mutableStateOf("") }
-    var age by remember { mutableStateOf("") }
+    var id by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier.padding(16.dp),
@@ -70,9 +70,9 @@ fun AddUserScreen() {
         )
         Spacer(modifier = Modifier.height(8.dp))
         TextField(
-            value = age,
-            onValueChange = { age = it },
-            label = { Text(text = "ENTER AGE") },
+            value = id,
+            onValueChange = { id = it },
+            label = { Text(text = "ENTER id") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.fillMaxWidth()
         )
@@ -80,9 +80,9 @@ fun AddUserScreen() {
 
 
         Button(onClick = {
-            addUser(name, age.toInt())
+            addUser(name, id)
         }) {
-            Text(text = "Add User")
+            Text(text = "Add restaurant")
         }
 
     }
@@ -91,25 +91,25 @@ fun AddUserScreen() {
 val db = Firebase.firestore
 
 
-fun fetchUsers(onResult: (List<User>) -> Unit) {
-    db.collection("users")
+fun fetchUsers(onResult: (List<Restaurant>) -> Unit) {
+    db.collection("Restro")
         .get()
         .addOnSuccessListener { result ->
-            val userList = result.map { document -> document.toObject(User::class.java) }
-            onResult(userList)
+            val restaurantList = result.map { document -> document.toObject(Restaurant::class.java) }
+            onResult(restaurantList)
         }
         .addOnFailureListener { e ->
             Log.w(TAG, "Error getting document", e)
         }
 }
 
-fun addUser(name: String, age: Int) {
-    val user = User(
+fun addUser(name: String, id: String) {
+    val restaurant = Restaurant(
         name,
-        age
-    )  //user is an object of User class which takes the parameters name and age passed in addUser
-    db.collection("users")//"users" is the collection name
-        .add(user)
+        id
+    )  //user is an object of restaurant class which takes the parameters name and id passed in addUser
+    db.collection("Restro")//"users" is the collection name
+        .add(restaurant)
         .addOnSuccessListener { docRef ->
             Log.d(TAG, "DOCUMENT SNAPSHOT ADDED WITH ID: ${docRef.id}")
         }
@@ -120,21 +120,21 @@ fun addUser(name: String, age: Int) {
 }
 
 @Composable
-fun UserList() {
+fun RestaurantList() {
 
-    val userList = remember {
-        mutableStateOf<List<User>>(emptyList())
+    val restaurantList = remember {
+        mutableStateOf<List<Restaurant>>(emptyList())
     }
     LaunchedEffect(Unit) {
-        fetchUsers { user ->
-            userList.value = user
+        fetchUsers { restaurant ->
+            restaurantList.value = restaurant
         }
     }
 
     LazyColumn{
-        items(userList.value) { user ->
+        items(restaurantList.value) { restaurant ->
             Text(
-                text = "NAME: ${user.name}, Age: ${user.age}",
+                text = "NAME: ${restaurant.name}, id: ${restaurant.id}",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.W500
             )
@@ -156,19 +156,19 @@ fun Firestore() {
         AddUserScreen()
         Spacer(modifier = Modifier.height(16.dp))
         Text(text = "User's List from Firestore", textAlign = TextAlign.Center, fontSize = 30.sp)
-        UserList()
+        restaurantList()
     }
 }
 
-data class User(
+data class restaurant(
     val name: String = "",
-    val age: Int = 0
+    val id: Int = 0
 )
 
 @Composable
 fun AddUserScreen() {
     var name by remember { mutableStateOf("") }
-    var age by remember { mutableStateOf("") }
+    var id by remember { mutableStateOf("") }
     val coroutineScope = rememberCoroutineScope()
 
     Column(
@@ -184,9 +184,9 @@ fun AddUserScreen() {
         )
         Spacer(modifier = Modifier.height(8.dp))
         TextField(
-            value = age,
-            onValueChange = { age = it },
-            label = { Text(text = "Enter Age") },
+            value = id,
+            onValueChange = { id = it },
+            label = { Text(text = "Enter id") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.fillMaxWidth()
         )
@@ -194,18 +194,18 @@ fun AddUserScreen() {
 
         Button(onClick = {
             coroutineScope.launch {
-                addUser(name, age.toInt())
+                addUser(name, id.toInt())
             }
         }) {
-            Text(text = "Add User")
+            Text(text = "Add restaurant")
         }
     }
 }
 
 private val db = FirebaseFirestore.getInstance()
 
-suspend fun addUser(name: String, age: Int) {
-    val user = User(name, age)
+suspend fun addUser(name: String, id: Int) {
+    val restaurant = restaurant(name, id)
     try {
         val docRef = db.collection("users").add(user).await()
         Log.d("Firestore", "Document added with ID: ${docRef.id}")
@@ -215,22 +215,22 @@ suspend fun addUser(name: String, age: Int) {
 }
 
 @Composable
-fun UserList() {
-    val userList = remember { mutableStateOf<List<User>>(emptyList()) }
+fun restaurantList() {
+    val restaurantList = remember { mutableStateOf<List<User>>(emptyList()) }
     val coroutineScope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
         coroutineScope.launch {
-            fetchUsers { users ->
-                userList.value = users
+            fetchUsers { restaurants ->
+                restaurantList.value = restaurants
             }
         }
     }
 
     LazyColumn {
-        items(userList.value) { user ->
+        items(userList.value) { restaurant ->
             Text(
-                text = "Name: ${user.name}, Age: ${user.age}",
+                text = "Name: ${user.name}, id: ${user.age}",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.W500
             )
@@ -241,7 +241,7 @@ fun UserList() {
 private suspend fun fetchUsers(onResult: (List<User>) -> Unit) {
     try {
         val result = db.collection("users").get().await()
-        val userList = result.map { document -> document.toObject(User::class.java) }
+        val restaurantList = result.map { document -> document.toObject(User::class.java) }
         onResult(userList)
     } catch (e: Exception) {
         Log.e("Firestore", "Error fetching documents", e)
