@@ -1,10 +1,17 @@
 package com.example.tuckerfooddelivery.ViewModel
 
+import androidx.activity.OnBackPressedCallback
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.lifecycle.Lifecycle
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -66,7 +73,7 @@ fun AppNavigation() {
                 slideOutOfContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "Rosegardenrestaurant_landingpage"
+        startDestination = "HomePage"
     ) {
         //Starting Pages
         composable("Start") { Start(navController) }
@@ -111,3 +118,8 @@ fun AppNavigation() {
 
     }
 }
+
+
+
+
+
