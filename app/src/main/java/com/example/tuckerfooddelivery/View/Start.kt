@@ -1,5 +1,6 @@
 package com.example.tuckerfooddelivery.View
 
+import android.widget.Toast
 import androidx.compose.animation.expandIn
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.Image
@@ -24,6 +25,10 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,7 +41,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import coil.compose.rememberAsyncImagePainter
+import coil.compose.rememberImagePainter
 import com.example.tuckerfooddelivery.R
+import com.google.firebase.Firebase
+import com.google.firebase.storage.storage
+//import kotlin.coroutines.jvm.internal.CompletedContinuation.context
 
 @Composable
 fun Start(navController: NavHostController) {
@@ -44,22 +54,24 @@ fun Start(navController: NavHostController) {
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     Box(modifier = Modifier
         .fillMaxSize()
-        .background(Color.White),
+        .background(Color.White)
 //        slideOutHorizontally {  }
     ){
         Column(modifier = Modifier
             .padding(40.dp)
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+            //.fillMaxSize()
+            //.verticalScroll(rememberScrollState())
             .background(Color.White),
             verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
             Image(painter = painterResource(R.drawable.all_your_fav),
                 contentDescription = "" ,
                 Modifier
-                    .size(500.dp)
-                )
+                    .size(400.dp)
+                    .fillMaxWidth()
+            )
             Text(text = "All your favorites" , fontSize = 26.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier .height(20.dp) )
             Text(text = "Get all your loved foods in one once place,\n" +
@@ -69,7 +81,7 @@ fun Start(navController: NavHostController) {
                 color = Color.Gray ,
                 fontWeight = FontWeight.W700
             )
-            Spacer(modifier = Modifier .height(100.dp) )
+            Spacer(modifier = Modifier .height(40.dp) )
             Row{
                 for (i in 1..3) {
                     var col_mus = Mustard_yellow_light
@@ -95,9 +107,12 @@ fun Start(navController: NavHostController) {
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(Mustard_yellow)
             ) {
-                Text(text = "Next" , fontSize = 22.sp)
+                Text(text = "Next" , fontSize = 22.sp , color = Color.White)
             }
-            TextButton(onClick = { navController.navigate("Login") }) {
+            // TextButton(onClick = { navController.navigate("LoginScreen") }) {
+            // Navigating to HomePage for testing. Later will change navigation to LoginScreen
+
+            TextButton(onClick = { navController.navigate("HomePage") }) {
                 Text(text = "Skip", fontSize = 25.sp, fontFamily = FontFamily.SansSerif , color = Color.Black)
             }
             Spacer(modifier = Modifier.height(50.dp))
@@ -116,27 +131,26 @@ fun Start2(navController: NavHostController) {
     ){
         Column(modifier = Modifier
             .padding(40.dp)
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+//            .fillMaxSize()
+//            .verticalScroll(rememberScrollState())
             .background(Color.White),
-            verticalArrangement = Arrangement.Bottom,
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(painter = painterResource(R.drawable.order),
                 contentDescription = "" ,
                 Modifier
-                    .size(500.dp)
-                )
+                    .size(400.dp)
+            )
             Text(text = "Order from chosen chef" , fontSize = 26.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier .height(20.dp) )
-            Text(text = "Get all your loved foods in one once place,\n" +
-                    "you just place the order we do the rest" ,
+            Text(text = "Get all your loved foods in one once place, you just place the order we do the rest" ,
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center ,
                 color = Color.Gray ,
                 fontWeight = FontWeight.W700
             )
-            Spacer(modifier = Modifier .height(100.dp) )
+            Spacer(modifier = Modifier .height(40.dp) )
             Row{
                 for (i in 1..3) {
                     var col_mus = Mustard_yellow_light
@@ -162,9 +176,9 @@ fun Start2(navController: NavHostController) {
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(Mustard_yellow)
             ) {
-                Text(text = "Next" , fontSize = 22.sp)
+                Text(text = "Next" , fontSize = 22.sp , color = Color.White)
             }
-            TextButton(onClick = { navController.navigate("Login") }) {
+            TextButton(onClick = { navController.navigate("LoginScreen") }) {
                 Text(text = "Skip", fontSize = 25.sp, fontFamily = FontFamily.SansSerif , color = Color.Black)
             }
             Spacer(modifier = Modifier.height(50.dp))
@@ -183,17 +197,17 @@ fun Start3(navController: NavHostController) {
     ){
         Column(modifier = Modifier
             .padding(40.dp)
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+//            .fillMaxSize()
+//            .verticalScroll(rememberScrollState())
             .background(Color.White),
-            verticalArrangement = Arrangement.Bottom,
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(painter = painterResource(R.drawable.delivery),
                 contentDescription = "" ,
                 Modifier
-                    .size(500.dp)
-                )
+                    .size(400.dp)
+            )
             Text(text = "Free delivery offers" , fontSize = 26.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier .height(20.dp) )
             Text(text = "Get all your loved foods in one once place,\n" +
@@ -203,7 +217,7 @@ fun Start3(navController: NavHostController) {
                 color = Color.Gray ,
                 fontWeight = FontWeight.W700
             )
-            Spacer(modifier = Modifier .height(100.dp) )
+            Spacer(modifier = Modifier .height(40.dp) )
             Row{
                 for (i in 1..3) {
                     var col_mus = Mustard_yellow_light
@@ -221,7 +235,7 @@ fun Start3(navController: NavHostController) {
                 }
             }
             Spacer(modifier = Modifier .height(10.dp) )
-            Button(onClick = { navController.navigate("ProfileView") },
+            Button(onClick = { navController.navigate("LoginScreen") },
                 Modifier
                     .fillMaxWidth()
                     .padding(30.dp)
@@ -229,11 +243,10 @@ fun Start3(navController: NavHostController) {
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(Mustard_yellow)
             ) {
-                Text(text = "Get Started" , fontSize = 22.sp)
+                Text(text = "Get Started" , fontSize = 22.sp , color = Color.White)
             }
 
             Spacer(modifier = Modifier.height(50.dp))
         }
     }
 }
-
