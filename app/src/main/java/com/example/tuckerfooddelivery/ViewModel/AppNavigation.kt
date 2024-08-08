@@ -19,7 +19,7 @@ import com.example.tuckerfooddelivery.View.Items.AmericanCorn
 import com.example.tuckerfooddelivery.View.Items.BlueLagoon
 import com.example.tuckerfooddelivery.View.Items.BuffaloWings
 import com.example.tuckerfooddelivery.View.Items.BurgerBistro
-import com.example.tuckerfooddelivery.View.Burger_Category
+import com.example.tuckerfooddelivery.View.Category.Burger_Category
 import com.example.tuckerfooddelivery.View.Cart
 import com.example.tuckerfooddelivery.View.Category.Fries_Category
 import com.example.tuckerfooddelivery.View.Category.Mocktails_Category
