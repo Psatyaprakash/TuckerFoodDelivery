@@ -53,7 +53,7 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            CircularButtonWithSymbol(onClick = { /* handle click */ })
+            CircularButtonWithSymbol(onClick = { navController.popBackStack()})
             Spacer(modifier = Modifier.width(16.dp))
             Text(
                 text = "Rose Garden Restaurant",
@@ -206,9 +206,9 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                TextButton(onClick = { navController.navigate("Burger_Category") }) {
+                TextButton(onClick = { navController.navigate("BurgerBistro") }) {
                     Text(
-                        text = "Burger",
+                        text = "Burger Bistro",
                         fontSize = 22.sp,
                         color = Color.Black,
                         textAlign = TextAlign.Start,
@@ -219,13 +219,13 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
                 IconButton(onClick = { /* Navigate to Burger page */ }) {
                     Icon(
                         imageVector = Icons.Default.PlayArrow,
-                        contentDescription = "Go to Burger category",
+                        contentDescription = "Go back",
                         modifier = Modifier.size(22.dp)
                     )
                 }
             }
 
-        // Chicken Button
+        // PizzaCalzone Button
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -233,9 +233,9 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                TextButton(onClick = { /* Navigate to Chicken page */ }) {
+                TextButton(onClick = { navController.navigate("PizzaCalzone") }) {
                     Text(
-                        text = "Chicken",
+                        text = "Pizza Calzone",
                         fontSize = 22.sp,
                         color = Color.Black,
                         textAlign = TextAlign.Start,
@@ -246,7 +246,7 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
                 IconButton(onClick = { /* Navigate to Chicken page */ }) {
                     Icon(
                         imageVector = Icons.Default.PlayArrow,
-                        contentDescription = "Go to Chicken category",
+                        contentDescription = "Go back" ,
                         modifier = Modifier.size(22.dp)
                     )
                 }
@@ -261,9 +261,9 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                TextButton(onClick = { /* Navigate to Hotdogs page */ }) {
+                TextButton(onClick = { navController.navigate("TibetanMomos") }) {
                     Text(
-                        text = "Hotdogs",
+                        text = "Tibetan Momos",
                         fontSize = 22.sp,
                         color = Color.Black,
                         textAlign = TextAlign.Start,
@@ -274,7 +274,7 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
                 IconButton(onClick = { /* Navigate to Hotdogs page */ }) {
                     Icon(
                         imageVector = Icons.Default.PlayArrow,
-                        contentDescription = "Go to Hotdogs category",
+                        contentDescription = "Go back",
                         modifier = Modifier.size(22.dp)
                     )
                 }
@@ -289,9 +289,9 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                TextButton(onClick = { /* Navigate to Wings page */ }) {
+                TextButton(onClick =  { navController.navigate("ClassicFrenchFries") } ) {
                     Text(
-                        text = "Wings",
+                        text = "Classic French Fries",
                         fontSize = 22.sp,
                         color = Color.Black,
                         textAlign = TextAlign.Start,
@@ -316,9 +316,9 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                TextButton(onClick = { navController.navigate("PizzaCalzone") }) {
+                TextButton(onClick = { navController.navigate("BlueLagoon") }) {
                     Text(
-                        text = "Pizza",
+                        text = "Blue Lagoon",
                         fontSize = 22.sp,
                         color = Color.Black,
                         textAlign = TextAlign.Start,
@@ -329,10 +329,36 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
                 IconButton(onClick = { /* Navigate to Pizza page */ }) {
                     Icon(
                         imageVector = Icons.Default.PlayArrow,
-                        contentDescription = "Go to Pizza category",
+                        contentDescription = "Go back",
                         modifier = Modifier.size(22.dp)
                     )
                 }
             }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            TextButton(onClick = { navController.navigate("ChickenWings") }) {
+                Text(
+                    text = "Chicken Wings",
+                    fontSize = 22.sp,
+                    color = Color.Black,
+                    textAlign = TextAlign.Start,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+
+            IconButton(onClick = { /* Navigate to Pizza page */ }) {
+                Icon(
+                    imageVector = Icons.Default.PlayArrow,
+                    contentDescription = "Go back",
+                    modifier = Modifier.size(22.dp)
+                )
+            }
+        }
     }
 }
