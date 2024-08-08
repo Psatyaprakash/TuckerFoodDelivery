@@ -1,9 +1,8 @@
-package com.example.tuckerfooddelivery.View
+package com.example.tuckerfooddelivery.View.Items
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,7 +26,6 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.TextButton
@@ -47,24 +45,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
-import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Cart
-import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Large
-import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Regular
 
-var MargheritaCornPizza_Cart=0
+
+
+var PeriPeriFries_Cart=0
 @Composable
-fun MargheritaCornPizza(navController: NavController) {
-
+fun PeriPeriFries(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
-    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
-
-    var star by remember { mutableStateOf(0.0) }
-    val deliver by remember { mutableStateOf("") }
-    var deliveryTime by remember { mutableStateOf(0) }
-    var price by remember { mutableStateOf(199) }
-    var count by remember { mutableStateOf(1) }
-
-
+    var  PeriPeriFries_image: Any = Image(
+        painter = painterResource(id = R.drawable.peri_peri_fries),
+        contentDescription = "Fries",
+        modifier = Modifier
+            .padding(100.dp)
+//            .align(Alignment.Center)
+            .size(100.dp)
+    )
     var selectedButtonIndex by remember { mutableStateOf(1) }
 
     fun getButtonColor(index: Int): Color {
@@ -74,28 +69,28 @@ fun MargheritaCornPizza(navController: NavController) {
     fun onButtonClick(index: Int) {
         selectedButtonIndex = index
     }
-
-    /*
-    All the values of the above variables will be retrieved from database
-    So need not be hard coded
-    For testing variables will be declared explicitly
-    */
-
-    star = 4.7
-    deliveryTime = 20
+    val Item_Name = "Peri Peri Fries"
+    var totalprice : Int by remember {
+        mutableStateOf<Int>(115)
+    }
+    var count by remember {
+        mutableStateOf<Int>(1)
+    }
 
 
+
+    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     Column {
         Column(
             modifier = Modifier
-                .padding(15.dp)
-                .size(width = 500.dp, height = 655.dp)
+                .padding(horizontal = 15.dp)
+                .size(width = 500.dp, height = 670.dp)
                 .verticalScroll(rememberScrollState())
         ) {
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(15.dp))
             Row {
                 TextButton(
-                    onClick = {navController.navigate("Pizza_Category")},
+                    onClick = {navController.navigate("Fries_Category") },
                     colors = ButtonDefaults.buttonColors(Color.LightGray),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
@@ -125,11 +120,6 @@ fun MargheritaCornPizza(navController: NavController) {
                     .padding(10.dp)
                     .fillMaxWidth()
                     .wrapContentHeight(),
-//                colors = CardColors(
-//                    containerColor = Mustard_yellow_light, contentColor = Color.Black,
-//                    disabledContentColor = Mustard_yellow,
-//                    disabledContainerColor = Mustard_yellow
-//                )
             ) {
                 Box(
                     modifier = Modifier
@@ -138,11 +128,11 @@ fun MargheritaCornPizza(navController: NavController) {
                         .wrapContentHeight()
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.margherita_corn_pizza),
-                        contentDescription = "Pizza",
+                        painter = painterResource(id = R.drawable.peri_peri_fries),
+                        contentDescription = "Fries",
                         modifier = Modifier
                             .align(Alignment.Center)
-                            .size(200.dp)
+                            .size(220.dp)
                     )
                     Icon(
                         imageVector = Icons.Default.Favorite,
@@ -157,132 +147,119 @@ fun MargheritaCornPizza(navController: NavController) {
                 }
             }
             Spacer(modifier = Modifier.height(15.dp))
+
             Text(
-                text = "Margherita Corn Pizza",
+                text = "$Item_Name",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
                 modifier = Modifier.padding(10.dp)
             )
-            Spacer(modifier = Modifier.height(13.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Pizza topped with herb-infused signature pan sauce and 100% mozzarella cheese.",
+                text = "Crispy Fries with Tangy Peri Peri Spice.",
                 modifier = Modifier.padding(horizontal = 10.dp)
             )
             Spacer(modifier = Modifier.height(15.dp))
             Row(
                 modifier = Modifier
-                    .padding(horizontal = 1.dp)
+                    .padding(horizontal = 8.dp)
                     .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
+                //horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.star),
-                    contentDescription = "star",
+                    painter = painterResource(id = R.drawable.star__),
+                    contentDescription = "Pizza",
                     modifier = Modifier
                         //.align(Alignment.Top)
                         .size(30.dp)
                         .padding(0.dp)
                 )
+                Spacer(modifier = Modifier.width(5.dp))
 
                 Text(
-                    text = "$star",
+                    text = "4.7",
                     fontWeight = FontWeight.Medium,
                     color = Color.Black,
-                    fontSize = 18.sp,
+                    fontSize = 22.sp,
                     modifier = Modifier.padding(horizontal = 2.dp)
                 )
                 Spacer(modifier = Modifier.width(40.dp))
                 Image(
-                    painter = painterResource(id = R.drawable.truck),
-                    contentDescription = "delivery",
+                    painter = painterResource(id = R.drawable.truck__),
+                    contentDescription = "Pizza",
                     modifier = Modifier
                         .size(35.dp)
                         .padding(0.dp)
                 )
+                Spacer(modifier = Modifier.width(5.dp))
                 Text(
-                    text = if (deliver == "") "Free" else deliver,
+                    text = "Free",
                     fontWeight = FontWeight.Normal,
                     color = Color.Black,
-                    fontSize = 18.sp,
+                    fontSize = 22.sp,
                     modifier = Modifier.padding(horizontal = 2.dp)
                 )
 
                 Spacer(modifier = Modifier.width(40.dp))
                 Image(
-                    painter = painterResource(id = R.drawable.clock),
-                    contentDescription = "delivery_time",
+                    painter = painterResource(id = R.drawable.clock__),
+                    contentDescription = "Pizza",
                     modifier = Modifier
                         .size(35.dp)
                         .padding(0.dp)
                 )
+                Spacer(modifier = Modifier.width(5.dp))
                 Text(
-                    text = "$deliveryTime",
+                    text = "20 min",
                     fontWeight = FontWeight.Normal,
                     color = Color.Black,
-                    fontSize = 18.sp,
+                    fontSize = 22.sp,
                     modifier = Modifier.padding(horizontal = 2.dp)
                 )
             }
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(25.dp))
             Row(
                 modifier = Modifier
                     .padding(horizontal = 1.dp)
                     .fillMaxWidth()
                     .align(Alignment.CenterHorizontally),
-                horizontalArrangement = Arrangement.Start,
+                horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = "SIZE : ",
-                    modifier = Modifier.padding(horizontal = 10.dp),
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                TextButton(
-                    onClick = { onButtonClick(1) ; price = 199 },
+                Text(text = "SIZE:", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
+                TextButton(onClick = { onButtonClick(1); totalprice = 115 },
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(1)
                     ),
                     modifier = Modifier
-                        .size(60.dp),
-                    shape = CircleShape
-                ) {
-                    Text(text = "10''", fontSize = 25.sp)
+                        .size(height = 50.dp, width = 100.dp),
+                    shape = RoundedCornerShape(15.dp)
+                ){
+                    Text(text = "Regular", fontSize = 20.sp)
                 }
-
                 Spacer(modifier = Modifier.width(30.dp))
-                TextButton(
-                    onClick = { onButtonClick(2); price = 239  },
-                    colors = ButtonDefaults.textButtonColors(getButtonColor(2)),
+                TextButton(onClick = { onButtonClick(2); totalprice = 145 },
+                    colors = ButtonDefaults.textButtonColors(
+                        getButtonColor(2)
+                    ),
                     modifier = Modifier
-                        .size(60.dp),
-                    shape = CircleShape
-                ) {
-                    Text(text = "14''", fontSize = 25.sp)
+                        .size(height = 50.dp, width = 100.dp),
+                    shape = RoundedCornerShape(15.dp)
+                ){
+                    Text(text = "Large", fontSize = 20.sp)
                 }
-
-                Spacer(modifier = Modifier.width(30.dp))
-                TextButton(
-                    onClick = { onButtonClick(3) ; price = 259 },
-                    colors = ButtonDefaults.textButtonColors(getButtonColor(3)),
-                    modifier = Modifier
-                        .size(60.dp),
-                    shape = CircleShape
-                ) {
-                    Text(text = "16''", fontSize = 25.sp)
-                }
-
                 Spacer(modifier = Modifier.width(20.dp))
             }
-            Spacer(modifier = Modifier.height(10.dp))
-            Text(text = "INGRIDENTS", modifier = Modifier.padding(horizontal = 10.dp))
+            Spacer(modifier = Modifier.height(20.dp))
+            Text(text = "INGRIDENTS", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
             Spacer(modifier = Modifier.height(25.dp))
             Row(
                 modifier = Modifier
                     .padding(horizontal = 0.dp)
-                    .fillMaxWidth()
-                    .align(Alignment.CenterHorizontally),
+                    .fillMaxWidth(),
+                //.align(Alignment.CenterHorizontally),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -310,10 +287,10 @@ fun MargheritaCornPizza(navController: NavController) {
                         .align(Alignment.CenterVertically)
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.cheese),
+                        painter = painterResource(id = R.drawable.potato_icon),
                         contentDescription = "",
                         modifier = Modifier
-                            .size(50.dp)
+                            .size(40.dp)
                             .align(Alignment.Center)
                     )
                 }
@@ -358,7 +335,7 @@ fun MargheritaCornPizza(navController: NavController) {
                         .align(Alignment.CenterVertically)
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.tomato_),
+                        painter = painterResource(id = R.drawable.chilli),
                         contentDescription = "",
                         modifier = Modifier
                             .size(50.dp)
@@ -368,84 +345,43 @@ fun MargheritaCornPizza(navController: NavController) {
                 //Spacer(modifier = Modifier.width(20.dp))
             }
             Spacer(modifier = Modifier.height(75.dp))
-            Card(
-                //for scrolling purpose
-                shape = RoundedCornerShape(16.dp),
-                backgroundColor = Mustard_yellow,
-                modifier = Modifier
-                    .padding(10.dp)
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-//            colors = CardColors(
-//                containerColor = Mustard_yellow_light, contentColor = Color.Black,
-//                disabledContentColor = Mustard_yellow,
-//                disabledContainerColor = Mustard_yellow
-//            )
-            ) {
-                Box(
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.margherita_corn_pizza),
-                        contentDescription = "Pizza",
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .size(200.dp)
-                    )
-                    Icon(
-                        imageVector = Icons.Default.Favorite,
-                        contentDescription = "Add",
-                        tint = Color.White,
-                        modifier = Modifier
-                            .align(Alignment.BottomEnd)
-                            .size(40.dp)
-                            .background(Color.Red, shape = CircleShape)
-                            .padding(8.dp)
-                    )
-                }
-            }
 
         }
         Column(
             modifier = Modifier
                 .background(Color.LightGray)
                 .fillMaxWidth()
-                .size(height = 350.dp, width = 700.dp)
+                .size(height = 200.dp, width = 700.dp)
+                .verticalScroll(rememberScrollState())
         ) {
             Row(
                 modifier = Modifier.padding(10.dp),
                 horizontalArrangement = Arrangement.Center
             ) {
+
                 Text(
-                    text = "Rs. ${price * count}",
+                    text = "PRICE : Rs ${totalprice * count}",
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(20.dp),
+                    modifier = Modifier.padding(vertical = 20.dp, horizontal = 10.dp),
                     fontSize = 25.sp
                 )
-                Spacer(modifier = Modifier.width(150.dp))
+                Spacer(modifier = Modifier.width(50.dp))
                 Box(
                     modifier = Modifier
                         .size(height = 50.dp, width = 150.dp)
                         .background(color = Mustard_yellow, shape = CircleShape)
                         .align(Alignment.CenterVertically)
                 ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceEvenly
-                    ) {
-                        IconButton(onClick = { /* TODO: Add action for microphone */ }) {
+                    Row {
+                        IconButton(onClick = { if(count == 1) count = 1 else count-- }) {
                             Icon(
                                 Icons.Default.KeyboardArrowDown,
                                 contentDescription = null,
                                 modifier = Modifier.size(50.dp)
-                                    .clickable { if (count == 1) count = 1 else count-- }
                             )
                         }
                         Spacer(modifier = Modifier.width(5.dp))
-//                        var count = 0
+                        //var count = 0
                         Text(
                             text = "$count", modifier = Modifier
                                 .padding(vertical = 15.dp)
@@ -453,12 +389,11 @@ fun MargheritaCornPizza(navController: NavController) {
                             fontSize = 20.sp
                         )
                         Spacer(modifier = Modifier.width(1.dp))
-                        IconButton(onClick = { /* TODO: Add action for microphone */ }) {
+                        IconButton(onClick = { count++ }) {
                             Icon(
                                 Icons.Default.KeyboardArrowUp,
                                 contentDescription = null,
                                 modifier = Modifier.size(50.dp)
-                                    .clickable { count++ }
                             )
                         }
                     }
@@ -469,24 +404,20 @@ fun MargheritaCornPizza(navController: NavController) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
-            ) {
-
-                TextButton(onClick = { //if((count_Regular!=0)||(count_Large!=0)){
-//                    ClassicFrenchFries_Large =count_Large
-//                    ClassicFrenchFries_Regular =count_Regular
-//                    ClassicFrenchFries_Cart =1}
-                                       },
+            ){
+                var value=0
+                TextButton(onClick = { PeriPeriFries_Cart =1}
+                    ,
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     border = BorderStroke(width = 0.dp, color = Color.Transparent),
                     elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
                     modifier = Modifier
                         .padding(horizontal = 20.dp, vertical = 20.dp)
+                        //.size(height = 40.dp, width = 400.dp),
+                        // .fillMaxWidth()
                         .height(54.dp),
                     shape = RoundedCornerShape(15.dp)
                 ) {
-//                  ClassicFrenchFriesCart(count_Regular,count_Large)
-//                    ClassicFrenchFries_Large=count_Large
-//                    ClassicFrenchFries_Regular=count_Regular
                     Text(
                         text = " ADD TO CART ",
                         fontWeight = FontWeight.Bold,
@@ -495,8 +426,11 @@ fun MargheritaCornPizza(navController: NavController) {
                     )
                 }
                 TextButton(onClick = {
+                    /*Add_to_cart(Item_Name, unitprice, count ,Fries_image)*/
+
                     navController.navigate("Cart")
-                },
+                }
+                    ,
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     border = BorderStroke(width = 0.dp, color = Color.Transparent),
                     elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
@@ -514,15 +448,13 @@ fun MargheritaCornPizza(navController: NavController) {
                         fontSize = 20.sp
                     )
                 }
-
             }
         }
     }
 }
 
 @Composable
-fun MargheritaCornPizza_Cart()
-{
+fun PeriPeriFriesCart() {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     var unitprice: Int by remember {
@@ -533,20 +465,6 @@ fun MargheritaCornPizza_Cart()
     }
     var count by remember {
         mutableStateOf<Int>(1)
-    }
-
-    fun Increment() {
-        if (count < 100) {
-            count = count + 1
-            totalprice = unitprice * count
-        }
-    }
-
-    fun Decrement() {
-        if (count > 1) {
-            count = count - 1
-            totalprice = unitprice * count
-        }
     }
 
     Card(
@@ -573,8 +491,8 @@ fun MargheritaCornPizza_Cart()
                         .wrapContentHeight(),
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.margherita_corn_pizza),
-                        contentDescription = "margherita_corn_pizza",
+                        painter = painterResource(id = R.drawable.peri_peri_fries),
+                        contentDescription = "peri_peri_fries",
                         modifier = Modifier
                             //.align(Alignment.Center)
                             .size(220.dp)
@@ -587,7 +505,7 @@ fun MargheritaCornPizza_Cart()
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = "Margherita Corn Pizza",
+                        text = "Peri Peri Fries",
                         fontWeight = FontWeight.Bold,
                         fontSize = 22.sp
                     )
@@ -608,7 +526,7 @@ fun MargheritaCornPizza_Cart()
 
                     ) {
                         Row {
-                            IconButton(onClick = { Decrement() }) {
+                            IconButton(onClick = {if(count == 1) count = 1 else count-- }) {
                                 Icon(
                                     Icons.Default.KeyboardArrowDown,
                                     contentDescription = null,
@@ -623,7 +541,7 @@ fun MargheritaCornPizza_Cart()
                                 fontSize = 20.sp
                             )
                             Spacer(modifier = Modifier.width(1.dp))
-                            IconButton(onClick = { Increment() }) {
+                            IconButton(onClick = { count++ }) {
                                 Icon(
                                     Icons.Default.KeyboardArrowUp,
                                     contentDescription = null,

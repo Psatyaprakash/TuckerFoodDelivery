@@ -1,4 +1,4 @@
-package com.example.tuckerfooddelivery.View
+package com.example.tuckerfooddelivery.View.Items
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -25,7 +25,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -39,7 +38,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -50,13 +48,13 @@ import com.example.tuckerfooddelivery.R
 
 
 
-var ManchowSoup_Cart=0
+var SmokingBurger_Cart=0
 @Composable
-fun ManchowSoup(navController: NavController) {
+fun SmokingBurger(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
-    var  ManchowSoup_image: Any = Image(
-        painter = painterResource(id = R.drawable.manchow_soup),
-        contentDescription = "Soup",
+    var  SmokingBurger_image: Any = Image(
+        painter = painterResource(id = R.drawable.smokinburger),
+        contentDescription = "Burger",
         modifier = Modifier
             .padding(100.dp)
 //            .align(Alignment.Center)
@@ -71,9 +69,9 @@ fun ManchowSoup(navController: NavController) {
     fun onButtonClick(index: Int) {
         selectedButtonIndex = index
     }
-    val Item_Name = "Manchow Soup"
+    val Item_Name = "Smoking Burger"
     var totalprice : Int by remember {
-        mutableStateOf<Int>(65)
+        mutableStateOf<Int>(175)
     }
     var count by remember {
         mutableStateOf<Int>(1)
@@ -92,7 +90,7 @@ fun ManchowSoup(navController: NavController) {
             Spacer(modifier = Modifier.height(15.dp))
             Row {
                 TextButton(
-                    onClick = {navController.navigate("Starters_Category") },
+                    onClick = {navController.navigate("Burger_Category") },
                     colors = ButtonDefaults.buttonColors(Color.LightGray),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
@@ -130,8 +128,8 @@ fun ManchowSoup(navController: NavController) {
                         .wrapContentHeight()
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.manchow_soup),
-                        contentDescription = "Soup",
+                        painter = painterResource(id = R.drawable.smokinburger),
+                        contentDescription = "Smoking Burger",
                         modifier = Modifier
                             .align(Alignment.Center)
                             .size(220.dp)
@@ -159,7 +157,7 @@ fun ManchowSoup(navController: NavController) {
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Thick soup made with freshly cut chopped vegetables in soy base served with crispy noodles.",
+                text = "Pan seared grilled patty Smoking Burger with lettuce, onions and tandoori mayo.",
                 modifier = Modifier.padding(horizontal = 10.dp)
             )
             Spacer(modifier = Modifier.height(15.dp))
@@ -231,7 +229,7 @@ fun ManchowSoup(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "SIZE:", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
-                TextButton(onClick = { onButtonClick(1); totalprice = 65 },
+                TextButton(onClick = { onButtonClick(1); totalprice = 175 },
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(1)
                     ),
@@ -242,7 +240,7 @@ fun ManchowSoup(navController: NavController) {
                     Text(text = "Regular", fontSize = 20.sp)
                 }
                 Spacer(modifier = Modifier.width(30.dp))
-                TextButton(onClick = { onButtonClick(2); totalprice = 112 },
+                TextButton(onClick = { onButtonClick(2); totalprice = 205 },
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(2)
                     ),
@@ -408,7 +406,7 @@ fun ManchowSoup(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ){
                 var value=0
-                TextButton(onClick = { ManchowSoup_Cart=1}
+                TextButton(onClick = { SmokingBurger_Cart =1}
                     ,
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     border = BorderStroke(width = 0.dp, color = Color.Transparent),
@@ -456,7 +454,7 @@ fun ManchowSoup(navController: NavController) {
 }
 
 @Composable
-fun ManchowSoupCart() {
+fun SmokingBurgerCart() {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     var unitprice: Int by remember {
@@ -493,8 +491,8 @@ fun ManchowSoupCart() {
                         .wrapContentHeight(),
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.manchow_soup),
-                        contentDescription = "manchow_soup",
+                        painter = painterResource(id = R.drawable.smokinburger),
+                        contentDescription = "smoking_burger",
                         modifier = Modifier
                             //.align(Alignment.Center)
                             .size(220.dp)
@@ -507,7 +505,7 @@ fun ManchowSoupCart() {
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = "Manchow Soup",
+                        text = "Smoking Burger",
                         fontWeight = FontWeight.Bold,
                         fontSize = 22.sp
                     )
