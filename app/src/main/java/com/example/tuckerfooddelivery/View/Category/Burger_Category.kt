@@ -144,27 +144,12 @@ fun Burger_Category(navController: NavController){
                         horizontalArrangement = Arrangement.Start
                     ) {
                         Text(
-                            text = "$10",
+                            text = "Rs.116",
                             modifier = Modifier.padding(top = 12.dp),
                             fontSize = 22.sp,
                             fontWeight = FontWeight.ExtraBold,
                         )
                         Spacer(modifier = Modifier.width(22.dp))
-                        TextButton(
-                            onClick = { /* add this item to cart */ },
-                            colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
-                            shape = CircleShape,
-                            contentPadding = PaddingValues(0.dp),
-                            modifier = Modifier
-                                .size(50.dp)
-                                .background(Color.Transparent, CircleShape)
-                        ) {
-                            Text(
-                                text = "+",
-                                fontSize = 30.sp,
-                                color = Color.Black,
-                            )
-                        }
                     }
                 }
             }
@@ -205,27 +190,13 @@ fun Burger_Category(navController: NavController){
                         horizontalArrangement = Arrangement.Start
                     ) {
                         Text(
-                            text = "$10",
+                            text = "Rs.135",
                             modifier = Modifier.padding(top = 12.dp),
                             fontSize = 22.sp,
                             fontWeight = FontWeight.ExtraBold,
                         )
                         Spacer(modifier = Modifier.width(25.dp))
-                        TextButton(
-                            onClick = { /* add this item to cart */ },
-                            colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
-                            shape = CircleShape,
-                            contentPadding = PaddingValues(0.dp),
-                            modifier = Modifier
-                                .size(50.dp)
-                                .background(Color.Transparent, CircleShape)
-                        ) {
-                            Text(
-                                text = "+",
-                                fontSize = 30.sp,
-                                color = Color.Black,
-                            )
-                        }
+
                     }
                 }
             }
@@ -275,27 +246,13 @@ fun Burger_Category(navController: NavController){
                         horizontalArrangement = Arrangement.Start
                     ) {
                         Text(
-                            text = "$10",
+                            text = "Rs.135",
                             modifier = Modifier.padding(top = 12.dp),
                             fontSize = 22.sp,
                             fontWeight = FontWeight.ExtraBold,
                         )
                         Spacer(modifier = Modifier.width(25.dp))
-                        TextButton(
-                            onClick = { /* add this item to cart */ },
-                            colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
-                            shape = CircleShape,
-                            contentPadding = PaddingValues(0.dp),
-                            modifier = Modifier
-                                .size(50.dp)
-                                .background(Color.Transparent, CircleShape)
-                        ) {
-                            Text(
-                                text = "+",
-                                fontSize = 30.sp,
-                                color = Color.Black,
-                            )
-                        }
+
                     }
                 }
             }

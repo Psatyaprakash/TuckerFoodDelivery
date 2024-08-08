@@ -206,9 +206,9 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                TextButton(onClick = { navController.navigate("Burger_Category") }) {
+                TextButton(onClick = { navController.navigate("BurgerBistro") }) {
                     Text(
-                        text = "Burger",
+                        text = "Burger Bistro",
                         fontSize = 22.sp,
                         color = Color.Black,
                         textAlign = TextAlign.Start,

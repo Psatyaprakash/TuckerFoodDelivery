@@ -66,7 +66,7 @@ fun AppNavigation() {
                 slideOutOfContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "OrangeMimosa"
+        startDestination = "Rosegardenrestaurant_landingpage"
     ) {
         //Starting Pages
         composable("Start") { Start(navController) }
