@@ -41,13 +41,13 @@ fun Firestore() {
         verticalArrangement = Arrangement.Center
     ) {
         AddRestaurantScreen()
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(
-            text = "Restaurant's List from Firestore",
-            textAlign = TextAlign.Center,
-            fontSize = 30.sp
-        )
-        RestaurantList()
+//        Spacer(modifier = Modifier.height(16.dp))
+//        Text(
+//            text = "Restaurant's List from Firestore",
+//            textAlign = TextAlign.Center,
+//            fontSize = 30.sp
+//        )
+//        RestaurantList()
     }
 }
 

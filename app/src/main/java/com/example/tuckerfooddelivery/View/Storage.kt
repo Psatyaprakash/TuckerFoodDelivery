@@ -17,6 +17,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,19 +30,24 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import coil.compose.rememberImagePainter
+import coil.transform.CircleCropTransformation
 import com.example.tuckerfooddelivery.R
 import com.google.firebase.Firebase
 import com.google.firebase.storage.storage
+import kotlinx.coroutines.tasks.await
 
 
 @Composable
 fun Storage() {
 
     var userName by remember { mutableStateOf("") }
+    var itemName by remember { mutableStateOf("") }
     val storage = Firebase.storage
     val storageRef = storage.reference
     fun uploadImage(uri: Uri, context: Context) {
-        val fileName = "profile/${userName}.jpg"
+//        val fileName = "profile/${userName}.jpg"
+        val fileName = "Restro/Menu/Category/Item/${itemName}.jpg"
         val imageRef = storageRef.child(fileName)
         imageRef.putFile(uri)
             .addOnSuccessListener { taskSnapshot ->
@@ -77,8 +83,8 @@ fun Storage() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         OutlinedTextField(
-            value = userName ,
-            onValueChange = { userName = it },
+            value = itemName ,
+            onValueChange = { itemName = it },
             label = { Text(text = "UserName", fontSize = 20.sp , color = Color.Black ) }
         )
         Button(onClick = { launcher.launch("image/*") }) {
@@ -92,5 +98,35 @@ fun Storage() {
                 modifier = Modifier.size(200.dp)
             )
         }
+/*
+        suspend fun getImageUrlFromFirebase(storagePath: String): String? {
+//            val storageRef = FirebaseStorage.getInstance().reference.child(storagePath)
+            return try {
+                val downloadUrl = storageRef.downloadUrl.await()
+                downloadUrl.toString()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                null
+            }
+        }
+        val imageUrl = remember { mutableStateOf<String?>(null) }
+
+        LaunchedEffect(Unit) {
+            imageUrl.value = getImageUrlFromFirebase("Restro/Menu/Category/Item/Mocktail.jpg")
+        }
+
+        imageUrl.value?.let { url ->
+            Text(text = "Storage Image")
+            Image(
+                painter = rememberImagePainter(
+                    data = url,
+                    builder = {
+                        transformations(CircleCropTransformation())
+                    }
+                ),
+                contentDescription = null,
+                modifier = Modifier.size(200.dp)
+            )
+        }*/
     }
 }

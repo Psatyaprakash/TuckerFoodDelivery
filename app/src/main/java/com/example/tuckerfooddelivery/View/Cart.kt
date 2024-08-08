@@ -28,6 +28,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -55,6 +56,7 @@ fun Cart(navController: NavController) {
     var PizzaCalzone_Price : Int by remember {
         mutableStateOf<Int>(0)
     }
+    val context = LocalContext.current
 
     fun price_update() {
         totalCartPrice = totalCartPrice_global
@@ -133,7 +135,9 @@ fun Cart(navController: NavController) {
             ) {
                 var value = 0
                 TextButton(
-                    onClick = { price_update()  },
+                    onClick = { price_update() ;
+                        createNotification(context, "Order Summary" , "Order placed \nTotal Price : $totalCartPrice")
+                              },
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     border = BorderStroke(width = 0.dp, color = Color.Transparent),
                     elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),

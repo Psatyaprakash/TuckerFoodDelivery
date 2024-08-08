@@ -19,3 +19,12 @@ fun fetchRestaurant(onResult: (List<Restaurant>) -> Unit) {
             Log.w(TAG, "Error getting document", e)
         }
 }
+
+/*
+suspend fun fetchRestaurant(callback: (List<Restaurant>) -> Unit) {
+    // Simulate network call or data retrieval
+    val fetchedRestaurants = listOf<Restaurant>() // replace with actual data fetching
+    callback(fetchedRestaurants)
+}
+
+*/

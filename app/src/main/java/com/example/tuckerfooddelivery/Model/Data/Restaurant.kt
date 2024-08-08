@@ -1,5 +1,51 @@
 package com.example.tuckerfooddelivery.Model.Data
 
+import com.google.firebase.firestore.DocumentId
+
+data class Restaurant(
+    @DocumentId val id: String? = null,
+    val name: String = "",
+    val location: Location = Location(),
+    val contact: Contact = Contact(),
+    val menu: List<MenuCategory> = emptyList(),
+    val opening_hours: Map<String, String> = emptyMap(),
+    val reviews: List<Review> = emptyList()
+)
+
+data class Location(
+    val address: String = "",
+    val city: String = "",
+    val state: String = "",
+    val zipcode: String = "",
+    val country: String = ""
+)
+
+data class Contact(
+    val phone: String = "",
+    val email: String = ""
+)
+
+data class MenuCategory(
+    val name: String = "",
+    val items: List<MenuItem> = emptyList()
+)
+
+data class MenuItem(
+    val name: String = "",
+    val price: Double = 0.0,
+    val images: List<String> = emptyList()
+)
+
+data class Review(
+    val user: String = "",
+    val rating: Double = 0.0,
+    val comment: String = ""
+)
+
+
+
+/*
+1.
 data class Restaurant(
     val name: String = "",
     val id: String = "",
@@ -21,7 +67,7 @@ data class Item(
     val name: String = "",
     val price: Double = 0.0,
     val images: String = ""
-)
+)*/
 
 /*
 class Restaurant {

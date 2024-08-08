@@ -64,7 +64,7 @@ fun AppNavigation() {
                 slideOutOfContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "Firestore"
+        startDestination = "HomePage"
     ) {
         composable("Storage"){ Storage() }
         composable("Firestore"){ Firestore() }
