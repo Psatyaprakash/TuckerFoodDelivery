@@ -16,8 +16,8 @@ class MainActivity : ComponentActivity() {
         //enableEdgeToEdge()
         setContent {
             TuckerFoodDeliveryTheme {
-//                AppNavigation()
-                RestaurantList()
+               AppNavigation()
+                //RestaurantList()
 //                Firestore()
 //                Storage()
             }
