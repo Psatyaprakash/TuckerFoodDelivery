@@ -10,16 +10,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tuckerfooddelivery.View.Category.Burger_Category
-import com.example.tuckerfooddelivery.View.AmericanCorn
-import com.example.tuckerfooddelivery.View.AmericanCornCart
-import com.example.tuckerfooddelivery.View.BlueLagoon
-import com.example.tuckerfooddelivery.View.BuffaloWings
-import com.example.tuckerfooddelivery.View.BurgerBistro
+import com.example.tuckerfooddelivery.View.Items.AmericanCorn
+import com.example.tuckerfooddelivery.View.Items.AmericanCornCart
+import com.example.tuckerfooddelivery.View.Items.BlueLagoon
+import com.example.tuckerfooddelivery.View.Items.BuffaloWings
+import com.example.tuckerfooddelivery.View.Items.BurgerBistro
 import com.example.tuckerfooddelivery.View.Items.AmericanCorn
 import com.example.tuckerfooddelivery.View.Items.BlueLagoon
 import com.example.tuckerfooddelivery.View.Items.BuffaloWings
 import com.example.tuckerfooddelivery.View.Items.BurgerBistro
-import com.example.tuckerfooddelivery.View.Burger_Category
+import com.example.tuckerfooddelivery.View.Category.Burger_Category
 import com.example.tuckerfooddelivery.View.Cart
 import com.example.tuckerfooddelivery.View.Category.Fries_Category
 import com.example.tuckerfooddelivery.View.Category.Mocktails_Category
@@ -28,15 +28,15 @@ import com.example.tuckerfooddelivery.View.Category.Pizza_Category
 import com.example.tuckerfooddelivery.View.Category.Roll_Category
 import com.example.tuckerfooddelivery.View.Category.Starters_Category
 import com.example.tuckerfooddelivery.View.Category.Wings_Category
-import com.example.tuckerfooddelivery.View.ChickenWings
-import com.example.tuckerfooddelivery.View.ClassicBurger
-import com.example.tuckerfooddelivery.View.ClassicFrenchFries
+import com.example.tuckerfooddelivery.View.Items.ChickenWings
+import com.example.tuckerfooddelivery.View.Items.ClassicBurger
+import com.example.tuckerfooddelivery.View.Items.ClassicFrenchFries
 import com.example.tuckerfooddelivery.View.Category.Fries_Category
 import com.example.tuckerfooddelivery.View.HomePage
 import com.example.tuckerfooddelivery.View.LoginScreen
 import com.example.tuckerfooddelivery.View.Category.Mocktails_Category
 import com.example.tuckerfooddelivery.View.Category.Momos_Category
-import com.example.tuckerfooddelivery.View.PizzaCalzone
+import com.example.tuckerfooddelivery.View.Items.PizzaCalzone
 import com.example.tuckerfooddelivery.View.Category.Pizza_Category
 import com.example.tuckerfooddelivery.View.Category.Roll_Category
 import com.example.tuckerfooddelivery.View.Restaurants.Rosegardenrestaurant_landingpage
@@ -47,7 +47,7 @@ import com.example.tuckerfooddelivery.View.Start3
 import com.example.tuckerfooddelivery.View.Category.Starters_Category
 import com.example.tuckerfooddelivery.View.Category.Wings_Category
 import com.example.tuckerfooddelivery.View.Restaurants.fionah_landingpage
-import com.example.tuckerfooddelivery.View.CrispyChickenRoll
+import com.example.tuckerfooddelivery.View.Items.CrispyChickenRoll
 import com.example.tuckerfooddelivery.View.Items.ChickenWings
 import com.example.tuckerfooddelivery.View.Items.ClassicBurger
 import com.example.tuckerfooddelivery.View.Items.ClassicFrenchFries
@@ -73,12 +73,11 @@ import com.example.tuckerfooddelivery.View.Items.SmokingBurger
 import com.example.tuckerfooddelivery.View.Start
 import com.example.tuckerfooddelivery.View.Start2
 import com.example.tuckerfooddelivery.View.Start3
-import com.example.tuckerfooddelivery.View.Starters_Category
+import com.example.tuckerfooddelivery.View.Category.Starters_Category
 import com.example.tuckerfooddelivery.View.Storage
-import com.example.tuckerfooddelivery.View.TibetanMomos
-import com.example.tuckerfooddelivery.View.Wings_Category
+import com.example.tuckerfooddelivery.View.Items.TibetanMomos
+import com.example.tuckerfooddelivery.View.Category.Wings_Category
 import com.example.tuckerfooddelivery.View.createNotification
-import com.example.tuckerfooddelivery.View.fionah_landingpage
 
 import com.example.tuckerfooddelivery.View.Items.TibetanMomos
 
