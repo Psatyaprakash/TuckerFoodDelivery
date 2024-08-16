@@ -17,6 +17,7 @@ import com.example.tuckerfooddelivery.View.ProfileView
 import com.example.tuckerfooddelivery.View.Start
 import com.example.tuckerfooddelivery.View.Start2
 import com.example.tuckerfooddelivery.View.Start3
+import com.example.tuckerfooddelivery.View.UserReviews
 
 
 class MainActivity : ComponentActivity() {
@@ -28,6 +29,7 @@ class MainActivity : ComponentActivity() {
                // ProfileView()
                // PersonalInfoDetails()
             AppNavigation()
+               //UserReviews()
             }
         }
     }
@@ -56,6 +58,7 @@ fun AppNavigation() {
         composable("Start") { Start(navController) }
         composable("ProfileView") { ProfileView(navController) }
         composable("PersonalInfoDetails") { PersonalInfoDetails(navController) }
+        composable("UserReviews") { UserReviews(navController) }
     }
 }
 

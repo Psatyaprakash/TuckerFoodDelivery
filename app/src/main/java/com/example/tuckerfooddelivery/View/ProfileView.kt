@@ -449,7 +449,7 @@ fun ProfileView(navController: NavHostController) {
                     modifier = Modifier.padding(15.dp)
                 ) {
                     TextButton(
-                        onClick = {/* navigate to user reviews */},
+                        onClick = {navController.navigate("UserReviews")},
                         colors = ButtonDefaults.buttonColors(Color.White),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
@@ -470,7 +470,7 @@ fun ProfileView(navController: NavHostController) {
                     Text(text = "User Reviews", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
                     Spacer(modifier = Modifier.width(135.dp))
                     TextButton(
-                        onClick = {/* navigate to user reviews */},
+                        onClick = {navController.navigate("UserReviews")},
                         colors = ButtonDefaults.buttonColors(Color.Transparent),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
