@@ -25,8 +25,12 @@ Community Building: This initiative fosters a sense of community and responsibil
 
 How to Make a Pledge
 Order Food: When placing an order through our app, look for the Pledge option.
+
 Choose Your Donation: Select the amount you wish to donate. Even a small contribution can make a big difference.
+
 Complete Your Order: Proceed with your food order as usual. Your pledge donation will be added to the total amount.
+
 Feel Good: Enjoy your meal knowing that you have helped provide for someone in need.
+
 Join us in making a difference. Together, we can reduce food waste and support those who need it the most. Make a pledge today and be a part of this impactful journey!
 <h1>Features</h1>
