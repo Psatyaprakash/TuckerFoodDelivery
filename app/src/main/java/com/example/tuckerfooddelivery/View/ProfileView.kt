@@ -317,94 +317,6 @@ fun ProfileView(navController: NavHostController) {
                     modifier = Modifier.padding(15.dp)
                 ) {
                     TextButton(
-                        onClick = {/* navigate to notification */},
-                        colors = ButtonDefaults.buttonColors(Color.White),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.not_icon),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(25.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "Notifications", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
-                    Spacer(modifier = Modifier.width(135.dp))
-                    TextButton(
-                        onClick = {/* navigate to notifications */},
-                        colors = ButtonDefaults.buttonColors(Color.Transparent),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.right_arrow),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(15.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-
-                }
-                Row(
-                    modifier = Modifier.padding(15.dp)
-                ) {
-                    TextButton(
-                        onClick = {/* navigate to payment method */},
-                        colors = ButtonDefaults.buttonColors(Color.White),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.pay_met),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(28.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "Payment Method", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
-                    Spacer(modifier = Modifier.width(100.dp))
-                    TextButton(
-                        onClick = {/* navigate to payment method */},
-                        colors = ButtonDefaults.buttonColors(Color.Transparent),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.right_arrow),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(15.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-
-                }
-                Row(
-                    modifier = Modifier.padding(15.dp)
-                ) {
-                    TextButton(
                         onClick = {/* navigate to faqs */},
                         colors = ButtonDefaults.buttonColors(Color.White),
                         shape = CircleShape,
@@ -426,7 +338,7 @@ fun ProfileView(navController: NavHostController) {
                     Text(text = "FAQs", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
                     Spacer(modifier = Modifier.width(210.dp))
                     TextButton(
-                        onClick = {/* navigate to faqs */},
+                        onClick = {navController.navigate("FAQScreen")},
                         colors = ButtonDefaults.buttonColors(Color.Transparent),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
@@ -449,7 +361,7 @@ fun ProfileView(navController: NavHostController) {
                     modifier = Modifier.padding(15.dp)
                 ) {
                     TextButton(
-                        onClick = {/* navigate to user reviews */},
+                        onClick = {navController.navigate("UserReviews")},
                         colors = ButtonDefaults.buttonColors(Color.White),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
@@ -470,51 +382,7 @@ fun ProfileView(navController: NavHostController) {
                     Text(text = "User Reviews", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
                     Spacer(modifier = Modifier.width(135.dp))
                     TextButton(
-                        onClick = {/* navigate to user reviews */},
-                        colors = ButtonDefaults.buttonColors(Color.Transparent),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.right_arrow),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(15.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-
-                }
-                Row(
-                    modifier = Modifier.padding(15.dp)
-                ) {
-                    TextButton(
-                        onClick = {/* navigate to settings */},
-                        colors = ButtonDefaults.buttonColors(Color.White),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.setting_iconn),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(32.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "Settings", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
-                    Spacer(modifier = Modifier.width(180.dp))
-                    TextButton(
-                        onClick = {/* navigate to settings */},
+                        onClick = {navController.navigate("UserReviews")},
                         colors = ButtonDefaults.buttonColors(Color.Transparent),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
