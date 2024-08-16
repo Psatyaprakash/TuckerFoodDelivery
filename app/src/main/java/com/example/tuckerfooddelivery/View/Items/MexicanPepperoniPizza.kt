@@ -92,7 +92,7 @@ fun MexicanPepperoniPizza(navController: NavController) {
             Spacer(modifier = Modifier.height(10.dp))
             Row {
                 TextButton(
-                    onClick = {navController.navigate("Pizza_Category")},
+                    onClick = {navController.popBackStack()},
                     colors = ButtonDefaults.buttonColors(Color.LightGray),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),

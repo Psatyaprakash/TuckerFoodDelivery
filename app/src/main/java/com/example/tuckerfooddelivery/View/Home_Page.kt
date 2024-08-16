@@ -74,7 +74,7 @@ fun HomePage(navController: NavController) {
                 modifier = Modifier
                     .size(45.dp)
                     .clip(CircleShape)
-                    .background(colorResource(id = R.color.Blue_Slight))
+                    //.background(colorResource(id = R.color.Blue_Slight))
             ) {
                 Image(
                     painter = painterResource(R.drawable.menu),
@@ -106,7 +106,7 @@ fun HomePage(navController: NavController) {
                 modifier = Modifier
                     .size(45.dp)
                     .clip(CircleShape)
-                    .background(colorResource(id = R.color.Blue_Slight))
+                    //.background(colorResource(id = R.color.Blue_Slight))
 
 
             ) {
@@ -163,7 +163,7 @@ fun HomePage(navController: NavController) {
 //                focusedIndicatorColor = colorResource(id = R.color.Blue_Slight),
 //                unfocusedIndicatorColor = colorResource(id = R.color.Blue_Slight)
 //            )
-            colors = TextFieldDefaults.textFieldColors(containerColor = colorResource(id = R.color.Blue_Slight)),
+            colors = TextFieldDefaults.textFieldColors(containerColor = colorResource(id = R.color.teal_700)),
             shape = RoundedCornerShape(20.dp)
         )
         Spacer(modifier = Modifier.height(5.dp))

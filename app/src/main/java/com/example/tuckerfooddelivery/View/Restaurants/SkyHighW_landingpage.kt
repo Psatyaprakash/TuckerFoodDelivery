@@ -53,10 +53,10 @@ fun SkyHighW_landingpage(navController: NavController) {
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            CircularButtonWithSymbol(onClick = { /* handle click */ })
+            CircularButtonWithSymbol(onClick = { navController.popBackStack()})
             Spacer(modifier = Modifier.width(16.dp))
             Text(
-                text = "SkyHighWay Restaurant",
+                text = "SkyHigh Way Restaurant",
                 color = Color(0xFFD4AF37),
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp,
@@ -65,7 +65,7 @@ fun SkyHighW_landingpage(navController: NavController) {
         }
         Spacer(modifier = Modifier.height(5.dp))
         Text(
-            text = "Patel Nagar, New Delhi \nPincode: 115800",
+            text = "orish bakek, New Delhi \nPincode: 105070",
             textAlign = TextAlign.Center,
             color = Color.Black,
             fontSize = 14.sp,
@@ -74,31 +74,23 @@ fun SkyHighW_landingpage(navController: NavController) {
                 .padding(3.dp)
         )
         Image(
-            painter = painterResource(R.drawable.group_598),
-            contentDescription = "Rose Garden Restaurant title",
+            painter = painterResource(R.drawable.group_599),
+            contentDescription = "Restaurant title",
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp)
         )
         Spacer(modifier = Modifier.height(5.dp))
         Text(
-            text = "Perfect for breakfast, lunch, or dinner. They have an onsite bar, serve a variety of alcoholic beverages, and provide convenient options like curbside pickup and dine-in cozy atmosphere and friendly staff make you feel like part of the family.",
-            textAlign = TextAlign.Center,
+            text = "Whether you're looking for a place to enjoy breakfast, lunch, or dinner, this venue has you covered. They feature an onsite bar with a wide array of alcoholic beverages. Take advantage of their curbside pickup or opt for a dine-in experience. The warm atmosphere and hospitable staff will make you feel welcome and comfortable.",
+            textAlign = TextAlign.Justify,
             color = Color.Black,
             fontSize = 13.sp,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(3.dp)
+                .padding(15.dp)
         )
         Spacer(modifier = Modifier.height(4.dp))
-        Text(
-            text = "all you can eat",
-            textAlign = TextAlign.Center,
-            color = Color.Black,
-            fontSize = 16.sp,
-            modifier = Modifier
-                .fillMaxWidth()
-        )
         Text(
             text = "MENU",
             textDecoration = TextDecoration.Underline,
@@ -158,7 +150,7 @@ fun SkyHighW_landingpage(navController: NavController) {
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                            text = "4.7",
+                            text = "3.9",
                             fontStyle = FontStyle.Italic,
                             fontSize = 16.sp
                         )
@@ -188,7 +180,7 @@ fun SkyHighW_landingpage(navController: NavController) {
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                            text = "20mins",
+                            text = "24mins",
                             fontStyle = FontStyle.Italic,
                             fontSize = 16.sp
                         )
@@ -206,9 +198,9 @@ fun SkyHighW_landingpage(navController: NavController) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TextButton(onClick = { /* Navigate to Burger page */ }) {
+            TextButton(onClick = { navController.navigate("ClassicBurger") }) {
                 Text(
-                    text = "Burger",
+                    text = "Classic Burger",
                     fontSize = 22.sp,
                     color = Color.Black,
                     textAlign = TextAlign.Start,
@@ -216,16 +208,15 @@ fun SkyHighW_landingpage(navController: NavController) {
                 )
             }
 
-            IconButton(onClick = { /* Navigate to Burger page */ }) {
+            IconButton(onClick = { navController.navigate("ClassicBurger") }) {
                 Icon(
                     imageVector = Icons.Default.PlayArrow,
-                    contentDescription = "Go to Burger category",
+                    contentDescription = "Go back",
                     modifier = Modifier.size(22.dp)
                 )
             }
         }
 
-        // Chicken Button
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -233,9 +224,9 @@ fun SkyHighW_landingpage(navController: NavController) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TextButton(onClick = { /* Navigate to Chicken page */ }) {
+            TextButton(onClick = { navController.navigate("PaneerRoll") }) {
                 Text(
-                    text = "Chicken",
+                    text = "Paneer Roll",
                     fontSize = 22.sp,
                     color = Color.Black,
                     textAlign = TextAlign.Start,
@@ -243,17 +234,16 @@ fun SkyHighW_landingpage(navController: NavController) {
                 )
             }
 
-            IconButton(onClick = { /* Navigate to Chicken page */ }) {
+            IconButton(onClick = { navController.navigate("PaneerRoll") }) {
                 Icon(
                     imageVector = Icons.Default.PlayArrow,
-                    contentDescription = "Go to Chicken category",
+                    contentDescription = "Go back" ,
                     modifier = Modifier.size(22.dp)
                 )
             }
         }
 
 
-        // Hotdogs Button
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -261,9 +251,9 @@ fun SkyHighW_landingpage(navController: NavController) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TextButton(onClick = { /* Navigate to Hotdogs page */ }) {
+            TextButton(onClick = { navController.navigate("MargheritaCornPizza") }) {
                 Text(
-                    text = "Hotdogs",
+                    text = "Margherita Corn Pizza",
                     fontSize = 22.sp,
                     color = Color.Black,
                     textAlign = TextAlign.Start,
@@ -271,17 +261,17 @@ fun SkyHighW_landingpage(navController: NavController) {
                 )
             }
 
-            IconButton(onClick = { /* Navigate to Hotdogs page */ }) {
+            IconButton(onClick = { navController.navigate("MargheritaCornPizza") }) {
                 Icon(
                     imageVector = Icons.Default.PlayArrow,
-                    contentDescription = "Go to Hotdogs category",
+                    contentDescription = "Go back",
                     modifier = Modifier.size(22.dp)
                 )
             }
         }
 
 
-        // Wings Button
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -289,9 +279,9 @@ fun SkyHighW_landingpage(navController: NavController) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TextButton(onClick = { /* Navigate to Wings page */ }) {
+            TextButton(onClick =  { navController.navigate("NepaliDumplingMomos") } ) {
                 Text(
-                    text = "Wings",
+                    text = "Nepali Dumpling",
                     fontSize = 22.sp,
                     color = Color.Black,
                     textAlign = TextAlign.Start,
@@ -299,7 +289,7 @@ fun SkyHighW_landingpage(navController: NavController) {
                 )
             }
 
-            IconButton(onClick = { /* Navigate to Wings page */ }) {
+            IconButton(onClick = { navController.navigate("NepaliDumplingMomos") }) {
                 Icon(
                     imageVector = Icons.Default.PlayArrow,
                     contentDescription = "Go to Wings category",
@@ -308,7 +298,7 @@ fun SkyHighW_landingpage(navController: NavController) {
             }
         }
 
-        // Pizza Button
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -316,9 +306,9 @@ fun SkyHighW_landingpage(navController: NavController) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TextButton(onClick = { /* Navigate to Pizza page */ }) {
+            TextButton(onClick = { navController.navigate("PeriPeriFries") }) {
                 Text(
-                    text = "Pizza",
+                    text = "Peri Peri Fries",
                     fontSize = 22.sp,
                     color = Color.Black,
                     textAlign = TextAlign.Start,
@@ -326,10 +316,36 @@ fun SkyHighW_landingpage(navController: NavController) {
                 )
             }
 
-            IconButton(onClick = { /* Navigate to Pizza page */ }) {
+            IconButton(onClick = { navController.navigate("PeriPeriFries") }) {
                 Icon(
                     imageVector = Icons.Default.PlayArrow,
-                    contentDescription = "Go to Pizza category",
+                    contentDescription = "Go back",
+                    modifier = Modifier.size(22.dp)
+                )
+            }
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            TextButton(onClick = { navController.navigate("OrangeMimosa") }) {
+                Text(
+                    text = "Orange Mimosa",
+                    fontSize = 22.sp,
+                    color = Color.Black,
+                    textAlign = TextAlign.Start,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+
+            IconButton(onClick = { navController.navigate("OrangeMimosa") }) {
+                Icon(
+                    imageVector = Icons.Default.PlayArrow,
+                    contentDescription = "Go back",
                     modifier = Modifier.size(22.dp)
                 )
             }

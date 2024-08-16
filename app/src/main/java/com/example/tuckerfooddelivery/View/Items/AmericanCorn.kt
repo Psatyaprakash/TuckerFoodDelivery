@@ -90,7 +90,7 @@ fun AmericanCorn(navController: NavController) {
             Spacer(modifier = Modifier.height(15.dp))
             Row {
                 TextButton(
-                    onClick = {navController.navigate("Starters_Category") },
+                    onClick = {navController.popBackStack() },
                     colors = ButtonDefaults.buttonColors(Color.LightGray),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),

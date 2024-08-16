@@ -54,7 +54,7 @@ fun fionah_landingpage(navController: NavController){
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            CircularButtonWithSymbol(onClick = { /* handle click */ })
+            CircularButtonWithSymbol(onClick = { navController.popBackStack()})
             Spacer(modifier = Modifier.width(16.dp))
             Text(
                 text = "Fiona Hatty Restaurant",
@@ -66,7 +66,7 @@ fun fionah_landingpage(navController: NavController){
         }
         Spacer(modifier = Modifier.height(5.dp))
         Text(
-            text = "Patel Nagar, New Delhi \nPincode: 115800",
+            text = "Sharma Chowk, New Delhi \nPincode: 115970",
             textAlign = TextAlign.Center,
             color = Color.Black,
             fontSize = 14.sp,
@@ -75,31 +75,23 @@ fun fionah_landingpage(navController: NavController){
                 .padding(3.dp)
         )
         Image(
-            painter = painterResource(R.drawable.group_599),
-            contentDescription = "Rose Garden Restaurant title",
+            painter = painterResource(R.drawable.group_598),
+            contentDescription = "Restaurant title",
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp)
         )
         Spacer(modifier = Modifier.height(5.dp))
         Text(
-            text = "Perfect for breakfast, lunch, or dinner. They have an onsite bar, serve a variety of alcoholic beverages, and provide convenient options like curbside pickup and dine-in cozy atmosphere and friendly staff make you feel like part of the family.",
+            text = "Ideal for any meal—breakfast, lunch, or dinner—this establishment features an onsite bar serving a wide range of alcoholic beverages. Enjoy the convenience of curbside pickup or dine-in options. The cozy atmosphere and welcoming staff create a family-like experience.",
             textAlign = TextAlign.Justify,
             color = Color.Black,
             fontSize = 13.sp,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(3.dp)
+                .padding(15.dp)
         )
         Spacer(modifier = Modifier.height(4.dp))
-        Text(
-            text = "all you can eat",
-            textAlign = TextAlign.Center,
-            color = Color.Black,
-            fontSize = 16.sp,
-            modifier = Modifier
-                .fillMaxWidth()
-        )
         Text(
             text = "MENU",
             textDecoration = TextDecoration.Underline,
@@ -159,7 +151,7 @@ fun fionah_landingpage(navController: NavController){
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                            text = "4.7",
+                            text = "4.3",
                             fontStyle = FontStyle.Italic,
                             fontSize = 16.sp
                         )
@@ -189,7 +181,7 @@ fun fionah_landingpage(navController: NavController){
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                            text = "20mins",
+                            text = "10mins",
                             fontStyle = FontStyle.Italic,
                             fontSize = 16.sp
                         )
@@ -207,9 +199,9 @@ fun fionah_landingpage(navController: NavController){
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TextButton(onClick = { /* Navigate to Burger page */ }) {
+            TextButton(onClick = { navController.navigate("SmokingBurger") }) {
                 Text(
-                    text = "Burger",
+                    text = "Smoking Burger",
                     fontSize = 22.sp,
                     color = Color.Black,
                     textAlign = TextAlign.Start,
@@ -217,16 +209,15 @@ fun fionah_landingpage(navController: NavController){
                 )
             }
 
-            IconButton(onClick = { /* Navigate to Burger page */ }) {
+            IconButton(onClick = { navController.navigate("SmokingBurger") }) {
                 Icon(
                     imageVector = Icons.Default.PlayArrow,
-                    contentDescription = "Go to Burger category",
+                    contentDescription = "Go back",
                     modifier = Modifier.size(22.dp)
                 )
             }
         }
 
-        // Chicken Button
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -234,9 +225,9 @@ fun fionah_landingpage(navController: NavController){
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TextButton(onClick = { /* Navigate to Chicken page */ }) {
+            TextButton(onClick = { navController.navigate("MexicanPepperoniPizza") }) {
                 Text(
-                    text = "Chicken",
+                    text = "Mexican Pepperoni Pizza",
                     fontSize = 22.sp,
                     color = Color.Black,
                     textAlign = TextAlign.Start,
@@ -244,17 +235,16 @@ fun fionah_landingpage(navController: NavController){
                 )
             }
 
-            IconButton(onClick = { /* Navigate to Chicken page */ }) {
+            IconButton(onClick = { navController.navigate("MexicanPepperoniPizza") }) {
                 Icon(
                     imageVector = Icons.Default.PlayArrow,
-                    contentDescription = "Go to Chicken category",
+                    contentDescription = "Go back" ,
                     modifier = Modifier.size(22.dp)
                 )
             }
         }
 
 
-        // Hotdogs Button
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -262,9 +252,9 @@ fun fionah_landingpage(navController: NavController){
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TextButton(onClick = { /* Navigate to Hotdogs page */ }) {
+            TextButton(onClick = { navController.navigate("CrispyChickenRoll") }) {
                 Text(
-                    text = "Hotdogs",
+                    text = "Crispy Chicken Roll",
                     fontSize = 22.sp,
                     color = Color.Black,
                     textAlign = TextAlign.Start,
@@ -272,17 +262,17 @@ fun fionah_landingpage(navController: NavController){
                 )
             }
 
-            IconButton(onClick = { /* Navigate to Hotdogs page */ }) {
+            IconButton(onClick = { navController.navigate("CrispyChickenRoll") }) {
                 Icon(
                     imageVector = Icons.Default.PlayArrow,
-                    contentDescription = "Go to Hotdogs category",
+                    contentDescription = "Go back",
                     modifier = Modifier.size(22.dp)
                 )
             }
         }
 
 
-        // Wings Button
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -290,9 +280,9 @@ fun fionah_landingpage(navController: NavController){
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TextButton(onClick = { /* Navigate to Wings page */ }) {
+            TextButton(onClick =  { navController.navigate("AmericanCorn") } ) {
                 Text(
-                    text = "Wings",
+                    text = "American Corn",
                     fontSize = 22.sp,
                     color = Color.Black,
                     textAlign = TextAlign.Start,
@@ -300,7 +290,7 @@ fun fionah_landingpage(navController: NavController){
                 )
             }
 
-            IconButton(onClick = { /* Navigate to Wings page */ }) {
+            IconButton(onClick = { navController.navigate("AmericanCorn") }) {
                 Icon(
                     imageVector = Icons.Default.PlayArrow,
                     contentDescription = "Go to Wings category",
@@ -309,7 +299,7 @@ fun fionah_landingpage(navController: NavController){
             }
         }
 
-        // Pizza Button
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -317,9 +307,9 @@ fun fionah_landingpage(navController: NavController){
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TextButton(onClick = { /* Navigate to Pizza page */ }) {
+            TextButton(onClick = { navController.navigate("BuffaloWings") }) {
                 Text(
-                    text = "Pizza",
+                    text = "Buffalo Wings",
                     fontSize = 22.sp,
                     color = Color.Black,
                     textAlign = TextAlign.Start,
@@ -327,10 +317,36 @@ fun fionah_landingpage(navController: NavController){
                 )
             }
 
-            IconButton(onClick = { /* Navigate to Pizza page */ }) {
+            IconButton(onClick = { navController.navigate("BuffaloWings") }) {
                 Icon(
                     imageVector = Icons.Default.PlayArrow,
-                    contentDescription = "Go to Pizza category",
+                    contentDescription = "Go back",
+                    modifier = Modifier.size(22.dp)
+                )
+            }
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            TextButton(onClick = { navController.navigate("ManchowSoup") }) {
+                Text(
+                    text = "Manchow Soup",
+                    fontSize = 22.sp,
+                    color = Color.Black,
+                    textAlign = TextAlign.Start,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+
+            IconButton(onClick = { navController.navigate("ManchowSoup") }) {
+                Icon(
+                    imageVector = Icons.Default.PlayArrow,
+                    contentDescription = "Go back",
                     modifier = Modifier.size(22.dp)
                 )
             }
