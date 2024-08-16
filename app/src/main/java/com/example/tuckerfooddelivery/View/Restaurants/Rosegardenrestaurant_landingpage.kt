@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
-import com.example.tuckerfooddelivery.View.CircularButtonWithSymbol
+import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 
 @Composable
 fun Rosegardenrestaurant_landingpage(navController: NavController) {
@@ -216,7 +216,7 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
                     )
                 }
 
-                IconButton(onClick = { /* Navigate to Burger page */ }) {
+                IconButton(onClick = { navController.navigate("BurgerBistro") }) {
                     Icon(
                         imageVector = Icons.Default.PlayArrow,
                         contentDescription = "Go back",
@@ -243,7 +243,7 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
                     )
                 }
 
-                IconButton(onClick = { /* Navigate to Chicken page */ }) {
+                IconButton(onClick = { navController.navigate("PizzaCalzone") }) {
                     Icon(
                         imageVector = Icons.Default.PlayArrow,
                         contentDescription = "Go back" ,
@@ -271,7 +271,7 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
                     )
                 }
 
-                IconButton(onClick = { /* Navigate to Hotdogs page */ }) {
+                IconButton(onClick = { navController.navigate("TibetanMomos") }) {
                     Icon(
                         imageVector = Icons.Default.PlayArrow,
                         contentDescription = "Go back",
@@ -299,7 +299,7 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
                     )
                 }
 
-                IconButton(onClick = { /* Navigate to Wings page */ }) {
+                IconButton(onClick = { navController.navigate("ClassicFrenchFries") }) {
                     Icon(
                         imageVector = Icons.Default.PlayArrow,
                         contentDescription = "Go to Wings category",
@@ -326,7 +326,7 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
                     )
                 }
 
-                IconButton(onClick = { /* Navigate to Pizza page */ }) {
+                IconButton(onClick = { navController.navigate("BlueLagoon") }) {
                     Icon(
                         imageVector = Icons.Default.PlayArrow,
                         contentDescription = "Go back",
@@ -352,7 +352,7 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
                 )
             }
 
-            IconButton(onClick = { /* Navigate to Pizza page */ }) {
+            IconButton(onClick = { navController.navigate("ChickenWings") }) {
                 Icon(
                     imageVector = Icons.Default.PlayArrow,
                     contentDescription = "Go back",

@@ -3,8 +3,8 @@ package com.example.tuckerfooddelivery
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.tuckerfooddelivery.ViewModel.AppNavigation
 import com.example.tuckerfooddelivery.ui.theme.TuckerFoodDeliveryTheme
+import com.example.tuckerfooddelivery.ViewModel.AppNavigation
 
 
 class MainActivity : ComponentActivity() {
@@ -13,9 +13,14 @@ class MainActivity : ComponentActivity() {
         //enableEdgeToEdge()
         setContent {
             TuckerFoodDeliveryTheme {
-                AppNavigation()
+                //ProfileView()
+               // PersonalInfoDetails()
+            AppNavigation()
+               //UserReviews()
             }
         }
     }
 }
+
+
 

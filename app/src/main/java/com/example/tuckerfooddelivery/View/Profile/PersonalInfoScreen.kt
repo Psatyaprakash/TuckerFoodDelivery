@@ -1,4 +1,4 @@
-package com.example.tuckerfooddelivery.View
+package com.example.tuckerfooddelivery.View.Profile
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -22,9 +22,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
 
 @Composable
@@ -47,7 +47,7 @@ fun CircularButtonWithSymbol(onClick: () -> Unit) {
 }
 
 @Composable
-fun PersonalInfoDetails() {
+fun PersonalInfoDetails(navController: NavHostController) {
     var fullName by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var phoneNumber by remember { mutableStateOf("") }
@@ -63,7 +63,7 @@ fun PersonalInfoDetails() {
                 .align(Alignment.TopStart)
                 .padding(16.dp)
         ) {
-            CircularButtonWithSymbol(onClick = { /* handle click */ })
+            CircularButtonWithSymbol(onClick = { navController.navigate("ProfileView") })
         }
 
         Text(
