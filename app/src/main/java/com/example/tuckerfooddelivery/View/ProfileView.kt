@@ -338,7 +338,7 @@ fun ProfileView(navController: NavHostController) {
                     Text(text = "FAQs", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
                     Spacer(modifier = Modifier.width(210.dp))
                     TextButton(
-                        onClick = {/* navigate to faqs */},
+                        onClick = {navController.navigate("FAQScreen")},
                         colors = ButtonDefaults.buttonColors(Color.Transparent),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
