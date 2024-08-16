@@ -1,5 +1,6 @@
 package com.example.tuckerfooddelivery.ViewModel
 
+import com.example.tuckerfooddelivery.View.Profile.FAQScreen
 import android.os.Build
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
@@ -22,49 +23,32 @@ import com.example.tuckerfooddelivery.View.Category.Pizza_Category
 import com.example.tuckerfooddelivery.View.Category.Roll_Category
 import com.example.tuckerfooddelivery.View.Category.Starters_Category
 import com.example.tuckerfooddelivery.View.Category.Wings_Category
-import com.example.tuckerfooddelivery.View.Category.Fries_Category
 import com.example.tuckerfooddelivery.View.HomePage
 import com.example.tuckerfooddelivery.View.LoginScreen
-import com.example.tuckerfooddelivery.View.Category.Mocktails_Category
-import com.example.tuckerfooddelivery.View.Category.Momos_Category
-import com.example.tuckerfooddelivery.View.Category.Pizza_Category
-import com.example.tuckerfooddelivery.View.Category.Roll_Category
 import com.example.tuckerfooddelivery.View.Restaurants.Rosegardenrestaurant_landingpage
 import com.example.tuckerfooddelivery.View.Restaurants.SkyHighW_landingpage
 import com.example.tuckerfooddelivery.View.Start
 import com.example.tuckerfooddelivery.View.Start2
 import com.example.tuckerfooddelivery.View.Start3
-import com.example.tuckerfooddelivery.View.Category.Starters_Category
-import com.example.tuckerfooddelivery.View.Category.Wings_Category
 import com.example.tuckerfooddelivery.View.Restaurants.fionah_landingpage
 import com.example.tuckerfooddelivery.View.Items.ChickenWings
 import com.example.tuckerfooddelivery.View.Items.ClassicBurger
 import com.example.tuckerfooddelivery.View.Items.ClassicFrenchFries
 import com.example.tuckerfooddelivery.View.Items.CrispyChickenRoll
-
-import com.example.tuckerfooddelivery.View.HomePage
-import com.example.tuckerfooddelivery.View.LoginScreen
 import com.example.tuckerfooddelivery.View.Items.ManchowSoup
 import com.example.tuckerfooddelivery.View.Items.MargheritaCornPizza
 import com.example.tuckerfooddelivery.View.Items.MexicanPepperoniPizza
-
 import com.example.tuckerfooddelivery.View.Items.NepaliDumplingMomos
 import com.example.tuckerfooddelivery.View.Items.OrangeMimosa
 import com.example.tuckerfooddelivery.View.Items.PaneerRoll
 import com.example.tuckerfooddelivery.View.Items.PeriPeriFries
 import com.example.tuckerfooddelivery.View.Items.PizzaCalzone
-
-import com.example.tuckerfooddelivery.View.Restaurants.Rosegardenrestaurant_landingpage
-import com.example.tuckerfooddelivery.View.Restaurants.SkyHighW_landingpage
-import com.example.tuckerfooddelivery.View.Restaurants.fionah_landingpage
-
 import com.example.tuckerfooddelivery.View.Items.SmokingBurger
-import com.example.tuckerfooddelivery.View.Start
-import com.example.tuckerfooddelivery.View.Start2
-import com.example.tuckerfooddelivery.View.Start3
 import com.example.tuckerfooddelivery.View.Storage
-
 import com.example.tuckerfooddelivery.View.Items.TibetanMomos
+import com.example.tuckerfooddelivery.View.Profile.PersonalInfoDetails
+import com.example.tuckerfooddelivery.View.Profile.ProfileView
+import com.example.tuckerfooddelivery.View.Profile.UserReviews
 
 
 //Navigation
@@ -130,6 +114,12 @@ fun AppNavigation() {
         composable("Fionah_landingpage"){ fionah_landingpage(navController) }
         //Cart
         composable("Cart"){ Cart(navController) }
+
+        //Profile
+        composable("ProfileView") { ProfileView(navController) }
+        composable("PersonalInfoDetails") { PersonalInfoDetails(navController) }
+        composable("UserReviews") { UserReviews(navController) }
+        composable("FAQScreen") { FAQScreen(navController) }
 
     }
 }

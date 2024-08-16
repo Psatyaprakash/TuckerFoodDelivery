@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
-import com.example.tuckerfooddelivery.View.CircularButtonWithSymbol
+import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 
 @Composable
 fun SkyHighW_landingpage(navController: NavController) {
