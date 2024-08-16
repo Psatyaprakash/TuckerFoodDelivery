@@ -57,12 +57,6 @@ fun Cart(navController: NavController) {
     var totalCartPrice : Int by remember {
         mutableStateOf<Int>(totalCartPrice_global)
     }
-    var ClassicFrenchFries_Price : Int by remember {
-        mutableStateOf<Int>(0)
-    }
-    var PizzaCalzone_Price : Int by remember {
-        mutableStateOf<Int>(0)
-    }
     val context = LocalContext.current
 
     fun price_update() {
@@ -173,7 +167,7 @@ fun Cart(navController: NavController) {
                 var value = 0
                 TextButton(
                     onClick = { price_update() ;
-                        createNotification(context, "Order Summary" , "Order placed \nTotal Price : $totalCartPrice")
+                        createNotification(context, "Order Summary" , "Order placed \nTotal Amount : $totalAmount")
                               },
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     border = BorderStroke(width = 0.dp, color = Color.Transparent),

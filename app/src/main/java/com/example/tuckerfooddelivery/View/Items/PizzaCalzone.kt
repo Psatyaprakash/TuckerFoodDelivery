@@ -647,8 +647,7 @@ fun PizzaCalzone(navController: NavController) {
                         PizzaCalzone_14=count_14
                         PizzaCalzone_16=count_16
                     PizzaCalzone_Cart =1
-                    updatePrice()
-                    }
+                    updatePrice() }
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     border = BorderStroke(width = 0.dp, color = Color.Transparent),
