@@ -1,5 +1,6 @@
 package com.example.tuckerfooddelivery
 
+import FAQScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -18,7 +19,6 @@ import com.example.tuckerfooddelivery.View.Start
 import com.example.tuckerfooddelivery.View.Start2
 import com.example.tuckerfooddelivery.View.Start3
 import com.example.tuckerfooddelivery.View.UserReviews
-import com.example.tuckerfooddelivery.View.FAQScreen
 
 
 class MainActivity : ComponentActivity() {
