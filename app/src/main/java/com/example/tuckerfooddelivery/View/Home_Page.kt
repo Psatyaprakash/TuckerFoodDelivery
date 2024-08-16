@@ -74,7 +74,7 @@ fun HomePage(navController: NavController) {
                 modifier = Modifier
                     .size(45.dp)
                     .clip(CircleShape)
-                    //.background(colorResource(id = R.color.Blue_Slight))
+                    .background(color = Color.LightGray)
             ) {
                 Image(
                     painter = painterResource(R.drawable.menu),
@@ -106,7 +106,7 @@ fun HomePage(navController: NavController) {
                 modifier = Modifier
                     .size(45.dp)
                     .clip(CircleShape)
-                    //.background(colorResource(id = R.color.Blue_Slight))
+                    .background(color = Color.LightGray)
 
 
             ) {
@@ -163,7 +163,7 @@ fun HomePage(navController: NavController) {
 //                focusedIndicatorColor = colorResource(id = R.color.Blue_Slight),
 //                unfocusedIndicatorColor = colorResource(id = R.color.Blue_Slight)
 //            )
-            colors = TextFieldDefaults.textFieldColors(containerColor = colorResource(id = R.color.teal_700)),
+            colors = TextFieldDefaults.textFieldColors(containerColor = Color.LightGray),
             shape = RoundedCornerShape(20.dp)
         )
         Spacer(modifier = Modifier.height(5.dp))
@@ -224,7 +224,7 @@ fun HomePage(navController: NavController) {
 
             //Button2
             Button(
-                onClick = { /* TODO: Insert action here */ },
+                onClick = { navController.navigate("Mocktails_Category")},
                 colors = ButtonDefaults.buttonColors(containerColor = Color.White),
                 border = BorderStroke(width = 0.dp, color = Color.Transparent),
                 elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
@@ -238,8 +238,8 @@ fun HomePage(navController: NavController) {
                         .background(Color.LightGray)
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.hot_dog_icon),
-                        contentDescription = "Hot Dog Icon",
+                        painter = painterResource(R.drawable.orange_mimosa),
+                        contentDescription = "Mocktail Icon",
                         Modifier
                             .size(27.dp)
                             .align(Alignment.Center)
@@ -248,13 +248,13 @@ fun HomePage(navController: NavController) {
                 }
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "Hot Dog", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 18.sp)
+                    Text(text = "Mocktail", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 18.sp)
                 }
             }
 
             //Button 3
             Button(
-                onClick = { /* TODO: Insert action here */ },
+                onClick = { navController.navigate("Burger_Category") },
                 colors = ButtonDefaults.buttonColors(containerColor = Color.White),
                 border = BorderStroke(width = 0.dp, color = Color.Transparent),
                 elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
@@ -284,7 +284,7 @@ fun HomePage(navController: NavController) {
 
             //Button 4
             Button(
-                onClick = { /* TODO: Insert action here */ },
+                onClick = { navController.navigate("Pizza_Category") },
                 colors = ButtonDefaults.buttonColors(containerColor = Color.White),
                 border = BorderStroke(width = 0.dp, color = Color.Transparent),
                 elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
@@ -310,8 +310,145 @@ fun HomePage(navController: NavController) {
                     Text(text = "Pizza", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 18.sp)
                 }
             }
+
+
+        Button(
+            onClick = { navController.navigate("Momos_Category") },
+            colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+            border = BorderStroke(width = 0.dp, color = Color.Transparent),
+            elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp)
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(30.dp)
+                    .clip(CircleShape)
+                    .background(Color.LightGray)
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.tibetianmomos),
+                    contentDescription = "Momos Icon",
+                    Modifier
+                        .size(27.dp)
+                        .align(Alignment.Center)
+                )
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Spacer(modifier = Modifier.width(5.dp))
+                Text(text = "Momos", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 18.sp)
+            }
         }
 
+        Button(
+            onClick = { navController.navigate("Roll_Category") },
+            colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+            border = BorderStroke(width = 0.dp, color = Color.Transparent),
+            elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp)
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(30.dp)
+                    .clip(CircleShape)
+                    .background(Color.LightGray)
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.paneer_roll),
+                    contentDescription = "Roll Icon",
+                    Modifier
+                        .size(27.dp)
+                        .align(Alignment.Center)
+                )
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Spacer(modifier = Modifier.width(5.dp))
+                Text(text = "Roll", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 18.sp)
+            }
+        }
+        Button(
+            onClick = { navController.navigate("Wings_Category") },
+            colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+            border = BorderStroke(width = 0.dp, color = Color.Transparent),
+            elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp)
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(30.dp)
+                    .clip(CircleShape)
+                    .background(Color.LightGray)
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.buffalo_wings),
+                    contentDescription = "Wings Icon",
+                    Modifier
+                        .size(27.dp)
+                        .align(Alignment.Center)
+                )
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Spacer(modifier = Modifier.width(5.dp))
+                Text(text = "Wings", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 18.sp)
+            }
+        }
+        Button(
+            onClick = { navController.navigate("Fries_Category") },
+            colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+            border = BorderStroke(width = 0.dp, color = Color.Transparent),
+            elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp)
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(30.dp)
+                    .clip(CircleShape)
+                    .background(Color.LightGray)
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.peri_peri_fries),
+                    contentDescription = "Fries Icon",
+                    Modifier
+                        .size(27.dp)
+                        .align(Alignment.Center)
+                )
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Spacer(modifier = Modifier.width(5.dp))
+                Text(text = "Fries", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 18.sp)
+            }
+        }
+        Button(
+            onClick = { navController.navigate("Starters_Category") },
+            colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+            border = BorderStroke(width = 0.dp, color = Color.Transparent),
+            elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp)
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(30.dp)
+                    .clip(CircleShape)
+                    .background(Color.LightGray)
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.american_corn),
+                    contentDescription = "Starter Icon",
+                    Modifier
+                        .size(27.dp)
+                        .align(Alignment.Center)
+                )
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Spacer(modifier = Modifier.width(5.dp))
+                Text(text = "Starters", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 18.sp)
+            }
+        }
+            }
 
 
         Spacer(modifier = Modifier.height(12.dp))

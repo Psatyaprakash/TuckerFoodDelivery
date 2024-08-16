@@ -51,7 +51,7 @@ fun Pizza_Category(navController: NavController){
                 modifier = Modifier
                     .padding(16.dp)
             ) {
-                CircularButtonWithSymbol(onClick = { /* handle click */ })
+                CircularButtonWithSymbol(onClick = { navController.popBackStack() })
             }
             Card(
                 modifier = Modifier
