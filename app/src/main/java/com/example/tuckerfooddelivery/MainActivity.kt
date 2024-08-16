@@ -18,6 +18,7 @@ import com.example.tuckerfooddelivery.View.Start
 import com.example.tuckerfooddelivery.View.Start2
 import com.example.tuckerfooddelivery.View.Start3
 import com.example.tuckerfooddelivery.View.UserReviews
+import com.example.tuckerfooddelivery.View.FAQScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -26,7 +27,7 @@ class MainActivity : ComponentActivity() {
         //enableEdgeToEdge()
         setContent {
             TuckerFoodDeliveryTheme {
-               // ProfileView()
+                //ProfileView()
                // PersonalInfoDetails()
             AppNavigation()
                //UserReviews()
@@ -50,7 +51,7 @@ fun AppNavigation() {
         exitTransition = { fadeOut(animationSpec = tween(200))  +
                 slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "Start"
+        startDestination = "FAQScreen"
     ) {
         composable("Start") { Start(navController) }
         composable("Start2") { Start2(navController) }
@@ -59,6 +60,7 @@ fun AppNavigation() {
         composable("ProfileView") { ProfileView(navController) }
         composable("PersonalInfoDetails") { PersonalInfoDetails(navController) }
         composable("UserReviews") { UserReviews(navController) }
+        composable("FAQScreen") { FAQScreen(navController) }
     }
 }
 
