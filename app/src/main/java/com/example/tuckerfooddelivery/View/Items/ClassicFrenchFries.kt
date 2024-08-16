@@ -479,7 +479,6 @@ fun ClassicFrenchFries(navController: NavController) {
                                 )
                             }
                             Spacer(modifier = Modifier.width(5.dp))
-                            //var count = 0
                             Text(
                                 text = "$count_Large", modifier = Modifier
                                     .padding(vertical = 15.dp)
@@ -610,7 +609,7 @@ fun ClassicFrenchFriesCart(Regular:Int,Large:Int) {
     }
     totalprice=totalprice_Large+totalprice_Regular
     Column {
-        if (Regular > 0) {
+        if (count_Regular > 0) {
 
             Card(
                 shape = RoundedCornerShape(16.dp),
@@ -672,8 +671,11 @@ fun ClassicFrenchFriesCart(Regular:Int,Large:Int) {
                             ) {
                                 Row {
                                     IconButton(onClick = {
-                                        if (count_Regular == 1) count_Regular =
-                                            1 else count_Regular--;updateRegularPrice();updateLargePrice()
+                                        if (count_Regular == 1) {
+                                            count_Regular = 0
+                                            ClassicFrenchFries_Regular=0
+                                        }
+                                        else count_Regular--;updateRegularPrice();updateLargePrice()
                                     }) {
                                         Icon(
                                             Icons.Default.KeyboardArrowDown,
@@ -703,7 +705,7 @@ fun ClassicFrenchFriesCart(Regular:Int,Large:Int) {
                 }
             }
         }
-        if(Large>0)
+        if(count_Large>0)
         {
             Card(
                 shape = RoundedCornerShape(16.dp),
@@ -765,8 +767,11 @@ fun ClassicFrenchFriesCart(Regular:Int,Large:Int) {
                             ) {
                                 Row {
                                     IconButton(onClick = {
-                                        if (count_Large == 1) count_Large=
-                                            1 else count_Large--;updateRegularPrice();updateLargePrice()
+                                        if (count_Large == 1) {
+                                            count_Large = 0
+                                            ClassicFrenchFries_Large=0
+                                        }
+                                        else count_Large--;updateRegularPrice();updateLargePrice()
                                     }) {
                                         Icon(
                                             Icons.Default.KeyboardArrowDown,
