@@ -81,6 +81,8 @@ import com.example.tuckerfooddelivery.View.Start
 import com.example.tuckerfooddelivery.View.Start2
 import com.example.tuckerfooddelivery.View.Start3
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.View.Congrats
+import com.example.tuckerfooddelivery.View.Delivery
 import com.example.tuckerfooddelivery.View.HomePage
 import com.example.tuckerfooddelivery.View.Pizza
 import com.example.tuckerfooddelivery.View.Pizza_2
@@ -96,6 +98,8 @@ class MainActivity : ComponentActivity() {
                // var navController = rememberNavController()
                 //navController = navController
             AppNavigation()
+                //Congrats()
+                //Delivery()
             }
         }
     }
@@ -115,7 +119,7 @@ fun AppNavigation() {
         exitTransition = { fadeOut(animationSpec = tween(200))  +
                 slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "Start"
+        startDestination = "Congrats"
     ) {
         composable("Start") { Start(navController) }
         composable("Start2") { Start2(navController) }
@@ -125,6 +129,8 @@ fun AppNavigation() {
         composable("Pizza"){ Pizza(navController)}
         composable("Pizza_2"){ Pizza_2(navController)}
         composable("Pizza_3"){ Pizza_3(navController)}
+        composable("Congrats"){ Congrats(navController) }
+        composable("Delivery"){ Delivery(navController) }
 
     }
 }
