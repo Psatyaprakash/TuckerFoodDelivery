@@ -21,8 +21,10 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
@@ -50,6 +52,7 @@ import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Large
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_LargePrice
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Regular
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_RegularPrice
+import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Wishlist
 import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_10
 import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_10Price
 import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_14
@@ -57,6 +60,7 @@ import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_14Price
 import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_16
 import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_16Price
 import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_Cart
+import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_Wishlist
 import com.example.tuckerfooddelivery.ViewModel.updatePrice
 
 
@@ -196,6 +200,11 @@ fun PizzaCalzone(navController: NavController) {
                             .size(40.dp)
                             .background(Color.Red, shape = CircleShape)
                             .padding(8.dp)
+                            .clickable(onClick = {
+                                PizzaCalzone_Wishlist = 1;navController.navigate(
+                                "Favorites"
+                            )
+                            })
                     )
                 }
             }
@@ -376,7 +385,6 @@ fun PizzaCalzone(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -392,7 +400,6 @@ fun PizzaCalzone(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -410,47 +417,7 @@ fun PizzaCalzone(navController: NavController) {
                 }
                 //Spacer(modifier = Modifier.width(20.dp))
             }
-            Spacer(modifier = Modifier.height(75.dp))
-            Card(
-                //for scrolling purpose
-                shape = RoundedCornerShape(16.dp),
-                backgroundColor = Mustard_yellow,
-                modifier = Modifier
-                    .padding(10.dp)
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-//            colors = CardColors(
-//                containerColor = Mustard_yellow_light, contentColor = Color.Black,
-//                disabledContentColor = Mustard_yellow,
-//                disabledContainerColor = Mustard_yellow
-//            )
-            ) {
-                Box(
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.pizza_calzone),
-                        contentDescription = "Pizza",
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .size(200.dp)
-                    )
-                    Icon(
-                        imageVector = Icons.Default.Favorite,
-                        contentDescription = "Add",
-                        tint = Color.White,
-                        modifier = Modifier
-                            .align(Alignment.BottomEnd)
-                            .size(40.dp)
-                            .background(Color.Red, shape = CircleShape)
-                            .padding(8.dp)
-                    )
-                }
-            }
-
+            Spacer(modifier = Modifier.height(45.dp))
         }
         Column(
             modifier = Modifier
@@ -1046,6 +1013,95 @@ fun PizzaCalzoneCart(Pizza_10:Int,Pizza_14:Int,Pizza_16:Int) {
                                     }
                                 }
                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+fun PizzaCalzoneWishlist(navController: NavController) {
+
+    val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
+    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
+    Column {
+        Card(
+            shape = RoundedCornerShape(16.dp),
+            backgroundColor = Mustard_yellow,
+            modifier = Modifier
+                .padding(10.dp)
+                .fillMaxWidth()
+                .wrapContentHeight(),
+            onClick = { navController.navigate("PizzaCalzone") }
+        ) {
+            Box(
+                modifier = Modifier
+                    .padding(6.dp)
+                    .wrapContentHeight()
+                    .background(color = Mustard_yellow_light)
+                    .align(Alignment.CenterHorizontally)
+            ) {
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+
+                    Box(
+                        modifier = Modifier
+                            .padding(16.dp)
+                            .fillMaxWidth()
+                            .wrapContentHeight()
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.pizza_calzone),
+                            contentDescription = "Pizza",
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .size(200.dp)
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Delete,
+                            contentDescription = "Remove from favorites",
+                            tint = Color.White,
+                            modifier = Modifier
+                                .align(Alignment.TopEnd)
+                                .size(40.dp)
+                                .background(Color.Gray, shape = CircleShape)
+                                .padding(5.dp)
+                                .clickable(onClick = {
+                                    ClassicFrenchFries_Wishlist = 0
+                                })
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+
+                        Column {
+                            Text(
+                                text = "Pizza Calzone",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp,
+                                color = Color.Black
+                            )
+                            Spacer(modifier = Modifier.height(6.dp))
+                            Text(
+                                text = "( Size : 10'' , 14'' , 16'' )",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 15.sp,
+                                color = Color.White,
+                                modifier = Modifier.align(Alignment.CenterHorizontally)
+                            )
+                            Spacer(modifier = Modifier.height(10.dp))
+
                         }
                     }
                 }

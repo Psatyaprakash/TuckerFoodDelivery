@@ -17,6 +17,7 @@ fun updatePrice(){
 //Global Variables used for items
 //ClassicFrenchFries item
 var ClassicFrenchFries_Cart=0
+var ClassicFrenchFries_Wishlist =0
 var ClassicFrenchFries_Regular=0
 var ClassicFrenchFries_Large=0
 var ClassicFrenchFries_RegularPrice=0
@@ -24,6 +25,7 @@ var ClassicFrenchFries_LargePrice=0
 
 //PizzaCalzone item
 var PizzaCalzone_Cart=0
+var PizzaCalzone_Wishlist =0
 var PizzaCalzone_10=0
 var PizzaCalzone_14=0
 var PizzaCalzone_16=0

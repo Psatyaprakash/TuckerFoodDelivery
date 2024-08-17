@@ -23,6 +23,7 @@ import com.example.tuckerfooddelivery.View.Category.Pizza_Category
 import com.example.tuckerfooddelivery.View.Category.Roll_Category
 import com.example.tuckerfooddelivery.View.Category.Starters_Category
 import com.example.tuckerfooddelivery.View.Category.Wings_Category
+import com.example.tuckerfooddelivery.View.Favorites
 import com.example.tuckerfooddelivery.View.HomePage
 import com.example.tuckerfooddelivery.View.LoginScreen
 import com.example.tuckerfooddelivery.View.Restaurants.Rosegardenrestaurant_landingpage
@@ -67,7 +68,7 @@ fun AppNavigation() {
                 slideOutOfContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "HomePage"
+        startDestination = "PizzaCalzone"
     ) {
         composable("Storage"){ Storage() }
 //        composable("NotificationScreen"){ NotificationScreen(NotificationTitle,NotiC ) }
@@ -78,10 +79,7 @@ fun AppNavigation() {
         composable("LoginScreen") { LoginScreen(navController) }
         composable("HomePage"){ HomePage(navController) }
         //items
-        composable("PizzaCalzone"){ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            PizzaCalzone(navController)
-        }
-        }
+        composable("PizzaCalzone"){PizzaCalzone(navController)}
         composable("ClassicFrenchFries"){ ClassicFrenchFries(navController) }
         composable("BurgerBistro"){ BurgerBistro(navController) }
         composable("TibetanMomos"){ TibetanMomos(navController) }
@@ -120,6 +118,9 @@ fun AppNavigation() {
         composable("PersonalInfoDetails") { PersonalInfoDetails(navController) }
         composable("UserReviews") { UserReviews(navController) }
         composable("FAQScreen") { FAQScreen(navController) }
+
+        //Favorites
+        composable("Favorites") { Favorites(navController) }
 
     }
 }
