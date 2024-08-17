@@ -1073,7 +1073,7 @@ fun PizzaCalzoneWishlist(navController: NavController) {
                                 .background(Color.Gray, shape = CircleShape)
                                 .padding(5.dp)
                                 .clickable(onClick = {
-                                    ClassicFrenchFries_Wishlist = 0
+                                    PizzaCalzone_Wishlist = 0
                                 })
                         )
                     }
