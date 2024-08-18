@@ -1,5 +1,6 @@
 package com.example.tuckerfooddelivery.View
 
+import android.service.autofill.OnClickAction
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -102,21 +103,19 @@ fun HomePage(navController: NavController) {
             }
 
             Spacer(modifier = Modifier.width(180.dp))
-            Box(
-                modifier = Modifier
-                    .size(45.dp)
-                    .clip(CircleShape)
-                    .background(color = Color.LightGray)
-
-
+            Button(
+                onClick = { navController.navigate("Cart")},
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
+                border = BorderStroke(width = 0.dp, color = Color.Transparent),
+                elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp),
+                shape = CircleShape
             ) {
-                Image(
-                    painter = painterResource(R.drawable.shopping_bag__2),
-                    contentDescription = "Fire",
-                    Modifier
-                        .size(32.dp)
-                        .align(Alignment.Center)
-                )
+                    Image(
+                        painter = painterResource (R.drawable.shopping_bag__2),
+                        contentDescription = "Cart Icon",
+                        Modifier
+                            .size(55.dp),
+                    )
             }
         }
         Spacer(modifier = Modifier.height(15.dp))

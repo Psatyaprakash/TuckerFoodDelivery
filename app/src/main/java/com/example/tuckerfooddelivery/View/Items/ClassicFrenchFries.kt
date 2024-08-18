@@ -3,6 +3,7 @@ package com.example.tuckerfooddelivery.View.Items
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,8 +21,10 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
@@ -50,6 +53,8 @@ import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Large
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_LargePrice
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Regular
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_RegularPrice
+import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Wishlist
+import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_Wishlist
 import com.example.tuckerfooddelivery.ViewModel.updatePrice
 
 @Composable
@@ -170,6 +175,11 @@ fun ClassicFrenchFries(navController: NavController) {
                                 .size(40.dp)
                                 .background(Color.Red, shape = CircleShape)
                                 .padding(8.dp)
+                                .clickable(onClick = {
+                                    ClassicFrenchFries_Wishlist = 1;navController.navigate(
+                                    "Favorites"
+                                )
+                                })
                         )
                     }
                 }
@@ -479,7 +489,6 @@ fun ClassicFrenchFries(navController: NavController) {
                                 )
                             }
                             Spacer(modifier = Modifier.width(5.dp))
-                            //var count = 0
                             Text(
                                 text = "$count_Large", modifier = Modifier
                                     .padding(vertical = 15.dp)
@@ -610,7 +619,7 @@ fun ClassicFrenchFriesCart(Regular:Int,Large:Int) {
     }
     totalprice=totalprice_Large+totalprice_Regular
     Column {
-        if (Regular > 0) {
+        if (count_Regular > 0) {
 
             Card(
                 shape = RoundedCornerShape(16.dp),
@@ -672,8 +681,11 @@ fun ClassicFrenchFriesCart(Regular:Int,Large:Int) {
                             ) {
                                 Row {
                                     IconButton(onClick = {
-                                        if (count_Regular == 1) count_Regular =
-                                            1 else count_Regular--;updateRegularPrice();updateLargePrice()
+                                        if (count_Regular == 1) {
+                                            count_Regular = 0
+                                            ClassicFrenchFries_Regular=0
+                                        }
+                                        else count_Regular--;updateRegularPrice();updateLargePrice()
                                     }) {
                                         Icon(
                                             Icons.Default.KeyboardArrowDown,
@@ -703,7 +715,7 @@ fun ClassicFrenchFriesCart(Regular:Int,Large:Int) {
                 }
             }
         }
-        if(Large>0)
+        if(count_Large>0)
         {
             Card(
                 shape = RoundedCornerShape(16.dp),
@@ -765,8 +777,11 @@ fun ClassicFrenchFriesCart(Regular:Int,Large:Int) {
                             ) {
                                 Row {
                                     IconButton(onClick = {
-                                        if (count_Large == 1) count_Large=
-                                            1 else count_Large--;updateRegularPrice();updateLargePrice()
+                                        if (count_Large == 1) {
+                                            count_Large = 0
+                                            ClassicFrenchFries_Large=0
+                                        }
+                                        else count_Large--;updateRegularPrice();updateLargePrice()
                                     }) {
                                         Icon(
                                             Icons.Default.KeyboardArrowDown,
@@ -791,6 +806,89 @@ fun ClassicFrenchFriesCart(Regular:Int,Large:Int) {
                                     }
                                 }
                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+fun ClassicFrenchFriesWishlist(navController: NavController) {
+
+    val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
+    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
+    Column {
+        Card(
+            shape = RoundedCornerShape(16.dp),
+            backgroundColor = Mustard_yellow,
+            modifier = Modifier
+                .padding(10.dp)
+                .fillMaxWidth()
+                .wrapContentHeight(),
+            onClick = { navController.navigate("ClassicFrenchFries") }
+        ) {
+            Box(
+                modifier = Modifier
+                    .padding(6.dp)
+                    .wrapContentHeight()
+                    .background(color = Mustard_yellow_light)
+                    .align(Alignment.CenterHorizontally)
+            ) {
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .padding(16.dp)
+                            .fillMaxWidth()
+                            .wrapContentHeight()
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.classic_french_fries),
+                            contentDescription = "Pizza",
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .size(200.dp)
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Delete,
+                            contentDescription = "Remove from favorites",
+                            tint = Color.White,
+                            modifier = Modifier
+                                .align(Alignment.TopEnd)
+                                .size(40.dp)
+                                .background(Color.Gray, shape = CircleShape)
+                                .padding(5.dp)
+                                .clickable(onClick = {
+                                    ClassicFrenchFries_Wishlist = 0
+                                })
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Row (modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center) {
+                        Column {
+                            Text(
+                                text = "Classic French Fries",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp,
+                                color = Color.Black
+                            )
+                            Spacer(modifier = Modifier.height(6.dp))
+                            Text(
+                                text = "( Size : Regular , Large )",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 15.sp,
+                                color = Color.White,
+                                modifier = Modifier.align(Alignment.CenterHorizontally)
+                            )
+                            Spacer(modifier = Modifier.height(10.dp))
                         }
                     }
                 }
