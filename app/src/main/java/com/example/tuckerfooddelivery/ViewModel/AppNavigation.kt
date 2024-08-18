@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.tuckerfooddelivery.MainScreen
 import com.example.tuckerfooddelivery.View.Category.Burger_Category
 import com.example.tuckerfooddelivery.View.Items.AmericanCorn
 import com.example.tuckerfooddelivery.View.Items.BlueLagoon
@@ -67,7 +68,7 @@ fun AppNavigation() {
                 slideOutOfContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "HomePage"
+        startDestination = "MainScreen"
     ) {
         composable("Storage"){ Storage() }
 //        composable("NotificationScreen"){ NotificationScreen(NotificationTitle,NotiC ) }
@@ -76,11 +77,14 @@ fun AppNavigation() {
         composable("Start2") { Start2(navController) }
         composable("Start3") { Start3(navController) }
         composable("LoginScreen") { LoginScreen(navController) }
+//        composable("HomePage"){ HomePage(navController) , route={ HomePage(navController = it)}}
         composable("HomePage"){ HomePage(navController) }
+        composable("MainScreen"){ MainScreen(navController, route={ HomePage(navController = it)}) }
         //items
-        composable("PizzaCalzone"){ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            PizzaCalzone(navController)
-        }
+        composable("PizzaCalzone"){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                PizzaCalzone(navController)
+            }
         }
         composable("ClassicFrenchFries"){ ClassicFrenchFries(navController) }
         composable("BurgerBistro"){ BurgerBistro(navController) }

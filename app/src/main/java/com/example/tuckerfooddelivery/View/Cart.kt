@@ -35,6 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.tuckerfooddelivery.MainScreen
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Items.ClassicFrenchFriesCart
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Cart
@@ -42,6 +43,12 @@ import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Large
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Regular
 import com.example.tuckerfooddelivery.ViewModel.totalCartPrice_global
 
+@Composable
+fun Carts(navController: NavController){
+    MainScreen(navController) {
+        Cart(navController = it)
+    }
+}
 
 @Composable
 fun Cart(navController: NavController) {
