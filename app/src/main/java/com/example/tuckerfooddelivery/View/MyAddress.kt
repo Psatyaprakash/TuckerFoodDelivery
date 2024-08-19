@@ -28,17 +28,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.tuckerfooddelivery.ui.theme.TuckerFoodDeliveryTheme
 
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            TuckerFoodDeliveryTheme {
-                MyApp()
-            }
-        }
-    }
-}
-
 @Composable
 fun MyApp() {
     val navController = rememberNavController()
