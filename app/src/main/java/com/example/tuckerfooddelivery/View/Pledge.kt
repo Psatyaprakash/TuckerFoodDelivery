@@ -1,17 +1,7 @@
-package com.example.tuckerfooddelivery
+package com.example.tuckerfooddelivery.View
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.runtime.Composable
-import com.example.tuckerfooddelivery.ui.theme.TuckerFoodDeliveryTheme
-import androidx.compose.animation.AnimatedContentTransitionScope
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.ScrollableState
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,16 +9,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,38 +23,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.example.tuckerfooddelivery.View.LoginScreen
-import com.example.tuckerfooddelivery.View.MyApp
-import com.example.tuckerfooddelivery.View.PersonalInfoDetails
-import com.example.tuckerfooddelivery.View.SaveLocationScreen
-import com.example.tuckerfooddelivery.View.Start
-import com.example.tuckerfooddelivery.View.Start2
-import com.example.tuckerfooddelivery.View.Start3
-import com.example.tuckerfooddelivery.View.ThankYouScreen
+import com.example.tuckerfooddelivery.R
 
-
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //enableEdgeToEdge()
-        setContent {
-            TuckerFoodDeliveryTheme {
-              ThankYouScreen()
-                //PledgeScreen()
-                //MyApp()
-                //SaveLocationScreen()
-                //  LoginScreen()
-                //PersonalInfoDetails()
-                //AppNavigation()
-            }
-        }
-    }
-}
-
-/*Pledge*/
+/*
 @Composable
 fun PledgeScreen() {
     Column(
@@ -77,7 +33,6 @@ fun PledgeScreen() {
             .fillMaxSize()
             .background(Color.White)
             .padding(16.dp)
-            .verticalScroll(rememberScrollState())
     ) {
         // Header
         Row(
@@ -86,8 +41,13 @@ fun PledgeScreen() {
                 .fillMaxWidth()
                 .padding(bottom = 16.dp)
         ) {
-            Icon( Icons.Filled.KeyboardArrowLeft
-                , contentDescription = "")
+            Image(
+                painter = painterResource(id = R.drawable.ic_arrow_back),
+                contentDescription = "Back Arrow",
+                modifier = Modifier
+                    .size(24.dp)
+                    .padding(end = 8.dp)
+            )
             Text(
                 text = "Take a Pledge!!",
                 fontSize = 24.sp,
@@ -177,7 +137,7 @@ fun PledgeScreen() {
 
         // Donate Button
         Button(
-            onClick = { /* Handle donation */ },
+            onClick = { *//* Handle donation *//* },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 16.dp)
@@ -194,30 +154,4 @@ fun PledgeScreen() {
             )
         }
     }
-}
-/**/
-
-    //Navigation
-@Composable
-fun AppNavigation() {
-    val navController = rememberNavController()
-
-    NavHost(
-        navController = navController,
-        enterTransition = { fadeIn(animationSpec = tween(200)) +
-                slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Left,
-            tween(200)
-        ) },
-        exitTransition = { fadeOut(animationSpec = tween(200))  +
-                slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left,
-                    tween(200) )},
-        startDestination = "Start"
-    ) {
-        composable("Start") { Start(navController) }
-        composable("Start2") { Start2(navController) }
-        composable("Start3") { Start3(navController) }
-        composable("Start") { Start(navController) }
-    }
-}
-
-
+}*/
