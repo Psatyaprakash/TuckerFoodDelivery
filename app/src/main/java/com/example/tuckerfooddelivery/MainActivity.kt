@@ -57,8 +57,8 @@ class MainActivity : ComponentActivity() {
         //enableEdgeToEdge()
         setContent {
             TuckerFoodDeliveryTheme {
-              ThankYouScreen()
-                //PledgeScreen()
+              //ThankYouScreen()
+                PledgeScreen()
                 //MyApp()
                 //SaveLocationScreen()
                 //  LoginScreen()

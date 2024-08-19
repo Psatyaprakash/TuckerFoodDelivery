@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tuckerfooddelivery.R
 
-/*
+
 @Composable
 fun PledgeScreen() {
     Column(
@@ -137,7 +137,7 @@ fun PledgeScreen() {
 
         // Donate Button
         Button(
-            onClick = { *//* Handle donation *//* },
+            onClick = { /* Handle donation */ },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 16.dp)
@@ -154,4 +154,4 @@ fun PledgeScreen() {
             )
         }
     }
-}*/
+}
