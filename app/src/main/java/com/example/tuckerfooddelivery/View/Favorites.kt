@@ -64,8 +64,8 @@ fun Favorites(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 TextButton(
-                    onClick = {},
-                    colors = ButtonDefaults.buttonColors(Color.LightGray),
+                    onClick = { navController.popBackStack() },
+                    colors = ButtonDefaults.buttonColors(colorResource(id = R.color.White_Blue)),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
                     modifier = Modifier

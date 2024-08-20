@@ -3,6 +3,8 @@ package com.example.tuckerfooddelivery.View.Profile
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -33,6 +35,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.tuckerfooddelivery.R
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 
 @SuppressLint("SuspiciousIndentation")
 @Composable
@@ -47,21 +51,14 @@ fun ProfileView(navController: NavHostController) {
                 .fillMaxSize()
         ) {
             Spacer(modifier = Modifier.height(10.dp))
-            Row {
-                TextButton(
-                    onClick = {navController.navigate("Start3")},
-                    colors = ButtonDefaults.buttonColors(Color.LightGray),
-                    shape = CircleShape,
-                    contentPadding = PaddingValues(0.dp),
-                    modifier = Modifier
-                        .size(55.dp)
-                        .background(Color.Gray, CircleShape)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.leftarrow_icon),
-                        contentDescription = "",
-                        modifier = Modifier.size(20.dp)
-                    )
+            Row(Modifier
+                .padding(5.dp)
+                .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween) {
+               
+                CircularButtonWithSymbol {
+                    navController.popBackStack()
                 }
                 Spacer(modifier = Modifier.width(1.dp))
                 Text(
@@ -73,11 +70,11 @@ fun ProfileView(navController: NavHostController) {
                 Spacer(modifier = Modifier.width(180.dp))
                 TextButton(
                     onClick = {},
-                    colors = ButtonDefaults.buttonColors(Color.LightGray),
+                    colors = ButtonDefaults.buttonColors(colorResource(id = R.color.White_Blue)),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
                     modifier = Modifier
-                        .size(55.dp)
+                        .size(50.dp)
                         .background(Color.Gray, CircleShape)
                 ) {
                     Image(
@@ -128,7 +125,8 @@ fun ProfileView(navController: NavHostController) {
                     .padding(horizontal = 10.dp)
                     .fillMaxWidth()
                     .size(width = 200.dp, height = 650.dp),
-                colors = CardColors(containerColor = Color.LightGray,
+                colors = CardColors(
+                    containerColor = colorResource(id = R.color.White_Blue),
                     contentColor = Color.Black,
                     disabledContentColor = Mustard_yellow,
                     disabledContainerColor = Mustard_yellow)
@@ -150,7 +148,7 @@ fun ProfileView(navController: NavHostController) {
                             painter = painterResource(id = R.drawable.per_info),
                             contentDescription = "",
                             modifier = Modifier
-                                .size(25.dp),
+                                .size(20.dp),
                             alignment = Alignment.Center
                         )
                     }
@@ -194,7 +192,7 @@ fun ProfileView(navController: NavHostController) {
                             painter = painterResource(id = R.drawable.add_icon),
                             contentDescription = "",
                             modifier = Modifier
-                                .size(25.dp),
+                                .size(20.dp),
                             alignment = Alignment.Center
                         )
                     }
@@ -238,7 +236,7 @@ fun ProfileView(navController: NavHostController) {
                             painter = painterResource(id = R.drawable.cart_icon),
                             contentDescription = "",
                             modifier = Modifier
-                                .size(25.dp),
+                                .size(20.dp),
                             alignment = Alignment.Center
                         )
                     }
@@ -282,7 +280,7 @@ fun ProfileView(navController: NavHostController) {
                             painter = painterResource(id = R.drawable.fav_icon),
                             contentDescription = "",
                             modifier = Modifier
-                                .size(25.dp),
+                                .size(20.dp),
                             alignment = Alignment.Center
                         )
                     }
@@ -414,15 +412,15 @@ fun ProfileView(navController: NavHostController) {
                             painter = painterResource(id = R.drawable.log_out_icon),
                             contentDescription = "",
                             modifier = Modifier
-                                .size(25.dp),
+                                .size(20.dp),
                             alignment = Alignment.Center
                         )
                     }
                     Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "Log Out", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
+                    Text(text = "Sign Out", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
                     Spacer(modifier = Modifier.width(180.dp))
                     TextButton(
-                        onClick = {/* navigate to logout */},
+                        onClick = Firebase.auth::signOut,
                         colors = ButtonDefaults.buttonColors(Color.Transparent),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
@@ -435,7 +433,8 @@ fun ProfileView(navController: NavHostController) {
                             painter = painterResource(id = R.drawable.right_arrow),
                             contentDescription = "",
                             modifier = Modifier
-                                .size(15.dp),
+                                .size(15.dp)
+                                .clickable { navController.navigate("Start") },
                             alignment = Alignment.Center
                         )
                     }

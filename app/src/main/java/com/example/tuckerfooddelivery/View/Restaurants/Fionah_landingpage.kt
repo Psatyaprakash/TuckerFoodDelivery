@@ -35,11 +35,19 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.tuckerfooddelivery.MainScreen
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 
 @Composable
 fun fionah_landingpage(navController: NavController){
+    MainScreen(navController = navController) {
+        Fionah(navController = it)
+    }
+}
+
+@Composable
+fun Fionah(navController: NavController){
     Column(
         modifier = Modifier
             .fillMaxWidth()

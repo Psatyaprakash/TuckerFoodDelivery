@@ -8,6 +8,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -22,27 +25,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
+import com.example.tuckerfooddelivery.R
 
 @Composable
 fun CircularButtonWithSymbol(onClick: () -> Unit) {
     TextButton(
         onClick = onClick,
-        colors = ButtonDefaults.buttonColors(Color.Gray),
+        colors = ButtonDefaults.buttonColors(colorResource(id = R.color.White_Blue)),
         shape = CircleShape,
         contentPadding = PaddingValues(0.dp),
         modifier = Modifier
             .size(50.dp)
             .background(Color.Transparent, CircleShape)
     ) {
-        Text(
-            text = "<",
-            fontSize = 24.sp,
-            color = Color.White,
-        )
+        Image(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = "Back", Modifier.size(35.dp) )
     }
 }
 
@@ -85,7 +87,7 @@ fun PersonalInfoDetails(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = rememberImagePainter(data = "https://www.bing.com/images/search?view=detailV2&ccid=7hFAXSqY&id=CC0399CC4062E603BD734E0EF136B2C10A280510&thid=OIP.7hFAXSqYekM7JbRZma2zUwHaEm&mediaurl=https%3a%2f%2fwww.pngitem.com%2fpimgs%2fm%2f159-1595932_python-logo-png-transparent-images-logo-transparent-background.png&exph=535&expw=860&q=google+python+logo&simid=608042017004537305&FORM=IRPRST&ck=E62F0753280B23CB03B0752D4B290D5B&selectedIndex=5&itb=0"),
+                painter = rememberAsyncImagePainter(model = "https://www.bing.com/images/search?view=detailV2&ccid=7hFAXSqY&id=CC0399CC4062E603BD734E0EF136B2C10A280510&thid=OIP.7hFAXSqYekM7JbRZma2zUwHaEm&mediaurl=https%3a%2f%2fwww.pngitem.com%2fpimgs%2fm%2f159-1595932_python-logo-png-transparent-images-logo-transparent-background.png&exph=535&expw=860&q=google+python+logo&simid=608042017004537305&FORM=IRPRST&ck=E62F0753280B23CB03B0752D4B290D5B&selectedIndex=5&itb=0"),
                 contentDescription = "Profile Image",
                 modifier = Modifier
                     .size(100.dp)

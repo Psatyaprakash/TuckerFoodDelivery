@@ -76,7 +76,7 @@ fun BottomNavigationBar(navController: NavController) {
             horizontalArrangement = Arrangement.SpaceAround
         ) {
             BottomNavIcon(Icons.Filled.Home, "Home", navController, "MainScreen")
-            BottomNavIcon(Icons.Filled.Favorite, "Favorites", navController, "Favorites")
+            BottomNavIcon(Icons.Filled.Favorite, "Favourites", navController, "Favourites")
             BottomNavIcon(Icons.Filled.ShoppingCart, "Cart", navController, "Cart")
             BottomNavIcon(
                 Icons.Filled.Notifications,

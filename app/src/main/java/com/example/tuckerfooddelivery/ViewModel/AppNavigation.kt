@@ -24,6 +24,7 @@ import com.example.tuckerfooddelivery.View.Category.Pizza_Category
 import com.example.tuckerfooddelivery.View.Category.Roll_Category
 import com.example.tuckerfooddelivery.View.Category.Starters_Category
 import com.example.tuckerfooddelivery.View.Category.Wings_Category
+import com.example.tuckerfooddelivery.View.Favorites
 import com.example.tuckerfooddelivery.View.HomePage
 import com.example.tuckerfooddelivery.View.LoginScreen
 import com.example.tuckerfooddelivery.View.Restaurants.Rosegardenrestaurant_landingpage
@@ -80,6 +81,12 @@ fun AppNavigation() {
 //        composable("HomePage"){ HomePage(navController) , route={ HomePage(navController = it)}}
         composable("HomePage"){ HomePage(navController) }
         composable("MainScreen"){ MainScreen(navController, route={ HomePage(navController = it)}) }
+        
+        composable("Favourites"){ Favorites(navController = navController)}
+        
+        
+        
+        
         //items
         composable("PizzaCalzone"){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

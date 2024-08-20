@@ -88,7 +88,8 @@ fun HomePage(navController: NavController ) {
             Modifier
                 .fillMaxWidth()
                 .padding(5.dp, 10.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Box(
                 modifier = Modifier
@@ -136,6 +137,7 @@ fun HomePage(navController: NavController ) {
                     Modifier
                         .size(30.dp)
                         .align(Alignment.Center)
+                        .clickable { navController.navigate("Favourites") }
                 )
             }
         }
@@ -194,7 +196,11 @@ fun HomePage(navController: NavController ) {
                     shape = RoundedCornerShape(20.dp)
                 )
                 Spacer(modifier = Modifier.height(5.dp))
-                Row {
+                Row(Modifier.fillMaxWidth()
+                    .padding(2.dp,0.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     Text(
                         text = "All Categories ",
                         fontSize = 20.sp,
@@ -202,11 +208,7 @@ fun HomePage(navController: NavController ) {
                         fontWeight = FontWeight.W500,
                         modifier = Modifier.padding(horizontal = 10.dp)
                     )
-                    Spacer(
-                        modifier = Modifier
-                            .width(135.dp)
-                            .height(10.dp)
-                    )
+
                     Text(
                         text = "See all >",
                         fontSize = 18.sp,
@@ -524,7 +526,11 @@ fun HomePage(navController: NavController ) {
 
 
                 Spacer(modifier = Modifier.height(12.dp))
-                Row {
+                Row(modifier = Modifier
+                    .fillMaxWidth()
+                    ,verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
                     Text(
                         text = "Open Restaurants ",
                         fontSize = 15.sp,
@@ -532,11 +538,7 @@ fun HomePage(navController: NavController ) {
                         fontWeight = FontWeight.W500,
                         modifier = Modifier.padding(horizontal = 10.dp)
                     )
-                    Spacer(
-                        modifier = Modifier
-                            .width(150.dp)
-                            .height(10.dp)
-                    )
+
                     Text(
                         text = "See all >",
                         fontSize = 15.sp,
@@ -562,8 +564,6 @@ fun HomePage(navController: NavController ) {
                     ),
 
                     onClick = { navController.navigate("Rosegardenrestaurant_landingpage") }
-
-                    //onClick = {navController.navigate("PizzaCalzone")}
 
                 ) {
                     Image(
