@@ -1,8 +1,11 @@
 package com.example.tuckerfooddelivery.View.Profile
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -13,10 +16,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
@@ -49,7 +54,7 @@ fun ProfileView(navController: NavHostController) {
             Spacer(modifier = Modifier.height(10.dp))
             Row {
                 TextButton(
-                    onClick = {navController.navigate("Start3")},
+                    onClick = {navController.navigate("HomePage")},
                     colors = ButtonDefaults.buttonColors(Color.LightGray),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
@@ -150,13 +155,13 @@ fun ProfileView(navController: NavHostController) {
                             painter = painterResource(id = R.drawable.per_info),
                             contentDescription = "",
                             modifier = Modifier
-                                .size(25.dp),
+                                .size(22.dp),
                             alignment = Alignment.Center
                         )
                     }
                     Spacer(modifier = Modifier.width(5.dp))
                     Text(text = "Personal Info", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
-                    Spacer(modifier = Modifier.width(135.dp))
+                    Spacer(modifier = Modifier.width(132.dp))
                     TextButton(
                         onClick = {navController.navigate("PersonalInfoDetails")},
                         colors = ButtonDefaults.buttonColors(Color.Transparent),
@@ -225,7 +230,7 @@ fun ProfileView(navController: NavHostController) {
                     modifier = Modifier.padding(15.dp)
                 ) {
                     TextButton(
-                        onClick = {/* navigate to cart section */},
+                        onClick = {navController.navigate("Cart")},
                         colors = ButtonDefaults.buttonColors(Color.White),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
@@ -246,7 +251,7 @@ fun ProfileView(navController: NavHostController) {
                     Text(text = "Cart", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
                     Spacer(modifier = Modifier.width(220.dp))
                     TextButton(
-                        onClick = {/* navigate to cart section */},
+                        onClick = {navController.navigate("Cart")},
                         colors = ButtonDefaults.buttonColors(Color.Transparent),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
@@ -266,54 +271,78 @@ fun ProfileView(navController: NavHostController) {
 
                 }
                 Row(
-                    modifier = Modifier.padding(15.dp)
-                ) {
-                    TextButton(
-                        onClick = {/* navigate to favourites */},
-                        colors = ButtonDefaults.buttonColors(Color.White),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.fav_icon),
-                            contentDescription = "",
+                    modifier = Modifier
+                        .padding(15.dp)
+                        .fillMaxWidth()
+                        .align(Alignment.End),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Start
+                )
+                {
+                        TextButton(
+                            onClick = { navController.navigate("Favorites") },
+                            colors = ButtonDefaults.buttonColors(Color.White),
+                            shape = CircleShape,
+                            contentPadding = PaddingValues(0.dp),
                             modifier = Modifier
-                                .size(25.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "Favourite", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
-                    Spacer(modifier = Modifier.width(170.dp))
-                    TextButton(
-                        onClick = {/* navigate to favourites */},
-                        colors = ButtonDefaults.buttonColors(Color.Transparent),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
+                                .size(35.dp)
+                                .background(Color.Transparent, CircleShape)
 
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.right_arrow),
-                            contentDescription = "",
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.fav_icon),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .size(25.dp),
+                                alignment = Alignment.Center
+                            )
+                        }
+                        //
+                        TextButton(
+                            onClick = { navController.navigate("Favorites") },
+                            colors = ButtonDefaults.buttonColors(Color.Transparent),
+                            shape = CircleShape,
+                            contentPadding = PaddingValues(0.dp),
                             modifier = Modifier
-                                .size(15.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
+                                .size(width = 105.dp, height = 30.dp)
+                                .background(Color.Transparent, CircleShape)
+
+                        ) {
+                            Text(
+                                text = "Favorites",
+                                color = Color.Black,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 20.sp,
+                                modifier = Modifier.padding(5.dp)
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(168.dp))
+                        TextButton(
+                            onClick = { navController.navigate("Favorites") },
+                            colors = ButtonDefaults.buttonColors(Color.Transparent),
+                            shape = CircleShape,
+                            contentPadding = PaddingValues(0.dp),
+                            modifier = Modifier
+                                .size(35.dp)
+                                .background(Color.Transparent, CircleShape)
+
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.right_arrow),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .size(15.dp),
+                                //alignment = Alignment.CenterEnd
+                            )
+                        }
+
 
                 }
                 Row(
                     modifier = Modifier.padding(15.dp)
                 ) {
                     TextButton(
-                        onClick = {/* navigate to faqs */},
+                        onClick = {navController.navigate("FAQScreen")},
                         colors = ButtonDefaults.buttonColors(Color.White),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
@@ -326,12 +355,15 @@ fun ProfileView(navController: NavHostController) {
                             painter = painterResource(id = R.drawable.faqs_icon),
                             contentDescription = "",
                             modifier = Modifier
-                                .size(35.dp),
+                                .size(35.dp)
+                                .clickable {navController.navigate("FAQScreen") },
                             alignment = Alignment.Center
                         )
                     }
                     Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "FAQs", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
+                    Text(text = "FAQs", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier
+                        .clickable { navController.navigate("FAQScreen") }
+                        .padding(5.dp))
                     Spacer(modifier = Modifier.width(210.dp))
                     TextButton(
                         onClick = {navController.navigate("FAQScreen")},
@@ -370,13 +402,13 @@ fun ProfileView(navController: NavHostController) {
                             painter = painterResource(id = R.drawable.user_review_icon),
                             contentDescription = "",
                             modifier = Modifier
-                                .size(30.dp),
+                                .size(27.dp),
                             alignment = Alignment.Center
                         )
                     }
                     Spacer(modifier = Modifier.width(5.dp))
                     Text(text = "User Reviews", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
-                    Spacer(modifier = Modifier.width(135.dp))
+                    Spacer(modifier = Modifier.width(132.dp))
                     TextButton(
                         onClick = {navController.navigate("UserReviews")},
                         colors = ButtonDefaults.buttonColors(Color.Transparent),
@@ -420,7 +452,7 @@ fun ProfileView(navController: NavHostController) {
                     }
                     Spacer(modifier = Modifier.width(5.dp))
                     Text(text = "Log Out", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
-                    Spacer(modifier = Modifier.width(180.dp))
+                    Spacer(modifier = Modifier.width(187.dp))
                     TextButton(
                         onClick = {/* navigate to logout */},
                         colors = ButtonDefaults.buttonColors(Color.Transparent),

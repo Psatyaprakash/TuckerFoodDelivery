@@ -48,6 +48,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.layout.onPlaced
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -58,6 +60,7 @@ import com.example.tuckerfooddelivery.R
 
 
 //Home Page UI
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
@@ -71,22 +74,23 @@ fun HomePage(navController: NavController) {
             .verticalScroll(rememberScrollState())
     ) {
         Row {
-            Box(
-                modifier = Modifier
-                    .size(45.dp)
-                    .clip(CircleShape)
-                    .background(color = Color.LightGray)
+            Button(
+                onClick = { navController.navigate("ProfileView")},
+                colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray),
+                border = BorderStroke(width = 0.dp, color = Color.Transparent),
+                elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp),
+                shape = RoundedCornerShape(10.dp)
             ) {
                 Image(
                     painter = painterResource(R.drawable.menu),
                     contentDescription = "3 bars",
                     Modifier
                         .size(22.dp)
-                        .align(Alignment.Center)
+                       // .align(Alignment.Center)
                 )
             }
 
-            Spacer(modifier = Modifier.width(5.dp))
+            Spacer(modifier = Modifier.width(10.dp))
             Column() {
                 Text(
                     text = "DELIVER TO",
@@ -102,7 +106,7 @@ fun HomePage(navController: NavController) {
                 )
             }
 
-            Spacer(modifier = Modifier.width(180.dp))
+            Spacer(modifier = Modifier.width(140.dp))
             Button(
                 onClick = { navController.navigate("Cart")},
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
@@ -118,7 +122,7 @@ fun HomePage(navController: NavController) {
                     )
             }
         }
-        Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = Modifier.height(12.dp))
         Row {
             Spacer(modifier = Modifier.width(12.dp))
             Text(text = "Hey David, ", fontSize = 15.sp, color = Color.Black)
