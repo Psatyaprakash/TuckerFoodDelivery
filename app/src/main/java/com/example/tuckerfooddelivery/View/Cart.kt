@@ -197,6 +197,3 @@ fun Cart(navController: NavController) {
         }
     }
 }
-
-
-
