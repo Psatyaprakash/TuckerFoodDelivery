@@ -59,7 +59,7 @@ fun ProfileView(navController: NavHostController) {
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
                     modifier = Modifier
-                        .size(55.dp)
+                        .size(50.dp)
                         .background(Color.Gray, CircleShape)
                 ) {
                     Image(
@@ -103,22 +103,23 @@ fun ProfileView(navController: NavHostController) {
                     painter = painterResource(R.drawable.person),
                     contentDescription = " ",
                     Modifier
-                        .size(70.dp)
+                        .size(100.dp)
                 )
                 Spacer(modifier = Modifier.width(5.dp))
                 Column(
                     modifier = Modifier.padding(10.dp)
+                        .align(Alignment.CenterVertically)
                 ) {
                     Text(
                         text = "Vishal Khadok",
-                        fontSize = 20.sp,
+                        fontSize = 25.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Black,
                         modifier = Modifier.padding(horizontal = 2.dp)
                     )
                     Text(
                         text = "I love fast food",
-                        fontSize = 14.sp,
+                        fontSize = 18.sp,
                         color = Color.Black,
                         modifier = Modifier.padding(horizontal = 2.dp)
                     )
@@ -126,13 +127,13 @@ fun ProfileView(navController: NavHostController) {
                 }
 
             }
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(25.dp))
             Card(
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier
                     .padding(horizontal = 10.dp)
                     .fillMaxWidth()
-                    .size(width = 200.dp, height = 650.dp),
+                    .size(width = 200.dp, height = 465.dp),
                 colors = CardColors(containerColor = Color.LightGray,
                     contentColor = Color.Black,
                     disabledContentColor = Mustard_yellow,
@@ -248,7 +249,9 @@ fun ProfileView(navController: NavHostController) {
                         )
                     }
                     Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "Cart", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
+                    Text(text = "Cart", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier
+                        .clickable { navController.navigate("Cart") }
+                        .padding(5.dp))
                     Spacer(modifier = Modifier.width(220.dp))
                     TextButton(
                         onClick = {navController.navigate("Cart")},
