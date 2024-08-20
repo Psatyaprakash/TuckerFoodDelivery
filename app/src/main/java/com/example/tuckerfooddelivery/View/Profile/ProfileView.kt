@@ -150,7 +150,6 @@ fun ProfileView(navController: NavHostController) {
                         modifier = Modifier
                             .size(35.dp)
                             .background(Color.Transparent, CircleShape)
-
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.per_info),

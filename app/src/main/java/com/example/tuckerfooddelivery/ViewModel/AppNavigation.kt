@@ -50,6 +50,8 @@ import com.example.tuckerfooddelivery.View.Items.TibetanMomos
 import com.example.tuckerfooddelivery.View.Profile.PersonalInfoDetails
 import com.example.tuckerfooddelivery.View.Profile.ProfileView
 import com.example.tuckerfooddelivery.View.Profile.UserReviews
+import com.example.tuckerfooddelivery.View.Restaurant_Pages.RestaurantHomePage
+import com.example.tuckerfooddelivery.View.Restaurant_Pages.RestaurantLoginScreen
 
 
 //Navigation
@@ -68,7 +70,7 @@ fun AppNavigation() {
                 slideOutOfContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "FAQScreen"
+        startDestination = "RestaurantHomePage"
     ) {
         composable("Storage"){ Storage() }
 //        composable("NotificationScreen"){ NotificationScreen(NotificationTitle,NotiC ) }
@@ -122,5 +124,7 @@ fun AppNavigation() {
         //Favorites
         composable("Favorites") { Favorites(navController) }
 
+        composable("RestaurantLoginScreen") { RestaurantLoginScreen(navController) }
+        composable("RestaurantHomePage") { RestaurantHomePage(navController) }
     }
 }
