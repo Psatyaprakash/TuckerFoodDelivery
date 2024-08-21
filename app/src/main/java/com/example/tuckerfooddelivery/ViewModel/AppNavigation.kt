@@ -1,7 +1,7 @@
 package com.example.tuckerfooddelivery.ViewModel
 
-import com.example.tuckerfooddelivery.View.Profile.FAQScreen
 import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -11,12 +11,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tuckerfooddelivery.MainScreen
-import com.example.tuckerfooddelivery.View.Category.Burger_Category
-import com.example.tuckerfooddelivery.View.Items.AmericanCorn
-import com.example.tuckerfooddelivery.View.Items.BlueLagoon
-import com.example.tuckerfooddelivery.View.Items.BuffaloWings
-import com.example.tuckerfooddelivery.View.Items.BurgerBistro
 import com.example.tuckerfooddelivery.View.Cart
+import com.example.tuckerfooddelivery.View.Category.Burger_Category
 import com.example.tuckerfooddelivery.View.Category.Fries_Category
 import com.example.tuckerfooddelivery.View.Category.Mocktails_Category
 import com.example.tuckerfooddelivery.View.Category.Momos_Category
@@ -26,13 +22,11 @@ import com.example.tuckerfooddelivery.View.Category.Starters_Category
 import com.example.tuckerfooddelivery.View.Category.Wings_Category
 import com.example.tuckerfooddelivery.View.Favorites
 import com.example.tuckerfooddelivery.View.HomePage
-import com.example.tuckerfooddelivery.View.LoginScreen
-import com.example.tuckerfooddelivery.View.Restaurants.Rosegardenrestaurant_landingpage
-import com.example.tuckerfooddelivery.View.Restaurants.SkyHighW_landingpage
-import com.example.tuckerfooddelivery.View.Start
-import com.example.tuckerfooddelivery.View.Start2
-import com.example.tuckerfooddelivery.View.Start3
-import com.example.tuckerfooddelivery.View.Restaurants.fionah_landingpage
+import com.example.tuckerfooddelivery.View.Items.AddToCart
+import com.example.tuckerfooddelivery.View.Items.AmericanCorn
+import com.example.tuckerfooddelivery.View.Items.BlueLagoon
+import com.example.tuckerfooddelivery.View.Items.BuffaloWings
+import com.example.tuckerfooddelivery.View.Items.BurgerBistro
 import com.example.tuckerfooddelivery.View.Items.ChickenWings
 import com.example.tuckerfooddelivery.View.Items.ClassicBurger
 import com.example.tuckerfooddelivery.View.Items.ClassicFrenchFries
@@ -46,14 +40,23 @@ import com.example.tuckerfooddelivery.View.Items.PaneerRoll
 import com.example.tuckerfooddelivery.View.Items.PeriPeriFries
 import com.example.tuckerfooddelivery.View.Items.PizzaCalzone
 import com.example.tuckerfooddelivery.View.Items.SmokingBurger
-import com.example.tuckerfooddelivery.View.Storage
 import com.example.tuckerfooddelivery.View.Items.TibetanMomos
+import com.example.tuckerfooddelivery.View.LoginScreen
+import com.example.tuckerfooddelivery.View.Profile.FAQScreen
 import com.example.tuckerfooddelivery.View.Profile.PersonalInfoDetails
 import com.example.tuckerfooddelivery.View.Profile.ProfileView
 import com.example.tuckerfooddelivery.View.Profile.UserReviews
+import com.example.tuckerfooddelivery.View.Restaurants.Rosegardenrestaurant_landingpage
+import com.example.tuckerfooddelivery.View.Restaurants.SkyHighW_landingpage
+import com.example.tuckerfooddelivery.View.Restaurants.fionah_landingpage
+import com.example.tuckerfooddelivery.View.Start
+import com.example.tuckerfooddelivery.View.Start2
+import com.example.tuckerfooddelivery.View.Start3
+import com.example.tuckerfooddelivery.View.Storage
 
 
 //Navigation
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
@@ -83,10 +86,14 @@ fun AppNavigation() {
         composable("MainScreen"){ MainScreen(navController, route={ HomePage(navController = it)}) }
         
         composable("Favourites"){ Favorites(navController = navController)}
-        
-        
-        
-        
+        composable("BlueLagoon") {
+            BlueLagoon(navController = navController)
+        }
+
+
+
+
+
         //items
         composable("PizzaCalzone"){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -123,8 +130,10 @@ fun AppNavigation() {
         composable("Rosegardenrestaurant_landingpage"){ Rosegardenrestaurant_landingpage(navController) }
         composable("SkyHighW_landingpage"){ SkyHighW_landingpage(navController) }
         composable("Fionah_landingpage"){ fionah_landingpage(navController) }
+
         //Cart
         composable("Cart"){ Cart(navController) }
+        composable("AddToCart"){ AddToCart(navController) }
 
         //Profile
         composable("ProfileView") { ProfileView(navController) }

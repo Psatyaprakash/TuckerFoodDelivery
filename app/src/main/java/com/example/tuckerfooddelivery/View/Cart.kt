@@ -1,11 +1,9 @@
 package com.example.tuckerfooddelivery.View
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
@@ -30,7 +27,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,6 +35,7 @@ import com.example.tuckerfooddelivery.MainScreen
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Items.ClassicFrenchFriesCart
 import com.example.tuckerfooddelivery.View.Items.PizzaCalzoneCart
+import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Cart
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Large
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Regular
@@ -84,20 +81,8 @@ fun Cart(navController: NavController) {
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                TextButton(
-                    onClick = {},
-                    colors = ButtonDefaults.buttonColors(Color.LightGray),
-                    shape = CircleShape,
-                    contentPadding = PaddingValues(0.dp),
-                    modifier = Modifier
-                        .size(50.dp)
-                        .background(Color.Gray, CircleShape)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.leftarrow),
-                        contentDescription = "",
-                        modifier = Modifier.size(30.dp)
-                    )
+                CircularButtonWithSymbol {
+                    navController.popBackStack()
                 }
                 Spacer(modifier = Modifier.width(1.dp))
                 Text(

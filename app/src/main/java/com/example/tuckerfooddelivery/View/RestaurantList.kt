@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.example.tuckerfooddelivery.Model.Data.Restaurant
-import com.example.tuckerfooddelivery.ViewModel.fetchRestaurant
+import com.example.tuckerfooddelivery.Model.Fetch.fetchRestaurant
 import com.google.firebase.Firebase
 import com.google.firebase.storage.storage
 

@@ -71,6 +71,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.volley)
+    implementation(libs.places)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -86,6 +87,6 @@ dependencies {
 
     implementation(libs.firebase.auth)
     implementation(libs.androidx.browser)
-
+    implementation (libs.androidx.material.icons.extended)
 
 }

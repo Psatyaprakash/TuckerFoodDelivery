@@ -103,6 +103,7 @@ fun HomePage(navController: NavController ) {
                     Modifier
                         .size(22.dp)
                         .align(Alignment.Center)
+                        .clickable { navController.navigate("ProfileView") }
                 )
             }
 
@@ -132,10 +133,10 @@ fun HomePage(navController: NavController ) {
 
             ) {
                 Image(
-                    painter = painterResource(R.drawable.shopping_bag__2),
+                    Icons.Default.Favorite,
                     contentDescription = "Fire",
                     Modifier
-                        .size(30.dp)
+                        .size(27.dp)
                         .align(Alignment.Center)
                         .clickable { navController.navigate("Favourites") }
                 )
@@ -157,7 +158,7 @@ fun HomePage(navController: NavController ) {
                 Spacer(modifier = Modifier.height(15.dp))
                 Row {
                     Spacer(modifier = Modifier.width(12.dp))
-                    Text(text = "Hey David, ", fontSize = 15.sp, color = Color.Black)
+                    Text(text = "Hey Sir, ", fontSize = 15.sp, color = Color.Black)
                     Text(
                         text = "Good Afternoon!",
                         fontSize = 15.sp,

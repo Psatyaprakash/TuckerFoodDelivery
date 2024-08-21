@@ -1,8 +1,10 @@
 package com.example.tuckerfooddelivery
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -24,23 +26,24 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.View.HomePage
+import com.example.tuckerfooddelivery.View.RestaurantList
 import com.example.tuckerfooddelivery.ViewModel.AppNavigation
 import okhttp3.Route
 
 class MainActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // enableEdgeToEdge()
         setContent {
-//            TuckerFoodDeliveryTheme {
             AppNavigation()
-//            }
         }
     }
 }
@@ -66,8 +69,8 @@ fun MainScreen(navController: NavController , route: @Composable (NavController)
 @Composable
 fun BottomNavigationBar(navController: NavController) {
     BottomAppBar(
-        containerColor = White,
-        contentColor = colorResource(id = R.color.Mustard_yellow),
+        containerColor = colorResource(id = R.color.Mustard_yellow_light),
+        contentColor = Black,
         modifier = Modifier.height(60.dp)
     ) {
         Row(
@@ -75,16 +78,16 @@ fun BottomNavigationBar(navController: NavController) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            BottomNavIcon(Icons.Filled.Home, "Home", navController, "MainScreen")
-            BottomNavIcon(Icons.Filled.Favorite, "Favourites", navController, "Favourites")
-            BottomNavIcon(Icons.Filled.ShoppingCart, "Cart", navController, "Cart")
             BottomNavIcon(
                 Icons.Filled.Notifications,
                 "Notifications",
                 navController,
                 "Notification"
             )
-            BottomNavIcon(Icons.Filled.Person, "Profile", navController, "ProfileView")
+            BottomNavIcon(Icons.Filled.Home, "Home", navController, "MainScreen")
+//            BottomNavIcon(Icons.Filled.Favorite, "Favourites", navController, "Favourites")
+            BottomNavIcon(Icons.Filled.ShoppingCart, "Cart", navController, "Cart")
+//            BottomNavIcon(Icons.Filled.Person, "Profile", navController, "ProfileView")
         }
     }
 }
@@ -100,7 +103,7 @@ fun BottomNavIcon(
         imageVector = icon,
         contentDescription = description,
         modifier = Modifier
-            .size(30.dp)
+            .size(40.dp)
             .clickable { navController.navigate(route) }
     )
 }
