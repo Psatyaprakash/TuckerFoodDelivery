@@ -52,6 +52,7 @@ import com.example.tuckerfooddelivery.View.Profile.ProfileView
 import com.example.tuckerfooddelivery.View.Profile.UserReviews
 import com.example.tuckerfooddelivery.View.Restaurant_Pages.RestaurantHomePage
 import com.example.tuckerfooddelivery.View.Restaurant_Pages.RestaurantLoginScreen
+import com.example.tuckerfooddelivery.View.Restaurant_Pages.Timing
 
 
 //Navigation
@@ -124,7 +125,9 @@ fun AppNavigation() {
         //Favorites
         composable("Favorites") { Favorites(navController) }
 
+        //Restaurant Side pages
         composable("RestaurantLoginScreen") { RestaurantLoginScreen(navController) }
         composable("RestaurantHomePage") { RestaurantHomePage(navController) }
+        composable("Timing") { Timing(navController) }
     }
 }

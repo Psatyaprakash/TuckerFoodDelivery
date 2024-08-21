@@ -197,7 +197,8 @@ fun RestaurantHomePage(navController: NavController) {
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier
                     .padding(horizontal = 10.dp)
-                    .clickable { /*Navigate to Page containing Timings*/ }
+                    .clickable { /*Navigate to Page containing Timings*/
+                        navController.navigate("Timing")}
             )
         }
         Spacer(modifier = Modifier.height(10.dp))
