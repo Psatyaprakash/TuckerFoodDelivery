@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Column
 //import androidx.compose.foundation.layout.FlowColumnScopeInstance.align
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -73,7 +74,7 @@ fun RestaurantHomePage(navController: NavController) {
     Column(
         modifier = Modifier
             .padding(15.dp)
-            .fillMaxSize()
+            .fillMaxHeight(0.99f)
             .verticalScroll(rememberScrollState())
     ) {
         Row {
@@ -129,7 +130,7 @@ fun RestaurantHomePage(navController: NavController) {
         Spacer(modifier = Modifier.height(12.dp))
         Row {
             Spacer(modifier = Modifier.width(12.dp))
-            Text(text = "Hey David, ", fontSize = 15.sp, color = Color.Black)
+            Text(text = "Hey , ", fontSize = 15.sp, color = Color.Black)
             Text(
                 text = "Good Afternoon!",
                 fontSize = 15.sp,
