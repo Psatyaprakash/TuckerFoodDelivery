@@ -142,20 +142,20 @@ fun Timing(navController: NavController) {
                         Text(text = "Monday", fontSize = 25.sp, fontWeight = FontWeight.Normal)
                         Spacer(modifier = Modifier.width(60.dp))
 
-                        var MondayOpen by remember { mutableStateOf("9:00am") }
+                        var MonOpen by remember { mutableStateOf("9:00am") }
                         androidx.compose.material3.TextField(
-                            value = MondayOpen,
-                            onValueChange = { MondayOpen = it },
+                            value = MonOpen,
+                            onValueChange = { MonOpen = it },
                             //label = { androidx.compose.material3.Text("9:00am") },
                             modifier = Modifier
                                 .size(width = 90.dp, height = 60.dp)
                                 .height(56.dp)
                         )
                         Spacer(modifier = Modifier.width(15.dp))
-                        var MondayClose by remember { mutableStateOf("8:00pm") }
+                        var MonClose by remember { mutableStateOf("8:00pm") }
                         androidx.compose.material3.TextField(
-                            value = MondayClose,
-                            onValueChange = { MondayClose = it },
+                            value = MonClose,
+                            onValueChange = { MonClose = it },
                             //label = { androidx.compose.material3.Text("8:00pm") },
                             modifier = Modifier
                                 .size(width = 90.dp, height = 60.dp)
@@ -173,19 +173,19 @@ fun Timing(navController: NavController) {
                         Text(text = "Tuesday", fontSize = 25.sp, fontWeight = FontWeight.Normal)
                         Spacer(modifier = Modifier.width(55.dp))
 
-                        var MondayOpen by remember { mutableStateOf("9:00am") }
+                        var TueOpen by remember { mutableStateOf("9:00am") }
                         androidx.compose.material3.TextField(
-                            value = MondayOpen,
-                            onValueChange = { MondayOpen = it },
+                            value = TueOpen,
+                            onValueChange = { TueOpen = it },
                             modifier = Modifier
                                 .size(width = 90.dp, height = 60.dp)
                                 .height(56.dp)
                         )
                         Spacer(modifier = Modifier.width(15.dp))
-                        var MondayClose by remember { mutableStateOf("8:00pm") }
+                        var TueClose by remember { mutableStateOf("8:00pm") }
                         androidx.compose.material3.TextField(
-                            value = MondayClose,
-                            onValueChange = { MondayClose = it },
+                            value = TueClose,
+                            onValueChange = { TueClose = it },
                             modifier = Modifier
                                 .size(width = 90.dp, height = 60.dp)
                                 .height(56.dp)
@@ -202,10 +202,10 @@ fun Timing(navController: NavController) {
                         Text(text = "Wednesday", fontSize = 25.sp, fontWeight = FontWeight.Normal)
                         Spacer(modifier = Modifier.width(20.dp))
 
-                        var MondayOpen by remember { mutableStateOf("9:00am") }
+                        var WedOpen by remember { mutableStateOf("9:00am") }
                         androidx.compose.material3.TextField(
-                            value = MondayOpen,
-                            onValueChange = { MondayOpen = it },
+                            value = WedOpen,
+                            onValueChange = { WedOpen = it },
                             modifier = Modifier
                                 .size(width = 90.dp, height = 60.dp)
                                 .height(56.dp)
@@ -231,19 +231,19 @@ fun Timing(navController: NavController) {
                         Text(text = "Thursday", fontSize = 25.sp, fontWeight = FontWeight.Normal)
                         Spacer(modifier = Modifier.width(45.dp))
 
-                        var MondayOpen by remember { mutableStateOf("9:00am") }
+                        var ThurOpen by remember { mutableStateOf("9:00am") }
                         androidx.compose.material3.TextField(
-                            value = MondayOpen,
-                            onValueChange = { MondayOpen = it },
+                            value = ThurOpen,
+                            onValueChange = { ThurOpen = it },
                             modifier = Modifier
                                 .size(width = 90.dp, height = 60.dp)
                                 .height(56.dp)
                         )
                         Spacer(modifier = Modifier.width(15.dp))
-                        var MondayClose by remember { mutableStateOf("8:00pm") }
+                        var ThurClose by remember { mutableStateOf("8:00pm") }
                         androidx.compose.material3.TextField(
-                            value = MondayClose,
-                            onValueChange = { MondayClose = it },
+                            value = ThurClose,
+                            onValueChange = { ThurClose = it },
                             modifier = Modifier
                                 .size(width = 90.dp, height = 60.dp)
                                 .height(56.dp)
@@ -260,19 +260,19 @@ fun Timing(navController: NavController) {
                         Text(text = "Friday", fontSize = 25.sp, fontWeight = FontWeight.Normal)
                         Spacer(modifier = Modifier.width(80.dp))
 
-                        var MondayOpen by remember { mutableStateOf("9:00am") }
+                        var FriOpen by remember { mutableStateOf("9:00am") }
                         androidx.compose.material3.TextField(
-                            value = MondayOpen,
-                            onValueChange = { MondayOpen = it },
+                            value = FriOpen,
+                            onValueChange = { FriOpen = it },
                             modifier = Modifier
                                 .size(width = 90.dp, height = 60.dp)
                                 .height(56.dp)
                         )
                         Spacer(modifier = Modifier.width(15.dp))
-                        var MondayClose by remember { mutableStateOf("8:00pm") }
+                        var FriClose by remember { mutableStateOf("8:00pm") }
                         androidx.compose.material3.TextField(
-                            value = MondayClose,
-                            onValueChange = { MondayClose = it },
+                            value = FriClose,
+                            onValueChange = { FriClose = it },
                             modifier = Modifier
                                 .size(width = 90.dp, height = 60.dp)
                                 .height(56.dp)
@@ -289,19 +289,19 @@ fun Timing(navController: NavController) {
                         Text(text = "Saturday", fontSize = 25.sp, fontWeight = FontWeight.Normal)
                         Spacer(modifier = Modifier.width(50.dp))
 
-                        var MondayOpen by remember { mutableStateOf("9:00am") }
+                        var SatOpen by remember { mutableStateOf("9:00am") }
                         androidx.compose.material3.TextField(
-                            value = MondayOpen,
-                            onValueChange = { MondayOpen = it },
+                            value = SatOpen,
+                            onValueChange = { SatOpen = it },
                             modifier = Modifier
                                 .size(width = 90.dp, height = 60.dp)
                                 .height(56.dp)
                         )
                         Spacer(modifier = Modifier.width(15.dp))
-                        var MondayClose by remember { mutableStateOf("8:00pm") }
+                        var SatClose by remember { mutableStateOf("8:00pm") }
                         androidx.compose.material3.TextField(
-                            value = MondayClose,
-                            onValueChange = { MondayClose = it },
+                            value = SatClose,
+                            onValueChange = { SatClose = it },
                             modifier = Modifier
                                 .size(width = 90.dp, height = 60.dp)
                                 .height(56.dp)
@@ -318,19 +318,19 @@ fun Timing(navController: NavController) {
                         Text(text = "Sunday", fontSize = 25.sp, fontWeight = FontWeight.Normal)
                         Spacer(modifier = Modifier.width(65.dp))
 
-                        var MondayOpen by remember { mutableStateOf("9:00am") }
+                        var SunOpen by remember { mutableStateOf("9:00am") }
                         androidx.compose.material3.TextField(
-                            value = MondayOpen,
-                            onValueChange = { MondayOpen = it },
+                            value = SunOpen,
+                            onValueChange = { SunOpen = it },
                             modifier = Modifier
                                 .size(width = 90.dp, height = 60.dp)
                                 .height(56.dp)
                         )
                         Spacer(modifier = Modifier.width(15.dp))
-                        var MondayClose by remember { mutableStateOf("8:00pm") }
+                        var SunClose by remember { mutableStateOf("8:00pm") }
                         androidx.compose.material3.TextField(
-                            value = MondayClose,
-                            onValueChange = { MondayClose = it },
+                            value = SunClose,
+                            onValueChange = { SunClose = it },
                             modifier = Modifier
                                 .size(width = 90.dp, height = 60.dp)
                                 .height(56.dp)
