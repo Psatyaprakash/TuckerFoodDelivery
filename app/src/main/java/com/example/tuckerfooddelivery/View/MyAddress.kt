@@ -3,11 +3,13 @@ package com.example.tuckerfooddelivery.View
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
@@ -60,7 +62,8 @@ fun MyApp() {
 fun AddressScreen(navController: NavHostController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = Modifier.fillMaxSize()
+        .verticalScroll(ScrollState(1))) {
         TopAppBar(
             title = { Text("My Address") },
             navigationIcon = {
@@ -98,6 +101,7 @@ fun AddressScreen(navController: NavHostController) {
         ) {
             Text(text = "ADD NEW ADDRESS", color = Color.White, fontSize = 22.sp)
         }
+       // Spacer(modifier = Modifier.height(500.dp))
     }
 }
 
