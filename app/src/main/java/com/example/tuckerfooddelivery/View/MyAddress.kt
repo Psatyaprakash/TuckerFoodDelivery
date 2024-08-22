@@ -10,14 +10,17 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -25,6 +28,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.ui.theme.TuckerFoodDeliveryTheme
 
 
@@ -54,6 +58,8 @@ fun MyApp() {
 
 @Composable
 fun AddressScreen(navController: NavHostController) {
+    val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
+    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     Column(modifier = Modifier.fillMaxSize()) {
         TopAppBar(
             title = { Text("My Address") },
@@ -70,14 +76,15 @@ fun AddressScreen(navController: NavHostController) {
         AddressCard(
             label = "HOME",
             address = "2464 Royal Ln. Meso, New Jersey 45463",
-            icon = Icons.Default.Edit,
+            icon = Icons.Default.Home,
             onEditClick = { /* Handle edit */ },
             onDeleteClick = { /* Handle delete */ }
         )
+        Spacer(modifier = Modifier.height(12.dp))
         AddressCard(
             label = "WORK",
             address = "3891 Ranchview Dr, Richardson, California 62639",
-            icon = Icons.Default.Edit,
+            icon = Icons.Default.AccountBox,
             onEditClick = { /* Handle edit */ },
             onDeleteClick = { /* Handle delete */ }
         )
@@ -87,12 +94,13 @@ fun AddressScreen(navController: NavHostController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFFFD700))
+            colors = ButtonDefaults.buttonColors(backgroundColor = Mustard_yellow)
         ) {
-            Text(text = "ADD NEW ADDRESS", color = Color.White)
+            Text(text = "ADD NEW ADDRESS", color = Color.White, fontSize = 20.sp)
         }
     }
 }
+
 
 @Composable
 fun AddressCard(
@@ -118,7 +126,7 @@ fun AddressCard(
                 imageVector = icon,
                 contentDescription = null,
                 modifier = Modifier
-                    .size(24.dp)
+                    .size(45.dp)
                     .padding(end = 16.dp)
             )
             Column(
