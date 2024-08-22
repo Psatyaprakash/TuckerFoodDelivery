@@ -14,25 +14,27 @@ import java.time.format.DateTimeFormatter
 
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun addCart(name: String, price : Int, count : Int) {
+fun addCart(name: String, price : Int, count : Int, size : String) {
     val cart = com.example.tuckerfooddelivery.Model.Data.Cart(
         name = name,
         price = price,
-        count = count
+        count = count,
+        size = size
     )
-var quan = price * count
+
+    val currentDate = LocalDate.now()
+// Format the date to a readable string
+    val formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
+    val formattedDate = currentDate.format(formatter)
+
     db.collection("Cart")
-        .document(name + "_" + quan)
+        .document(name+"_$size" )
         .set(cart)
         .addOnSuccessListener {
-            Log.d(TAG, "DOCUMENT SNAPSHOT ADDED AT LOC : $name _ $quan")
+            Log.d(TAG, "DOCUMENT SNAPSHOT ADDED AT LOC : $name _ $size")
         }
         .addOnFailureListener { e ->
             Log.w(TAG, "Error Adding Document", e)
         }
-
 }
-/*    val currentDate = LocalDate.now()
-// Format the date to a readable string
-    val formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
-    val formattedDate = currentDate.format(formatter)*/
+

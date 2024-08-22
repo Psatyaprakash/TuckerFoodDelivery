@@ -167,7 +167,6 @@ fun HomePage(navController: NavController ) {
                     )
                 }
                 Spacer(modifier = Modifier.height(5.dp))
-                var text by remember { mutableStateOf("") }
                 var searchQuery by remember { mutableStateOf("") }
 
                 OutlinedTextField(
@@ -189,10 +188,6 @@ fun HomePage(navController: NavController ) {
                             Icon(Icons.Default.Settings, contentDescription = null, tint = Color.Black)
                         }
                     },
-//            colors = TextFieldDefaults.textFieldColors(
-//                focusedIndicatorColor = colorResource(id = R.color.Blue_Slight),
-//                unfocusedIndicatorColor = colorResource(id = R.color.Blue_Slight)
-//            )
                     colors = TextFieldDefaults.textFieldColors(containerColor = colorResource(id = R.color.White_Blue)),
                     shape = RoundedCornerShape(20.dp)
                 )

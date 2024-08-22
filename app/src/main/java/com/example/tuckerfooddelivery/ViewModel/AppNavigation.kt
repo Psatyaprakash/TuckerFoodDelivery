@@ -86,9 +86,7 @@ fun AppNavigation() {
         composable("MainScreen"){ MainScreen(navController, route={ HomePage(navController = it)}) }
         
         composable("Favourites"){ Favorites(navController = navController)}
-        composable("BlueLagoon") {
-            BlueLagoon(navController = navController)
-        }
+
 
 
 

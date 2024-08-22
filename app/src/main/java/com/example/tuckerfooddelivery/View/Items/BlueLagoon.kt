@@ -2,6 +2,7 @@
 
 package com.example.tuckerfooddelivery.View.Items
 
+import android.content.ContentValues.TAG
 import android.os.Build
 import android.util.Log
 import android.widget.Toast
@@ -32,6 +33,8 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddShoppingCart
+import androidx.compose.material.icons.filled.Cancel
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
@@ -53,6 +56,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Blue
+import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -64,6 +69,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.Model.Add.addCart
 import com.example.tuckerfooddelivery.Model.Data.Cart
+import com.example.tuckerfooddelivery.Model.Fetch.db
 import com.example.tuckerfooddelivery.Model.Fetch.fetchCart
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
@@ -81,9 +87,12 @@ fun BlueLagoon(navController: NavController){
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     val White_Blue = colorResource(id = R.color.White_Blue)
 
-    var totalprice: Int by remember { mutableStateOf(112) }
+    var totalprice: Int by remember { mutableStateOf(59) }
+    var unitPriceHalf: Int by remember { mutableStateOf(59) }
+    var unitPriceFull: Int by remember { mutableStateOf(109) }
     var count by remember { mutableStateOf(1) }
     val Item_Name = "Blue Lagoon"
+    var size by remember { mutableStateOf("Half")    }
 
     var selectedButtonIndex by remember { mutableStateOf(1) }
 
@@ -121,11 +130,12 @@ fun BlueLagoon(navController: NavController){
         },
 
     ) { innerPadding ->
+        var iP = innerPadding
         Column(
             Modifier
                 .fillMaxSize()
-                .padding(innerPadding),
-            verticalArrangement = Arrangement.SpaceBetween,
+                .padding(0.dp),
+            verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(
@@ -133,7 +143,6 @@ fun BlueLagoon(navController: NavController){
                     .padding(10.dp)
                     .background(White)
                     .fillMaxHeight(.8f)
-//                    .size(width = 500.dp, height = 670.dp)
                     .verticalScroll(rememberScrollState())
             ) {
 
@@ -183,7 +192,8 @@ fun BlueLagoon(navController: NavController){
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "Freshly pressed Mocktail that is pulpy, tangy and so refreshing.",
+                    text = "Freshly made Mocktail that is pulpy, tangy and so refreshing.",
+                    fontSize = 16.sp,
                     modifier = Modifier.padding(horizontal = 10.dp)
                 )
                 Spacer(modifier = Modifier.height(15.dp))
@@ -262,7 +272,7 @@ fun BlueLagoon(navController: NavController){
                     )
                     TextButton(
                         onClick = {
-                            onButtonClick(1); totalprice = 112
+                            onButtonClick(1); totalprice = unitPriceHalf
                         }, //unitprice of half mocktail is Rs 112
                         colors = ButtonDefaults.textButtonColors(
                             getButtonColor(1)
@@ -276,7 +286,7 @@ fun BlueLagoon(navController: NavController){
                     Spacer(modifier = Modifier.width(30.dp))
                     TextButton(
                         onClick = {
-                            onButtonClick(2); totalprice = 173
+                            onButtonClick(2); totalprice = unitPriceFull
                         }, //unit price of full is Rs 173
                         colors = ButtonDefaults.textButtonColors(
                             getButtonColor(2)
@@ -391,7 +401,7 @@ fun BlueLagoon(navController: NavController){
                 modifier = Modifier
                     .background(colorResource(id = R.color.White_Blue))
                     .fillMaxWidth()
-                    .fillMaxHeight(.5f)
+//                    .fillMaxHeight(.2f)
                     .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -403,9 +413,8 @@ fun BlueLagoon(navController: NavController){
                     horizontalArrangement = Arrangement.SpaceEvenly,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-
                     Text(
-                        text = "Price : Rs ${totalprice * count}", //to get total price
+                        text = "Rs ${totalprice * count}", //to get total price
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(vertical = 20.dp, horizontal = 10.dp),
                         fontSize = 25.sp
@@ -441,8 +450,8 @@ fun BlueLagoon(navController: NavController){
 
                     TextButton(
                         onClick = {
-//                        val item =  CartItem(name = Item_Name, price = totalprice * count, count = count)
-                            addCart(Item_Name,totalprice ,count)
+                            if(totalprice == unitPriceHalf)size = "Half" else size = "Full"
+                            addCart(Item_Name,totalprice ,count,size)
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                         modifier = Modifier
@@ -580,7 +589,7 @@ fun AddToCart(navController: NavController) {
                 ) {
 
                     Text(
-                        text = "Total Amount : Rs $totalCartPrice",
+                        text = "Item Total : Rs $totalCartPrice",
                         fontWeight = FontWeight.Black,
                         modifier = Modifier.padding(horizontal = 30.dp),
                         fontSize = 25.sp
@@ -656,7 +665,7 @@ fun AddToCart(navController: NavController) {
                                         horizontalArrangement = Arrangement.Center
                                     ) {
                                         Text(
-                                            text = "Total Amount : Rs ${totalAmount + totalCartPrice}",
+                                            text = "Total Amount : Rs ${totalAmount + totalCartPrice + platformFee}",
                                             fontWeight = FontWeight.Black,
                                             modifier = Modifier.padding( horizontal = 10.dp),
                                             fontSize = 25.sp
@@ -677,7 +686,7 @@ fun AddToCart(navController: NavController) {
                                         Button(onClick = {
                                             createNotification(context, "Order Summary" , "Order placed \nTotal Amount : ${totalAmount + totalCartPrice}")
                                         ; navController.navigate("Mainscreen")
-                                                         },colors = ButtonDefaults.buttonColors( colorResource(id = R.color.Mustard_yellow_light) )
+                                                         },colors = ButtonDefaults.buttonColors( colorResource(id = R.color.Mustard_yellow) )
                                         ) {
                                             Text(text = "Buy", fontSize = 20.sp , fontWeight = FontWeight.W700)
                                         }
@@ -728,11 +737,22 @@ fun CartItem(cart: Cart, onQuantityChange: () -> Unit) {
                 horizontalAlignment = Alignment.Start
             ) {
 
-                Text(
-                    text = cart.name,
-                    fontSize = 25.sp,
-                    fontWeight = FontWeight.Bold
-                )
+                Row( Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ){
+                    Text(
+                        text = cart.name,
+                        fontSize = 25.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+
+                    Text(
+                        text = "( ${cart.size} )",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
                 val price = cart.price
                 var count by remember {
                     mutableStateOf(cart.count)
@@ -741,43 +761,64 @@ fun CartItem(cart: Cart, onQuantityChange: () -> Unit) {
                     text = "Rs.${price * count}",
                     fontSize = 20.sp
                 )
-                Row(
-                    modifier = Modifier
-                        .size(height = 30.dp, width = 150.dp)
-                        .background(
-                            White,
-                            shape = RoundedCornerShape(30.dp)
-                        ),
+                Row(Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    IconButton(onClick = {
-                        if (cart.count > 1) cart.count--
-                        count = cart.count
-                        onQuantityChange()
-                    }) {
-                        Icon(
-                            Icons.Default.KeyboardArrowDown,
-                            contentDescription = null,
-                            modifier = Modifier.size(30.dp)
+                ){
+                    Row(
+                        modifier = Modifier
+                            .size(height = 30.dp, width = 150.dp)
+                            .background(
+                                White,
+                                shape = RoundedCornerShape(30.dp)
+                            ),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        IconButton(onClick = {
+                            if (cart.count > 1) cart.count--
+                            count = cart.count
+                            onQuantityChange()
+                        }) {
+                            Icon(
+                                Icons.Default.KeyboardArrowDown,
+                                contentDescription = null,
+                                modifier = Modifier.size(30.dp)
+                            )
+                        }
+                        Text(
+                            text = "$count",
+                            fontSize = 20.sp
                         )
-                    }
-                    Text(
-                        text = "$count",
-                        fontSize = 20.sp
-                    )
 
-                    IconButton(onClick = {
-                        cart.count++
-                        count = cart.count
-                        onQuantityChange()
-                    }) {
-                        Icon(
-                            Icons.Default.KeyboardArrowUp,
-                            contentDescription = null,
-                            modifier = Modifier.size(30.dp)
-                        )
+                        IconButton(onClick = {
+                            cart.count++
+                            count = cart.count
+                            onQuantityChange()
+                        }) {
+                            Icon(
+                                Icons.Default.KeyboardArrowUp,
+                                contentDescription = null,
+                                modifier = Modifier.size(30.dp)
+                            )
+                        }
                     }
+                    Box(modifier = Modifier.padding(1.dp)){
+                        IconButton(onClick = {
+                            db.collection("Cart").document(cart.name+"_${cart.size}")
+                            .delete()
+                            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
+                            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) };
+
+                        }
+                        ) {
+                            Icon( Icons.Default.Delete ,
+                                contentDescription = "Delete",
+                                tint = colorResource
+                                    (id = R.color.White_Blue))
+                        }
+                    }
+
                 }
             }
         }
