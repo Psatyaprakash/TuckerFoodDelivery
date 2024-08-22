@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
         //enableEdgeToEdge()
         setContent {
             TuckerFoodDeliveryTheme {
-                MyApp()
+                SaveLocationScreen()
             //SaveLocationScreen()
             //  LoginScreen()
             // PersonalInfoDetails()

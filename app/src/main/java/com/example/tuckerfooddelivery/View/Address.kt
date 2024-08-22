@@ -174,7 +174,7 @@ fun SaveLocationScreen() {
                     onValueChange = { apartment = it },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(Color(0xFFF0E68C), shape = RoundedCornerShape(8.dp)),
+                        .background(Color(0xFFF0E68C), shape = RoundedCornerShape(34.dp)),
                     placeholder = { Text(text = "Apartment") },
                     singleLine = true,
                     colors = TextFieldDefaults.textFieldColors(
