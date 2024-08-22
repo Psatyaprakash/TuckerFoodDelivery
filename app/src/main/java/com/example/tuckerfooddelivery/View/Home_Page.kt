@@ -98,16 +98,16 @@ fun HomePage(navController: NavController ) {
                     .background(color = colorResource(id = R.color.White_Blue))
             ) {
                 Image(
-                    painter = painterResource(R.drawable.menu),
-                    contentDescription = "3 bars",
+                    Icons.Default.Person,
+                    contentDescription = "Profile ",
                     Modifier
-                        .size(22.dp)
+                        .size(30.dp)
                         .align(Alignment.Center)
                         .clickable { navController.navigate("ProfileView") }
                 )
             }
 
-            Spacer(modifier = Modifier.width(5.dp))
+//            Spacer(modifier = Modifier.width(1.dp))
             Column() {
                 Text(
                     text = "DELIVER TO",
@@ -197,8 +197,10 @@ fun HomePage(navController: NavController ) {
                     shape = RoundedCornerShape(20.dp)
                 )
                 Spacer(modifier = Modifier.height(5.dp))
-                Row(Modifier.fillMaxWidth()
-                    .padding(2.dp,0.dp),
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(2.dp, 0.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -675,20 +677,20 @@ fun HomePage(navController: NavController ) {
 
                         ) {
                         Image(
-                            painter = painterResource(id = R.drawable.restaurant_bg_2),
+                            painter = painterResource(id = R.drawable.group_598),
                             contentDescription = "Restaurant 2 image",
                             modifier = Modifier
                                 .align(Alignment.TopStart)
                                 .size(4009.dp),
 
                             )
-                        Image(
-                            painter = painterResource(id = R.drawable.res_img_2),
-                            contentDescription = "Restaurant 2 image",
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .size(250.dp)
-                        )
+//                        Image(
+//                            painter = painterResource(id = R.drawable.res_img_2),
+//                            contentDescription = "Restaurant 2 image",
+//                            modifier = Modifier
+//                                .align(Alignment.Center)
+//                                .size(250.dp)
+//                        )
                     }
                 }
                 Spacer(
@@ -777,7 +779,7 @@ fun HomePage(navController: NavController ) {
                         .size(width = 400.dp, height = 200.dp)
                         .wrapContentHeight(),
                     colors = CardColors(
-                        containerColor = Mustard_yellow_light,
+                        containerColor = Color.Transparent,
                         contentColor = Color.Black,
                         disabledContentColor = Mustard_yellow,
                         disabledContainerColor = Mustard_yellow
@@ -789,7 +791,7 @@ fun HomePage(navController: NavController ) {
                         contentDescription = "Pizza",
                         modifier = Modifier
                             .align(Alignment.Start)
-                            .size(450.dp)
+                            .size(470.dp)
                     )
                 }
                 Spacer(
