@@ -1,5 +1,10 @@
 package com.example.tuckerfooddelivery.ViewModel
 
+import com.google.firebase.Firebase
+import com.google.firebase.storage.storage
+
+val storage = Firebase.storage
+val storageRef = storage.reference
 
 //Variable storing Total Cart value
 var totalCartPrice_global=0

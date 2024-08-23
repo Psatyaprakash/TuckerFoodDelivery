@@ -47,6 +47,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.tuckerfooddelivery.Model.Data.Restaurant
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Cart
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Large
@@ -55,6 +56,8 @@ import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Regular
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_RegularPrice
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Wishlist
 import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_Wishlist
+import com.example.tuckerfooddelivery.ViewModel.storage
+import com.example.tuckerfooddelivery.ViewModel.storageRef
 import com.example.tuckerfooddelivery.ViewModel.updatePrice
 
 @Composable
@@ -644,6 +647,7 @@ fun ClassicFrenchFriesCart(Regular:Int,Large:Int) {
                                 .size(120.dp)
                                 .wrapContentHeight(),
                         ) {
+
                             Image(
                                 painter = painterResource(id = R.drawable.classic_french_fries),
                                 contentDescription = "classic_french_fries",

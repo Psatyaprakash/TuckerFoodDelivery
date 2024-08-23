@@ -25,8 +25,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.example.tuckerfooddelivery.Model.Data.Restaurant
 import com.example.tuckerfooddelivery.Model.Fetch.fetchRestaurant
-import com.google.firebase.Firebase
-import com.google.firebase.storage.storage
+import com.example.tuckerfooddelivery.ViewModel.storageRef
 
 @Composable
 fun RestaurantList() {
@@ -35,8 +34,7 @@ fun RestaurantList() {
     val errorMessage = remember { mutableStateOf<String?>(null) }
     val context = LocalContext.current
 
-    val storage = Firebase.storage
-    val storageRef = storage.reference
+
 
     LaunchedEffect(Unit) {
         try {

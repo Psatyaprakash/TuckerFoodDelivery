@@ -2,6 +2,7 @@ package com.example.tuckerfooddelivery.View
 
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -42,12 +43,13 @@ import kotlinx.coroutines.tasks.await
 fun Storage() {
 
     var userName by remember { mutableStateOf("") }
-    var itemName by remember { mutableStateOf("") }
+    var itemName by remember { mutableStateOf("itemName") }
     val storage = Firebase.storage
     val storageRef = storage.reference
     fun uploadImage(uri: Uri, context: Context) {
 //        val fileName = "profile/${userName}.jpg"
-        val fileName = "Restro/Menu/Category/Item/${itemName}.jpg"
+//        val fileName = "Restro/Menu/Category/Item/${itemName}.jpg"
+        val fileName = "Cart/$itemName.jpg"
         val imageRef = storageRef.child(fileName)
         imageRef.putFile(uri)
             .addOnSuccessListener { taskSnapshot ->
@@ -59,6 +61,7 @@ fun Storage() {
                     )
                         .show()
                 }
+                Log.w("ImageUri" , "$uri")
             }
             .addOnFailureListener { e ->
                 Toast.makeText(context, "Image failed: ${e.message}", Toast.LENGTH_SHORT).show()
