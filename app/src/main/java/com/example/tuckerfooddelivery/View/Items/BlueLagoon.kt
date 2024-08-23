@@ -147,17 +147,17 @@ fun BlueLagoon(navController: NavController){
             Modifier
                 .fillMaxSize()
                 .padding(0.dp),
-            verticalArrangement = Arrangement.Bottom,
+            verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(
                 modifier = Modifier
                     .padding(10.dp)
                     .background(White)
-                    .fillMaxHeight(.8f)
+                    .fillMaxHeight(.9f)
                     .verticalScroll(rememberScrollState())
             ) {
-
+                Spacer(modifier = Modifier.height(70.dp))
                 Card(
                     shape = RoundedCornerShape(16.dp),
                     backgroundColor = Mustard_yellow,
@@ -594,7 +594,7 @@ fun AddToCart(navController: NavController) {
 //                            val fileName = "Restro/Menu/Category/Item/${itemName}.jpg"
 //                            val imagRef = storageRef.child(fileName)
 
-                            val imagePath = "Cart/${cart.name}.jpg"
+                            val imagePath = "Cart/${cart.name}.png"
                             CartItem(cart = cart, onQuantityChange = {
                                 totalCartPrice = cartList.value.sumOf { it.price * it.count } },
                                 imagePath = imagePath
@@ -626,7 +626,8 @@ fun AddToCart(navController: NavController) {
                         var showDialog by remember { mutableStateOf(false) }
                         TextButton(
                             onClick = {
-                                showDialog = true
+                                showDialog = if(totalCartPrice != 0 ) true else false
+                                //showDialog = totalCartPrice != 0  //Same as above code just in short. Isn't it amazing guys ??
                             },
                             colors = ButtonDefaults.buttonColors(containerColor = colorResource(R.color.Mustard_yellow)),
                             border = BorderStroke(width = 0.dp, color = Color.Transparent),
@@ -718,7 +719,7 @@ fun AddToCart(navController: NavController) {
                                                     "Order Summary",
                                                     "Order placed \nTotal Amount : ${totalAmount + totalCartPrice}"
                                                 )
-                                                ; navController.navigate("Mainscreen")
+                                                ; navController.navigate("MainScreen")
                                             },
                                             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.Mustard_yellow))
                                         ) {
@@ -785,11 +786,19 @@ fun CartItem(cart: Cart, onQuantityChange: () -> Unit, imagePath: String  /*, on
                         .fillMaxWidth(.3f)
 //                        .align(Alignment.CenterVertically)
                 ) {
-                    AsyncImage(model = imageUrl,
-                        contentDescription = cart.name,
-                        Modifier
-                            .align(Alignment.Center)
-                    )
+                    if (imageUrl != null) {
+                        AsyncImage(
+                            model = imageUrl,
+                            contentDescription = cart.name,
+                            Modifier
+                                .align(Alignment.Center)
+                        )
+                    }
+                    else if (loadError != null) {
+                        Text(text = "Failed to load image: ${loadError!!.message}")
+                    } else {
+                        CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                    }
                 }
                 Column(
                     Modifier
@@ -882,8 +891,8 @@ fun CartItem(cart: Cart, onQuantityChange: () -> Unit, imagePath: String  /*, on
                                             e
                                         )
                                     };
-                            }
-                            ) {
+
+                            }) {
                                 Icon(
                                     Icons.Default.Delete,
                                     contentDescription = "Delete",

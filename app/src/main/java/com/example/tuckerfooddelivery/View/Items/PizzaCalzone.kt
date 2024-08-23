@@ -265,11 +265,11 @@ fun PizzaCalzone(navController: NavController) {
                     painter = painterResource(id = R.drawable.clock),
                     contentDescription = "delivery_time",
                     modifier = Modifier
-                        .size(35.dp)
+                        .size(25.dp)
                         .padding(0.dp)
                 )
                 Text(
-                    text = "$deliveryTime",
+                    text = "$deliveryTime Min",
                     fontWeight = FontWeight.Normal,
                     color = Color.Black,
                     fontSize = 18.sp,

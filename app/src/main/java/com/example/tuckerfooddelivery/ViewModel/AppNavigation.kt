@@ -74,7 +74,7 @@ fun AppNavigation() {
                     tween(200) )},
         startDestination = "MainScreen"
     ) {
-        composable("Storage"){ Storage("") }
+        composable("Storage"){ Storage() }
 //        composable("NotificationScreen"){ NotificationScreen(NotificationTitle,NotiC ) }
 
         composable("Start") { Start(navController) }

@@ -18,16 +18,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ComposeCompilerApi
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Black
@@ -38,12 +35,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.tuckerfooddelivery.View.HomePage
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
-import com.example.tuckerfooddelivery.View.RestaurantList
 import com.example.tuckerfooddelivery.View.Storage
 import com.example.tuckerfooddelivery.ViewModel.AppNavigation
-import okhttp3.Route
 
 class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -52,7 +46,7 @@ class MainActivity : ComponentActivity() {
         // enableEdgeToEdge()
         setContent {
             AppNavigation()
-//            Storage("BlueLagoon2")
+//            Storage()
         }
     }
 }
