@@ -34,6 +34,7 @@ import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.AddShoppingCart
 import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.Delete
@@ -87,8 +88,6 @@ import com.example.tuckerfooddelivery.ViewModel.totalAmount
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
-
-var BlueLagoon_Cart=0
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -152,7 +151,7 @@ fun BlueLagoon(navController: NavController){
         ) {
             Column(
                 modifier = Modifier
-                    .padding(10.dp)
+                    .padding(horizontal =10.dp)
                     .background(White)
                     .fillMaxHeight(.9f)
                     .verticalScroll(rememberScrollState())
@@ -464,10 +463,6 @@ fun BlueLagoon(navController: NavController){
                         onClick = {
                             if(totalprice == unitPriceHalf)size = "Half" else size = "Full"
                             addCart(Item_Name,totalprice ,count,size)
-
-//                            val imageUri = uploadImageToFirebaseStorage("")
-//
-//                            uploadAndSaveImage(imageUri)
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                         modifier = Modifier
@@ -792,6 +787,7 @@ fun CartItem(cart: Cart, onQuantityChange: () -> Unit, imagePath: String  /*, on
                             contentDescription = cart.name,
                             Modifier
                                 .align(Alignment.Center)
+                                .size(100.dp)
                         )
                     }
                     else if (loadError != null) {
