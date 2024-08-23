@@ -92,7 +92,7 @@ fun BottomNavigationBar(navController: NavController) {
             )
             BottomNavIcon(Icons.Filled.Home, "Home", navController, "MainScreen")
 //            BottomNavIcon(Icons.Filled.Favorite, "Favourites", navController, "Favourites")
-            BottomNavIcon(Icons.Filled.ShoppingCart, "Cart", navController, "Cart")
+            BottomNavIcon(Icons.Filled.ShoppingCart, "Cart", navController, "AddToCart")
 //            BottomNavIcon(Icons.Filled.Person, "Profile", navController, "ProfileView")
         }
     }

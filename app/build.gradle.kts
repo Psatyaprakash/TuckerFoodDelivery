@@ -88,5 +88,6 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.androidx.browser)
     implementation (libs.androidx.material.icons.extended)
+    implementation(libs.androidx.lifecycle.runtime.compose)
 
 }
