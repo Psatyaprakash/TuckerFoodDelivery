@@ -453,11 +453,7 @@ fun BlueLagoon(navController: NavController){
                     TextButton(
                         onClick = {
                             if(totalprice == unitPriceHalf)size = "Half" else size = "Full"
-                            addCart(Item_Name,Name,totalprice ,count,size)
-
-//                            val imageUri = uploadImageToFirebaseStorage("")
-//
-//                            uploadAndSaveImage(imageUri)
+                            addCart(Item_Name,totalprice ,count,size)
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                         modifier = Modifier
@@ -750,8 +746,6 @@ fun getImageUrlFromFirebaseStorage(imagePath: String, onSuccess: (String) -> Uni
 fun CartItem(navController: NavController,cart: Cart, onQuantityChange: () -> Unit, imagePath: String  /*, onDeleteItem: () -> Unit*/) {
     var imageUrl by remember { mutableStateOf<String?>(null) }
     var loadError by remember { mutableStateOf<Exception?>(null) }
-    var isVisible by remember { mutableStateOf(true) }
-    var reload by remember { mutableStateOf(false) }
 
     // Fetch the image URL
     LaunchedEffect(imagePath) {
@@ -761,12 +755,9 @@ fun CartItem(navController: NavController,cart: Cart, onQuantityChange: () -> Un
             onFailure = { exception -> loadError = exception },
         )
     }
-    LaunchedEffect(reload) {
-
-    }
 
     if (imageUrl != null) {
-//            Log.w("ImagePath", "${storageRef.child(imagePath)} \n$imageUrl")
+            Log.w("ImagePath", "${storageRef.child(imagePath)} \n$imageUrl")
 
                 Card(
                     modifier = Modifier
@@ -884,8 +875,6 @@ fun CartItem(navController: NavController,cart: Cart, onQuantityChange: () -> Un
                                             .addOnFailureListener { e ->
                                                 Log.w(TAG, "Error deleting document", e)
                                             };
-                                        isVisible = false;
-                                        reload = true;
                                         navController.navigate("AddToCart")
 
                                     }) {

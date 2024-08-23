@@ -416,7 +416,7 @@ fun BurgerBistro(navController: NavController) {
                 TextButton(
                     onClick = {
                         if(totalprice == unitPriceRegular)size = "Regular" else size = "Large"
-                        addCart(Item_Name,Name,totalprice ,count,size)
+                        addCart(Item_Name,totalprice ,count,size)
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     modifier = Modifier
