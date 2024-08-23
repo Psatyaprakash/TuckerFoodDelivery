@@ -92,6 +92,7 @@ fun BlueLagoon(navController: NavController){
     var unitPriceHalf: Int by remember { mutableStateOf(59) }
     var unitPriceFull: Int by remember { mutableStateOf(109) }
     var count by remember { mutableStateOf(1) }
+    val Name = "Blue Lagoon"
     val Item_Name = "BlueLagoon"
     var size by remember { mutableStateOf("Half")    }
 
@@ -452,7 +453,7 @@ fun BlueLagoon(navController: NavController){
                     TextButton(
                         onClick = {
                             if(totalprice == unitPriceHalf)size = "Half" else size = "Full"
-                            addCart(Item_Name,totalprice ,count,size)
+                            addCart(Item_Name,Name,totalprice ,count,size)
 
 //                            val imageUri = uploadImageToFirebaseStorage("")
 //

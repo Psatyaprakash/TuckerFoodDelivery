@@ -16,8 +16,9 @@ import java.time.format.DateTimeFormatter
 
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun addCart(name: String, price : Int, count : Int, size : String ) {
+fun addCart(itemName : String ,name: String, price : Int, count : Int, size : String ) {
     val cart = Cart(
+        itemName = itemName,
         name = name,
         price = price,
         count = count,
