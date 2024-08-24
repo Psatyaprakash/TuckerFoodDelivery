@@ -138,7 +138,7 @@ fun HomePage(navController: NavController ) {
                     Modifier
                         .size(27.dp)
                         .align(Alignment.Center)
-                        .clickable { navController.navigate("Favourites") }
+                        .clickable { navController.navigate("Wishlist") }
                 )
             }
         }

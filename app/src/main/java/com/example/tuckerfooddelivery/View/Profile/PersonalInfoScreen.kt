@@ -1,22 +1,37 @@
 package com.example.tuckerfooddelivery.View.Profile
 
+import android.content.Context
+import android.net.Uri
+import android.util.Log
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -25,13 +40,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
-import coil.compose.rememberImagePainter
+import com.example.tuckerfooddelivery.Model.Add.addUser
+import com.example.tuckerfooddelivery.Model.Data.User
+import com.example.tuckerfooddelivery.Model.Fetch.fetchUser
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.View.Items.getImageUrlFromFirebaseStorage
+import com.example.tuckerfooddelivery.View.Storage
+import com.example.tuckerfooddelivery.ViewModel.storageRef
 
 @Composable
 fun CircularButtonWithSymbol(onClick: () -> Unit) {
@@ -55,39 +77,75 @@ fun PersonalInfoDetails(navController: NavHostController) {
     var phoneNumber by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
 
-    Box(
+    val context = LocalContext.current
+    val imageUri = remember {
+        mutableStateOf<Uri?>(null)
+    }
+
+    val userList = remember { mutableStateOf<List<User>>(emptyList()) }
+    LaunchedEffect(Unit) {
+        try {
+            fetchUser { user ->
+                userList.value = user
+//                user.
+                fullName = user.get(0).name
+                phoneNumber = user.get(0).phone
+                email = user.get(0).email
+                bio = user.get(0).bio
+//                Log.w("fetch", "${user.get(0)}")
+            }
+        } catch (e: Exception) {
+            Log.w("Error" ,"Failed to load User")
+        }
+    }
+
+    val launcher =
+        rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            imageUri.value = uri
+            uri?.let { uploadImage(uri, phoneNumber ,context) }
+        }
+    val imagePath by remember { mutableStateOf("User/$phoneNumber.jpg") }
+    var imageUrl by remember { mutableStateOf("") }
+    var loadError by remember { mutableStateOf<Exception?>(null) }
+
+    LaunchedEffect(imagePath) {
+        getImageUrlFromFirebaseStorage(
+            imagePath = imagePath,
+            onSuccess = { url -> imageUrl = url },
+            onFailure = { exception -> loadError = exception },
+        )
+    }
+
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(17.dp)
     ) {
-        Box(
+        Row(
             modifier = Modifier
-                .align(Alignment.TopStart)
-                .padding(16.dp)
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             CircularButtonWithSymbol(onClick = { navController.navigate("ProfileView") })
+            Text(
+                text = "Personal Info",
+                color = Color.Black,
+                fontSize = 24.sp,
+                modifier = Modifier
+                    .padding(20.dp,0.dp) // Adjust spacing if needed
+            )
         }
-
-        Text(
-            text = "Personal Info",
-            color = Color.Black,
-            fontSize = 24.sp,
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .padding(top = 11.dp) // Adjust spacing if needed
-        )
-
         // Profile Image and Edit Button
         Column(
             modifier = Modifier
-                .align(Alignment.Center)
-                .fillMaxSize()
-                .padding(top = 60.dp)
-                .align(Alignment.TopCenter),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .fillMaxWidth()
+                .padding(0.dp, 10.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
-            Image(
-                painter = rememberAsyncImagePainter(model = "https://www.bing.com/images/search?view=detailV2&ccid=7hFAXSqY&id=CC0399CC4062E603BD734E0EF136B2C10A280510&thid=OIP.7hFAXSqYekM7JbRZma2zUwHaEm&mediaurl=https%3a%2f%2fwww.pngitem.com%2fpimgs%2fm%2f159-1595932_python-logo-png-transparent-images-logo-transparent-background.png&exph=535&expw=860&q=google+python+logo&simid=608042017004537305&FORM=IRPRST&ck=E62F0753280B23CB03B0752D4B290D5B&selectedIndex=5&itb=0"),
+            Log.w("ImageUrl", imageUrl)
+            AsyncImage(
+                model =  imageUrl ,
                 contentDescription = "Profile Image",
                 modifier = Modifier
                     .size(100.dp)
@@ -96,7 +154,7 @@ fun PersonalInfoDetails(navController: NavHostController) {
             )
             Spacer(modifier = Modifier.height(5.dp))
             TextButton(
-                onClick = { /* handle image edit click */ },
+                onClick = { launcher.launch("image/*") },
             ) {
                 Text("Edit Image", color = Color.Blue)
             }
@@ -107,61 +165,68 @@ fun PersonalInfoDetails(navController: NavHostController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 200.dp) // Adjust the top padding to ensure space for the profile image
+                .padding(10.dp, 10.dp)
                 .verticalScroll(rememberScrollState())
         ) {
-            Text(text = "FULL NAME", color = Color.Black, fontSize = 14.sp)
+            Text(text = "FULL NAME", color = Color.Black, fontSize = 14.sp  )
             Spacer(modifier = Modifier.height(10.dp))
             // Name
-            TextField(
+            OutlinedTextField(
                 value = fullName,
                 onValueChange = { fullName = it },
                 label = { Text("Enter your name") },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp)
+                    , shape = RoundedCornerShape(16.dp)
             )
             Spacer(modifier = Modifier.height(30.dp))
             // Email
             Text(text = "E-MAIL", color = Color.Black, fontSize = 14.sp)
             Spacer(modifier = Modifier.height(10.dp))
-            TextField(
+            OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
                 label = { Text("Enter your Email") },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(56.dp)
+                    .height(56.dp),
+                shape = RoundedCornerShape(16.dp)
             )
             Spacer(modifier = Modifier.height(30.dp))
             // Phone Number
             Text(text = "PHONE NUMBER", color = Color.Black, fontSize = 14.sp)
             Spacer(modifier = Modifier.height(10.dp))
-            TextField(
+            OutlinedTextField(
                 value = phoneNumber,
                 onValueChange = { phoneNumber = it },
                 label = { Text("Enter your Phone Number") },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(56.dp)
+                    .height(56.dp),
+                shape = RoundedCornerShape(16.dp)
             )
             Spacer(modifier = Modifier.height(30.dp))
             // Bio
             Text(text = "BIO", color = Color.Black, fontSize = 14.sp)
             Spacer(modifier = Modifier.height(10.dp))
-            TextField(
+            OutlinedTextField(
                 value = bio,
                 onValueChange = { bio = it },
                 label = { Text("Enter your bio") },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(96.dp)
+                    .height(96.dp),
+                shape = RoundedCornerShape(16.dp)
             )
             Spacer(modifier = Modifier.height(45.dp))
             Button(
-                onClick = { /* handle click */ },
+                onClick = {
+                    addUser(fullName ,email, phoneNumber ,bio)
+
+                },
                 colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)), // Mustard color
-                shape = RoundedCornerShape(15.dp),
+                shape = RoundedCornerShape(16.dp),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(54.dp)
@@ -170,4 +235,26 @@ fun PersonalInfoDetails(navController: NavHostController) {
             }
         }
     }
+}
+
+fun uploadImage(uri: Uri, phone : String, context: Context) {
+//        val fileName = "profile/${userName}.jpg"
+//        val fileName = "Restro/Menu/Category/Item/${itemName}.jpg"
+    val fileName = "User/$phone.jpg"
+    val imageRef = storageRef.child(fileName)
+    imageRef.putFile(uri)
+        .addOnSuccessListener { taskSnapshot ->
+            imageRef.downloadUrl.addOnSuccessListener { uri ->
+                Toast.makeText(
+                    context,
+                    "Image Uploaded successfully: $uri",
+                    Toast.LENGTH_LONG
+                )
+                    .show()
+            }
+            Log.w("ImageUri" , "$uri")
+        }
+        .addOnFailureListener { e ->
+            Toast.makeText(context, "Image failed: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
 }

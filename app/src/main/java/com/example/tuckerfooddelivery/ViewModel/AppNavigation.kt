@@ -7,6 +7,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.ViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -53,6 +54,7 @@ import com.example.tuckerfooddelivery.View.Start
 import com.example.tuckerfooddelivery.View.Start2
 import com.example.tuckerfooddelivery.View.Start3
 import com.example.tuckerfooddelivery.View.Storage
+import com.example.tuckerfooddelivery.View.Wishlist
 
 
 //Navigation
@@ -127,6 +129,7 @@ fun AppNavigation() {
         //Cart
         composable("Cart"){ Cart(navController) }
         composable("AddToCart"){ AddToCart(navController) }
+        composable("Wishlist"){ Wishlist(navController) }
 
         //Profile
         composable("ProfileView") { ProfileView(navController) }
