@@ -6,31 +6,22 @@ TuckerFoodDelivery is an innovative food delivery app built using Kotlin. Our ap
 
 ### 1. **Pledge Feature**
    - **Community-Driven Initiative:** The Pledge feature allows users and restaurants to participate in reducing food waste by donating unsold food items.
-   - **Partnerships with Local Restaurants:** We collaborate with local restaurants to donate unsold food items at the end of each day.
    - **Food Safety and Quality:** Ensuring that all donated food meets safety and quality standards.
-   - **Collaboration with NGOs and Shelters:** Partnering with local NGOs and shelters to distribute food to those in need.
    - **User Pledge Donations:** Users can donate a small amount when placing an order to support the Pledge initiative.
    - **Transparency:** Regular updates and stories from beneficiaries to maintain transparency.
 
 ### 2. **Order Food**
    - **Browse Restaurants:** Users can browse through a wide range of local restaurants and their menus.
    - **Place Orders:** Simple and intuitive order placement process.
-   - **Real-Time Tracking:** Track the status of your order in real-time.
    - **Pledge Option:** Add a donation to your order with the Pledge option.
 
 ### 3. **User Accounts**
    - **User Registration and Login:** Secure user authentication with registration and login features.
-   - **Order History:** Users can view their past orders and pledge contributions.
    - **Profile Management:** Update personal information and manage payment methods.
 
 ### 4. **Admin Panel**
    - **Restaurant Management:** Admins can add, update, and remove restaurant listings.
    - **Order Management:** Monitor and manage all orders placed through the app.
-   - **Pledge Management:** Track pledge donations and manage food distribution to NGOs and shelters.
-
-### 5. **Notifications**
-   - **Order Updates:** Real-time notifications for order status updates.
-   - **Pledge Updates:** Receive notifications about the impact of your donations.
 
 ## Tech Stack
 
