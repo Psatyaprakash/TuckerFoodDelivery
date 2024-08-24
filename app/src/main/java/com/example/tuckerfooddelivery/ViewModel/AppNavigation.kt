@@ -54,6 +54,7 @@ import com.example.tuckerfooddelivery.View.Start
 import com.example.tuckerfooddelivery.View.Start2
 import com.example.tuckerfooddelivery.View.Start3
 import com.example.tuckerfooddelivery.View.Storage
+import com.example.tuckerfooddelivery.View.Wishlist
 
 
 //Navigation
@@ -133,6 +134,7 @@ fun AppNavigation() {
         //Cart
         composable("Cart"){ Cart(navController) }
         composable("AddToCart"){ AddToCart(navController) }
+        composable("Wishlist"){ Wishlist(navController) }
 
         //Profile
         composable("ProfileView") { ProfileView(navController) }

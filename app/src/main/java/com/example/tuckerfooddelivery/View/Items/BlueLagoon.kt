@@ -7,6 +7,7 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -68,6 +69,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.tuckerfooddelivery.Model.Add.addCart
+import com.example.tuckerfooddelivery.Model.Add.addWishlist
 import com.example.tuckerfooddelivery.Model.Data.Cart
 import com.example.tuckerfooddelivery.Model.Fetch.db
 import com.example.tuckerfooddelivery.Model.Fetch.fetchCart
@@ -180,6 +182,10 @@ fun BlueLagoon(navController: NavController){
                                 .size(40.dp)
                                 .background(Color.Red, shape = CircleShape)
                                 .padding(8.dp)
+                                .clickable {
+                                    if(totalprice == unitPriceHalf)size = "Half" else size = "Full"
+                                    addWishlist(Item_Name,totalprice ,count,size)
+                                }
                         )
                     }
                 }
@@ -573,7 +579,7 @@ fun AddToCart(navController: NavController) {
 
                 Column(
                     Modifier
-                        .fillMaxHeight(.80f)
+                        .fillMaxHeight(.85f)
                         .padding(16.dp, 10.dp)
                 ) {
                     LazyColumn {
@@ -782,6 +788,7 @@ fun CartItem(navController: NavController,cart: Cart, onQuantityChange: () -> Un
                                     contentDescription = cart.name,
                                     Modifier
                                         .align(Alignment.Center)
+                                        .size(100.dp)
                                 )
                             } else if (loadError != null) {
                                 Text(text = "Failed to load image: ${loadError!!.message}")
