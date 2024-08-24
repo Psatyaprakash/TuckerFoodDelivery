@@ -72,7 +72,7 @@ fun AppNavigation() {
                 slideOutOfContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "TibetanMomos"
+        startDestination = "MainScreen"
     ) {
         composable("Storage"){ Storage() }
 //        composable("NotificationScreen"){ NotificationScreen(NotificationTitle,NotiC ) }
