@@ -1,5 +1,6 @@
 package com.example.tuckerfooddelivery.View.Items
 
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -9,6 +10,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,9 +25,11 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddShoppingCart
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -38,14 +43,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.tuckerfooddelivery.Model.Add.addCart
 import com.example.tuckerfooddelivery.R
-
+import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 
 
 var TibetanMomos_Cart=0
@@ -62,52 +69,46 @@ fun TibetanMomos(navController: NavController) {
     )
     var selectedButtonIndex by remember { mutableStateOf(1) }
 
+    @Composable
     fun getButtonColor(index: Int): Color {
-        return if (index == selectedButtonIndex) Mustard_yellow else Color.LightGray
+        return if (index == selectedButtonIndex) Mustard_yellow else colorResource(id = R.color.White_Blue)
     }
 
     fun onButtonClick(index: Int) {
         selectedButtonIndex = index
     }
-    val Item_Name = "Tibetan Momos"
-    var totalprice : Int by remember {
-        mutableStateOf<Int>(55)
-    }
-    var count by remember {
-        mutableStateOf<Int>(1)
-    }
-
-
+    val Item_Name = "TibetanMomos"
+    var totalprice: Int by remember { mutableStateOf(49) }
+    var unitPriceHalf: Int by remember { mutableStateOf(49) }
+    var unitPriceFull: Int by remember { mutableStateOf(75) }
+    var count by remember { mutableStateOf(1) }
+    val Name = "Tibetan Momos"
+    var size by remember { mutableStateOf("Half")    }
 
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
-    Column {
+    Column(
+        Modifier
+            .fillMaxSize()
+            .padding(0.dp),
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.CenterHorizontally) {
         Column(
             modifier = Modifier
-                .padding(horizontal = 15.dp)
-                .size(width = 500.dp, height = 670.dp)
+                .padding(horizontal =10.dp)
+                .background(White)
+                .fillMaxHeight(.92f)
                 .verticalScroll(rememberScrollState())
         ) {
             Spacer(modifier = Modifier.height(15.dp))
-            Row {
-                TextButton(
-                    onClick = {navController.popBackStack() },
-                    colors = ButtonDefaults.buttonColors(Color.LightGray),
-                    shape = CircleShape,
-                    contentPadding = PaddingValues(0.dp),
-                    modifier = Modifier
-                        .size(50.dp)
-                        .background(Color.Gray, CircleShape)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.leftarrow),
-                        contentDescription = "",
-                        modifier = Modifier.size(30.dp)
-                    )
+            //Jaggu
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                CircularButtonWithSymbol {
+                    navController.popBackStack()
                 }
                 Spacer(modifier = Modifier.width(1.dp))
                 Text(
                     text = "Details",
-                    fontSize = 16.sp,
+                    fontSize = 25.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(16.dp)
                 )
@@ -132,7 +133,7 @@ fun TibetanMomos(navController: NavController) {
                         contentDescription = "Tibetan Momos",
                         modifier = Modifier
                             .align(Alignment.Center)
-                            .size(220.dp)
+                            .size(270.dp)
                     )
                     Icon(
                         imageVector = Icons.Default.Favorite,
@@ -149,30 +150,30 @@ fun TibetanMomos(navController: NavController) {
             Spacer(modifier = Modifier.height(15.dp))
 
             Text(
-                text = "$Item_Name",
-                fontSize = 20.sp,
+                text = Name,
+                fontSize = 25.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
-                modifier = Modifier.padding(10.dp)
+                modifier = Modifier.padding(vertical = 10.dp, horizontal = 15.dp)
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = "Mouth-watering Tibetan Momos stuffed with Juicy boneless Chicken, Cheese and Herbs. Served with Spicy Red Sauce and Green Chutney.",
-                modifier = Modifier.padding(horizontal = 10.dp)
+                fontSize = 18.sp,
+                modifier = Modifier.padding(horizontal = 15.dp)
             )
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(25.dp))
             Row(
                 modifier = Modifier
                     .padding(horizontal = 8.dp)
                     .fillMaxWidth(),
-                //horizontalArrangement = Arrangement.Center,
+                horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.star__),
                     contentDescription = "Pizza",
                     modifier = Modifier
-                        //.align(Alignment.Top)
                         .size(30.dp)
                         .padding(0.dp)
                 )
@@ -225,11 +226,13 @@ fun TibetanMomos(navController: NavController) {
                     .padding(horizontal = 1.dp)
                     .fillMaxWidth()
                     .align(Alignment.CenterHorizontally),
-                horizontalArrangement = Arrangement.SpaceEvenly,
+                horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "SIZE:", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
-                TextButton(onClick = { onButtonClick(1); totalprice = 55 },
+                Text(text = "SIZE :",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 25.dp))
+                TextButton(onClick = { onButtonClick(1); totalprice = unitPriceHalf},
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(1)
                     ),
@@ -240,7 +243,7 @@ fun TibetanMomos(navController: NavController) {
                     Text(text = "Half", fontSize = 20.sp)
                 }
                 Spacer(modifier = Modifier.width(30.dp))
-                TextButton(onClick = { onButtonClick(2); totalprice = 78 },
+                TextButton(onClick = { onButtonClick(2); totalprice = unitPriceFull },
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(2)
                     ),
@@ -252,14 +255,16 @@ fun TibetanMomos(navController: NavController) {
                 }
                 Spacer(modifier = Modifier.width(20.dp))
             }
-            Spacer(modifier = Modifier.height(20.dp))
-            Text(text = "INGRIDENTS", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
+            Spacer(modifier = Modifier.height(25.dp))
+            Text(text = "INGRIDENTS",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(horizontal = 15.dp))
             Spacer(modifier = Modifier.height(25.dp))
             Row(
                 modifier = Modifier
                     .padding(horizontal = 0.dp)
                     .fillMaxWidth(),
-                //.align(Alignment.CenterHorizontally),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -278,7 +283,6 @@ fun TibetanMomos(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -294,7 +298,6 @@ fun TibetanMomos(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -310,7 +313,6 @@ fun TibetanMomos(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -326,7 +328,6 @@ fun TibetanMomos(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -342,214 +343,95 @@ fun TibetanMomos(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
             }
-            Spacer(modifier = Modifier.height(75.dp))
-
         }
         Column(
             modifier = Modifier
-                .background(Color.LightGray)
+                .background(colorResource(id = R.color.White_Blue))
                 .fillMaxWidth()
-                .size(height = 200.dp, width = 700.dp)
-                .verticalScroll(rememberScrollState())
+//                    .fillMaxHeight(.2f)
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row(
-                modifier = Modifier.padding(10.dp),
-                horizontalArrangement = Arrangement.Center
+                modifier = Modifier
+                    .padding(5.dp, 2.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-
                 Text(
-                    text = "PRICE : Rs ${totalprice * count}",
+                    text = "Rs ${totalprice * count}", //to get total price
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(vertical = 20.dp, horizontal = 10.dp),
                     fontSize = 25.sp
                 )
-                Spacer(modifier = Modifier.width(50.dp))
-                Box(
-                    modifier = Modifier
-                        .size(height = 50.dp, width = 150.dp)
-                        .background(color = Mustard_yellow, shape = CircleShape)
-                        .align(Alignment.CenterVertically)
-                ) {
-                    Row {
-                        IconButton(onClick = { if(count == 1) count = 1 else count-- }) {
-                            Icon(
-                                Icons.Default.KeyboardArrowDown,
-                                contentDescription = null,
-                                modifier = Modifier.size(50.dp)
-                            )
-                        }
-                        Spacer(modifier = Modifier.width(5.dp))
-                        //var count = 0
-                        Text(
-                            text = "$count", modifier = Modifier
-                                .padding(vertical = 15.dp)
-                                .padding(horizontal = 15.dp),
-                            fontSize = 20.sp
+                Row(modifier = Modifier
+                    .width(120.dp)
+                    .background(Mustard_yellow, shape = RoundedCornerShape(30.dp)),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ){
+                    IconButton(onClick = {
+                        if (count == 1) count = 1 else count--
+                    }) { //to set default limit as 1
+                        Icon(
+                            Icons.Default.KeyboardArrowDown,
+                            contentDescription = null,
+                            modifier = Modifier.size(30.dp)
                         )
-                        Spacer(modifier = Modifier.width(1.dp))
-                        IconButton(onClick = { count++ }) {
-                            Icon(
-                                Icons.Default.KeyboardArrowUp,
-                                contentDescription = null,
-                                modifier = Modifier.size(50.dp)
-                            )
-                        }
+                    }
+                    Text(
+                        text = "$count",
+                        fontSize = 20.sp
+                    )
+
+                    IconButton(onClick = { count++ }) {
+                        Icon(
+                            Icons.Default.KeyboardArrowUp,
+                            contentDescription = null,
+                            modifier = Modifier.size(30.dp)
+                        )
                     }
                 }
 
-            }
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically
-            ){
-                var value=0
-                TextButton(onClick = { TibetanMomos_Cart =1}
-                    ,
+                TextButton(
+                    onClick = {
+                        if(totalprice == unitPriceHalf)size = "Half" else size = "Full"
+                        addCart(Item_Name,totalprice ,count,size)
+                    },
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
-                    border = BorderStroke(width = 0.dp, color = Color.Transparent),
-                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
                     modifier = Modifier
-                        .padding(horizontal = 20.dp, vertical = 20.dp)
-                        //.size(height = 40.dp, width = 400.dp),
-                        // .fillMaxWidth()
+                        .padding(2.dp, 0.dp)
                         .height(54.dp),
                     shape = RoundedCornerShape(15.dp)
                 ) {
-                    Text(
-                        text = " ADD TO CART ",
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White,
-                        fontSize = 20.sp
+                    Icon(
+                        Icons.Default.AddShoppingCart,
+                        contentDescription = null,
+                        modifier = Modifier.size(30.dp)
                     )
                 }
-                TextButton(onClick = {
-                    /*Add_to_cart(Item_Name, unitprice, count ,Fries_image)*/
-
-                    navController.navigate("Cart")
-                }
-                    ,
-                    colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
-                    border = BorderStroke(width = 0.dp, color = Color.Transparent),
-                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
-                    modifier = Modifier
-                        .padding(horizontal = 20.dp, vertical = 20.dp)
-                        //.size(height = 40.dp, width = 400.dp),
-                        //.fillMaxWidth()
-                        .height(54.dp),
-                    shape = RoundedCornerShape(15.dp)
-                ) {
-                    Text(
-                        text = " GO TO CART ",
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White,
-                        fontSize = 20.sp
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun TibetanMomosCart() {
-    val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
-    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
-    var unitprice: Int by remember {
-        mutableStateOf<Int>(35)
-    }
-    var totalprice: Int by remember {
-        mutableStateOf<Int>(35)
-    }
-    var count by remember {
-        mutableStateOf<Int>(1)
-    }
-
-    Card(
-        shape = RoundedCornerShape(16.dp),
-        backgroundColor = Mustard_yellow,
-        modifier = Modifier
-            .padding(10.dp)
-            .fillMaxWidth()
-            .wrapContentHeight(),
-    ) {
-        Box(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .background(color = Mustard_yellow_light)
-        ) {
-            Row {
-                Card(
-                    shape = RoundedCornerShape(15.dp),
-                    modifier = Modifier
-                        .padding(0.dp)
-                        .size(100.dp)
-                        .wrapContentHeight(),
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.tibetianmomos),
-                        contentDescription = "tibetian_momos",
-                        modifier = Modifier
-                            //.align(Alignment.Center)
-                            .size(220.dp)
-                    )
-                }
-                Spacer(modifier = Modifier.width(10.dp))
-                Column(
-                    modifier = Modifier
-                        .padding(horizontal = 5.dp)
-                        .fillMaxWidth()
-                ) {
-                    Text(
-                        text = "Tibetan Momos",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 22.sp
-                    )
-
-                    Text(
-                        text = "PRICE : Rs $totalprice",
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(
-                            vertical = 10.dp,
-                            horizontal = 2.dp
-                        ),
-                        fontSize = 15.sp
-                    )
-                    Box(
-                        modifier = Modifier
-                            .size(height = 30.dp, width = 150.dp)
-                            .background(color = Color.White, shape = CircleShape)
-
-                    ) {
-                        Row {
-                            IconButton(onClick = { if(count == 1) count = 1 else count-- }) {
-                                Icon(
-                                    Icons.Default.KeyboardArrowDown,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(50.dp)
-                                )
-                            }
-                            Spacer(modifier = Modifier.width(5.dp))
-                            Text(
-                                text = "$count", modifier = Modifier
-                                    .padding(vertical = 5.dp)
-                                    .padding(horizontal = 15.dp),
-                                fontSize = 20.sp
-                            )
-                            Spacer(modifier = Modifier.width(1.dp))
-                            IconButton(onClick = { count++ }) {
-                                Icon(
-                                    Icons.Default.KeyboardArrowUp,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(50.dp)
-                                )
-                            }
+                TextButton(
+                    onClick = {
+                        try {
+                            navController.navigate("AddToCart")
+                        } catch (e: Exception) {
+                            Log.e("Navigation Error", e.toString())
                         }
-                    }
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
+                    modifier = Modifier
+                        .padding(2.dp, 0.dp)
+                        .height(54.dp),
+                    shape = RoundedCornerShape(15.dp)
+                ) {
+                    Icon(
+                        Icons.Default.ShoppingCart,
+                        contentDescription = null,
+                        modifier = Modifier.size(30.dp)
+                    )
                 }
             }
         }

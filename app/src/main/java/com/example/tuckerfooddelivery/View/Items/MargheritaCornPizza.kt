@@ -94,12 +94,6 @@ fun MargheritaCornPizza(navController: NavController) {
         selectedButtonIndex = index
     }
 
-    /*
-    All the values of the above variables will be retrieved from database
-    So need not be hard coded
-    For testing variables will be declared explicitly
-    */
-
     star = 4.7
     deliveryTime = 20
 
@@ -114,7 +108,7 @@ fun MargheritaCornPizza(navController: NavController) {
             modifier = Modifier
                 .padding(horizontal =10.dp)
                 .background(White)
-                .fillMaxHeight(.92f)
+                .fillMaxHeight(.9f)
                 .verticalScroll(rememberScrollState())
         ) {
             Spacer(modifier = Modifier.height(15.dp))
@@ -196,7 +190,6 @@ fun MargheritaCornPizza(navController: NavController) {
                     painter = painterResource(id = R.drawable.star__),
                     contentDescription = "Pizza",
                     modifier = Modifier
-                        //.align(Alignment.Top)
                         .size(30.dp)
                         .padding(0.dp)
                 )
@@ -318,7 +311,6 @@ fun MargheritaCornPizza(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -334,7 +326,6 @@ fun MargheritaCornPizza(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -350,7 +341,6 @@ fun MargheritaCornPizza(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -366,7 +356,6 @@ fun MargheritaCornPizza(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -382,7 +371,6 @@ fun MargheritaCornPizza(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
             }
         }
 

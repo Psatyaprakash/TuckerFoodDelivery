@@ -96,7 +96,7 @@ fun NepaliDumplingMomos(navController: NavController) {
             modifier = Modifier
                 .padding(horizontal =10.dp)
                 .background(White)
-                .fillMaxHeight(.92f)
+                .fillMaxHeight(.91f)
                 .verticalScroll(rememberScrollState())
         ) {
             Spacer(modifier = Modifier.height(15.dp))
@@ -138,7 +138,7 @@ fun NepaliDumplingMomos(navController: NavController) {
                     Icon(
                         imageVector = Icons.Default.Favorite,
                         contentDescription = "Add",
-                        tint = Color.White,
+                        tint = White,
                         modifier = Modifier
                             .align(Alignment.BottomEnd)
                             .size(40.dp)
@@ -151,7 +151,7 @@ fun NepaliDumplingMomos(navController: NavController) {
 
             Text(
                 text = Name,
-                fontSize = 20.sp,
+                fontSize = 25.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
                 modifier = Modifier.padding(vertical = 10.dp, horizontal = 15.dp)
@@ -174,7 +174,6 @@ fun NepaliDumplingMomos(navController: NavController) {
                     painter = painterResource(id = R.drawable.star__),
                     contentDescription = "Pizza",
                     modifier = Modifier
-                        //.align(Alignment.Top)
                         .size(30.dp)
                         .padding(0.dp)
                 )
@@ -276,7 +275,6 @@ fun NepaliDumplingMomos(navController: NavController) {
                 modifier = Modifier
                     .padding(horizontal = 0.dp)
                     .fillMaxWidth(),
-                //.align(Alignment.CenterHorizontally),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
