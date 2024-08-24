@@ -1,223 +1,148 @@
 package com.example.tuckerfooddelivery
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.runtime.Composable
-import com.example.tuckerfooddelivery.ui.theme.TuckerFoodDeliveryTheme
-import androidx.compose.animation.AnimatedContentTransitionScope
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.Image
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.ScrollableState
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Icon
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.filled.BabyChangingStation
+import androidx.compose.material.icons.filled.BackHand
+import androidx.compose.material.icons.filled.ChildCare
+import androidx.compose.material.icons.filled.CleanHands
+import androidx.compose.material.icons.filled.FoodBank
+import androidx.compose.material.icons.filled.Hail
+import androidx.compose.material.icons.filled.Handshake
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.MonetizationOn
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.Color.Companion.Black
+import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.example.tuckerfooddelivery.View.LoginScreen
-import com.example.tuckerfooddelivery.View.MyApp
-import com.example.tuckerfooddelivery.View.PersonalInfoDetails
-import com.example.tuckerfooddelivery.View.SaveLocationScreen
-import com.example.tuckerfooddelivery.View.Start
-import com.example.tuckerfooddelivery.View.Start2
-import com.example.tuckerfooddelivery.View.Start3
-import com.example.tuckerfooddelivery.View.ThankYouScreen
-
+import androidx.navigation.NavController
+import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
+import com.example.tuckerfooddelivery.View.Storage
+import com.example.tuckerfooddelivery.ViewModel.AppNavigation
 
 class MainActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //enableEdgeToEdge()
+        // enableEdgeToEdge()
         setContent {
-            TuckerFoodDeliveryTheme {
-              //ThankYouScreen()
-                PledgeScreen()
-                //MyApp()
-                //SaveLocationScreen()
-                //  LoginScreen()
-                //PersonalInfoDetails()
-                //AppNavigation()
-            }
+            AppNavigation()
+//            Storage()
         }
     }
 }
 
-/*Pledge*/
 @Composable
-fun PledgeScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White)
-            .padding(16.dp)
-            .verticalScroll(rememberScrollState())
+fun MainScreen(navController: NavController , route: @Composable (NavController) -> Unit ) {
+    Scaffold(
+        modifier = Modifier.background(White),
+        /*topBar = {
+            TopBar(navController, title = title)
+        }*/
+        bottomBar = {
+            BottomNavigationBar(navController)
+        }
+    ) { innerPadding ->
+        Box(
+            modifier = Modifier
+                .padding(innerPadding)
+                .background(White)
+        ) {
+            route(navController)
+        }
+    }
+}
+
+@Composable
+fun BottomNavigationBar(navController: NavController) {
+    BottomAppBar(
+        containerColor = colorResource(id = R.color.Mustard_yellow_light),
+        contentColor = Black,
+        modifier = Modifier.height(60.dp)
     ) {
-        // Header
         Row(
+            modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 16.dp)
+            horizontalArrangement = Arrangement.SpaceAround
         ) {
-            Icon( Icons.Filled.KeyboardArrowLeft
-                , contentDescription = "")
-            Text(
-                text = "Take a Pledge!!",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
-            )
-        }
-
-        // Top Image
-        Image(
-            painter = painterResource(id = R.drawable.hands),
-            contentDescription = "Pledge Image",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(180.dp)
-                .padding(bottom = 16.dp),
-            contentScale = ContentScale.Crop
-        )
-
-        // Text Sections
-        Text(
-            text = "Our innovative food delivery app goes beyond just delivering meals. With our pledge feature, you can make a positive impact by donating meals to those in need. Join hands with us and help fight hunger in our communities.",
-            fontSize = 14.sp,
-            color = Color.Gray,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-
-        Text(
-            text = "What is the Pledge Feature?",
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
-
-        Text(
-            text = "The pledge feature is a community-driven initiative designed to tackle food insecurity. It allows you to contribute meals to local hunger-relief organizations with every order you place.",
-            fontSize = 14.sp,
-            color = Color.Gray,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-
-        // Bullet Points
-        Text(
-            text = "\u2022 Fight hunger with your meals\n\u2022 Donating is easy and fast\n\u2022 Partner with local NGOs and charities\n\u2022 Track your contributions\n\u2022 Receive updates and acknowledgments",
-            fontSize = 14.sp,
-            color = Color.Gray,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-
-        // Image Section
-        Image(
-            painter = painterResource(id = R.drawable.donation_box),
-            contentDescription = "Donation Image",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(150.dp)
-                .padding(bottom = 16.dp),
-            contentScale = ContentScale.Crop
-        )
-
-        Text(
-            text = "Why Your Donation Matters",
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
-
-        Text(
-            text = "Millions of tons of food are wasted every year. By donating meals, you're not just helping to reduce waste, but also making sure that the less fortunate have access to nourishing food. Your donations create a positive ripple effect, touching lives and making a real difference.",
-            fontSize = 14.sp,
-            color = Color.Gray,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-
-        // Bottom Image
-        Image(
-            painter = painterResource(id = R.drawable.donation),
-            contentDescription = "Donation Image",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(150.dp)
-                .padding(bottom = 16.dp),
-            contentScale = ContentScale.Crop
-        )
-
-        // Donate Button
-        Button(
-            onClick = { /* Handle donation */ },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 16.dp)
-                .height(60.dp),
-            shape = RoundedCornerShape(12.dp),
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFFFD700))
-        ) {
-            Text(
-                text = "DONATE FOR CAUSE",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White,
-                textAlign = TextAlign.Center
-            )
+            Row{
+                BottomNavIcon(
+                    Icons.Filled.CleanHands,
+                    "Notifications",
+                    navController,
+                    "Notification"
+                )
+            }
+            BottomNavIcon(Icons.Filled.Home, "Home", navController, "MainScreen")
+//            BottomNavIcon(Icons.Filled.Favorite, "Favourites", navController, "Favourites")
+            BottomNavIcon(Icons.Filled.ShoppingCart, "Cart", navController, "AddToCart")
+//            BottomNavIcon(Icons.Filled.Person, "Profile", navController, "ProfileView")
         }
     }
 }
-/**/
 
-    //Navigation
 @Composable
-fun AppNavigation() {
-    val navController = rememberNavController()
-
-    NavHost(
-        navController = navController,
-        enterTransition = { fadeIn(animationSpec = tween(200)) +
-                slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Left,
-            tween(200)
-        ) },
-        exitTransition = { fadeOut(animationSpec = tween(200))  +
-                slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left,
-                    tween(200) )},
-        startDestination = "Start"
-    ) {
-        composable("Start") { Start(navController) }
-        composable("Start2") { Start2(navController) }
-        composable("Start3") { Start3(navController) }
-        composable("Start") { Start(navController) }
-    }
+fun BottomNavIcon(
+    icon: ImageVector,
+    description: String,
+    navController: NavController,
+    route: String,
+) {
+    var size by remember{ mutableStateOf(40) }
+    size = if (description == "Home") 55 else 35
+    Icon(
+        imageVector = icon,
+        contentDescription = description,
+        modifier = Modifier
+            .size(size.dp)
+            .clickable { navController.navigate(route) }
+    )
 }
 
+@Composable
+fun TopBar(navController: NavController, title : String){
+    Row(Modifier.padding(5.dp,0.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        CircularButtonWithSymbol(onClick = { navController.popBackStack() })
 
+        Spacer(modifier = Modifier.width(1.dp))
+        Text(
+            text = title,
+            fontSize = 26.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(16.dp)
+        )
+    }
+}

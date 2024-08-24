@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "94774868487",
+    "project_id": "tuckerfooddelivery",
+    "storage_bucket": "tuckerfooddelivery.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94774868487:android:df3b7d1fa629fb6b1c88a2",
+        "android_client_info": {
+          "package_name": "com.example.tuckerfooddelivery"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXJcbQ6h-Qc5Pzz-49kHoUAkFOk2_8zEE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
