@@ -712,9 +712,9 @@ fun AddToCart(navController: NavController) {
                                                 createNotification(
                                                     context,
                                                     "Order Summary",
-                                                    "Order placed \nTotal Amount : ${totalAmount + totalCartPrice}"
+                                                    "Order placed \nTotal Amount : ${totalAmount + platformFee}"
                                                 )
-                                                ; navController.navigate("MainScreen")
+                                                ; navController.navigate("Congrats")
                                             },
                                             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.Mustard_yellow))
                                         ) {

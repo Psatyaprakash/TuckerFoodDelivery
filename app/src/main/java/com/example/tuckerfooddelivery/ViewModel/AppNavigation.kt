@@ -21,6 +21,8 @@ import com.example.tuckerfooddelivery.View.Category.Pizza_Category
 import com.example.tuckerfooddelivery.View.Category.Roll_Category
 import com.example.tuckerfooddelivery.View.Category.Starters_Category
 import com.example.tuckerfooddelivery.View.Category.Wings_Category
+import com.example.tuckerfooddelivery.View.Congrats
+import com.example.tuckerfooddelivery.View.Delivery
 import com.example.tuckerfooddelivery.View.Favorites
 import com.example.tuckerfooddelivery.View.HomePage
 import com.example.tuckerfooddelivery.View.Items.AddToCart
@@ -88,7 +90,9 @@ fun AppNavigation() {
         composable("MainScreen"){ MainScreen(navController, route={ HomePage(navController = it)}) }
         
         composable("Favourites"){ Favorites(navController = navController)}
-
+        //Congrats
+        composable("Congrats"){ Congrats(navController = navController) }
+        composable("Delivery"){ Delivery(navController = navController) }
 
 
 
