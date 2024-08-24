@@ -60,7 +60,6 @@ import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 
 
-var BurgerBistro_Cart=0
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun BurgerBistro(navController: NavController) {
@@ -98,9 +97,9 @@ fun BurgerBistro(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally) {
         Column(
             modifier = Modifier
-                .padding(10.dp)
+                .padding(horizontal =10.dp)
                 .background(White)
-                .fillMaxHeight(.8f)
+                .fillMaxHeight(.92f)
                 .verticalScroll(rememberScrollState())
         ) {
             Spacer(modifier = Modifier.height(15.dp))
@@ -137,7 +136,7 @@ fun BurgerBistro(navController: NavController) {
                         contentDescription = "Burger Bistro",
                         modifier = Modifier
                             .align(Alignment.Center)
-                            .size(220.dp)
+                            .size(250.dp)
                     )
                     Icon(
                         imageVector = Icons.Default.Favorite,
@@ -272,7 +271,7 @@ fun BurgerBistro(navController: NavController) {
                 }
                 Spacer(modifier = Modifier.width(20.dp))
             }
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(25.dp))
             Text(text = "INGRIDENTS", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
             Spacer(modifier = Modifier.height(25.dp))
             Row(
@@ -364,16 +363,14 @@ fun BurgerBistro(navController: NavController) {
                 }
                 //Spacer(modifier = Modifier.width(20.dp))
             }
-//            Spacer(modifier = Modifier.height(75.dp))
-
         }
+
 //Jaggu Whole column
 
         Column(
             modifier = Modifier
                 .background(colorResource(id = R.color.White_Blue))
                 .fillMaxWidth()
-//                    .fillMaxHeight(.2f)
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -462,5 +459,3 @@ fun BurgerBistro(navController: NavController) {
 
     }
 }
-
-

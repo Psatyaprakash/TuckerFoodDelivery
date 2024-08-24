@@ -30,8 +30,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
-import com.example.tuckerfooddelivery.View.Items.ClassicFrenchFriesCart
-import com.example.tuckerfooddelivery.View.Items.ClassicFrenchFriesWishlist
+//import com.example.tuckerfooddelivery.View.Items.ClassicFrenchFriesCart
+//import com.example.tuckerfooddelivery.View.Items.ClassicFrenchFriesWishlist
 import com.example.tuckerfooddelivery.View.Items.PizzaCalzoneCart
 import com.example.tuckerfooddelivery.View.Items.PizzaCalzoneWishlist
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Cart
@@ -87,12 +87,12 @@ fun Favorites(navController: NavController) {
                 )
             }
 
-            if (PizzaCalzone_Wishlist == 1) {
-                PizzaCalzoneWishlist(navController)
-            }
-            if (ClassicFrenchFries_Wishlist == 1) {
-                ClassicFrenchFriesWishlist(navController)
-            }
+//            if (PizzaCalzone_Wishlist == 1) {
+//                PizzaCalzoneWishlist(navController)
+//            }
+//            if (ClassicFrenchFries_Wishlist == 1) {
+//                ClassicFrenchFriesWishlist(navController)
+//            }
         }
     }
 }

@@ -66,6 +66,7 @@ dependencies {
     implementation(libs.firebase.common.ktx)
     implementation(libs.firebase.storage.ktx)
 
+
     implementation(libs.androidx.navigation.compose)
     implementation(libs.firebase.auth.ktx)
     implementation(libs.androidx.appcompat)
@@ -89,5 +90,6 @@ dependencies {
     implementation(libs.androidx.browser)
     implementation (libs.androidx.material.icons.extended)
     implementation(libs.androidx.lifecycle.runtime.compose)
+
 
 }
