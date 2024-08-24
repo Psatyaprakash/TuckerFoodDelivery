@@ -8,6 +8,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 //import androidx.compose.foundation.layout.FlowColumnScopeInstance.align
@@ -21,6 +22,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -34,10 +36,12 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -199,7 +203,8 @@ fun RestaurantHomePage(navController: NavController) {
                 modifier = Modifier
                     .padding(horizontal = 10.dp)
                     .clickable { /*Navigate to Page containing Timings*/
-                        navController.navigate("Timing")}
+                        navController.navigate("Timing")
+                    }
             )
         }
         Spacer(modifier = Modifier.height(10.dp))
@@ -269,7 +274,7 @@ fun RestaurantHomePage(navController: NavController) {
                         Modifier
                             .size(27.dp)
                             .align(Alignment.Center)
-                            .clickable {  }
+                            .clickable { }
 
                     )
                 }
@@ -304,323 +309,238 @@ fun RestaurantHomePage(navController: NavController) {
             )
         }
         Spacer(modifier = Modifier.height(10.dp))
-
-        //Card for Order 1
         Card(
-            shape = RoundedCornerShape(16.dp),
             modifier = Modifier
-                .padding(horizontal = 10.dp)
                 .fillMaxWidth()
-                .size(width = 400.dp, height = 225.dp)
-                .wrapContentHeight(),
-            colors = CardColors(
-                containerColor = Mustard_yellow_light,
-                contentColor = Color.Black,
-                disabledContentColor = Mustard_yellow,
-                disabledContainerColor = Mustard_yellow
-            ),
-            onClick = {navController.navigate("Rosegardenrestaurant_landingpage")}
+                .padding(8.dp)
+                .clickable {
+                    // Navigate to the order details page
+                    navController.navigate("SmokingBurger.....")
+                },
+            shape = RoundedCornerShape(8.dp),
+            elevation = CardDefaults.elevatedCardElevation(4.dp),
+            colors = CardDefaults.cardColors(Color.LightGray)
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.restaurant_img_1),
-                contentDescription = "Restaurant image 1",
+            Column(
                 modifier = Modifier
-                    .align(Alignment.Start)
-                    .size(359.dp)
-            )
-        }
-        Spacer(
-            modifier = Modifier
-                .height(25.dp)
-                .width(10.dp)
-        )
-        Text(
-            text = "Rose Garden Restaurant",
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            fontSize = 20.sp,
-            modifier = Modifier.padding(horizontal = 10.dp)
-        )
-
-        //Spacer(modifier = Modifier.height(1.dp).width(10.dp))
-        Text(
-            text = "Burger - Chicken - Rice - Wings ",
-            fontWeight = FontWeight.Normal,
-            color = Color.Black,
-            fontSize = 14.sp,
-            modifier = Modifier.padding(horizontal = 12.dp)
-        )
-
-        Spacer(modifier = Modifier.height(10.dp))
-        Row(
-            modifier = Modifier
-                .padding(horizontal = 1.dp)
-                .fillMaxWidth()
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.star_),
-                contentDescription = "Star Rating icon",
-                modifier = Modifier
-                    .size(30.dp)
-                    .padding(0.dp)
-            )
-
-            Text(
-                text = "4.7",
-                fontWeight = FontWeight.Medium,
-                color = Color.Black,
-                fontSize = 18.sp,
-                modifier = Modifier.padding(horizontal = 2.dp)
-            )
-            Spacer(modifier = Modifier.width(40.dp))
-            Image(
-                painter = painterResource(id = R.drawable.truck_icon),
-                contentDescription = "Truck icon",
-                modifier = Modifier
-                    .size(35.dp)
-                    .padding(0.dp)
-            )
-            Text(
-                text = "Free",
-                fontWeight = FontWeight.Normal,
-                color = Color.Black,
-                fontSize = 18.sp,
-                modifier = Modifier.padding(horizontal = 2.dp)
-            )
-
-            Spacer(modifier = Modifier.width(40.dp))
-            Image(
-                painter = painterResource(id = R.drawable.clock_icon),
-                contentDescription = "Clock icon",
-                modifier = Modifier
-                    .size(35.dp)
-                    .padding(0.dp)
-            )
-            Text(
-                text = "20 min",
-                fontWeight = FontWeight.Normal,
-                color = Color.Black,
-                fontSize = 18.sp,
-                modifier = Modifier.padding(horizontal = 2.dp)
-            )
-        }
-
-        //Restaurant2 card
-        Card(
-            shape = RoundedCornerShape(16.dp),
-            modifier = Modifier
-                .padding(horizontal = 10.dp)
-                .fillMaxWidth()
-                .size(width = 400.dp, height = 225.dp)
-                .wrapContentHeight(),
-            colors = CardColors(
-                containerColor = Color.Transparent,
-                contentColor = Color.Black,
-                disabledContentColor = Mustard_yellow,
-                disabledContainerColor = Mustard_yellow
-            )
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(height = 400.dp, width = 500.dp)
-                    .clip(RoundedCornerShape(5.dp))
-                    .background(Color.Transparent)
-                    .clickable  {navController.navigate("Fionah_landingpage")},
-
-                ) {
-                Image(
-                    painter = painterResource(id = R.drawable.restaurant_bg_2),
-                    contentDescription = "Restaurant 2 image",
-                    modifier = Modifier
-                        .align(Alignment.TopStart)
-                        .size(4009.dp),
-
-                    )
-                Image(
-                    painter = painterResource(id = R.drawable.res_img_2),
-                    contentDescription = "Restaurant 2 image",
-                    modifier = Modifier
-                        .align(Alignment.Center)
-                        .size(250.dp)
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = "Order of Classic french fries placed by xyz myu",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp,
                 )
+                Spacer(modifier = Modifier.height(6.dp))
+                Text(
+                    text = "Address: 12-J, Sector 5, Kanpur Nagar, Uttar Pradesh, India"
+                )
+                Text(
+                    text = "Date: 2024-08-25 05:35:42"
+                )
+                Text(
+                    text = "Order ID: 74734787345"
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    Button(
+                        onClick = { /*TODO*/ },
+                        colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(text = "ACCEPT")
+                    }
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Button(
+                        onClick = { /*TODO*/ },
+                        colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(text = "DECLINE")
+                    }
+                }
             }
         }
-        Spacer(
-            modifier = Modifier
-                .height(15.dp)
-                .width(10.dp)
-        )
-        Text(
-            text = "Fionah Restrauant",//Billu Da Dhaba
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            fontSize = 20.sp,
-            modifier = Modifier.padding(horizontal = 10.dp)
-        )
-
-        Text(
-            text = "Pasta - Fish - Rice - Crabs ",
-            fontWeight = FontWeight.Normal,
-            color = Color.Black,
-            fontSize = 14.sp,
-            modifier = Modifier.padding(horizontal = 12.dp)
-        )
 
         Spacer(modifier = Modifier.height(10.dp))
-        Row(
-            modifier = Modifier
-                .padding(horizontal = 1.dp)
-                .fillMaxWidth()
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.star_),
-                contentDescription = "Star icon",
-                modifier = Modifier
-                    .size(30.dp)
-                    .padding(0.dp)
-            )
-
-            Text(
-                text = "4.3",
-                fontWeight = FontWeight.Medium,
-                color = Color.Black,
-                fontSize = 18.sp,
-                modifier = Modifier.padding(horizontal = 2.dp)
-            )
-            Spacer(modifier = Modifier.width(40.dp))
-            Image(
-                painter = painterResource(id = R.drawable.truck_icon),
-                contentDescription = "Pizza",
-                modifier = Modifier
-                    .size(35.dp)
-                    .padding(0.dp)
-            )
-            Text(
-                text = "Free",
-                fontWeight = FontWeight.Normal,
-                color = Color.Black,
-                fontSize = 18.sp,
-                modifier = Modifier.padding(horizontal = 2.dp)
-            )
-
-
-            Spacer(modifier = Modifier.width(40.dp))
-            Image(
-                painter = painterResource(id = R.drawable.clock_icon),
-                contentDescription = "Pizza",
-                modifier = Modifier
-                    .size(35.dp)
-                    .padding(0.dp)
-            )
-            Text(
-                text = "15 min",
-                fontWeight = FontWeight.Normal,
-                color = Color.Black,
-                fontSize = 18.sp,
-                modifier = Modifier.padding(horizontal = 2.dp)
-            )
-        }
-
-        Spacer(modifier = Modifier.height(10.dp))
-        //Card for Restaurant 1
         Card(
-            shape = RoundedCornerShape(16.dp),
             modifier = Modifier
-                .padding(horizontal = 10.dp)
                 .fillMaxWidth()
-                .size(width = 400.dp, height = 200.dp)
-                .wrapContentHeight(),
-            colors = CardColors(
-                containerColor = Mustard_yellow_light,
-                contentColor = Color.Black,
-                disabledContentColor = Mustard_yellow,
-                disabledContainerColor = Mustard_yellow
-            ),
-            onClick = { navController.navigate("SkyHighW_landingpage") }
+                .padding(8.dp)
+                .clickable {
+                    // Navigate to the order details page
+                    navController.navigate("Spicy Chicken Wings.....")
+                },
+            shape = RoundedCornerShape(8.dp),
+            elevation = CardDefaults.elevatedCardElevation(4.dp),
+            colors = CardDefaults.cardColors(Color.LightGray)
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.restaurant_img_3),
-                contentDescription = "Pizza",
+            Column(
                 modifier = Modifier
-                    .align(Alignment.Start)
-                    .size(450.dp)
-            )
-        }
-        Spacer(
-            modifier = Modifier
-                .height(25.dp)
-                .width(10.dp)
-        )
-        Text(
-            text = "SkyHigh Way",
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            fontSize = 20.sp,
-            modifier = Modifier.padding(horizontal = 10.dp)
-        )
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = "Order of Spicy Chicken Wings placed by abc xyz",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp,
+                )
+                Spacer(modifier = Modifier.height(6.dp))
+                Text(
+                    text = "Address: 45-B, Sector 3, Lucknow, Uttar Pradesh, India"
+                )
+                Text(
+                    text = "Date: 2024-08-26 09:12:23"
+                )
+                Text(
+                    text = "Order ID: 84723987234"
+                )
 
-        //Spacer(modifier = Modifier.height(1.dp).width(10.dp))
-        Text(
-            text = "Burger - Fries - Chicken - Wings ",
-            fontWeight = FontWeight.Normal,
-            color = Color.Black,
-            fontSize = 14.sp,
-            modifier = Modifier.padding(horizontal = 12.dp)
-        )
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    Button(
+                        onClick = { /*TODO*/ },
+                        colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(text = "ACCEPT")
+                    }
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Button(
+                        onClick = { /*TODO*/ },
+                        colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(text = "DECLINE")
+                    }
+                }
+            }
+        }
 
         Spacer(modifier = Modifier.height(10.dp))
-        Row(
+        Card(
             modifier = Modifier
-                .padding(horizontal = 1.dp)
                 .fillMaxWidth()
+                .padding(8.dp)
+                .clickable {
+                    // Navigate to the order details page
+                    navController.navigate("Grilled Paneer Sandwich.....")
+                },
+            shape = RoundedCornerShape(8.dp),
+            elevation = CardDefaults.elevatedCardElevation(4.dp),
+            colors = CardDefaults.cardColors(Color.LightGray)
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.star_),
-                contentDescription = "Pizza",
+            Column(
                 modifier = Modifier
-                    //.align(Alignment.Top)
-                    .size(30.dp)
-                    .padding(0.dp)
-            )
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = "Order of Grilled Paneer Sandwich placed by pqr jkl",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp,
+                )
+                Spacer(modifier = Modifier.height(6.dp))
+                Text(
+                    text = "Address: 78-C, Sector 12, Delhi, India"
+                )
+                Text(
+                    text = "Date: 2024-08-27 11:45:00"
+                )
+                Text(
+                    text = "Order ID: 94723892348"
+                )
 
-            Text(
-                text = "4.7",
-                fontWeight = FontWeight.Medium,
-                color = Color.Black,
-                fontSize = 18.sp,
-                modifier = Modifier.padding(horizontal = 2.dp)
-            )
-            Spacer(modifier = Modifier.width(40.dp))
-            Image(
-                painter = painterResource(id = R.drawable.truck_icon),
-                contentDescription = "Pizza",
-                modifier = Modifier
-                    .size(35.dp)
-                    .padding(0.dp)
-            )
-            Text(
-                text = "Free",
-                fontWeight = FontWeight.Normal,
-                color = Color.Black,
-                fontSize = 18.sp,
-                modifier = Modifier.padding(horizontal = 2.dp)
-            )
+                Spacer(modifier = Modifier.height(16.dp))
 
-            Spacer(modifier = Modifier.width(40.dp))
-            Image(
-                painter = painterResource(id = R.drawable.clock_icon),
-                contentDescription = "Pizza",
-                modifier = Modifier
-                    .size(35.dp)
-                    .padding(0.dp)
-            )
-            Text(
-                text = "20 min",
-                fontWeight = FontWeight.Normal,
-                color = Color.Black,
-                fontSize = 18.sp,
-                modifier = Modifier.padding(horizontal = 2.dp)
-            )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    Button(
+                        onClick = { /*TODO*/ },
+                        colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(text = "ACCEPT")
+                    }
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Button(
+                        onClick = { /*TODO*/ },
+                        colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(text = "DECLINE")
+                    }
+                }
+            }
         }
+
+        Spacer(modifier = Modifier.height(10.dp))
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+                .clickable {
+                    // Navigate to the order details page
+                    navController.navigate("Veggie Delight Pizza.....")
+                },
+            shape = RoundedCornerShape(8.dp),
+            elevation = CardDefaults.elevatedCardElevation(4.dp),
+            colors = CardDefaults.cardColors(Color.LightGray)
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = "Order of Veggie Delight Pizza placed by uvw mno",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp,
+                )
+                Spacer(modifier = Modifier.height(6.dp))
+                Text(
+                    text = "Address: 22-A, Sector 9, Ghaziabad, Uttar Pradesh, India"
+                )
+                Text(
+                    text = "Date: 2024-08-28 14:30:15"
+                )
+                Text(
+                    text = "Order ID: 74832974832"
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    Button(
+                        onClick = { /*TODO*/ },
+                        colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(text = "ACCEPT")
+                    }
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Button(
+                        onClick = { /*TODO*/ },
+                        colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(text = "DECLINE")
+                    }
+                }
+            }
+        }
+
+
     }
 }
+
