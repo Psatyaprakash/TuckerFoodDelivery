@@ -99,7 +99,7 @@ fun BurgerBistro(navController: NavController) {
             modifier = Modifier
                 .padding(horizontal =10.dp)
                 .background(White)
-                .fillMaxHeight(.92f)
+                .fillMaxHeight(.91f)
                 .verticalScroll(rememberScrollState())
         ) {
             Spacer(modifier = Modifier.height(15.dp))

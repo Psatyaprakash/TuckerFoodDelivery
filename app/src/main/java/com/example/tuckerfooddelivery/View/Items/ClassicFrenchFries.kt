@@ -115,7 +115,7 @@ fun ClassicFrenchFries(navController: NavController) {
             modifier = Modifier
                 .padding(horizontal =10.dp)
                 .background(White)
-                .fillMaxHeight(.92f)
+                .fillMaxHeight(.9f)
                 .verticalScroll(rememberScrollState())
         ) {
             Spacer(modifier = Modifier.height(15.dp))
@@ -152,7 +152,7 @@ fun ClassicFrenchFries(navController: NavController) {
                             contentDescription = "classic_french_fries",
                             modifier = Modifier
                                 .align(Alignment.Center)
-                                .size(220.dp)
+                                .size(260.dp)
                         )
                         Icon(
                             imageVector = Icons.Default.Favorite,

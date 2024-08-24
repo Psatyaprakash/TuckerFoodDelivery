@@ -1,6 +1,9 @@
 package com.example.tuckerfooddelivery.View.Items
 
 
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -11,6 +14,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -24,15 +29,18 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddShoppingCart
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -40,15 +48,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.tuckerfooddelivery.Model.Add.addCart
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 
-var MexicanPepperoniPizza_Cart=0
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MexicanPepperoniPizza(navController: NavController) {
 
@@ -58,58 +69,59 @@ fun MexicanPepperoniPizza(navController: NavController) {
     var star by remember { mutableStateOf(0.0) }
     val deliver by remember { mutableStateOf("") }
     var deliveryTime by remember { mutableStateOf(0) }
-    var price by remember { mutableStateOf(199) }
-    var count by remember { mutableStateOf(1) }
+    var totalprice: Int by remember { mutableStateOf(199) }
+    val unitPrice10: Int by remember { mutableIntStateOf(199) }
+    val unitPrice14: Int by remember { mutableStateOf(239) }
+    val unitPrice16: Int by remember { mutableStateOf(259) }
+    var size by remember { mutableStateOf("10''") }
+    val Item_Name = "MexicanPepperoniPizza"
+    val Name = "Mexican Pepperoni Pizza"
+
+    var count by remember {
+        mutableStateOf<Int>(1)
+    }
+
 
 
     var selectedButtonIndex by remember { mutableStateOf(1) }
 
+    @Composable
     fun getButtonColor(index: Int): Color {
-        return if (index == selectedButtonIndex) Mustard_yellow else Color.LightGray
+        return if (index == selectedButtonIndex) Mustard_yellow else colorResource(id = R.color.White_Blue)
     }
 
     fun onButtonClick(index: Int) {
         selectedButtonIndex = index
     }
 
-    /*
-    All the values of the above variables will be retrieved from database
-    So need not be hard coded
-    For testing variables will be declared explicitly
-    */
 
     star = 4.7
     deliveryTime = 20
 
 
-    Column {
+    Column(
+        Modifier
+            .fillMaxSize()
+            .padding(0.dp),
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.CenterHorizontally) {
         Column(
             modifier = Modifier
-                .padding(15.dp)
-                .size(width = 500.dp, height = 655.dp)
+                .padding(horizontal =10.dp)
+                .background(White)
+                .fillMaxHeight(.90f)
                 .verticalScroll(rememberScrollState())
         ) {
-            Spacer(modifier = Modifier.height(10.dp))
-            Row {
-                TextButton(
-                    onClick = {navController.popBackStack()},
-                    colors = ButtonDefaults.buttonColors(Color.LightGray),
-                    shape = CircleShape,
-                    contentPadding = PaddingValues(0.dp),
-                    modifier = Modifier
-                        .size(50.dp)
-                        .background(Color.Gray, CircleShape)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.leftarrow),
-                        contentDescription = "",
-                        modifier = Modifier.size(30.dp)
-                    )
+            Spacer(modifier = Modifier.height(15.dp))
+            //Jaggu
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                CircularButtonWithSymbol {
+                    navController.popBackStack()
                 }
                 Spacer(modifier = Modifier.width(1.dp))
                 Text(
                     text = "Details",
-                    fontSize = 16.sp,
+                    fontSize = 25.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(16.dp)
                 )
@@ -139,7 +151,7 @@ fun MexicanPepperoniPizza(navController: NavController) {
                         contentDescription = "Pizza",
                         modifier = Modifier
                             .align(Alignment.Center)
-                            .size(200.dp)
+                            .size(260.dp)
                     )
                     Icon(
                         imageVector = Icons.Default.Favorite,
@@ -155,79 +167,84 @@ fun MexicanPepperoniPizza(navController: NavController) {
             }
             Spacer(modifier = Modifier.height(15.dp))
             Text(
-                text = "Mexican Pepperoni Pizza",
-                fontSize = 20.sp,
+                text = Name,
+                fontSize = 25.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
-                modifier = Modifier.padding(10.dp)
+                modifier = Modifier.padding(vertical = 10.dp, horizontal = 15.dp)
             )
             Spacer(modifier = Modifier.height(13.dp))
             Text(
                 text = "Pizza topped with classic signature pan sauce, chicken pepperoni, crunchy onion and cheesy dressing.",
-                modifier = Modifier.padding(horizontal = 10.dp)
+                fontSize = 18.sp,
+                modifier = Modifier.padding(horizontal = 15.dp)
             )
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(25.dp))
             Row(
                 modifier = Modifier
-                    .padding(horizontal = 1.dp)
+                    .padding(horizontal = 8.dp)
                     .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.star),
-                    contentDescription = "star",
+                    painter = painterResource(id = R.drawable.star__),
+                    contentDescription = "Pizza",
                     modifier = Modifier
                         //.align(Alignment.Top)
                         .size(30.dp)
                         .padding(0.dp)
                 )
+                Spacer(modifier = Modifier.width(5.dp))
 
                 Text(
-                    text = "$star",
+                    text = "4.7",
                     fontWeight = FontWeight.Medium,
                     color = Color.Black,
-                    fontSize = 18.sp,
+                    fontSize = 22.sp,
                     modifier = Modifier.padding(horizontal = 2.dp)
                 )
                 Spacer(modifier = Modifier.width(40.dp))
                 Image(
-                    painter = painterResource(id = R.drawable.truck),
-                    contentDescription = "delivery",
+                    painter = painterResource(id = R.drawable.truck__),
+                    contentDescription = "Pizza",
                     modifier = Modifier
                         .size(35.dp)
                         .padding(0.dp)
                 )
+                Spacer(modifier = Modifier.width(5.dp))
                 Text(
-                    text = if (deliver == "") "Free" else deliver,
+                    text = "Free",
                     fontWeight = FontWeight.Normal,
                     color = Color.Black,
-                    fontSize = 18.sp,
+                    fontSize = 22.sp,
                     modifier = Modifier.padding(horizontal = 2.dp)
                 )
 
                 Spacer(modifier = Modifier.width(40.dp))
                 Image(
-                    painter = painterResource(id = R.drawable.clock),
-                    contentDescription = "delivery_time",
+                    painter = painterResource(id = R.drawable.clock__),
+                    contentDescription = "Pizza",
                     modifier = Modifier
                         .size(35.dp)
                         .padding(0.dp)
                 )
+                Spacer(modifier = Modifier.width(5.dp))
                 Text(
-                    text = "$deliveryTime",
+                    text = "20 min",
                     fontWeight = FontWeight.Normal,
                     color = Color.Black,
-                    fontSize = 18.sp,
+                    fontSize = 22.sp,
                     modifier = Modifier.padding(horizontal = 2.dp)
                 )
             }
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(25.dp))
             Row(
                 modifier = Modifier
                     .padding(horizontal = 1.dp)
                     .fillMaxWidth()
                     .align(Alignment.CenterHorizontally),
-                horizontalArrangement = Arrangement.Start,
+                horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
@@ -237,7 +254,7 @@ fun MexicanPepperoniPizza(navController: NavController) {
                     fontWeight = FontWeight.Bold
                 )
                 TextButton(
-                    onClick = { onButtonClick(1) ; price = 199 },
+                    onClick = { onButtonClick(1) ; totalprice=unitPrice10 },
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(1)
                     ),
@@ -250,7 +267,7 @@ fun MexicanPepperoniPizza(navController: NavController) {
 
                 Spacer(modifier = Modifier.width(30.dp))
                 TextButton(
-                    onClick = { onButtonClick(2); price = 239  },
+                    onClick = { onButtonClick(2);totalprice=unitPrice14  },
                     colors = ButtonDefaults.textButtonColors(getButtonColor(2)),
                     modifier = Modifier
                         .size(60.dp),
@@ -261,7 +278,7 @@ fun MexicanPepperoniPizza(navController: NavController) {
 
                 Spacer(modifier = Modifier.width(30.dp))
                 TextButton(
-                    onClick = { onButtonClick(3) ; price = 259 },
+                    onClick = { onButtonClick(3) ; totalprice=unitPrice16 },
                     colors = ButtonDefaults.textButtonColors(getButtonColor(3)),
                     modifier = Modifier
                         .size(60.dp),
@@ -272,8 +289,10 @@ fun MexicanPepperoniPizza(navController: NavController) {
 
                 Spacer(modifier = Modifier.width(20.dp))
             }
-            Spacer(modifier = Modifier.height(10.dp))
-            Text(text = "INGRIDENTS", modifier = Modifier.padding(horizontal = 10.dp))
+            Spacer(modifier = Modifier.height(25.dp))
+            Text(text = "INGRIDENTS",
+                modifier = Modifier
+                    .padding(horizontal = 15.dp))
             Spacer(modifier = Modifier.height(25.dp))
             Row(
                 modifier = Modifier
@@ -298,7 +317,6 @@ fun MexicanPepperoniPizza(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -314,7 +332,6 @@ fun MexicanPepperoniPizza(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -330,7 +347,6 @@ fun MexicanPepperoniPizza(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -346,7 +362,6 @@ fun MexicanPepperoniPizza(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -362,272 +377,99 @@ fun MexicanPepperoniPizza(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
             }
-            Spacer(modifier = Modifier.height(75.dp))
-            Card(
-                //for scrolling purpose
-                shape = RoundedCornerShape(16.dp),
-                backgroundColor = Mustard_yellow,
-                modifier = Modifier
-                    .padding(10.dp)
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-//            colors = CardColors(
-//                containerColor = Mustard_yellow_light, contentColor = Color.Black,
-//                disabledContentColor = Mustard_yellow,
-//                disabledContainerColor = Mustard_yellow
-//            )
-            ) {
-                Box(
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.mexican_pepperoni_pizza),
-                        contentDescription = "Pizza",
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .size(200.dp)
-                    )
-                    Icon(
-                        imageVector = Icons.Default.Favorite,
-                        contentDescription = "Add",
-                        tint = Color.White,
-                        modifier = Modifier
-                            .align(Alignment.BottomEnd)
-                            .size(40.dp)
-                            .background(Color.Red, shape = CircleShape)
-                            .padding(8.dp)
-                    )
-                }
-            }
-
         }
         Column(
             modifier = Modifier
-                .background(Color.LightGray)
+                .background(colorResource(id = R.color.White_Blue))
                 .fillMaxWidth()
-                .size(height = 350.dp, width = 700.dp)
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row(
-                modifier = Modifier.padding(10.dp),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = "Rs. ${price * count}",
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(20.dp),
-                    fontSize = 25.sp
-                )
-                Spacer(modifier = Modifier.width(150.dp))
-                Box(
-                    modifier = Modifier
-                        .size(height = 50.dp, width = 150.dp)
-                        .background(color = Mustard_yellow, shape = CircleShape)
-                        .align(Alignment.CenterVertically)
-                ) {
-                    Row {
-                        IconButton(onClick = { /* TODO: Add action for microphone */ }) {
-                            Icon(
-                                Icons.Default.KeyboardArrowDown,
-                                contentDescription = null,
-                                modifier = Modifier.size(50.dp)
-                                    .clickable { if (count == 1) count = 1 else count-- }
-                            )
-                        }
-                        Spacer(modifier = Modifier.width(5.dp))
-//                        var count = 0
-                        Text(
-                            text = "$count", modifier = Modifier
-                                .padding(vertical = 15.dp)
-                                .padding(horizontal = 15.dp),
-                            fontSize = 20.sp
-                        )
-                        Spacer(modifier = Modifier.width(1.dp))
-                        IconButton(onClick = { /* TODO: Add action for microphone */ }) {
-                            Icon(
-                                Icons.Default.KeyboardArrowUp,
-                                contentDescription = null,
-                                modifier = Modifier.size(50.dp)
-                                    .clickable { count++ }
-                            )
-                        }
-                    }
-                }
-
-            }
-            Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .padding(5.dp, 2.dp)
+                    .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-
-                TextButton(onClick = { //if((count_Regular!=0)||(count_Large!=0)){
-//                    ClassicFrenchFries_Large =count_Large
-//                    ClassicFrenchFries_Regular =count_Regular
-//                    ClassicFrenchFries_Cart =1}
-                },
-                    colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
-                    border = BorderStroke(width = 0.dp, color = Color.Transparent),
-                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
-                    modifier = Modifier
-                        .padding(horizontal = 20.dp, vertical = 20.dp)
-                        .height(54.dp),
-                    shape = RoundedCornerShape(15.dp)
-                ) {
-//                  ClassicFrenchFriesCart(count_Regular,count_Large)
-//                    ClassicFrenchFries_Large=count_Large
-//                    ClassicFrenchFries_Regular=count_Regular
+                Text(
+                    text = "Rs ${totalprice * count}", //to get total price
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(vertical = 20.dp, horizontal = 10.dp),
+                    fontSize = 25.sp
+                )
+                Row(modifier = Modifier
+                    .width(120.dp)
+                    .background(Mustard_yellow, shape = RoundedCornerShape(30.dp)),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ){
+                    IconButton(onClick = {
+                        if (count == 1) count = 1 else count--
+                    }) { //to set default limit as 1
+                        Icon(
+                            Icons.Default.KeyboardArrowDown,
+                            contentDescription = null,
+                            modifier = Modifier.size(30.dp)
+                        )
+                    }
                     Text(
-                        text = " ADD TO CART ",
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White,
+                        text = "$count",
                         fontSize = 20.sp
                     )
-                }
-                TextButton(onClick = {
-                    navController.navigate("Cart")
-                },
-                    colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
-                    border = BorderStroke(width = 0.dp, color = Color.Transparent),
-                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
-                    modifier = Modifier
-                        .padding(horizontal = 20.dp, vertical = 20.dp)
-                        //.size(height = 40.dp, width = 400.dp),
-                        //.fillMaxWidth()
-                        .height(54.dp),
-                    shape = RoundedCornerShape(15.dp)
-                ) {
-                    Text(
-                        text = " GO TO CART ",
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White,
-                        fontSize = 20.sp
-                    )
-                }
 
-            }
-        }
-    }
-}
-
-@Composable
-fun MexicanPepperoniPizza_Cart()
-{
-    val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
-    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
-    var unitprice: Int by remember {
-        mutableStateOf<Int>(35)
-    }
-    var totalprice: Int by remember {
-        mutableStateOf<Int>(35)
-    }
-    var count by remember {
-        mutableStateOf<Int>(1)
-    }
-
-    fun Increment() {
-        if (count < 100) {
-            count = count + 1
-            totalprice = unitprice * count
-        }
-    }
-
-    fun Decrement() {
-        if (count > 1) {
-            count = count - 1
-            totalprice = unitprice * count
-        }
-    }
-
-    Card(
-        shape = RoundedCornerShape(16.dp),
-        backgroundColor = Mustard_yellow,
-        modifier = Modifier
-            .padding(10.dp)
-            .fillMaxWidth()
-            .wrapContentHeight(),
-    ) {
-        Box(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .background(color = Mustard_yellow_light)
-        ) {
-            Row {
-                Card(
-                    shape = RoundedCornerShape(15.dp),
-                    modifier = Modifier
-                        .padding(0.dp)
-                        .size(100.dp)
-                        .wrapContentHeight(),
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.mexican_pepperoni_pizza),
-                        contentDescription = "mexican_pepperoni_pizza",
-                        modifier = Modifier
-                            //.align(Alignment.Center)
-                            .size(220.dp)
-                    )
-                }
-                Spacer(modifier = Modifier.width(10.dp))
-                Column(
-                    modifier = Modifier
-                        .padding(horizontal = 5.dp)
-                        .fillMaxWidth()
-                ) {
-                    Text(
-                        text = "Mexican Pepperoni Pizza",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 22.sp
-                    )
-
-                    Text(
-                        text = "PRICE : Rs $totalprice",
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(
-                            vertical = 10.dp,
-                            horizontal = 2.dp
-                        ),
-                        fontSize = 15.sp
-                    )
-                    Box(
-                        modifier = Modifier
-                            .size(height = 30.dp, width = 150.dp)
-                            .background(color = Color.White, shape = CircleShape)
-
-                    ) {
-                        Row {
-                            IconButton(onClick = { Decrement() }) {
-                                Icon(
-                                    Icons.Default.KeyboardArrowDown,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(50.dp)
-                                )
-                            }
-                            Spacer(modifier = Modifier.width(5.dp))
-                            Text(
-                                text = "$count", modifier = Modifier
-                                    .padding(vertical = 5.dp)
-                                    .padding(horizontal = 15.dp),
-                                fontSize = 20.sp
-                            )
-                            Spacer(modifier = Modifier.width(1.dp))
-                            IconButton(onClick = { Increment() }) {
-                                Icon(
-                                    Icons.Default.KeyboardArrowUp,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(50.dp)
-                                )
-                            }
-                        }
+                    IconButton(onClick = { count++ }) {
+                        Icon(
+                            Icons.Default.KeyboardArrowUp,
+                            contentDescription = null,
+                            modifier = Modifier.size(30.dp)
+                        )
                     }
                 }
+
+                TextButton(
+                    onClick = {
+                        if(totalprice == unitPrice10)size = "10''"
+                        else if (totalprice == unitPrice14)size = "14''"
+                        else size = "16''"
+                        addCart(Item_Name,totalprice ,count,size)
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
+                    modifier = Modifier
+                        .padding(2.dp, 0.dp)
+                        .height(54.dp),
+                    shape = RoundedCornerShape(15.dp)
+                ) {
+                    Icon(
+                        Icons.Default.AddShoppingCart,
+                        contentDescription = null,
+                        modifier = Modifier.size(30.dp)
+                    )
+                }
+                TextButton(
+                    onClick = {
+                        try {
+                            navController.navigate("AddToCart")
+                        } catch (e: Exception) {
+                            Log.e("Navigation Error", e.toString())
+                        }
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
+                    modifier = Modifier
+                        .padding(2.dp, 0.dp)
+                        .height(54.dp),
+                    shape = RoundedCornerShape(15.dp)
+                ) {
+                    Icon(
+                        Icons.Default.ShoppingCart,
+                        contentDescription = null,
+                        modifier = Modifier.size(30.dp)
+                    )
+                }
             }
         }
     }
 }
+
