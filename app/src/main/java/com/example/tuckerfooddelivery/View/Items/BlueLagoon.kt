@@ -767,8 +767,8 @@ fun CartItem(navController: NavController,cart: Cart, onQuantityChange: () -> Un
 
                 Card(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .size(150.dp),
+                        .fillMaxWidth(),
+//                        .size(150.dp),
                     elevation = 8.dp,
                     backgroundColor = colorResource(id = R.color.Mustard_yellow),
                     shape = RoundedCornerShape(15.dp)

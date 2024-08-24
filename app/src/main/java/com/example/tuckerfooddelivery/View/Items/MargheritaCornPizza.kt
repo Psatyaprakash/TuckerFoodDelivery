@@ -149,6 +149,7 @@ fun MargheritaCornPizza(navController: NavController) {
                             .size(40.dp)
                             .background(Color.Red, shape = CircleShape)
                             .padding(8.dp)
+
                     )
                 }
             }

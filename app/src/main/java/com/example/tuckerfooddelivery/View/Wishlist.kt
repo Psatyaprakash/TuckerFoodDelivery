@@ -174,8 +174,8 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
 
         Card(
             modifier = Modifier
-                .fillMaxWidth()
-                .size(150.dp),
+                .fillMaxWidth(),
+//                .size(150.dp),
             elevation = 8.dp,
             backgroundColor = colorResource(id = R.color.Mustard_yellow),
             shape = RoundedCornerShape(15.dp)
@@ -217,13 +217,13 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
                     ) {
                         Text(
                             text = wishlist.name,
-                            fontSize = 25.sp,
+                            fontSize = 20.sp,
                             fontWeight = FontWeight.Bold
                         )
 
                         Text(
                             text = "( ${wishlist.size} )",
-                            fontSize = 18.sp,
+                            fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         )
                     }
@@ -283,15 +283,7 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
                             IconButton(onClick = {
 //                                if(totalprice == unitPriceHalf)size = "Half" else size = "Full"
                                 addCart(wishlist.name,wishlist.price ,wishlist.count,wishlist.size);
-                                db.collection("Wishlist").document(wishlist.name + "_${wishlist.size}")
-                                    .delete()
-                                    .addOnSuccessListener {
-                                        Log.d(TAG, "DocumentSnapshot successfully deleted!")
-                                    }
-                                    .addOnFailureListener { e ->
-                                        Log.w(TAG, "Error deleting document", e)
-                                    };
-                                navController.navigate("Wishlist")
+
 
                             }) {
                                 Icon(
