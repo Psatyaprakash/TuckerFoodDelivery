@@ -18,13 +18,25 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.BabyChangingStation
+import androidx.compose.material.icons.filled.BackHand
+import androidx.compose.material.icons.filled.ChildCare
+import androidx.compose.material.icons.filled.CleanHands
+import androidx.compose.material.icons.filled.FoodBank
+import androidx.compose.material.icons.filled.Hail
+import androidx.compose.material.icons.filled.Handshake
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.MonetizationOn
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Black
@@ -84,12 +96,14 @@ fun BottomNavigationBar(navController: NavController) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            BottomNavIcon(
-                Icons.Filled.Notifications,
-                "Notifications",
-                navController,
-                "Notification"
-            )
+            Row{
+                BottomNavIcon(
+                    Icons.Filled.CleanHands,
+                    "Notifications",
+                    navController,
+                    "Notification"
+                )
+            }
             BottomNavIcon(Icons.Filled.Home, "Home", navController, "MainScreen")
 //            BottomNavIcon(Icons.Filled.Favorite, "Favourites", navController, "Favourites")
             BottomNavIcon(Icons.Filled.ShoppingCart, "Cart", navController, "AddToCart")
@@ -105,11 +119,13 @@ fun BottomNavIcon(
     navController: NavController,
     route: String,
 ) {
+    var size by remember{ mutableStateOf(40) }
+    size = if (description == "Home") 55 else 35
     Icon(
         imageVector = icon,
         contentDescription = description,
         modifier = Modifier
-            .size(40.dp)
+            .size(size.dp)
             .clickable { navController.navigate(route) }
     )
 }
