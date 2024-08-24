@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -96,19 +97,22 @@ fun Burger_Category(navController: NavController){
                 .fillMaxWidth()
                 .padding(horizontal = 40.dp, vertical = 15.dp),
             verticalAlignment = Alignment.Top,
-            horizontalArrangement = Arrangement.Start
+            horizontalArrangement = Arrangement.Center
         ) {
             Card(
                 modifier = Modifier
                     .height(230.dp)
-                    .width(130.dp)
-                    .clickable { navController.navigate("BurgerBistro") },
+                    .width(150.dp)
+                    .clickable { navController.navigate("BurgerBistro") }
+                    .wrapContentHeight(),
                 shape = RoundedCornerShape(15.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 colors = CardDefaults.cardColors(Color.White)
             ) {
                 Column(
-                    modifier = Modifier.padding(10.dp) // Add some padding inside the card
+                    modifier = Modifier.padding(10.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally // Add some padding inside the card
                 ) {
                     Image(
                         painter = painterResource(R.drawable.burger_bistro),
@@ -120,7 +124,7 @@ fun Burger_Category(navController: NavController){
                         text = "Burger Bistro",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(top = 8.dp) // Adjust top padding
+                        modifier = Modifier.padding(top = 10.dp) // Adjust top padding
                     )
                     Text(
                         text = "Rose Garden",
@@ -128,10 +132,11 @@ fun Burger_Category(navController: NavController){
                         modifier = Modifier.padding(top = 1.dp)
                     )
                     Row(
-                        modifier = Modifier.padding(top = 2.dp)
+                        modifier = Modifier
+                            .padding(top = 2.dp)
                             .fillMaxWidth(),
                         verticalAlignment = Alignment.Top,
-                        horizontalArrangement = Arrangement.Start
+                        horizontalArrangement = Arrangement.Center
                     ) {
                         Text(
                             text = "Rs.116",
@@ -139,22 +144,28 @@ fun Burger_Category(navController: NavController){
                             fontSize = 22.sp,
                             fontWeight = FontWeight.ExtraBold,
                         )
-                        Spacer(modifier = Modifier.width(22.dp))
                     }
+                    Spacer(modifier = Modifier.height(10.dp))
+
                 }
             }
             Spacer(modifier = Modifier.width(40.dp))
             Card(
                 modifier = Modifier
                     .height(230.dp)
-                    .width(130.dp)
-                    .clickable { navController.navigate("SmokingBurger") },
+                    .width(150.dp)
+                    .clickable { navController.navigate("SmokingBurger") }
+                    .align(Alignment.CenterVertically)
+                    .wrapContentHeight(),
                 shape = RoundedCornerShape(15.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 colors = CardDefaults.cardColors(Color.White)
             ) {
                 Column(
-                    modifier = Modifier.padding(8.dp) // Add some padding inside the card
+                    modifier = Modifier.padding(8.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                // Add some padding inside the card
                 ) {
                     Image(
                         painter = painterResource(R.drawable.smokinburger),
@@ -166,7 +177,7 @@ fun Burger_Category(navController: NavController){
                         text = "Smokin burger",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(top = 8.dp) // Adjust top padding
+                        modifier = Modifier.padding(top = 10.dp) // Adjust top padding
                     )
                     Text(
                         text = "Fiona Hatty",
@@ -175,41 +186,45 @@ fun Burger_Category(navController: NavController){
                     )
                     Row(
                         modifier = Modifier
-                            .fillMaxWidth(),
+                            .fillMaxWidth()
+                            .wrapContentHeight(),
                         verticalAlignment = Alignment.Top,
-                        horizontalArrangement = Arrangement.Start
+                        horizontalArrangement = Arrangement.Center
                     ) {
                         Text(
-                            text = "Rs.135",
+                            text = "Rs.175",
                             modifier = Modifier.padding(top = 12.dp),
                             fontSize = 22.sp,
                             fontWeight = FontWeight.ExtraBold,
                         )
-                        Spacer(modifier = Modifier.width(25.dp))
 
                     }
+                    Spacer(modifier = Modifier.height(10.dp))
                 }
             }
         }
-        //4th row of two burger cards
+        //4th row of 1 burger cards
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 40.dp, vertical = 15.dp),
+                .padding(horizontal = 40.dp, vertical = 5.dp),
             verticalAlignment = Alignment.Top,
-            horizontalArrangement = Arrangement.Start
+            horizontalArrangement = Arrangement.Center
         ) {
             Card(
                 modifier = Modifier
                     .height(230.dp)
-                    .width(130.dp)
-                    .clickable { navController.navigate("ClassicBurger") },
+                    .width(150.dp)
+                    .clickable { navController.navigate("ClassicBurger") }
+                    .wrapContentHeight(),
                 shape = RoundedCornerShape(15.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 colors = CardDefaults.cardColors(Color.White)
             ) {
                 Column(
-                    modifier = Modifier.padding(7.dp) // Add some padding inside the card
+                    modifier = Modifier.padding(7.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally// Add some padding inside the card
                 ) {
                     Image(
                         painter = painterResource(R.drawable.classicburger),
@@ -221,7 +236,7 @@ fun Burger_Category(navController: NavController){
                         text = "Classic Burger",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(top = 8.dp) // Adjust top padding
+                        modifier = Modifier.padding(top = 10.dp) // Adjust top padding
                     )
                     Text(
                         text = "SkyHigh Way",
@@ -233,21 +248,18 @@ fun Burger_Category(navController: NavController){
                             .padding(top = 2.dp)
                             .fillMaxWidth(),
                         verticalAlignment = Alignment.Top,
-                        horizontalArrangement = Arrangement.Start
+                        horizontalArrangement = Arrangement.Center
                     ) {
                         Text(
-                            text = "Rs.135",
+                            text = "Rs.55",
                             modifier = Modifier.padding(top = 12.dp),
                             fontSize = 22.sp,
                             fontWeight = FontWeight.ExtraBold,
                         )
-                        Spacer(modifier = Modifier.width(25.dp))
-
                     }
+                    Spacer(modifier = Modifier.height(10.dp))
                 }
             }
-
         }
-
     }
 }

@@ -140,7 +140,7 @@ fun ClassicBurger(navController: NavController) {
                         contentDescription = "Classic Burger ",
                         modifier = Modifier
                             .align(Alignment.Center)
-                            .size(220.dp)
+                            .size(270.dp)
                     )
                     Icon(
                         imageVector = Icons.Default.Favorite,
