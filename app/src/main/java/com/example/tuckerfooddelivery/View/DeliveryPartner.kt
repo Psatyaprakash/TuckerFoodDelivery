@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 
 @Composable
 fun Delivery(navController: NavController){
@@ -47,6 +48,16 @@ fun Delivery(navController: NavController){
             verticalArrangement = Arrangement.SpaceEvenly,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Row (Modifier
+                .fillMaxWidth()
+                .padding(20.dp , 5.dp),
+                verticalAlignment = Alignment.CenterVertically) {
+                CircularButtonWithSymbol {
+                    navController.navigate("MainScreen")
+                }
+                Spacer(modifier = Modifier.width(15.dp))
+                Text(text = "Order Tracking", fontWeight = FontWeight.W700, fontSize = 20.sp , color = Color.White)
+            }
             
             Text(text = "Rosengarden Restaurant", color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.Bold)
             Text(text = "Order is on the way !!", color= Color.White, fontSize = 23.sp, fontWeight = FontWeight.Bold)
@@ -67,7 +78,8 @@ fun Delivery(navController: NavController){
                 .horizontalScroll(rememberScrollState())
         ) {
             Image(painter = painterResource(id = R.drawable.map), contentDescription = "",
-                modifier = Modifier.size(height = 600.dp, width = 476.82.dp)
+                modifier = Modifier
+                    .size(height = 600.dp, width = 476.82.dp)
                     .align(Alignment.CenterHorizontally))
         }
         Column(
