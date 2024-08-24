@@ -33,8 +33,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.MainScreen
 import com.example.tuckerfooddelivery.R
-import com.example.tuckerfooddelivery.View.Items.ClassicFrenchFriesCart
-import com.example.tuckerfooddelivery.View.Items.PizzaCalzoneCart
+//import com.example.tuckerfooddelivery.View.Items.ClassicFrenchFriesCart
+//import com.example.tuckerfooddelivery.View.Items.PizzaCalzoneCart
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Cart
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Large
@@ -93,13 +93,13 @@ fun Cart(navController: NavController) {
                 )
             }
             Spacer(modifier = Modifier.height(10.dp))
-            if (PizzaCalzone_Cart == 1) {
-                PizzaCalzoneCart(PizzaCalzone_10,PizzaCalzone_14,PizzaCalzone_16)
-            }
-            if (ClassicFrenchFries_Cart == 1) {
-                ClassicFrenchFriesCart(ClassicFrenchFries_Regular, ClassicFrenchFries_Large)
-            }
-
+//            if (PizzaCalzone_Cart == 1) {
+//                PizzaCalzoneCart(PizzaCalzone_10,PizzaCalzone_14,PizzaCalzone_16)
+//            }
+//            if (ClassicFrenchFries_Cart == 1) {
+//                ClassicFrenchFriesCart(ClassicFrenchFries_Regular, ClassicFrenchFries_Large)
+//            }
+//
 
         }
 

@@ -151,7 +151,7 @@ fun BlueLagoon(navController: NavController){
         ) {
             Column(
                 modifier = Modifier
-                    .padding(horizontal =10.dp)
+                    .padding(horizontal = 10.dp)
                     .background(White)
                     .fillMaxHeight(.9f)
                     .verticalScroll(rememberScrollState())
@@ -581,8 +581,8 @@ fun AddToCart(navController: NavController) {
 
                 Column(
                     Modifier
-                        .fillMaxHeight(.80f)
-                        .padding(16.dp, 10.dp)
+                        .fillMaxHeight(.85f)
+                        .padding(16.dp,10.dp,16.dp,1.dp)
                 ) {
                     LazyColumn {
                         items(cartList.value) { cart ->
@@ -767,7 +767,7 @@ fun CartItem(cart: Cart, onQuantityChange: () -> Unit, imagePath: String  /*, on
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .size(150.dp),
+                .size(170.dp),
             elevation = 8.dp,
             backgroundColor = colorResource(id = R.color.Mustard_yellow),
             shape = RoundedCornerShape(15.dp)
@@ -776,7 +776,7 @@ fun CartItem(cart: Cart, onQuantityChange: () -> Unit, imagePath: String  /*, on
                 Box(
                     modifier = Modifier
                         .padding(15.dp)
-                        .size(130.dp)
+                        .size(140.dp)
                         .background(White, shape = RoundedCornerShape(15.dp))
                         .fillMaxWidth(.3f)
 //                        .align(Alignment.CenterVertically)
@@ -804,23 +804,25 @@ fun CartItem(cart: Cart, onQuantityChange: () -> Unit, imagePath: String  /*, on
                     horizontalAlignment = Alignment.Start
                 ) {
 
-                    Row(
-                        Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = cart.name,
-                            fontSize = 25.sp,
-                            fontWeight = FontWeight.Bold
-                        )
+//                    Row(
+//                        Modifier.fillMaxWidth(),
+//                        verticalAlignment = Alignment.CenterVertically,
+//                        horizontalArrangement = Arrangement.SpaceBetween
+//                    ) {
+                    Text(
+                        text = cart.name,
+                        fontSize = 25.sp,
+                        fontWeight = FontWeight.Bold
+                    )
 
-                        Text(
-                            text = "( ${cart.size} )",
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
+
+                    Text(
+                        text = "( ${cart.size} )",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+//                }
+                    Spacer(modifier = Modifier.height(10.dp))
                     val price = cart.price
                     var count by remember {
                         mutableStateOf(cart.count)
@@ -829,6 +831,7 @@ fun CartItem(cart: Cart, onQuantityChange: () -> Unit, imagePath: String  /*, on
                         text = "Rs.${price * count}",
                         fontSize = 20.sp
                     )
+                    Spacer(modifier = Modifier.height(10.dp))
                     Row(
                         Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,

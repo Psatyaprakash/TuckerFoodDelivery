@@ -72,7 +72,7 @@ fun AppNavigation() {
                 slideOutOfContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "ClassicFrenchFries"
+        startDestination = "MargheritaCornPizza"
     ) {
         composable("Storage"){ Storage() }
 //        composable("NotificationScreen"){ NotificationScreen(NotificationTitle,NotiC ) }
@@ -86,11 +86,6 @@ fun AppNavigation() {
         composable("MainScreen"){ MainScreen(navController, route={ HomePage(navController = it)}) }
         
         composable("Favourites"){ Favorites(navController = navController)}
-
-
-
-
-
 
         //items
         composable("PizzaCalzone"){

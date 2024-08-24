@@ -134,7 +134,7 @@ fun BurgerBistro(navController: NavController) {
                         contentDescription = "Burger Bistro",
                         modifier = Modifier
                             .align(Alignment.Center)
-                            .size(220.dp)
+                            .size(250.dp)
                     )
                     Icon(
                         imageVector = Icons.Default.Favorite,
