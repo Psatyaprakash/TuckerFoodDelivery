@@ -152,7 +152,7 @@ fun ClassicFrenchFries(navController: NavController) {
                             contentDescription = "classic_french_fries",
                             modifier = Modifier
                                 .align(Alignment.Center)
-                                .size(220.dp)
+                                .size(260.dp)
                         )
                         Icon(
                             imageVector = Icons.Default.Favorite,

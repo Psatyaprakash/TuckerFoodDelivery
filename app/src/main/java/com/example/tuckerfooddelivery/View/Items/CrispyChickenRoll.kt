@@ -140,7 +140,7 @@ fun CrispyChickenRoll(navController: NavController) {
                         contentDescription = "Roll",
                         modifier = Modifier
                             .align(Alignment.Center)
-                            .size(220.dp)
+                            .size(250.dp)
                     )
                     Icon(
                         imageVector = Icons.Default.Favorite,
