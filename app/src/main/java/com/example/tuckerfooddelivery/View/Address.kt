@@ -24,6 +24,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.tuckerfooddelivery.ui.theme.TuckerFoodDeliveryTheme
 
 /*class MainActivity : ComponentActivity() {
@@ -36,6 +40,7 @@ import com.example.tuckerfooddelivery.ui.theme.TuckerFoodDeliveryTheme
         }
     }
 }*/
+
 
 @Composable
 fun SaveLocationScreen() {
@@ -85,41 +90,26 @@ fun SaveLocationScreen() {
                     .background(Color.White, shape = RoundedCornerShape(16.dp))
                     .padding(16.dp)
             ) {
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(10.dp))
+                // Address Section
                 Text(
                     text = "ADDRESS",
+                    fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
-                    fontSize = 16.sp
+                    modifier = Modifier
+                        .padding(bottom = 4.dp)
                 )
-                Spacer(modifier = Modifier.height(10.dp))
-                Row {
-                    Image(painter = painterResource(id = R.drawable.location), contentDescription ="", )
-                    TextField(
-                        value = address,
-                        onValueChange = { address = it },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(Color(0xFFF0E68C), shape = RoundedCornerShape(10.dp)),
-                        placeholder = { Text(text = "Address") },
-                        singleLine = true,
-                        colors = TextFieldDefaults.textFieldColors(
-                            backgroundColor = Color(0xFFF0E68C),
-                            focusedIndicatorColor = Color.Transparent,
-                            unfocusedIndicatorColor = Color.Transparent,
-                            textColor = Color.Black
-                        )
-                    )
-                }
+                AddressInputField(text = "3235 Royal Ln. Meso, New Jersey 34567", leadingIcon = R.drawable.location)
 
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = "STREET",
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
                     fontSize = 16.sp
                 )
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(4.dp))
 
                 TextField(
                     value = street,
@@ -136,14 +126,14 @@ fun SaveLocationScreen() {
                         textColor = Color.Black
                     )
                 )
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = "POST CODE",
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
                     fontSize = 16.sp
                 )
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(4.dp))
 
                 TextField(
                     value = postCode,
@@ -161,14 +151,15 @@ fun SaveLocationScreen() {
                         textColor = Color.Black
                     )
                 )
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(8.dp))
+
                 Text(
                     text = "APPARTMENT",
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
                     fontSize = 16.sp
                 )
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(4.dp))
                 TextField(
                     value = apartment,
                     onValueChange = { apartment = it },
@@ -185,15 +176,16 @@ fun SaveLocationScreen() {
                     )
                 )
 
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(10.dp))
 
                 Text(
-                    text = "Label as",
+                    text = "LABEL AS",
                     color = Color.Black,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold
                 )
 
-                Spacer(modifier = Modifier.height(15.dp))
+                Spacer(modifier = Modifier.height(10.dp))
 
                 Row(
                     horizontalArrangement = Arrangement.SpaceEvenly,
@@ -231,14 +223,14 @@ fun SaveLocationScreen() {
                 }
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
+           // Spacer(modifier = Modifier.height(10.dp))
 
             Button(
                 onClick = { /* Handle save action */ },
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFFFD700)),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
+                    .padding(10.dp)
             ) {
                 Text(
                     text = "Save Location",
@@ -250,6 +242,30 @@ fun SaveLocationScreen() {
     }
 }
 
+@Composable
+fun AddressInputField(text: String, leadingIcon: Int? = null) {
+    Box(
+        modifier = Modifier
+            .background(Color(0xFFF0E68C), RoundedCornerShape(8.dp))
+            .padding(15.dp)
+            .fillMaxWidth()
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            leadingIcon?.let {
+                Icon(
+                    painter = painterResource(id = it), // Replace with actual icon
+                    contentDescription = "Icon",
+                    modifier = Modifier.size(24.dp),
+                    tint = Color.Black
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+            }
+            Text(text = text, fontSize = 16.sp, color = Color.Black)
+        }
+    }
+}
+
+
 @Preview(showBackground = true)
 @Composable
 fun SaveLocationScreenPreview() {
@@ -257,6 +273,7 @@ fun SaveLocationScreenPreview() {
         SaveLocationScreen()
     }
 }
+
 
 // Extension function to convert dp to px
 private fun Int.dpToPx(): Int = (this * Resources.getSystem().displayMetrics.density).toInt()

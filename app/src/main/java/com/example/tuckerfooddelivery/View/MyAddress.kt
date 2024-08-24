@@ -32,8 +32,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.ui.theme.TuckerFoodDeliveryTheme
-
-
+/*
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +42,7 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
+}*/
 
 @Composable
 fun MyApp() {
