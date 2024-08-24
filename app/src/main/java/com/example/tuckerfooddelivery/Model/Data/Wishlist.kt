@@ -1,10 +1,6 @@
 package com.example.tuckerfooddelivery.Model.Data
 
-import android.media.Image
-import androidx.compose.ui.graphics.painter.Painter
-
-data class Cart(
-//    val itemName :String = "",
+data class Wishlist (
     val name: String = "",
     val price: Int = 0,
     var count: Int = 0,
