@@ -312,11 +312,7 @@ fun RestaurantHomePage(navController: NavController) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
-                .clickable {
-                    // Navigate to the order details page
-                    navController.navigate("SmokingBurger.....")
-                },
+                .padding(8.dp),
             shape = RoundedCornerShape(8.dp),
             elevation = CardDefaults.elevatedCardElevation(4.dp),
             colors = CardDefaults.cardColors(Color.LightGray)
@@ -370,11 +366,7 @@ fun RestaurantHomePage(navController: NavController) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
-                .clickable {
-                    // Navigate to the order details page
-                    navController.navigate("Spicy Chicken Wings.....")
-                },
+                .padding(8.dp),
             shape = RoundedCornerShape(8.dp),
             elevation = CardDefaults.elevatedCardElevation(4.dp),
             colors = CardDefaults.cardColors(Color.LightGray)
@@ -428,11 +420,7 @@ fun RestaurantHomePage(navController: NavController) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
-                .clickable {
-                    // Navigate to the order details page
-                    navController.navigate("Grilled Paneer Sandwich.....")
-                },
+                .padding(8.dp),
             shape = RoundedCornerShape(8.dp),
             elevation = CardDefaults.elevatedCardElevation(4.dp),
             colors = CardDefaults.cardColors(Color.LightGray)
@@ -486,11 +474,7 @@ fun RestaurantHomePage(navController: NavController) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
-                .clickable {
-                    // Navigate to the order details page
-                    navController.navigate("Veggie Delight Pizza.....")
-                },
+                .padding(8.dp),
             shape = RoundedCornerShape(8.dp),
             elevation = CardDefaults.elevatedCardElevation(4.dp),
             colors = CardDefaults.cardColors(Color.LightGray)
