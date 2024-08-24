@@ -23,11 +23,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 
 
 @Composable
-fun PledgeScreen() {
+fun PledgeScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -41,13 +43,9 @@ fun PledgeScreen() {
                 .fillMaxWidth()
                 .padding(bottom = 16.dp)
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_arrow_back),
-                contentDescription = "Back Arrow",
-                modifier = Modifier
-                    .size(24.dp)
-                    .padding(end = 8.dp)
-            )
+            CircularButtonWithSymbol {
+                navController.navigate("MainScreen")
+            }
             Text(
                 text = "Take a Pledge!!",
                 fontSize = 24.sp,

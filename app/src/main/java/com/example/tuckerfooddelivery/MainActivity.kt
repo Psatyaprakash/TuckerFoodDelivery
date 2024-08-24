@@ -49,6 +49,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 import com.example.tuckerfooddelivery.View.Storage
+import com.example.tuckerfooddelivery.View.ThankYouScreen
 import com.example.tuckerfooddelivery.ViewModel.AppNavigation
 
 class MainActivity : ComponentActivity() {
@@ -58,7 +59,7 @@ class MainActivity : ComponentActivity() {
         // enableEdgeToEdge()
         setContent {
             AppNavigation()
-//            Storage()
+//            ThankYouScreen()
         }
     }
 }
@@ -99,9 +100,9 @@ fun BottomNavigationBar(navController: NavController) {
             Row{
                 BottomNavIcon(
                     Icons.Filled.CleanHands,
-                    "Notifications",
+                    "Pledge",
                     navController,
-                    "Notification"
+                    "PledgeScreen"
                 )
             }
             BottomNavIcon(Icons.Filled.Home, "Home", navController, "MainScreen")
