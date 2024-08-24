@@ -636,7 +636,7 @@ fun AddToCart(navController: NavController) {
                             Text(
                                 text = " BUY NOW ",
                                 fontWeight = FontWeight.Bold,
-                                color = Color.White,
+                                color = White,
                                 fontSize = 22.sp
                             )
                         }
@@ -685,7 +685,7 @@ fun AddToCart(navController: NavController) {
                                         horizontalArrangement = Arrangement.Center
                                     ) {
                                         Text(
-                                            text = "Total Amount : Rs ${totalAmount + totalCartPrice + platformFee}",
+                                            text = "Total Amount : Rs ${totalAmount + platformFee}",
                                             fontWeight = FontWeight.Black,
                                             modifier = Modifier.padding(horizontal = 10.dp),
                                             fontSize = 25.sp

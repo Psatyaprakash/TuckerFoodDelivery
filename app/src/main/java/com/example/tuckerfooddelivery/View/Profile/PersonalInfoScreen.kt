@@ -49,6 +49,7 @@ import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import com.example.tuckerfooddelivery.Model.Add.addUser
 import com.example.tuckerfooddelivery.Model.Data.User
+import com.example.tuckerfooddelivery.Model.Fetch.db
 import com.example.tuckerfooddelivery.Model.Fetch.fetchUser
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Items.getImageUrlFromFirebaseStorage
@@ -78,36 +79,37 @@ fun PersonalInfoDetails(navController: NavHostController) {
     var bio by remember { mutableStateOf("") }
 
     val context = LocalContext.current
-    val imageUri = remember {
-        mutableStateOf<Uri?>(null)
-    }
+    val imageUri = remember { mutableStateOf<Uri?>(null) }
 
     val userList = remember { mutableStateOf<List<User>>(emptyList()) }
+
     LaunchedEffect(Unit) {
         try {
             fetchUser { user ->
                 userList.value = user
-//                user.
-                fullName = user.get(0).name
-                phoneNumber = user.get(0).phone
-                email = user.get(0).email
+                fullName = user[0].name
+                phoneNumber = user[0].phone
+                email = user[0].email
                 bio = user.get(0).bio
-//                Log.w("fetch", "${user.get(0)}")
+
+                //Log.w("fetch", "${user.get(0)}")
             }
         } catch (e: Exception) {
             Log.w("Error" ,"Failed to load User")
         }
     }
-
     val launcher =
         rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             imageUri.value = uri
-            uri?.let { uploadImage(uri, phoneNumber ,context) }
+            uri?.let { uploadImage(uri, phoneNumber , context) }
         }
-    val imagePath by remember { mutableStateOf("User/$phoneNumber.jpg") }
-    var imageUrl by remember { mutableStateOf("") }
+    var imageUrl by remember { mutableStateOf<String?>(null) }
     var loadError by remember { mutableStateOf<Exception?>(null) }
+    var imagePath by remember { mutableStateOf("") }
+    imagePath = "User/$phoneNumber.jpg"
 
+    Log.w("ImagePath", "$imagePath \n $phoneNumber")
+    // Fetch the image URL
     LaunchedEffect(imagePath) {
         getImageUrlFromFirebaseStorage(
             imagePath = imagePath,
@@ -115,6 +117,7 @@ fun PersonalInfoDetails(navController: NavHostController) {
             onFailure = { exception -> loadError = exception },
         )
     }
+    Log.w("ImageUrl", "$imageUrl")
 
     Column(
         modifier = Modifier
@@ -126,7 +129,7 @@ fun PersonalInfoDetails(navController: NavHostController) {
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            CircularButtonWithSymbol(onClick = { navController.navigate("ProfileView") })
+            CircularButtonWithSymbol(onClick = { navController.popBackStack() })
             Text(
                 text = "Personal Info",
                 color = Color.Black,
@@ -143,7 +146,6 @@ fun PersonalInfoDetails(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Log.w("ImageUrl", imageUrl)
             AsyncImage(
                 model =  imageUrl ,
                 contentDescription = "Profile Image",
@@ -238,10 +240,9 @@ fun PersonalInfoDetails(navController: NavHostController) {
 }
 
 fun uploadImage(uri: Uri, phone : String, context: Context) {
-//        val fileName = "profile/${userName}.jpg"
-//        val fileName = "Restro/Menu/Category/Item/${itemName}.jpg"
     val fileName = "User/$phone.jpg"
     val imageRef = storageRef.child(fileName)
+    Log.w("Image Upload", "$imageRef")
     imageRef.putFile(uri)
         .addOnSuccessListener { taskSnapshot ->
             imageRef.downloadUrl.addOnSuccessListener { uri ->
