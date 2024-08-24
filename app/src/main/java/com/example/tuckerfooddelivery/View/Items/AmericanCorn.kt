@@ -44,6 +44,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.tuckerfooddelivery.MainScreen
 import com.example.tuckerfooddelivery.R
 
 
@@ -51,6 +52,13 @@ import com.example.tuckerfooddelivery.R
 var AmericanCorn_Cart=0
 @Composable
 fun AmericanCorn(navController: NavController) {
+    MainScreen(navController = navController) {
+        AmericanCornS(navController = it)
+    }
+}
+
+@Composable
+fun AmericanCornS(navController: NavController){
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     var  AmericanCorn_image: Any = Image(
         painter = painterResource(id = R.drawable.american_corn),
@@ -90,7 +98,7 @@ fun AmericanCorn(navController: NavController) {
             Spacer(modifier = Modifier.height(15.dp))
             Row {
                 TextButton(
-                    onClick = {navController.navigate("Starters_Category") },
+                    onClick = {navController.popBackStack() },
                     colors = ButtonDefaults.buttonColors(Color.LightGray),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),

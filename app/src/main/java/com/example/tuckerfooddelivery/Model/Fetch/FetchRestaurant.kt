@@ -1,4 +1,4 @@
-package com.example.tuckerfooddelivery.ViewModel
+package com.example.tuckerfooddelivery.Model.Fetch
 
 import android.content.ContentValues.TAG
 import android.util.Log

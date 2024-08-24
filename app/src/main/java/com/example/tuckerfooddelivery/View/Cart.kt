@@ -1,11 +1,9 @@
 package com.example.tuckerfooddelivery.View
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
@@ -30,79 +27,80 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.tuckerfooddelivery.MainScreen
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Items.ClassicFrenchFriesCart
+import com.example.tuckerfooddelivery.View.Items.PizzaCalzoneCart
+import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Cart
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Large
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Regular
+import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_10
+import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_14
+import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_16
+import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_Cart
+import com.example.tuckerfooddelivery.ViewModel.platformFee
+import com.example.tuckerfooddelivery.ViewModel.totalAmount
 import com.example.tuckerfooddelivery.ViewModel.totalCartPrice_global
 
+@Composable
+fun Carts(navController: NavController){
+    MainScreen(navController) {
+        Cart(navController = it)
+    }
+}
 
 @Composable
 fun Cart(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     var totalCartPrice : Int by remember {
-        mutableStateOf<Int>(0)
-    }
-    var ClassicFrenchFries_Price : Int by remember {
-        mutableStateOf<Int>(0)
-    }
-    var PizzaCalzone_Price : Int by remember {
-        mutableStateOf<Int>(0)
+        mutableStateOf<Int>(totalCartPrice_global)
     }
     val context = LocalContext.current
 
     fun price_update() {
         totalCartPrice = totalCartPrice_global
     }
+    totalAmount= totalCartPrice_global+platformFee
     Column {
         Column(
             modifier = Modifier
                 .padding(horizontal = 15.dp)
-                .size(height = 740.dp, width = 700.dp)
                 .fillMaxWidth()
+                .size(height = 700.dp, width = 0.dp)
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.Top
         ) {
             Spacer(modifier = Modifier.height(15.dp))
-            Row {
-                TextButton(
-                    onClick = {},
-                    colors = ButtonDefaults.buttonColors(Color.LightGray),
-                    shape = CircleShape,
-                    contentPadding = PaddingValues(0.dp),
-                    modifier = Modifier
-                        .size(50.dp)
-                        .background(Color.Gray, CircleShape)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.leftarrow),
-                        contentDescription = "",
-                        modifier = Modifier.size(30.dp)
-                    )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                CircularButtonWithSymbol {
+                    navController.popBackStack()
                 }
                 Spacer(modifier = Modifier.width(1.dp))
                 Text(
                     text = "Cart",
-                    fontSize = 20.sp,
+                    fontSize = 25.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(16.dp)
                 )
             }
             Spacer(modifier = Modifier.height(10.dp))
+            if (PizzaCalzone_Cart == 1) {
+                PizzaCalzoneCart(PizzaCalzone_10,PizzaCalzone_14,PizzaCalzone_16)
+            }
             if (ClassicFrenchFries_Cart == 1) {
                 ClassicFrenchFriesCart(ClassicFrenchFries_Regular, ClassicFrenchFries_Large)
             }
-//
-//            if (PizzaCalzone_Cart == 1) {
-//                PizzaCalzone_Price= PizzaCalzone_Cart()
-//            }
+
+
         }
 
 
@@ -110,24 +108,49 @@ fun Cart(navController: NavController) {
             modifier = Modifier
                 .background(Color.LightGray)
                 .fillMaxWidth()
-                .size(height = 200.dp, width = 700.dp)
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.Bottom
+                .size(height = 300.dp, width = 700.dp)
+                .verticalScroll(rememberScrollState())
+                .padding(vertical = 20.dp),
+            verticalArrangement = Arrangement.Center
         ) {
             Row(
-                modifier = Modifier.padding(10.dp),
+                modifier = Modifier.padding(horizontal = 10.dp),
                 horizontalArrangement = Arrangement.Center
             ) {
-
                 Text(
-                    text = "PRICE : Rs $totalCartPrice",
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(vertical = 20.dp, horizontal = 10.dp),
+                    text = "Item Total : Rs $totalCartPrice",
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier.padding( horizontal = 10.dp),
+                    fontSize = 23.sp
+                )
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            Row(
+                modifier = Modifier.padding(horizontal = 10.dp),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = "Delivery Charge : Free\n" +
+                            "Platform Fee : Rs $platformFee",
+                    fontWeight = FontWeight.W300,
+                    modifier = Modifier.padding(horizontal = 10.dp),
+                    fontSize = 21.sp
+                )
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Row(
+                modifier = Modifier.padding(horizontal = 10.dp),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = "Total Amount : Rs $totalAmount",
+                    fontWeight = FontWeight.Black,
+                    modifier = Modifier.padding( horizontal = 10.dp),
                     fontSize = 25.sp
                 )
-                Spacer(modifier = Modifier.width(50.dp))
-
             }
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
@@ -136,7 +159,7 @@ fun Cart(navController: NavController) {
                 var value = 0
                 TextButton(
                     onClick = { price_update() ;
-                        createNotification(context, "Order Summary" , "Order placed \nTotal Price : $totalCartPrice")
+                        createNotification(context, "Order Summary" , "Order placed \nTotal Amount : $totalAmount")
                               },
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     border = BorderStroke(width = 0.dp, color = Color.Transparent),

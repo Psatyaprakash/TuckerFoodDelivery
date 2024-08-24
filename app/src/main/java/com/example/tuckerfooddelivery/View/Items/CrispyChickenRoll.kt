@@ -90,7 +90,7 @@ fun CrispyChickenRoll(navController: NavController) {
             Spacer(modifier = Modifier.height(15.dp))
             Row {
                 TextButton(
-                    onClick = {navController.navigate("Roll_Category") },
+                    onClick = {navController.popBackStack() },
                     colors = ButtonDefaults.buttonColors(Color.LightGray),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
@@ -149,7 +149,7 @@ fun CrispyChickenRoll(navController: NavController) {
             Spacer(modifier = Modifier.height(15.dp))
 
             Text(
-                text = "$Item_Name",
+                text = Item_Name,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
