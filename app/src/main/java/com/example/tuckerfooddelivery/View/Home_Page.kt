@@ -69,6 +69,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.ViewModel.userPrimaryAddress
 
 
 //Home Page UI
@@ -85,7 +86,7 @@ fun HomePage(navController: NavController ) {
         Row(
             Modifier
                 .fillMaxWidth()
-                .padding(start = 5.dp, top = 15.dp, bottom = 15.dp, end = 5.dp),
+                .padding(20.dp,10.dp),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -104,8 +105,7 @@ fun HomePage(navController: NavController ) {
                         .clickable { navController.navigate("ProfileView") }
                 )
             }
-
-//            Spacer(modifier = Modifier.width(1.dp))
+            Spacer(modifier = Modifier.width(5.dp))
             Column() {
                 Text(
                     text = "DELIVER TO",
@@ -114,10 +114,11 @@ fun HomePage(navController: NavController ) {
                     color = Color.Red
                 )
                 Text(
-                    text = "Haldi Lab Office",
+                    text = userPrimaryAddress,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black
+                    color = Color.Black,
+
                 )
             }
 
