@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -330,6 +331,10 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
     var imageUrl by remember { mutableStateOf<String?>(null) }
     var loadError by remember { mutableStateOf<Exception?>(null) }
     val context = LocalContext.current
+    val price = cart.price
+    var count by remember {
+        mutableStateOf(cart.count)
+    }
 
     // Fetch the image URL
     LaunchedEffect(imagePath) {
@@ -345,8 +350,10 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
 
         Card(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .wrapContentHeight(),
 //                        .size(150.dp),
+
             elevation = 8.dp,
             backgroundColor = colorResource(id = R.color.Mustard_yellow),
             shape = RoundedCornerShape(15.dp)
@@ -355,7 +362,7 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
                 Box(
                     modifier = Modifier
                         .padding(15.dp)
-                        .size(130.dp)
+                        .size(150.dp)
                         .background(White, shape = RoundedCornerShape(15.dp))
                         .fillMaxWidth(.3f)
 //                        .align(Alignment.CenterVertically)
@@ -374,39 +381,41 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
                         CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                     }
                 }
+                Column {
+
+
                 Column(
                     Modifier
                         .fillMaxSize()
-                        .padding(10.dp, 20.dp),
-                    verticalArrangement = Arrangement.SpaceBetween,
+                        .padding(0.dp,15.dp,10.dp,10.dp),
+                    verticalArrangement = Arrangement.SpaceAround,
                     horizontalAlignment = Alignment.Start
                 ) {
+//                    Row(
+//                        Modifier.fillMaxWidth(),
+//                        verticalAlignment = Alignment.CenterVertically,
+//                        horizontalArrangement = Arrangement.SpaceBetween
+//                    ) {}
+                    Text(
+                        text = cart.name,
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.height(3.dp))
 
-                    Row(
-                        Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = cart.name,
-                            fontSize = 25.sp,
-                            fontWeight = FontWeight.Bold
-                        )
+                    Text(
+                        text = "( ${cart.size} )",
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold
+                    )
 
-                        Text(
-                            text = "( ${cart.size} )",
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-                    val price = cart.price
-                    var count by remember {
-                        mutableStateOf(cart.count)
-                    }
+                    Spacer(modifier = Modifier.height(15.dp))
+
                     Text(
                         text = "Rs.${price * count}",
                         fontSize = 20.sp
                     )
+                }
                     Row(
                         Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
@@ -456,7 +465,11 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
                                     .delete()
                                     .addOnSuccessListener {
                                         Log.d(TAG, "DocumentSnapshot successfully deleted!")
-                                        Toast.makeText(context , "Item deleted successfully" , Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(
+                                            context,
+                                            "Item deleted successfully",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
                                     }
                                     .addOnFailureListener { e ->
                                         Log.w(TAG, "Error deleting document", e)
@@ -472,13 +485,14 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
                                 )
                             }
                         }
+                    }
 
                     }
                 }
             }
         }
 
-    }
+
 
     else if (loadError != null) {
         Text(text = "Failed to load image: ${loadError!!.message}")
