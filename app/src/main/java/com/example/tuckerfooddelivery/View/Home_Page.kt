@@ -148,7 +148,7 @@ fun HomePage(navController: NavController ) {
         ) {
             Column(
                 modifier = Modifier
-                    .padding(10.dp, 2.dp)
+                    .padding(12.dp, 2.dp)
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
             ) {
