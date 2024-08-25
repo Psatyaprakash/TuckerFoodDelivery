@@ -2,10 +2,12 @@ package com.example.tuckerfooddelivery.View.Items
 
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -46,6 +48,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -54,6 +57,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.MainScreen
 import com.example.tuckerfooddelivery.Model.Add.addCart
+import com.example.tuckerfooddelivery.Model.Add.addWishlist
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 
@@ -87,6 +91,7 @@ fun AmericanCorn(navController: NavController){
     val Name = "American Corn"
     var size by remember { mutableStateOf("Half")    }
 
+    val context = LocalContext.current
 
 
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
@@ -143,19 +148,23 @@ fun AmericanCorn(navController: NavController){
                     Icon(
                         imageVector = Icons.Default.Favorite,
                         contentDescription = "Add",
-                        tint = Color.White,
+                        tint = White,
                         modifier = Modifier
                             .align(Alignment.BottomEnd)
                             .size(40.dp)
                             .background(Color.Red, shape = CircleShape)
                             .padding(8.dp)
+                            .clickable {
+                                if(totalprice == unitPriceHalf)size = "Half" else size = "Full"
+                                addWishlist(Item_Name,totalprice ,count,size)
+                            }
                     )
                 }
             }
             Spacer(modifier = Modifier.height(15.dp))
 
             Text(
-                text = "$Item_Name",
+                text = Name,
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
@@ -271,7 +280,6 @@ fun AmericanCorn(navController: NavController){
                 modifier = Modifier
                     .padding(horizontal = 0.dp)
                     .fillMaxWidth(),
-                //.align(Alignment.CenterHorizontally),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -414,7 +422,7 @@ fun AmericanCorn(navController: NavController){
                     onClick = {
                         if(totalprice == unitPriceHalf)size = "Half" else size = "Full"
                         addCart(Item_Name,totalprice ,count,size);
-                            Toast.makeText(context , "Item added successfully" , Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context , "Item added successfully" , Toast.LENGTH_SHORT).show()
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     modifier = Modifier

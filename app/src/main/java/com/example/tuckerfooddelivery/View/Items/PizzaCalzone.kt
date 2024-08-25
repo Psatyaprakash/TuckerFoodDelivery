@@ -1,6 +1,9 @@
 package com.example.tuckerfooddelivery.View.Items
 
+import android.os.Build
 import android.util.Log
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -48,6 +51,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -55,6 +59,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.Model.Add.addCart
+import com.example.tuckerfooddelivery.Model.Add.addWishlist
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Large
@@ -73,6 +78,7 @@ import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_Wishlist
 import com.example.tuckerfooddelivery.ViewModel.updatePrice
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun PizzaCalzone(navController: NavController) {
 
@@ -103,12 +109,13 @@ fun PizzaCalzone(navController: NavController) {
     val unitPrice14: Int by remember { mutableStateOf(239) }
     val unitPrice16: Int by remember { mutableStateOf(259) }
     var size by remember { mutableStateOf("10''") }
-    val Item_Name = "MargheritaCornPizza"
-    val Name = "Margherita Corn Pizza"
+    val Item_Name = "PizzaCalzone"
+    val Name = "Pizza Calzone"
 
     var count by remember {
         mutableStateOf<Int>(1)
     }
+    val context = LocalContext.current
 
 
 
@@ -169,17 +176,17 @@ fun PizzaCalzone(navController: NavController) {
                     Icon(
                         imageVector = Icons.Default.Favorite,
                         contentDescription = "Add",
-                        tint = Color.White,
+                        tint = White,
                         modifier = Modifier
                             .align(Alignment.BottomEnd)
                             .size(40.dp)
                             .background(Color.Red, shape = CircleShape)
                             .padding(8.dp)
-                            .clickable(onClick = {
-                                PizzaCalzone_Wishlist = 1;navController.navigate(
-                                "Favorites"
-                            )
-                            })
+                            .clickable { if(totalprice == unitPrice10){size = "10''"}
+                            else if (totalprice == unitPrice14){size = "14''"}
+                            else{ size = "16''"};
+                                addWishlist(Item_Name,totalprice ,count,size)
+                            }
                     )
                 }
             }

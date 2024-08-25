@@ -57,6 +57,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.Model.Add.addCart
+import com.example.tuckerfooddelivery.Model.Add.addWishlist
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 
@@ -157,12 +158,17 @@ fun MargheritaCornPizza(navController: NavController) {
                     Icon(
                         imageVector = Icons.Default.Favorite,
                         contentDescription = "Add",
-                        tint = Color.White,
+                        tint = White,
                         modifier = Modifier
                             .align(Alignment.BottomEnd)
                             .size(40.dp)
                             .background(Color.Red, shape = CircleShape)
                             .padding(8.dp)
+                            .clickable { if(totalprice == unitPrice10){size = "10''"}
+                            else if (totalprice == unitPrice14){size = "14''"}
+                            else{ size = "16''"};
+                                addWishlist(Item_Name,totalprice ,count,size)
+                            }
                     )
                 }
             }
@@ -430,9 +436,9 @@ fun MargheritaCornPizza(navController: NavController) {
                     onClick = {
                         if(totalprice == unitPrice10)size = "10''"
                         else if (totalprice == unitPrice14)size = "14''"
-                        else size = "16''"
+                        else size = "16''";
                         addCart(Item_Name,totalprice ,count,size);
-                            Toast.makeText(context , "Item added successfully" , Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context , "Item added successfully" , Toast.LENGTH_SHORT).show()
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     modifier = Modifier

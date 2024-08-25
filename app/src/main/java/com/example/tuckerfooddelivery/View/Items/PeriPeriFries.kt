@@ -1,9 +1,13 @@
 package com.example.tuckerfooddelivery.View.Items
 
+import android.os.Build
 import android.util.Log
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -45,6 +49,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -52,11 +57,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.Model.Add.addCart
+import com.example.tuckerfooddelivery.Model.Add.addWishlist
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 
 
 var PeriPeriFries_Cart=0
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun PeriPeriFries(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
@@ -88,6 +95,7 @@ fun PeriPeriFries(navController: NavController) {
     var count by remember {
         mutableStateOf<Int>(1)
     }
+    val context = LocalContext.current
 
 
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
@@ -101,7 +109,7 @@ fun PeriPeriFries(navController: NavController) {
             modifier = Modifier
                 .padding(horizontal =10.dp)
                 .background(White)
-                .fillMaxHeight(.9f)
+                .fillMaxHeight(.91f)
                 .verticalScroll(rememberScrollState())
         ) {
             Spacer(modifier = Modifier.height(15.dp))
@@ -149,6 +157,10 @@ fun PeriPeriFries(navController: NavController) {
                             .size(40.dp)
                             .background(Color.Red, shape = CircleShape)
                             .padding(8.dp)
+                            .clickable {
+                                if(totalprice == unitPriceRegular)size = "Regular" else size = "Large"
+                                addWishlist(Item_Name,totalprice ,count,size)
+                            }
                     )
                 }
             }
