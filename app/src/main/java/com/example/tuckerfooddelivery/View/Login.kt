@@ -65,13 +65,15 @@ val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks()
 
         when (e) {
             is FirebaseAuthInvalidCredentialsException -> {
-                print("Firebase Auth Invalid Credentials" )
+                Log.w("Login","Firebase Auth Invalid Credentials" )
             }
 
             is FirebaseTooManyRequestsException -> {
+                Log.w("Login","Firebase Too Many Exception" )
             }
 
             is FirebaseAuthMissingActivityForRecaptchaException -> {
+                Log.w("Login", "FirebaseAuthMissingActivityForRecaptchaException")
             }
         }
 
@@ -88,6 +90,7 @@ val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks()
 }
 
 fun startPhoneNumberVerification(context: Context , phoneNumber: String) {
+    Log.w( "phoneNumber",phoneNumber)
     val options = PhoneAuthOptions.newBuilder(auth)
         .setPhoneNumber(phoneNumber)
         .setTimeout(60L, TimeUnit.SECONDS)
