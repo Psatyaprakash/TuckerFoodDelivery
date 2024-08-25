@@ -161,7 +161,6 @@ fun MargheritaCornPizza(navController: NavController) {
                             .size(40.dp)
                             .background(Color.Red, shape = CircleShape)
                             .padding(8.dp)
-
                     )
                 }
             }
@@ -430,7 +429,8 @@ fun MargheritaCornPizza(navController: NavController) {
                         if(totalprice == unitPrice10)size = "10''"
                         else if (totalprice == unitPrice14)size = "14''"
                         else size = "16''"
-                        addCart(Item_Name,totalprice ,count,size)
+                        addCart(Item_Name,totalprice ,count,size);
+                            Toast.makeText(context , "Item added successfully" , Toast.LENGTH_SHORT).show()
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     modifier = Modifier
