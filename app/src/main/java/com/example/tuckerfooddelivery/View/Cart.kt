@@ -358,7 +358,7 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
             backgroundColor = colorResource(id = R.color.Mustard_yellow),
             shape = RoundedCornerShape(15.dp)
         ) {
-            Row {
+            Row(verticalAlignment = Alignment.CenterVertically) {
                 Box(
                     modifier = Modifier
                         .padding(15.dp)
