@@ -14,7 +14,7 @@ fun addUser(name :String, email :String , phone : String, bio : String){
     )
 
     db.collection("User")
-        .document(phone )
+        .document(phone)
         .set(user)
         .addOnSuccessListener {
             Log.d(TAG, "DOCUMENT SNAPSHOT ADDED AT LOC : $phone")
