@@ -2,6 +2,7 @@ package com.example.tuckerfooddelivery.View.Items
 
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -48,6 +49,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -68,7 +70,7 @@ fun MargheritaCornPizza(navController: NavController) {
     var star by remember { mutableStateOf(0.0) }
     val deliver by remember { mutableStateOf("Free") }
     var deliveryTime by remember { mutableStateOf(0) }
-
+    var context = LocalContext.current
 
     var totalprice: Int by remember { mutableStateOf(199) }
     val unitPrice10: Int by remember { mutableIntStateOf(199) }
