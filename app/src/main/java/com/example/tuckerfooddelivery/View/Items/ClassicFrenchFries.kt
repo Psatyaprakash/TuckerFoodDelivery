@@ -426,7 +426,8 @@ fun ClassicFrenchFries(navController: NavController) {
                 TextButton(
                     onClick = {
                         if(totalprice == unitPriceRegular)size = "Regular" else size = "Large"
-                        addCart(Item_Name,totalprice ,count,size)
+                        addCart(Item_Name,totalprice ,count,size);
+                            Toast.makeText(context , "Item added successfully" , Toast.LENGTH_SHORT).show()
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     modifier = Modifier
