@@ -1,6 +1,8 @@
 package com.example.tuckerfooddelivery.View.Items
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -54,6 +56,7 @@ import com.example.tuckerfooddelivery.Model.Add.addCart
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun TibetanMomos(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)

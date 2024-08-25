@@ -74,8 +74,6 @@ import com.example.tuckerfooddelivery.R
 //Home Page UI
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
-//fun HomePage(navController: NavController , route : @Composable (NavController) -> Unit) {
 fun HomePage(navController: NavController ) {
 
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
@@ -87,7 +85,7 @@ fun HomePage(navController: NavController ) {
         Row(
             Modifier
                 .fillMaxWidth()
-                .padding(5.dp, 10.dp),
+                .padding(start = 5.dp, top = 15.dp, bottom = 15.dp, end = 5.dp),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -523,7 +521,7 @@ fun HomePage(navController: NavController ) {
                 }
 
 
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(15.dp))
                 Row(modifier = Modifier
                     .fillMaxWidth()
                     ,verticalAlignment = Alignment.CenterVertically,
@@ -545,7 +543,8 @@ fun HomePage(navController: NavController ) {
                         modifier = Modifier.padding(horizontal = 10.dp)
                     )
                 }
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(15.dp))
+
                 //Card for Restaurant 1
                 Card(
                     shape = RoundedCornerShape(16.dp),
@@ -560,9 +559,7 @@ fun HomePage(navController: NavController ) {
                         disabledContentColor = Mustard_yellow,
                         disabledContainerColor = Mustard_yellow
                     ),
-
                     onClick = { navController.navigate("Rosegardenrestaurant_landingpage") }
-
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.restaurant_img_1),
@@ -582,33 +579,34 @@ fun HomePage(navController: NavController ) {
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
                     fontSize = 20.sp,
-                    modifier = Modifier.padding(horizontal = 10.dp)
+                    modifier = Modifier.padding(horizontal = 15.dp)
                 )
-
-                //Spacer(modifier = Modifier.height(1.dp).width(10.dp))
                 Text(
                     text = "Burger - Chicken - Rice - Wings ",
                     fontWeight = FontWeight.Normal,
                     color = Color.Black,
                     fontSize = 14.sp,
-                    modifier = Modifier.padding(horizontal = 12.dp)
+                    modifier = Modifier.padding(horizontal = 15.dp)
                 )
-
                 Spacer(modifier = Modifier.height(10.dp))
                 Row(
                     modifier = Modifier
-                        .padding(horizontal = 1.dp)
-                        .fillMaxWidth()
+                        .padding(horizontal = 15.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.star_),
-                        contentDescription = "Star Rating icon",
+                        painter = painterResource(id = R.drawable.star__),
+                        contentDescription = "Pizza",
                         modifier = Modifier
-                            .size(30.dp)
+                            //.align(Alignment.Top)
+                            .size(20.dp)
                             .padding(0.dp)
                     )
+                    Spacer(modifier = Modifier.width(5.dp))
 
-                    Text(
+                    androidx.compose.material.Text(
                         text = "4.7",
                         fontWeight = FontWeight.Medium,
                         color = Color.Black,
@@ -617,13 +615,14 @@ fun HomePage(navController: NavController ) {
                     )
                     Spacer(modifier = Modifier.width(40.dp))
                     Image(
-                        painter = painterResource(id = R.drawable.truck_icon),
-                        contentDescription = "Truck icon",
+                        painter = painterResource(id = R.drawable.truck__),
+                        contentDescription = "Pizza",
                         modifier = Modifier
-                            .size(35.dp)
+                            .size(25.dp)
                             .padding(0.dp)
                     )
-                    Text(
+                    Spacer(modifier = Modifier.width(5.dp))
+                    androidx.compose.material.Text(
                         text = "Free",
                         fontWeight = FontWeight.Normal,
                         color = Color.Black,
@@ -633,13 +632,14 @@ fun HomePage(navController: NavController ) {
 
                     Spacer(modifier = Modifier.width(40.dp))
                     Image(
-                        painter = painterResource(id = R.drawable.clock_icon),
-                        contentDescription = "Clock icon",
+                        painter = painterResource(id = R.drawable.clock__),
+                        contentDescription = "Pizza",
                         modifier = Modifier
-                            .size(35.dp)
+                            .size(25.dp)
                             .padding(0.dp)
                     )
-                    Text(
+                    Spacer(modifier = Modifier.width(5.dp))
+                    androidx.compose.material.Text(
                         text = "20 min",
                         fontWeight = FontWeight.Normal,
                         color = Color.Black,
@@ -647,6 +647,7 @@ fun HomePage(navController: NavController ) {
                         modifier = Modifier.padding(horizontal = 2.dp)
                     )
                 }
+                Spacer(modifier = Modifier.height(15.dp))
 
                 //Restaurant2 card
                 Card(
@@ -665,11 +666,11 @@ fun HomePage(navController: NavController ) {
                 ) {
                     Box(
                         modifier = Modifier
-                            .size(height = 400.dp, width = 500.dp)
+                            .wrapContentHeight()
+                            .size(height = 400.dp, width = 600.dp)
                             .clip(RoundedCornerShape(5.dp))
                             .background(Color.Transparent)
                             .clickable { navController.navigate("Fionah_landingpage") },
-
                         ) {
                         Image(
                             painter = painterResource(id = R.drawable.group_598),
@@ -677,28 +678,20 @@ fun HomePage(navController: NavController ) {
                             modifier = Modifier
                                 .align(Alignment.TopStart)
                                 .size(4009.dp),
-
                             )
-//                        Image(
-//                            painter = painterResource(id = R.drawable.res_img_2),
-//                            contentDescription = "Restaurant 2 image",
-//                            modifier = Modifier
-//                                .align(Alignment.Center)
-//                                .size(250.dp)
-//                        )
                     }
                 }
                 Spacer(
                     modifier = Modifier
-                        .height(15.dp)
+                        .height(25.dp)
                         .width(10.dp)
                 )
                 Text(
-                    text = "Fionah Restrauant",//Billu Da Dhaba
+                    text = "Fionah Restrauant",
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
                     fontSize = 20.sp,
-                    modifier = Modifier.padding(horizontal = 10.dp)
+                    modifier = Modifier.padding(horizontal = 20.dp)
                 )
 
                 Text(
@@ -706,25 +699,28 @@ fun HomePage(navController: NavController ) {
                     fontWeight = FontWeight.Normal,
                     color = Color.Black,
                     fontSize = 14.sp,
-                    modifier = Modifier.padding(horizontal = 12.dp)
+                    modifier = Modifier.padding(horizontal = 20.dp)
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
                 Row(
                     modifier = Modifier
-                        .padding(horizontal = 1.dp)
-                        .fillMaxWidth()
+                        .padding(horizontal = 15.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.star_),
-                        contentDescription = "Star icon",
+                        painter = painterResource(id = R.drawable.star__),
+                        contentDescription = "Pizza",
                         modifier = Modifier
-                            .size(30.dp)
+                            .size(20.dp)
                             .padding(0.dp)
                     )
+                    Spacer(modifier = Modifier.width(5.dp))
 
                     Text(
-                        text = "4.3",
+                        text = "4.2",
                         fontWeight = FontWeight.Medium,
                         color = Color.Black,
                         fontSize = 18.sp,
@@ -732,12 +728,13 @@ fun HomePage(navController: NavController ) {
                     )
                     Spacer(modifier = Modifier.width(40.dp))
                     Image(
-                        painter = painterResource(id = R.drawable.truck_icon),
+                        painter = painterResource(id = R.drawable.truck__),
                         contentDescription = "Pizza",
                         modifier = Modifier
-                            .size(35.dp)
+                            .size(25.dp)
                             .padding(0.dp)
                     )
+                    Spacer(modifier = Modifier.width(5.dp))
                     Text(
                         text = "Free",
                         fontWeight = FontWeight.Normal,
@@ -746,17 +743,17 @@ fun HomePage(navController: NavController ) {
                         modifier = Modifier.padding(horizontal = 2.dp)
                     )
 
-
                     Spacer(modifier = Modifier.width(40.dp))
                     Image(
-                        painter = painterResource(id = R.drawable.clock_icon),
+                        painter = painterResource(id = R.drawable.clock__),
                         contentDescription = "Pizza",
                         modifier = Modifier
-                            .size(35.dp)
+                            .size(25.dp)
                             .padding(0.dp)
                     )
-                    Text(
-                        text = "15 min",
+                    Spacer(modifier = Modifier.width(5.dp))
+                    androidx.compose.material.Text(
+                        text = "40 min",
                         fontWeight = FontWeight.Normal,
                         color = Color.Black,
                         fontSize = 18.sp,
@@ -764,8 +761,9 @@ fun HomePage(navController: NavController ) {
                     )
                 }
 
-                Spacer(modifier = Modifier.height(10.dp))
-                //Card for Restaurant 1
+                Spacer(modifier = Modifier.height(15.dp))
+
+                //Card for Restaurant 3
                 Card(
                     shape = RoundedCornerShape(16.dp),
                     modifier = Modifier
@@ -799,34 +797,35 @@ fun HomePage(navController: NavController ) {
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
                     fontSize = 20.sp,
-                    modifier = Modifier.padding(horizontal = 10.dp)
+                    modifier = Modifier.padding(horizontal = 20.dp)
                 )
-
-                //Spacer(modifier = Modifier.height(1.dp).width(10.dp))
                 Text(
                     text = "Burger - Fries - Chicken - Wings ",
                     fontWeight = FontWeight.Normal,
                     color = Color.Black,
                     fontSize = 14.sp,
-                    modifier = Modifier.padding(horizontal = 12.dp)
+                    modifier = Modifier.padding(horizontal = 20.dp)
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
                 Row(
                     modifier = Modifier
-                        .padding(horizontal = 1.dp)
-                        .fillMaxWidth()
+                        .padding(horizontal = 15.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.star_),
+                        painter = painterResource(id = R.drawable.star__),
                         contentDescription = "Pizza",
                         modifier = Modifier
                             //.align(Alignment.Top)
-                            .size(30.dp)
+                            .size(20.dp)
                             .padding(0.dp)
                     )
+                    Spacer(modifier = Modifier.width(5.dp))
 
-                    Text(
+                    androidx.compose.material.Text(
                         text = "4.7",
                         fontWeight = FontWeight.Medium,
                         color = Color.Black,
@@ -835,13 +834,14 @@ fun HomePage(navController: NavController ) {
                     )
                     Spacer(modifier = Modifier.width(40.dp))
                     Image(
-                        painter = painterResource(id = R.drawable.truck_icon),
+                        painter = painterResource(id = R.drawable.truck__),
                         contentDescription = "Pizza",
                         modifier = Modifier
-                            .size(35.dp)
+                            .size(25.dp)
                             .padding(0.dp)
                     )
-                    Text(
+                    Spacer(modifier = Modifier.width(5.dp))
+                    androidx.compose.material.Text(
                         text = "Free",
                         fontWeight = FontWeight.Normal,
                         color = Color.Black,
@@ -851,13 +851,14 @@ fun HomePage(navController: NavController ) {
 
                     Spacer(modifier = Modifier.width(40.dp))
                     Image(
-                        painter = painterResource(id = R.drawable.clock_icon),
+                        painter = painterResource(id = R.drawable.clock__),
                         contentDescription = "Pizza",
                         modifier = Modifier
-                            .size(35.dp)
+                            .size(25.dp)
                             .padding(0.dp)
                     )
-                    Text(
+                    Spacer(modifier = Modifier.width(5.dp))
+                    androidx.compose.material.Text(
                         text = "20 min",
                         fontWeight = FontWeight.Normal,
                         color = Color.Black,
@@ -865,6 +866,7 @@ fun HomePage(navController: NavController ) {
                         modifier = Modifier.padding(horizontal = 2.dp)
                     )
                 }
+                Spacer(modifier = Modifier.height(15.dp))
             }
         }
     }

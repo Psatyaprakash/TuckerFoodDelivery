@@ -62,14 +62,14 @@ import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 @Composable
 fun AmericanCorn(navController: NavController){
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
-    var  AmericanCorn_image: Any = Image(
-        painter = painterResource(id = R.drawable.american_corn),
-        contentDescription = "corn",
-        modifier = Modifier
-            .padding(100.dp)
-//            .align(Alignment.Center)
-            .size(100.dp)
-    )
+//    var  AmericanCorn_image: Any = Image(
+//        painter = painterResource(id = R.drawable.american_corn),
+//        contentDescription = "corn",
+//        modifier = Modifier
+//            .padding(100.dp)
+////            .align(Alignment.Center)
+//            .size(100.dp)
+//    )
     var selectedButtonIndex by remember { mutableStateOf(1) }
 
     fun getButtonColor(index: Int): Color {

@@ -82,6 +82,7 @@ fun PersonalInfoDetails(navController: NavHostController) {
     var email by remember { mutableStateOf("") }
     var phoneNumber by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
+    val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
 
     val context = LocalContext.current
     val imageUri = remember { mutableStateOf<Uri?>(null) }
@@ -199,7 +200,6 @@ fun PersonalInfoDetails(navController: NavHostController) {
             }
             Spacer(modifier = Modifier.height(5.dp))
         }
-
         // Form Content
         Column(
             modifier = Modifier
@@ -282,7 +282,7 @@ fun PersonalInfoDetails(navController: NavHostController) {
                         Log.w("Exception", e)
                     }
                 },
-                colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)), // Mustard color
+                colors = ButtonDefaults.buttonColors(Mustard_yellow),
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier
                     .fillMaxWidth()

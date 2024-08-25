@@ -53,7 +53,7 @@ fun AddressScreen(navController: NavHostController) {
         TopAppBar(
             title = { Text("My Address") },
             navigationIcon = {
-                IconButton(onClick = { /* Handle back navigation */ }) {
+                IconButton(onClick = { navController.popBackStack()}) {
                     Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
                 }
             },

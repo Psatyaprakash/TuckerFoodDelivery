@@ -398,7 +398,7 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
 //                    ) {}
                     Text(
                         text = cart.name,
-                        fontSize = 24.sp,
+                        fontSize = 22.sp,
                         fontWeight = FontWeight.Bold
                     )
                     Spacer(modifier = Modifier.height(3.dp))
