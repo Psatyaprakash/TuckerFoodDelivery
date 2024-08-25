@@ -50,7 +50,6 @@ import com.example.tuckerfooddelivery.View.Profile.PersonalInfoDetails
 import com.example.tuckerfooddelivery.View.Profile.ProfileView
 import com.example.tuckerfooddelivery.View.Profile.UserReviews
 import com.example.tuckerfooddelivery.View.Restaurant_Pages.RestaurantHomePage
-import com.example.tuckerfooddelivery.View.Restaurant_Pages.RestaurantLoginScreen
 import com.example.tuckerfooddelivery.View.Restaurant_Pages.Timing
 import com.example.tuckerfooddelivery.View.Restaurants.Rosegardenrestaurant_landingpage
 import com.example.tuckerfooddelivery.View.Restaurants.SkyHighW_landingpage
@@ -102,7 +101,6 @@ fun AppNavigation() {
         //Restaurant Homepage
         composable("RestaurantHomePage"){ RestaurantHomePage(navController = navController) }
         composable("Timing"){ Timing(navController = navController) }
-        composable("RestaurantLoginScreen"){ RestaurantLoginScreen(navController = navController) }
         composable("PreparedOrderScreen"){ PreparedOrderScreen(navController = navController) }
 
 
