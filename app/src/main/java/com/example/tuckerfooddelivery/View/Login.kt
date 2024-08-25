@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.ViewModel.userPhone
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.FirebaseAuth
@@ -180,7 +181,6 @@ fun LoginScreen(navController: NavHostController) {
                     OutlinedTextField(
                         value = phoneNumber.value,
                         onValueChange = { phoneNumber.value = it },
-
                         modifier = Modifier
                             .fillMaxWidth()
 //                            .background(Color(0xFFF0E68C))
@@ -196,8 +196,9 @@ fun LoginScreen(navController: NavHostController) {
                             unfocusedIndicatorColor = Color.Transparent,
                             textColor = Color.Black
                         )
-
                     )
+                    userPhone = phoneNumber.toString()
+
                     Spacer(modifier = Modifier.height(30.dp))
                     Button(onClick = { startPhoneNumberVerification(context,phoneNumber.value) },
                         colors = ButtonDefaults.buttonColors(colorResource(id = R.color.Mustard_yellow)),
@@ -300,11 +301,3 @@ fun LoginScreen(navController: NavHostController) {
         }
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun LoginScreenPreview() {
-//    TuckerFoodDeliveryTheme{
-//        LoginScreen()
-//    }
-//}

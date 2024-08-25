@@ -48,7 +48,6 @@ fun ProfileView(navController: NavHostController) {
         Column(
             modifier = Modifier
                 .padding(15.dp)
-                //.size(width = 500.dp, height = 655.dp)
                 .verticalScroll(rememberScrollState())
                 .fillMaxSize()
         ) {
