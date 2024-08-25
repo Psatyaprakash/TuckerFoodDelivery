@@ -20,6 +20,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CleanHands
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
@@ -57,17 +59,16 @@ fun ProfileView(navController: NavHostController) {
                 .padding(5.dp)
                 .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween) {
+                horizontalArrangement = Arrangement.SpaceBetween)
+            {
                
-                CircularButtonWithSymbol {
-                    navController.popBackStack()
-                }
+                CircularButtonWithSymbol {navController.popBackStack()}
                 Spacer(modifier = Modifier.width(1.dp))
                 Text(
                     text = "Profile",
-                    fontSize = 18.sp,
+                    fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(16.dp)
+                    modifier = Modifier.padding(10.dp)
                 )
                 Spacer(modifier = Modifier.width(180.dp))
                 TextButton(
@@ -77,7 +78,7 @@ fun ProfileView(navController: NavHostController) {
                     contentPadding = PaddingValues(0.dp),
                     modifier = Modifier
                         .size(50.dp)
-                        .background(Color.Gray, CircleShape)
+                        .background(colorResource(id = R.color.White_Blue), CircleShape)
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.three_hor_dots),
@@ -405,6 +406,55 @@ fun ProfileView(navController: NavHostController) {
                     Spacer(modifier = Modifier.width(135.dp))
                     TextButton(
                         onClick = {navController.navigate("UserReviews")},
+                        colors = ButtonDefaults.buttonColors(Color.Transparent),
+                        shape = CircleShape,
+                        contentPadding = PaddingValues(0.dp),
+                        modifier = Modifier
+                            .size(35.dp)
+                            .background(Color.Transparent, CircleShape)
+
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.right_arrow),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(15.dp),
+                            alignment = Alignment.Center
+                        )
+                    }
+
+                }
+                Row(
+                    modifier = Modifier.padding(15.dp)
+                        .clickable { navController.navigate("PledgeScreen") }
+                ) {
+                    TextButton(
+                        onClick = {navController.navigate("PledgeScreen")},
+                        colors = ButtonDefaults.buttonColors(Color.White),
+                        shape = CircleShape,
+                        contentPadding = PaddingValues(0.dp),
+                        modifier = Modifier
+                            .size(35.dp)
+                            .background(Color.Transparent, CircleShape)
+                    ) {
+                        Image(
+                            Icons.Filled.CleanHands,
+                            contentDescription = "Donation",
+                            modifier = Modifier
+                                .size(30.dp),
+                            alignment = Alignment.Center
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(5.dp))
+                    Text(text = "Take a Pledge",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp,
+                        modifier = Modifier
+                            .padding(5.dp)
+                    )
+                    Spacer(modifier = Modifier.width(130.dp))
+                    TextButton(
+                        onClick = {navController.navigate("PledgeScreen")},
                         colors = ButtonDefaults.buttonColors(Color.Transparent),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),

@@ -28,15 +28,15 @@ fun FAQScreen(navController: NavHostController) {
         "How do I get involved further with the Pledge initiative?" to "If you are interested in getting more involved, please contact us through the app or our website. We are always looking for more partners and volunteers to help us in this mission."
     )
 
-    LazyColumn(modifier = Modifier.padding(16.dp)) {
+    LazyColumn(modifier = Modifier.padding(15.dp)) {
         item {
             Row(
                 verticalAlignment = Alignment.Top,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 8.dp)
+                    .padding(bottom = 10.dp)
             ) {
-                CircularButtonWithSymbol(onClick = { navController.navigate("ProfileView") })
+                CircularButtonWithSymbol(onClick = { navController.popBackStack()})
                 Spacer(modifier = Modifier.width(120.dp))
 
                 Text(

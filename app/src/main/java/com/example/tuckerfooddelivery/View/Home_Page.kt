@@ -74,8 +74,6 @@ import com.example.tuckerfooddelivery.R
 //Home Page UI
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
-//fun HomePage(navController: NavController , route : @Composable (NavController) -> Unit) {
 fun HomePage(navController: NavController ) {
 
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
@@ -87,7 +85,7 @@ fun HomePage(navController: NavController ) {
         Row(
             Modifier
                 .fillMaxWidth()
-                .padding(5.dp, 10.dp),
+                .padding(start = 5.dp, top = 15.dp, bottom = 15.dp, end = 5.dp),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -546,6 +544,7 @@ fun HomePage(navController: NavController ) {
                     )
                 }
                 Spacer(modifier = Modifier.height(15.dp))
+
                 //Card for Restaurant 1
                 Card(
                     shape = RoundedCornerShape(16.dp),
@@ -560,9 +559,7 @@ fun HomePage(navController: NavController ) {
                         disabledContentColor = Mustard_yellow,
                         disabledContainerColor = Mustard_yellow
                     ),
-
                     onClick = { navController.navigate("Rosegardenrestaurant_landingpage") }
-
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.restaurant_img_1),
@@ -584,8 +581,6 @@ fun HomePage(navController: NavController ) {
                     fontSize = 20.sp,
                     modifier = Modifier.padding(horizontal = 15.dp)
                 )
-
-                //Spacer(modifier = Modifier.height(1.dp).width(10.dp))
                 Text(
                     text = "Burger - Chicken - Rice - Wings ",
                     fontWeight = FontWeight.Normal,
@@ -593,7 +588,6 @@ fun HomePage(navController: NavController ) {
                     fontSize = 14.sp,
                     modifier = Modifier.padding(horizontal = 15.dp)
                 )
-
                 Spacer(modifier = Modifier.height(10.dp))
                 Row(
                     modifier = Modifier
@@ -677,7 +671,6 @@ fun HomePage(navController: NavController ) {
                             .clip(RoundedCornerShape(5.dp))
                             .background(Color.Transparent)
                             .clickable { navController.navigate("Fionah_landingpage") },
-
                         ) {
                         Image(
                             painter = painterResource(id = R.drawable.group_598),
@@ -685,7 +678,6 @@ fun HomePage(navController: NavController ) {
                             modifier = Modifier
                                 .align(Alignment.TopStart)
                                 .size(4009.dp),
-
                             )
                     }
                 }
@@ -722,13 +714,12 @@ fun HomePage(navController: NavController ) {
                         painter = painterResource(id = R.drawable.star__),
                         contentDescription = "Pizza",
                         modifier = Modifier
-                            //.align(Alignment.Top)
                             .size(20.dp)
                             .padding(0.dp)
                     )
                     Spacer(modifier = Modifier.width(5.dp))
 
-                    androidx.compose.material.Text(
+                    Text(
                         text = "4.2",
                         fontWeight = FontWeight.Medium,
                         color = Color.Black,
@@ -744,7 +735,7 @@ fun HomePage(navController: NavController ) {
                             .padding(0.dp)
                     )
                     Spacer(modifier = Modifier.width(5.dp))
-                    androidx.compose.material.Text(
+                    Text(
                         text = "Free",
                         fontWeight = FontWeight.Normal,
                         color = Color.Black,
@@ -808,8 +799,6 @@ fun HomePage(navController: NavController ) {
                     fontSize = 20.sp,
                     modifier = Modifier.padding(horizontal = 20.dp)
                 )
-
-                //Spacer(modifier = Modifier.height(1.dp).width(10.dp))
                 Text(
                     text = "Burger - Fries - Chicken - Wings ",
                     fontWeight = FontWeight.Normal,
@@ -878,7 +867,6 @@ fun HomePage(navController: NavController ) {
                     )
                 }
                 Spacer(modifier = Modifier.height(15.dp))
-
             }
         }
     }

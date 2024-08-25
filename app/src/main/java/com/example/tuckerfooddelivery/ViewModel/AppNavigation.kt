@@ -93,7 +93,6 @@ fun AppNavigation() {
         composable("LoginScreen") { LoginScreen(navController) }
         composable("ThankYouScreen") { ThankYouScreen(navController) }
         composable("PledgeScreen") { PledgeScreen(navController) }
-//        composable("HomePage"){ HomePage(navController) , route={ HomePage(navController = it)}}
         composable("HomePage"){ HomePage(navController) }
         composable("MainScreen"){ MainScreen(navController, route={ HomePage(navController = it)}) }
         
@@ -102,7 +101,6 @@ fun AppNavigation() {
         composable("Congrats"){ Congrats(navController = navController) }
         composable("address_screen") {AddressScreen(navController)}
         composable("add_address_screen") {AddAddressScreen(navController)}
-
         composable("Delivery"){ Delivery(navController = navController) }
 
         //Restaurant Homepage
@@ -152,7 +150,7 @@ fun AppNavigation() {
         composable("Fionah_landingpage"){ fionah_landingpage(navController) }
 
         //Cart
-//        composable("Carts"){ Carts(navController) }
+//      composable("Carts"){ Carts(navController) }
         composable("AddToCart"){ AddToCart(navController) }
         composable("Wishlist"){ Wishlist(navController) }
 

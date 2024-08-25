@@ -44,10 +44,10 @@ fun PledgeScreen(navController: NavController) {
                 .padding(bottom = 16.dp)
         ) {
             CircularButtonWithSymbol {
-                navController.navigate("MainScreen")
+                navController.popBackStack()
             }
             Text(
-                text = "Take a Pledge!!",
+                text = "  Take a Pledge !!",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
