@@ -29,9 +29,11 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -252,8 +254,14 @@ fun PersonalInfoDetails(navController: NavHostController) {
                 label = { Text("Enter your name") },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(56.dp)
-                    , shape = RoundedCornerShape(16.dp)
+                    .height(56.dp),
+                shape = RoundedCornerShape(16.dp),
+                trailingIcon = {
+                    Icon(
+                        Icons.Default.Star,
+                        contentDescription = "" ,
+                        Modifier.size(10.dp),
+                        tint  = if (fullName == "") Color.Red else Color.White) }
             )
             Spacer(modifier = Modifier.height(30.dp))
             // Email
@@ -266,15 +274,22 @@ fun PersonalInfoDetails(navController: NavHostController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp),
-                shape = RoundedCornerShape(16.dp)
+                shape = RoundedCornerShape(16.dp),
+                trailingIcon = {
+                    Icon(
+                        Icons.Default.Star,
+                        contentDescription = "" ,
+                        Modifier.size(10.dp),
+                        tint  = if (fullName == "") Color.Red else Color.White) }
             )
             Spacer(modifier = Modifier.height(30.dp))
             // Phone Number
             Text(text = "PHONE NUMBER", color = Color.Black, fontSize = 14.sp)
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
-                value = "+91 $phoneNumber",
+                value = "+91 $userPhone",
                 onValueChange = { phoneNumber = it },
+                readOnly = true,
                 label = { Text("Enter your Phone Number") },
                 modifier = Modifier
                     .fillMaxWidth()
