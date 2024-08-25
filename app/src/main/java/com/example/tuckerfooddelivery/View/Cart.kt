@@ -199,7 +199,10 @@ fun AddToCart(navController: NavController) {
                         var showDialog by remember { mutableStateOf(false) }
                         TextButton(
                             onClick = {
-                                showDialog = if(totalCartPrice != 0 ) true else false
+                                if(totalCartPrice != 0 ) showDialog = true else {
+                                    showDialog = false
+                                    Toast.makeText(context,"Add Items",Toast.LENGTH_LONG).show()
+                                }
                                 //showDialog = totalCartPrice != 0  //Same as above code just in short. Isn't it amazing guys ??
                             },
                             colors = ButtonDefaults.buttonColors(containerColor = colorResource(R.color.Mustard_yellow)),
@@ -387,7 +390,7 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
                 Column(
                     Modifier
                         .fillMaxSize()
-                        .padding(0.dp,15.dp,10.dp,10.dp),
+                        .padding(0.dp, 15.dp, 10.dp, 10.dp),
                     verticalArrangement = Arrangement.SpaceAround,
                     horizontalAlignment = Alignment.Start
                 ) {

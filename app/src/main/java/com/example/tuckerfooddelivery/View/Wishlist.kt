@@ -47,6 +47,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -181,7 +182,7 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
             backgroundColor = colorResource(id = R.color.Mustard_yellow),
             shape = RoundedCornerShape(15.dp)
         ) {
-            Row {
+            Row (verticalAlignment = Alignment.CenterVertically){
                 Box(
                     modifier = Modifier
                         .padding(15.dp)
@@ -205,17 +206,18 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
                 }
                 Column(
                     Modifier
-                        .fillMaxSize()
-                        .padding(10.dp, 20.dp),
+//                        .fillMaxHeight()
+                        .height(140.dp)
+                        .padding(10.dp, 5.dp),
                     verticalArrangement = Arrangement.SpaceBetween,
                     horizontalAlignment = Alignment.Start
                 ) {
 
-                    Row(
+                    /*Row(
                         Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
+                    ) {*/
                         Text(
                             text = wishlist.name,
                             fontSize = 20.sp,
@@ -227,7 +229,7 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         )
-                    }
+                    //}
                     val price = wishlist.price
                     var count by remember { mutableIntStateOf(wishlist.count) }
 
