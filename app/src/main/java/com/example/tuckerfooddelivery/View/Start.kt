@@ -45,6 +45,7 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.ViewModel.loggedInAs
 import com.google.firebase.Firebase
 import com.google.firebase.storage.storage
 //import kotlin.coroutines.jvm.internal.CompletedContinuation.context
@@ -110,10 +111,7 @@ fun Start(navController: NavHostController) {
             ) {
                 Text(text = "Next" , fontSize = 22.sp , color = Color.White)
             }
-            // TextButton(onClick = { navController.navigate("LoginScreen") }) {
-            // Navigating to HomePage for testing. Later will change navigation to LoginScreen
-
-            TextButton(onClick = { navController.navigate("HomePage") }) {
+             TextButton(onClick = { navController.navigate("Start3") }) {
                 Text(text = "Skip", fontSize = 25.sp, fontFamily = FontFamily.SansSerif , color = Color.Black)
             }
             Spacer(modifier = Modifier.height(50.dp))
@@ -179,7 +177,7 @@ fun Start2(navController: NavHostController) {
             ) {
                 Text(text = "Next" , fontSize = 22.sp , color = Color.White)
             }
-            TextButton(onClick = { navController.navigate("LoginScreen") }) {
+            TextButton(onClick = { navController.navigate("Start3") }) {
                 Text(text = "Skip", fontSize = 25.sp, fontFamily = FontFamily.SansSerif , color = Color.Black)
             }
             Spacer(modifier = Modifier.height(50.dp))
@@ -236,7 +234,11 @@ fun Start3(navController: NavHostController) {
                 }
             }
             Spacer(modifier = Modifier .height(10.dp) )
-            Button(onClick = { navController.navigate("LoginScreen") },
+            Button(
+                onClick = {
+                    loggedInAs = "Customer";
+                    navController.navigate("LoginScreen")
+                },
                 Modifier
                     .fillMaxWidth()
                     .padding(30.dp)
@@ -247,7 +249,7 @@ fun Start3(navController: NavHostController) {
                 Text(text = "Get Started" , fontSize = 22.sp , color = Color.White)
             }
             Spacer(modifier = Modifier .height(10.dp) )
-            Button(onClick = { navController.navigate("LoginScreen") },
+            Button(onClick = { loggedInAs = "Restaurant" ; navController.navigate("LoginScreen") },
                 Modifier
                     .fillMaxWidth()
                     .padding(30.dp)

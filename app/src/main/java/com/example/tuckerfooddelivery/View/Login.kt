@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.ViewModel.loggedInAs
 import com.example.tuckerfooddelivery.ViewModel.userPhone
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
@@ -124,7 +125,7 @@ fun signInWithPhoneAuthCredential(context: Context , credential: PhoneAuthCreden
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
-    val phoneNumber = remember { mutableStateOf("" ) }
+    val phoneNumber = remember { mutableStateOf("+91" ) }
     val otp = remember { mutableStateOf("") }
 
     val context = LocalContext.current
@@ -252,7 +253,8 @@ fun LoginScreen(navController: NavHostController) {
                     onClick = {
                         verifyOTP(context,otp.value)
                         if(check == 1 ){
-                            navController.navigate("HomePage")
+                            if (loggedInAs == "Customer") navController.navigate("HomePage")
+                            else navController.navigate("RestaurantHomePage")
                         }
                     },
                     colors = ButtonDefaults.buttonColors(colorResource(id = R.color.Mustard_yellow)),

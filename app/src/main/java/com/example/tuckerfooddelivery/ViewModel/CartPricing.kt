@@ -43,4 +43,7 @@ var userName = ""
 var userEmail = ""
 var userPhone = "1023456789"
 var userBio = ""
+
+//User
+var loggedInAs = ""
 var userPrimaryAddress = ""
