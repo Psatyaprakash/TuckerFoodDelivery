@@ -1,8 +1,6 @@
 package com.example.tuckerfooddelivery.View.Restaurant_Pages
 
 
-
-//import androidx.compose.foundation.layout.FlowColumnScopeInstance.align
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -53,6 +51,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.ViewModel.userName
 
 
 //Home Page UI
@@ -63,15 +62,13 @@ import com.example.tuckerfooddelivery.R
 fun RestaurantHomePage(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val White_Blue = colorResource(id = R.color.White_Blue)
-    Column(
-        modifier = Modifier
-            .padding(15.dp)
-            .fillMaxHeight(0.99f)
-            .verticalScroll(rememberScrollState())
-    ) {
-        Row {
+
+
+    Column{
+        Row(Modifier.padding(20.dp,10.dp,10.dp,0.dp),
+            verticalAlignment = Alignment.CenterVertically) {
             Button(
-                onClick = { navController.navigate("ProfileView")},
+                onClick = { navController.navigate("ProfileView") },
                 colors = ButtonDefaults.buttonColors(containerColor = White_Blue),
                 border = BorderStroke(width = 0.dp, color = Color.Transparent),
                 elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp),
@@ -82,14 +79,13 @@ fun RestaurantHomePage(navController: NavController) {
                     contentDescription = "3 bars",
                     Modifier
                         .size(22.dp)
-                    // .align(Alignment.Center)
                 )
             }
 
-            Spacer(modifier = Modifier.width(10.dp))
+            Spacer(modifier = Modifier.width(20.dp))
             Column(verticalArrangement = Arrangement.Center) {
                 Text(
-                    text = "Deepak",
+                    text = userName,
                     fontSize = 17.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Red
@@ -103,401 +99,408 @@ fun RestaurantHomePage(navController: NavController) {
             }
         }
         Spacer(modifier = Modifier.height(12.dp))
-        Row {
-            Spacer(modifier = Modifier.width(12.dp))
-            Text(text = "Hey , ", fontSize = 15.sp, color = Color.Black)
-            Text(
-                text = "Good Afternoon!",
-                fontSize = 15.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
-            )
-        }
-        Spacer(modifier = Modifier.height(5.dp))
-        var text by remember { mutableStateOf("") }
-        /*OutlinedTextField(
-            value = text,
+        Column(
             modifier = Modifier
-                .padding(horizontal = 15.dp, vertical = 1.dp)
-                .clip(RoundedCornerShape(size = 10.dp))
-                .size(width = 490.dp, height = 50.dp),
-            onValueChange = { text = it },
-            label = { Text("Email ID or Mobile Number") },
-            //leadingIcon = Icon.Default.LeftArrow
-        )
-        */
+                .padding(15.dp)
+                .fillMaxHeight(0.99f)
+                .verticalScroll(rememberScrollState())
+        ) {
 
-        var searchQuery by remember { mutableStateOf("") }
+            Row {
+                Spacer(modifier = Modifier.width(12.dp))
+                Text(text = "Hey , ", fontSize = 15.sp, color = Color.Black)
+                Text(
+                    text = "Good Afternoon!",
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
+                )
+            }
+            Spacer(modifier = Modifier.height(5.dp))
 
-        OutlinedTextField(
-            value = searchQuery,
-            onValueChange = { searchQuery = it },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp) ,
-            placeholder = { Text("Search Order Id, Items ...  ", color = Color.Black) },
-            leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null, tint = Color.Black) },
-            trailingIcon = {
-                IconButton(onClick = { /* TODO: Add action for settings */ }) {
-                    Icon(Icons.Default.Settings, contentDescription = null, tint = Color.Black)
-                }
-            },
+            var searchQuery by remember { mutableStateOf("") }
+
+            OutlinedTextField(
+                value = searchQuery,
+                onValueChange = { searchQuery = it },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                placeholder = { Text("Search Order Id, Items ...  ", color = Color.Black) },
+                leadingIcon = {
+                    Icon(
+                        Icons.Filled.Search,
+                        contentDescription = null,
+                        tint = Color.Black
+                    )
+                },
+                trailingIcon = {
+                    IconButton(onClick = { /* TODO: Add action for settings */ }) {
+                        Icon(Icons.Default.Settings, contentDescription = null, tint = Color.Black)
+                    }
+                },
 //            colors = TextFieldDefaults.textFieldColors(
 //                focusedIndicatorColor = colorResource(id = R.color.Blue_Slight),
 //                unfocusedIndicatorColor = colorResource(id = R.color.Blue_Slight)
 //            )
-            colors = TextFieldDefaults.textFieldColors(containerColor = White_Blue),
-            shape = RoundedCornerShape(20.dp)
-        )
-        Spacer(modifier = Modifier.height(5.dp))
-        Row (
-            modifier = Modifier
-                .fillMaxWidth()
-        ){
-            Text(
-                text = " Status ",
-                fontSize = 20.sp,
-                color = Color.Black,
-                fontWeight = FontWeight.W500,
-                modifier = Modifier.padding(horizontal = 10.dp)
+                colors = TextFieldDefaults.textFieldColors(containerColor = White_Blue),
+                shape = RoundedCornerShape(20.dp)
             )
-            Spacer(
+            Spacer(modifier = Modifier.height(5.dp))
+            Row(
                 modifier = Modifier
-                    .width(135.dp)
-                    .height(15.dp)
-            )
-            Text(
-                text = "Change Timings >",
-                fontSize = 18.sp,
-                color = Color.Gray,
-                fontWeight = FontWeight.Medium,
-                modifier = Modifier
-                    .padding(horizontal = 10.dp)
-                    .clickable { /*Navigate to Page containing Timings*/
-                        navController.navigate("Timing")
-                    }
-            )
-        }
-        Spacer(modifier = Modifier.height(10.dp))
-        Row(
-            modifier = Modifier
-                .horizontalScroll(rememberScrollState())
-        ) {
-
-            var selectedButtonIndex by remember { mutableStateOf(1) }
-
-            fun getButtonColor(index: Int): Color {
-                return if (index == selectedButtonIndex) Mustard_yellow else White_Blue
-            }
-
-            fun onButtonClick(index: Int) {
-                selectedButtonIndex = index
-            }
-
-            //Button for Open
-            Button(
-                onClick = {onButtonClick(1) },
-                colors = ButtonDefaults.textButtonColors(getButtonColor(1)),
-                border = BorderStroke(width = 0.dp, color = Color.Transparent),
-                elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
-                modifier = Modifier
-                    .padding(horizontal = 10.dp, vertical = 5.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Box(
-                    modifier = Modifier
-                        .size(30.dp)
-                        .clip(CircleShape)
-                        .background(Color.White)
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.fire),
-                        contentDescription = "Fire",
-                        Modifier
-                            .size(30.dp)
-                            .align(Alignment.Center)
-                    )
-                }
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = " Open ", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 18.sp)
-                }
-            }
-
-            //Button for closed
-            Button(
-                onClick = {onButtonClick(2) },
-                colors = ButtonDefaults.textButtonColors(getButtonColor(2)),
-                border = BorderStroke(width = 0.dp, color = Color.Transparent),
-                elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
-                modifier = Modifier
-                    .padding(horizontal = 10.dp, vertical = 5.dp)
-            ) {
-                Box(
-                    modifier = Modifier
-                        .size(30.dp)
-                        .clip(CircleShape)
-                        .background(Color.White)
-                ) {
-                    Image(
-                        Icons.Default.Settings,
-                        contentDescription = "Closed Icon",
-
-                        Modifier
-                            .size(27.dp)
-                            .align(Alignment.Center)
-                            .clickable { }
-
-                    )
-                }
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = " Closed ", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 18.sp)
-                }
-            }
-        }
-
-
-        Spacer(modifier = Modifier.height(12.dp))
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                text = " Active Orders ",
-                fontSize = 20.sp,
-                color = Color.Black,
-                fontWeight = FontWeight.W500,
-                modifier = Modifier.padding(horizontal = 10.dp)
-            )
-            Spacer(
-                modifier = Modifier
-                    .width(140.dp)
-                    .height(10.dp)
-            )
-            TextButton(onClick = { navController.navigate("PreparedOrderScreen") }) {
                 Text(
-                    text = "See all >",
+                    text = " Status ",
+                    fontSize = 20.sp,
+                    color = Color.Black,
+                    fontWeight = FontWeight.W500,
+                    modifier = Modifier.padding(horizontal = 10.dp)
+                )
+                Text(
+                    text = "Change Timings >",
                     fontSize = 18.sp,
                     color = Color.Gray,
                     fontWeight = FontWeight.Medium,
+                    modifier = Modifier
+                        .padding(horizontal = 10.dp)
+                        .clickable { /*Navigate to Page containing Timings*/
+                            navController.navigate("Timing")
+                        }
+                )
+            }
+            Spacer(modifier = Modifier.height(15.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .horizontalScroll(rememberScrollState()),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+
+                var selectedButtonIndex by remember { mutableStateOf(1) }
+                fun getButtonColor(index: Int): Color {
+                    return if (index == selectedButtonIndex) Mustard_yellow else White_Blue
+                }
+                fun onButtonClick(index: Int) {
+                    selectedButtonIndex = index
+                }
+
+                //Button for Open
+                Button(
+                    onClick = { onButtonClick(1) },
+                    colors = ButtonDefaults.textButtonColors(getButtonColor(1)),
+                    border = BorderStroke(width = 0.dp, color = Color.Transparent),
+                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+                    modifier = Modifier
+                        .padding(horizontal = 10.dp, vertical = 5.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(30.dp)
+                            .clip(CircleShape)
+                            .background(Color.White)
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.fire),
+                            contentDescription = "Fire",
+                            Modifier
+                                .size(30.dp)
+                                .align(Alignment.Center)
+                        )
+                    }
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(
+                            text = " Open ",
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black,
+                            fontSize = 18.sp
+                        )
+                    }
+                }
+
+                //Button for closed
+                Button(
+                    onClick = { onButtonClick(2) },
+                    colors = ButtonDefaults.textButtonColors(getButtonColor(2)),
+                    border = BorderStroke(width = 0.dp, color = Color.Transparent),
+                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+                    modifier = Modifier
+                        .padding(horizontal = 10.dp, vertical = 5.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(30.dp)
+                            .clip(CircleShape)
+                            .background(Color.White)
+                    ) {
+                        Image(
+                            Icons.Default.Settings,
+                            contentDescription = "Closed Icon",
+
+                            Modifier
+                                .size(27.dp)
+                                .align(Alignment.Center)
+                                .clickable { }
+
+                        )
+                    }
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Spacer(modifier = Modifier.width(5.dp))
+                        Text(
+                            text = " Closed ",
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black,
+                            fontSize = 18.sp
+                        )
+                    }
+                }
+            }
+
+
+            Spacer(modifier = Modifier.height(5.dp))
+            Row(Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = " Active Orders ",
+                    fontSize = 20.sp,
+                    color = Color.Black,
+                    fontWeight = FontWeight.W500,
                     modifier = Modifier.padding(horizontal = 10.dp)
                 )
+
+                TextButton(onClick = { navController.navigate("PreparedOrderScreen") }) {
+                    Text(
+                        text = "See all >",
+                        fontSize = 18.sp,
+                        color = Color.Gray,
+                        fontWeight = FontWeight.Medium,
+                        modifier = Modifier.padding(horizontal = 10.dp)
+                    )
+                }
             }
-        }
-        Spacer(modifier = Modifier.height(10.dp))
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            shape = RoundedCornerShape(8.dp),
-            elevation = CardDefaults.elevatedCardElevation(4.dp),
-            colors = CardDefaults.cardColors(White_Blue)
-        ) {
-            Column(
+            Spacer(modifier = Modifier.height(10.dp))
+            Card(
                 modifier = Modifier
-                    .padding(16.dp)
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                shape = RoundedCornerShape(8.dp),
+                elevation = CardDefaults.elevatedCardElevation(4.dp),
+                colors = CardDefaults.cardColors(White_Blue)
             ) {
-                Text(
-                    text = "Order of Classic french fries placed by xyz myu",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
-                )
-                Spacer(modifier = Modifier.height(6.dp))
-                Text(
-                    text = "Address: 12-J, Sector 5, Kanpur Nagar, Uttar Pradesh, India"
-                )
-                Text(
-                    text = "Date: 2024-08-25 05:35:42"
-                )
-                Text(
-                    text = "Order ID: 74734787345"
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
+                Column(
+                    modifier = Modifier
+                        .padding(16.dp)
                 ) {
-                    Button(
-                        onClick = { /*TODO*/ },
-                        colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
-                        modifier = Modifier.weight(1f)
+                    Text(
+                        text = "Order of Classic french fries placed by xyz myu",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp,
+                    )
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Text(
+                        text = "Address: 12-J, Sector 5, Kanpur Nagar, Uttar Pradesh, India"
+                    )
+                    Text(
+                        text = "Date: 2024-08-25 05:35:42"
+                    )
+                    Text(
+                        text = "Order ID: 74734787345"
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
-                        Text(text = "ACCEPT")
-                    }
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Button(
-                        onClick = { /*TODO*/ },
-                        colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Text(text = "DECLINE")
+                        Button(
+                            onClick = { /*TODO*/ },
+                            colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text(text = "ACCEPT")
+                        }
+                        Spacer(modifier = Modifier.width(16.dp))
+                        Button(
+                            onClick = { /*TODO*/ },
+                            colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text(text = "DECLINE")
+                        }
                     }
                 }
             }
-        }
 
-        Spacer(modifier = Modifier.height(10.dp))
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            shape = RoundedCornerShape(8.dp),
-            elevation = CardDefaults.elevatedCardElevation(4.dp),
-            colors = CardDefaults.cardColors(White_Blue)
-        ) {
-            Column(
+            Spacer(modifier = Modifier.height(10.dp))
+            Card(
                 modifier = Modifier
-                    .padding(16.dp)
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                shape = RoundedCornerShape(8.dp),
+                elevation = CardDefaults.elevatedCardElevation(4.dp),
+                colors = CardDefaults.cardColors(White_Blue)
             ) {
-                Text(
-                    text = "Order of Spicy Chicken Wings placed by abc xyz",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
-                )
-                Spacer(modifier = Modifier.height(6.dp))
-                Text(
-                    text = "Address: 45-B, Sector 3, Lucknow, Uttar Pradesh, India"
-                )
-                Text(
-                    text = "Date: 2024-08-26 09:12:23"
-                )
-                Text(
-                    text = "Order ID: 84723987234"
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
+                Column(
+                    modifier = Modifier
+                        .padding(16.dp)
                 ) {
-                    Button(
-                        onClick = { /*TODO*/ },
-                        colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
-                        modifier = Modifier.weight(1f)
+                    Text(
+                        text = "Order of Spicy Chicken Wings placed by abc xyz",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp,
+                    )
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Text(
+                        text = "Address: 45-B, Sector 3, Lucknow, Uttar Pradesh, India"
+                    )
+                    Text(
+                        text = "Date: 2024-08-26 09:12:23"
+                    )
+                    Text(
+                        text = "Order ID: 84723987234"
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
-                        Text(text = "ACCEPT")
-                    }
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Button(
-                        onClick = { /*TODO*/ },
-                        colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Text(text = "DECLINE")
+                        Button(
+                            onClick = { /*TODO*/ },
+                            colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text(text = "ACCEPT")
+                        }
+                        Spacer(modifier = Modifier.width(16.dp))
+                        Button(
+                            onClick = { /*TODO*/ },
+                            colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text(text = "DECLINE")
+                        }
                     }
                 }
             }
-        }
 
-        Spacer(modifier = Modifier.height(10.dp))
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            shape = RoundedCornerShape(8.dp),
-            elevation = CardDefaults.elevatedCardElevation(4.dp),
-            colors = CardDefaults.cardColors(White_Blue)
-        ) {
-            Column(
+            Spacer(modifier = Modifier.height(10.dp))
+            Card(
                 modifier = Modifier
-                    .padding(16.dp)
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                shape = RoundedCornerShape(8.dp),
+                elevation = CardDefaults.elevatedCardElevation(4.dp),
+                colors = CardDefaults.cardColors(White_Blue)
             ) {
-                Text(
-                    text = "Order of Grilled Paneer Sandwich placed by pqr jkl",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
-                )
-                Spacer(modifier = Modifier.height(6.dp))
-                Text(
-                    text = "Address: 78-C, Sector 12, Delhi, India"
-                )
-                Text(
-                    text = "Date: 2024-08-27 11:45:00"
-                )
-                Text(
-                    text = "Order ID: 94723892348"
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
+                Column(
+                    modifier = Modifier
+                        .padding(16.dp)
                 ) {
-                    Button(
-                        onClick = { /*TODO*/ },
-                        colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
-                        modifier = Modifier.weight(1f)
+                    Text(
+                        text = "Order of Grilled Paneer Sandwich placed by pqr jkl",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp,
+                    )
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Text(
+                        text = "Address: 78-C, Sector 12, Delhi, India"
+                    )
+                    Text(
+                        text = "Date: 2024-08-27 11:45:00"
+                    )
+                    Text(
+                        text = "Order ID: 94723892348"
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
-                        Text(text = "ACCEPT")
-                    }
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Button(
-                        onClick = { /*TODO*/ },
-                        colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Text(text = "DECLINE")
+                        Button(
+                            onClick = { /*TODO*/ },
+                            colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text(text = "ACCEPT")
+                        }
+                        Spacer(modifier = Modifier.width(16.dp))
+                        Button(
+                            onClick = { /*TODO*/ },
+                            colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text(text = "DECLINE")
+                        }
                     }
                 }
             }
-        }
 
-        Spacer(modifier = Modifier.height(10.dp))
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            shape = RoundedCornerShape(8.dp),
-            elevation = CardDefaults.elevatedCardElevation(4.dp),
-            colors = CardDefaults.cardColors(White_Blue)
-        ) {
-            Column(
+            Spacer(modifier = Modifier.height(10.dp))
+            Card(
                 modifier = Modifier
-                    .padding(16.dp)
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                shape = RoundedCornerShape(8.dp),
+                elevation = CardDefaults.elevatedCardElevation(4.dp),
+                colors = CardDefaults.cardColors(White_Blue)
             ) {
-                Text(
-                    text = "Order of Veggie Delight Pizza placed by uvw mno",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
-                )
-                Spacer(modifier = Modifier.height(6.dp))
-                Text(
-                    text = "Address: 22-A, Sector 9, Ghaziabad, Uttar Pradesh, India"
-                )
-                Text(
-                    text = "Date: 2024-08-28 14:30:15"
-                )
-                Text(
-                    text = "Order ID: 74832974832"
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
+                Column(
+                    modifier = Modifier
+                        .padding(16.dp)
                 ) {
-                    Button(
-                        onClick = { /*TODO*/ },
-                        colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
-                        modifier = Modifier.weight(1f)
+                    Text(
+                        text = "Order of Veggie Delight Pizza placed by uvw mno",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp,
+                    )
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Text(
+                        text = "Address: 22-A, Sector 9, Ghaziabad, Uttar Pradesh, India"
+                    )
+                    Text(
+                        text = "Date: 2024-08-28 14:30:15"
+                    )
+                    Text(
+                        text = "Order ID: 74832974832"
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
-                        Text(text = "ACCEPT")
-                    }
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Button(
-                        onClick = { /*TODO*/ },
-                        colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Text(text = "DECLINE")
+                        Button(
+                            onClick = { /*TODO*/ },
+                            colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text(text = "ACCEPT")
+                        }
+                        Spacer(modifier = Modifier.width(16.dp))
+                        Button(
+                            onClick = { /*TODO*/ },
+                            colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text(text = "DECLINE")
+                        }
                     }
                 }
             }
+
+
         }
-
-
     }
 }
 

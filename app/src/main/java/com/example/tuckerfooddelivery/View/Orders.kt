@@ -21,15 +21,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 
 @Composable
 fun PreparedOrderScreen(navController: NavController) {
-    val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -75,7 +76,7 @@ fun OrderCard1() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .border(2.dp, Color(0xFFFFD700), RoundedCornerShape(12.dp))
+            .border(2.dp, colorResource(id = R.color.Mustard_yellow), RoundedCornerShape(12.dp))
             .padding(16.dp)
     ) {
         Text(
@@ -135,7 +136,7 @@ fun OrderCard1() {
         )
         Button(
             onClick = { /* Handle pick-up action */ },
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFD700)),
+            colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.Mustard_yellow)),
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp),
@@ -151,7 +152,7 @@ fun OrderCard2() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .border(2.dp, Color(0xFFFFD700), RoundedCornerShape(12.dp))
+            .border(2.dp, colorResource(id = R.color.Mustard_yellow), RoundedCornerShape(12.dp))
             .padding(16.dp)
     ) {
         Text(
@@ -211,7 +212,7 @@ fun OrderCard2() {
         )
         Button(
             onClick = { /* Handle pick-up action */ },
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFD700)),
+            colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.Mustard_yellow)),
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp),
@@ -227,7 +228,7 @@ fun OrderCard3() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .border(2.dp, Color(0xFFFFD700), RoundedCornerShape(12.dp))
+            .border(2.dp, colorResource(id = R.color.Mustard_yellow), RoundedCornerShape(12.dp))
             .padding(16.dp)
     ) {
         Text(
@@ -287,7 +288,7 @@ fun OrderCard3() {
         )
         Button(
             onClick = { /* Handle pick-up action */ },
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFD700)),
+            colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.Mustard_yellow)),
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp),
@@ -303,7 +304,7 @@ fun OrderCard4() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .border(2.dp, Color(0xFFFFD700), RoundedCornerShape(12.dp))
+            .border(2.dp, colorResource(id = R.color.Mustard_yellow), RoundedCornerShape(12.dp))
             .padding(16.dp)
     ) {
         Text(
@@ -363,7 +364,7 @@ fun OrderCard4() {
         )
         Button(
             onClick = { /* Handle pick-up action */ },
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFD700)),
+            colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.Mustard_yellow)),
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp),

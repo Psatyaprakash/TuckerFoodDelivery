@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
+import com.example.tuckerfooddelivery.ViewModel.userPrimaryAddress
 
 
 @Composable
@@ -46,9 +47,10 @@ fun AddressScreen(navController: NavHostController) {
     Column(modifier = Modifier
         .fillMaxSize()
     ) {
-        Row(Modifier
-            .padding(15.dp,20.dp,10.dp,10.dp)
-            .fillMaxWidth(),
+        Row(
+            Modifier
+                .padding(15.dp, 20.dp, 10.dp, 10.dp)
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ){
             CircularButtonWithSymbol {navController.popBackStack()}
@@ -97,6 +99,8 @@ fun AddressCard(
     onEditClick: () -> Unit,
     onDeleteClick: () -> Unit
 ) {
+    if (label == "HOME"){ userPrimaryAddress = address }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()

@@ -246,11 +246,17 @@ fun Start3(navController: NavHostController) {
             ) {
                 Text(text = "Get Started" , fontSize = 22.sp , color = Color.White)
             }
-
-            Spacer(modifier = Modifier.height(50.dp))
-
-            Text(text = "Continue as Restaurant", modifier = Modifier
-                .clickable { navController.navigate("RestaurantLoginScreen") })
+            Spacer(modifier = Modifier .height(10.dp) )
+            Button(onClick = { navController.navigate("LoginScreen") },
+                Modifier
+                    .fillMaxWidth()
+                    .padding(30.dp)
+                    .height(60.dp),
+                shape = RoundedCornerShape(10.dp),
+                colors = ButtonDefaults.buttonColors(Mustard_yellow)
+            ) {
+                Text(text = "Continue As Restaurant" , fontSize = 22.sp , color = Color.White)
+            }
         }
     }
 }
