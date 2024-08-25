@@ -24,6 +24,7 @@ appcompat = "1.7.0"
 firebaseFirestoreKtx = "25.0.0"
 volley = "1.2.1"
 places = "3.5.0"
+lifecycleRuntimeComposeAndroid = "2.8.4"
 
 [libraries]
 androidx-browser = { module = "androidx.browser:browser", version.ref = "browser" }
@@ -57,6 +58,7 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 volley = { group = "com.android.volley", name = "volley", version.ref = "volley" }
 places = { group = "com.google.android.libraries.places", name = "places", version.ref = "places" }
+androidx-lifecycle-runtime-compose-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose-android", version.ref = "lifecycleRuntimeComposeAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

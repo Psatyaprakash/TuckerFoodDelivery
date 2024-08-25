@@ -54,8 +54,6 @@ import com.example.tuckerfooddelivery.Model.Add.addCart
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 
-
-var TibetanMomos_Cart=0
 @Composable
 fun TibetanMomos(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
