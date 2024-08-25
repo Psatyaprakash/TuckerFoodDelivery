@@ -5,11 +5,25 @@ import android.content.ContentValues.TAG
 import android.content.Context
 import android.util.Log
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Text
+import androidx.compose.material.TextFieldDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -48,12 +62,16 @@ val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks()
     override fun onVerificationFailed(e: FirebaseException) {
         Log.w(TAG, "onVerificationFailed", e)
 
-        if (e is FirebaseAuthInvalidCredentialsException) {
-            // Invalid request
-        } else if (e is FirebaseTooManyRequestsException) {
-            // The SMS quota for the project has been exceeded
-        } else if (e is FirebaseAuthMissingActivityForRecaptchaException) {
-            // reCAPTCHA verification attempted with null Activity
+        when (e) {
+            is FirebaseAuthInvalidCredentialsException -> {
+                print("Firebase Auth Invalid Credentials" )
+            }
+
+            is FirebaseTooManyRequestsException -> {
+            }
+
+            is FirebaseAuthMissingActivityForRecaptchaException -> {
+            }
         }
 
     }
@@ -63,8 +81,6 @@ val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks()
         token: PhoneAuthProvider.ForceResendingToken,
     ) {
         Log.d(TAG, "onCodeSent:$verificationId")
-
-        // Save verification ID and resending token so we can use them later
         storedVerificationId = verificationId
         resendToken = token
     }
@@ -72,10 +88,10 @@ val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks()
 
 fun startPhoneNumberVerification(context: Context , phoneNumber: String) {
     val options = PhoneAuthOptions.newBuilder(auth)
-        .setPhoneNumber(phoneNumber) // Phone number to verify
-        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-        .setActivity(context as Activity) // Activity (for callback binding)
-        .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
+        .setPhoneNumber(phoneNumber)
+        .setTimeout(60L, TimeUnit.SECONDS)
+        .setActivity(context as Activity)
+        .setCallbacks(callbacks)
         .build()
     PhoneAuthProvider.verifyPhoneNumber(options)
 }
@@ -91,17 +107,14 @@ fun signInWithPhoneAuthCredential(context: Context , credential: PhoneAuthCreden
     auth.signInWithCredential(credential)
         .addOnCompleteListener(context as Activity) { task ->
             if (task.isSuccessful) {
-                // Sign in success, update UI with the signed-in user's information
                 Log.d(TAG, "signInWithCredential:success")
                 val user = task.result?.user
                 check = 1
             } else {
-                // Sign in failed, display a message and update the UI
                 Log.w(TAG, "signInWithCredential:failure", task.exception)
                 if (task.exception is FirebaseAuthInvalidCredentialsException) {
                     Log.w(TAG,"The verification code entered was invalid")
                 }
-                // Update UI
                 check = 0
             }
         }
@@ -165,7 +178,7 @@ fun LoginScreen(navController: NavHostController) {
                         .padding(16.dp)
                 ) {
                     Text(
-                        text = "We will send a code to your phone number",
+                        text = "A code will be send to your phone number",
                         color = Color.Black,
                         fontSize = 16.sp,
                        fontWeight = FontWeight.W500
@@ -199,12 +212,12 @@ fun LoginScreen(navController: NavHostController) {
                     )
                     userPhone = phoneNumber.toString()
 
-                    Spacer(modifier = Modifier.height(30.dp))
                     Button(onClick = { startPhoneNumberVerification(context,phoneNumber.value) },
                         colors = ButtonDefaults.buttonColors(colorResource(id = R.color.Mustard_yellow)),
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier
                             .width(200.dp)
+                            .padding(10.dp)
                             .align(Alignment.CenterHorizontally)
                         ) {
                         Text(text = "Send OTP", fontSize = 20.sp , color = Color.White)
@@ -233,45 +246,7 @@ fun LoginScreen(navController: NavHostController) {
                             textColor = Color.Black
                         )
                     )
-                    /*
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        repeat(6) {
-                            TextField(
-                                value = otp.getOrNull(it)?.toString() ?: "",
-                                onValueChange = { newValue ->
-                                    if (newValue.length <= 1) {
-                                        otp =
-                                            otp.substring(0, it) + newValue + otp.substring(it + 1)
-                                    }
-                                },
-                                modifier = Modifier
-                                    .width(60.dp)
-                                    .height(60.dp)
-                                    .background(
-                                        Color(0xFFF0E68C),
-                                        shape = RoundedCornerShape(10.dp)
-                                    )
-                                    .padding(1.dp)
-                                ,
-                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                                singleLine = true,
-                                textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
-                                colors = TextFieldDefaults.textFieldColors(
-                                    backgroundColor = Color(0xFFF0E68C),
-                                    focusedIndicatorColor = Color.Transparent,
-                                    unfocusedIndicatorColor = Color.Transparent,
-                                    textColor = Color.Black
-                                )
-                            )
-                        }
-                    }
-                    */
                 }
-
-                Spacer(modifier = Modifier.height(50.dp))
 
                 Button(
                     onClick = {
@@ -283,7 +258,7 @@ fun LoginScreen(navController: NavHostController) {
                     colors = ButtonDefaults.buttonColors(colorResource(id = R.color.Mustard_yellow)),
                     modifier = Modifier
                         .width(250.dp)
-                        .padding(20.dp)
+                        .padding(10.dp)
                         .height(50.dp)
                         .align(Alignment.CenterHorizontally),
                     shape = RoundedCornerShape(16.dp),

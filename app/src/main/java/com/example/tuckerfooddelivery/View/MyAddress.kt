@@ -1,17 +1,27 @@
 package com.example.tuckerfooddelivery.View
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Home
@@ -21,47 +31,35 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.example.tuckerfooddelivery.R
-import com.example.tuckerfooddelivery.ui.theme.TuckerFoodDeliveryTheme
+import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 
-
-@Composable
-fun MyApp() {
-    val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "address_screen") {
-        composable("address_screen") {
-            AddressScreen(navController)
-        }
-        composable("add_address_screen") {
-            AddAddressScreen(navController)
-        }
-    }
-}
 
 @Composable
 fun AddressScreen(navController: NavHostController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
-    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
-    Column(modifier = Modifier.fillMaxSize()) {
-        TopAppBar(
-            title = { Text("My Address") },
-            navigationIcon = {
-                IconButton(onClick = { navController.popBackStack()}) {
-                    Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
-                }
-            },
-            backgroundColor = Color.White,
-            contentColor = Color.Black,
-            elevation = 0.dp
-        )
-        Spacer(modifier = Modifier.height(16.dp))
+
+    Column(modifier = Modifier
+        .fillMaxSize()
+    ) {
+        Row(Modifier
+            .padding(15.dp,20.dp,10.dp,10.dp)
+            .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ){
+            CircularButtonWithSymbol {navController.popBackStack()}
+            Spacer(modifier = Modifier.width(1.dp))
+            Text(
+                text = "My Address",
+                fontSize = 22.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(10.dp)
+            )
+        }
         AddressCard(
             label = "HOME",
             address = "2464 Royal Ln. Meso, New Jersey 45463",
@@ -79,7 +77,7 @@ fun AddressScreen(navController: NavHostController) {
         )
         Spacer(modifier = Modifier.weight(1f))
         Button(
-            onClick = { navController.navigate("add_address_screen") },
+            onClick = { navController.navigate("SaveLocationScreen") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
@@ -133,32 +131,5 @@ fun AddressCard(
             }
         }
     }
-}
-
-@Composable
-fun AddAddressScreen(navController: NavController) {
-    // Implement your Add Address screen UI here
-    // For simplicity, we just show a text and a button to go back
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(text = "Add Address Screen")
-        Button(onClick = { navController.popBackStack() }) {
-            Text(text = "Back")
-        }
-    }
-}
-
-@Composable
-fun BackIcon(onBackClick: () -> Unit) {
-    Icon(
-        imageVector = Icons.Default.ArrowBack,
-        contentDescription = "Back",
-        modifier = Modifier
-            .size(24.dp)
-            .clickable { onBackClick() }
-    )
 }
 

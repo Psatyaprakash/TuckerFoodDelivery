@@ -22,6 +22,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CleanHands
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
@@ -72,7 +73,7 @@ fun ProfileView(navController: NavHostController) {
                 )
                 Spacer(modifier = Modifier.width(180.dp))
                 TextButton(
-                    onClick = {},
+                    onClick = {navController.navigate("MainScreen")},
                     colors = ButtonDefaults.buttonColors(colorResource(id = R.color.White_Blue)),
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
@@ -81,9 +82,9 @@ fun ProfileView(navController: NavHostController) {
                         .background(colorResource(id = R.color.White_Blue), CircleShape)
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.three_hor_dots),
+                        Icons.Default.Home,
                         contentDescription = "",
-                        modifier = Modifier.size(20.dp)
+                        modifier = Modifier.size(30.dp)
                     )
                 }
             }
@@ -182,7 +183,7 @@ fun ProfileView(navController: NavHostController) {
                     modifier = Modifier.padding(15.dp)
                 ) {
                     TextButton(
-                        onClick = {navController.navigate("address_screen")},
+                        onClick = {navController.navigate("AddressScreen")},
                         colors = ButtonDefaults.buttonColors(Color.White),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
@@ -205,10 +206,11 @@ fun ProfileView(navController: NavHostController) {
                         fontSize = 20.sp,
                         modifier = Modifier
                             .padding(5.dp)
-                            .clickable { navController.navigate("address_screen") })
+                            .clickable { navController.navigate("AddressScreen") }
+                    )
                     Spacer(modifier = Modifier.width(160.dp))
                     TextButton(
-                        onClick = {navController.navigate("address_screen")},
+                        onClick = { navController.navigate("AddressScreen") },
                         colors = ButtonDefaults.buttonColors(Color.Transparent),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
