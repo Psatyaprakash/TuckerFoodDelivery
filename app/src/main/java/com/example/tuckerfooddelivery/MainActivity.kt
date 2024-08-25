@@ -59,7 +59,6 @@ class MainActivity : ComponentActivity() {
         // enableEdgeToEdge()
         setContent {
             AppNavigation()
-//            ThankYouScreen()
         }
     }
 }

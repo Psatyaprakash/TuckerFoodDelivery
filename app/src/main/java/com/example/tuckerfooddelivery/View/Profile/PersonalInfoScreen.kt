@@ -52,8 +52,8 @@ import com.example.tuckerfooddelivery.Model.Data.User
 import com.example.tuckerfooddelivery.Model.Fetch.db
 import com.example.tuckerfooddelivery.Model.Fetch.fetchUser
 import com.example.tuckerfooddelivery.R
-import com.example.tuckerfooddelivery.View.Items.getImageUrlFromFirebaseStorage
 import com.example.tuckerfooddelivery.View.Storage
+import com.example.tuckerfooddelivery.View.getImageUrlFromFirebaseStorage
 import com.example.tuckerfooddelivery.ViewModel.storageRef
 
 @Composable

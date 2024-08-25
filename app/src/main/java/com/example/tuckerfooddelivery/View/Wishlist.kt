@@ -4,6 +4,7 @@ package com.example.tuckerfooddelivery.View
 import android.content.ContentValues.TAG
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -47,6 +48,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -58,7 +60,6 @@ import com.example.tuckerfooddelivery.Model.Data.Wishlist
 import com.example.tuckerfooddelivery.Model.Fetch.db
 import com.example.tuckerfooddelivery.Model.Fetch.fetchWishlist
 import com.example.tuckerfooddelivery.R
-import com.example.tuckerfooddelivery.View.Items.getImageUrlFromFirebaseStorage
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 import com.example.tuckerfooddelivery.ViewModel.storageRef
 
@@ -279,16 +280,15 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
                         }
                         Box(modifier = Modifier.padding(1.dp)) {
                             Row {
-
+                                val context = LocalContext.current
                             IconButton(onClick = {
 //                                if(totalprice == unitPriceHalf)size = "Half" else size = "Full"
                                 addCart(wishlist.name,wishlist.price ,wishlist.count,wishlist.size);
-
-
+                                Toast.makeText(context , "Item added successfully" , Toast.LENGTH_SHORT).show()
                             }) {
                                 Icon(
                                     Icons.Default.AddCircleOutline,
-                                    contentDescription = "Delete",
+                                    contentDescription = "Add",
                                     tint = colorResource(id = R.color.White_Blue)
                                 )
                             }
@@ -297,10 +297,12 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
                                     .delete()
                                     .addOnSuccessListener {
                                         Log.d(TAG, "DocumentSnapshot successfully deleted!")
+                                        Toast.makeText(context , "Item deleted successfully" , Toast.LENGTH_SHORT).show()
                                     }
                                     .addOnFailureListener { e ->
                                         Log.w(TAG, "Error deleting document", e)
                                     };
+                                navController.popBackStack();
                                 navController.navigate("Wishlist")
 
                             }) {
