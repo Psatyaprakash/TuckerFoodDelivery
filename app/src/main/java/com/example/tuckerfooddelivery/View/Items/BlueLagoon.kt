@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -158,12 +159,12 @@ fun BlueLagoon(navController: NavController){
                     modifier = Modifier
                         .padding(20.dp, 10.dp)
                         .fillMaxWidth()
-                        .size(300.dp)
-//                    .wrapContentHeight(),
+                        //.size(300.dp)
+                        .wrapContentHeight()
                 ) {
                     Box(
                         modifier = Modifier
-                            .padding(16.dp)
+                            .padding(30.dp)
                             .fillMaxWidth()
 //                        .wrapContentHeight()
                     ) {
@@ -173,7 +174,7 @@ fun BlueLagoon(navController: NavController){
                             modifier = Modifier
 //                            .padding(100.dp)
                                 .align(Alignment.Center)
-                                .size(200.dp)
+                                .size(270.dp)
                         )
                         Icon(
                             imageVector = Icons.Default.Favorite,
@@ -195,30 +196,29 @@ fun BlueLagoon(navController: NavController){
 
                 Text(
                     text = Item_Name,
-                    fontSize = 20.sp,
+                    fontSize = 25.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
-                    modifier = Modifier.padding(10.dp)
+                    modifier = Modifier.padding(vertical = 10.dp, horizontal = 15.dp)
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = "Freshly made Mocktail that is pulpy, tangy and so refreshing.",
-                    fontSize = 16.sp,
-                    modifier = Modifier.padding(horizontal = 10.dp)
+                    fontSize = 18.sp,
+                    modifier = Modifier.padding(horizontal = 15.dp)
                 )
                 Spacer(modifier = Modifier.height(15.dp))
                 Row(
                     modifier = Modifier
                         .padding(horizontal = 8.dp)
                         .fillMaxWidth(),
-                    //horizontalArrangement = Arrangement.Center,
+                    horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.star__),
                         contentDescription = "Pizza",
                         modifier = Modifier
-                            //.align(Alignment.Top)
                             .size(30.dp)
                             .padding(0.dp)
                     )
@@ -309,19 +309,18 @@ fun BlueLagoon(navController: NavController){
                     }
                     Spacer(modifier = Modifier.width(20.dp))
                 }
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(25.dp))
                 Text(
                     text = "INGRIDENTS",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(horizontal = 10.dp)
+                    modifier = Modifier.padding(horizontal = 15.dp)
                 )
                 Spacer(modifier = Modifier.height(25.dp))
                 Row(
                     modifier = Modifier
                         .padding(horizontal = 0.dp)
                         .fillMaxWidth(),
-                    //.align(Alignment.CenterHorizontally),
                     horizontalArrangement = Arrangement.SpaceEvenly,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
