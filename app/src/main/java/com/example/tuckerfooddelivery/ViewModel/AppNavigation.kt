@@ -11,7 +11,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tuckerfooddelivery.MainScreen
+import com.example.tuckerfooddelivery.View.AddAddressScreen
 import com.example.tuckerfooddelivery.View.AddToCart
+import com.example.tuckerfooddelivery.View.AddressScreen
 import com.example.tuckerfooddelivery.View.Category.Burger_Category
 import com.example.tuckerfooddelivery.View.Category.Fries_Category
 import com.example.tuckerfooddelivery.View.Category.Mocktails_Category
@@ -98,6 +100,9 @@ fun AppNavigation() {
         composable("Favourites"){ Favorites(navController = navController)}
         //Congrats
         composable("Congrats"){ Congrats(navController = navController) }
+        composable("address_screen") {AddressScreen(navController)}
+        composable("add_address_screen") {AddAddressScreen(navController)}
+
         composable("Delivery"){ Delivery(navController = navController) }
 
         //Restaurant Homepage

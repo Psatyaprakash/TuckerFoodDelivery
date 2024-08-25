@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -123,9 +124,10 @@ fun ProfileView(navController: NavHostController) {
             Card(
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier
-                    .padding(horizontal = 10.dp)
+                    .padding(horizontal = 10.dp, vertical = 5.dp)
                     .fillMaxWidth()
-                    .size(width = 200.dp, height = 650.dp),
+                    .wrapContentHeight(),
+                   // .size(width = 200.dp, height = 650.dp),
                 colors = CardColors(
                     containerColor = colorResource(id = R.color.White_Blue),
                     contentColor = Color.Black,
@@ -179,7 +181,7 @@ fun ProfileView(navController: NavHostController) {
                     modifier = Modifier.padding(15.dp)
                 ) {
                     TextButton(
-                        onClick = {/* navigate to addresses */},
+                        onClick = {navController.navigate("address_screen")},
                         colors = ButtonDefaults.buttonColors(Color.White),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
@@ -197,10 +199,15 @@ fun ProfileView(navController: NavHostController) {
                         )
                     }
                     Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "Addresses", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
+                    Text(text = "Addresses",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp,
+                        modifier = Modifier
+                            .padding(5.dp)
+                            .clickable { navController.navigate("address_screen") })
                     Spacer(modifier = Modifier.width(160.dp))
                     TextButton(
-                        onClick = {/* navigate to addresses */},
+                        onClick = {navController.navigate("address_screen")},
                         colors = ButtonDefaults.buttonColors(Color.Transparent),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
@@ -223,7 +230,7 @@ fun ProfileView(navController: NavHostController) {
                     modifier = Modifier.padding(15.dp)
                 ) {
                     TextButton(
-                        onClick = {/* navigate to cart section */},
+                        onClick = {navController.navigate("AddToCart")},
                         colors = ButtonDefaults.buttonColors(Color.White),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
@@ -241,10 +248,15 @@ fun ProfileView(navController: NavHostController) {
                         )
                     }
                     Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "Cart", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
+                    Text(text = "Cart",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp,
+                        modifier = Modifier
+                            .padding(5.dp)
+                            .clickable { navController.navigate("AddToCart") })
                     Spacer(modifier = Modifier.width(220.dp))
                     TextButton(
-                        onClick = {/* navigate to cart section */},
+                        onClick = {navController.navigate("AddToCart")},
                         colors = ButtonDefaults.buttonColors(Color.Transparent),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
@@ -267,7 +279,7 @@ fun ProfileView(navController: NavHostController) {
                     modifier = Modifier.padding(15.dp)
                 ) {
                     TextButton(
-                        onClick = {/* navigate to favourites */},
+                        onClick = {navController.navigate("Wishlist")},
                         colors = ButtonDefaults.buttonColors(Color.White),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
@@ -285,10 +297,15 @@ fun ProfileView(navController: NavHostController) {
                         )
                     }
                     Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "Favourite", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
+                    Text(text = "Favourite",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp,
+                        modifier = Modifier
+                            .padding(5.dp)
+                            .clickable { navController.navigate("Wishlist") })
                     Spacer(modifier = Modifier.width(170.dp))
                     TextButton(
-                        onClick = {/* navigate to favourites */},
+                        onClick = {navController.navigate("Wishlist")},
                         colors = ButtonDefaults.buttonColors(Color.Transparent),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
@@ -311,7 +328,7 @@ fun ProfileView(navController: NavHostController) {
                     modifier = Modifier.padding(15.dp)
                 ) {
                     TextButton(
-                        onClick = {/* navigate to faqs */},
+                        onClick = {navController.navigate("FAQScreen")},
                         colors = ButtonDefaults.buttonColors(Color.White),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
@@ -329,7 +346,12 @@ fun ProfileView(navController: NavHostController) {
                         )
                     }
                     Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "FAQs", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
+                    Text(text = "FAQs",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp,
+                        modifier = Modifier
+                            .padding(5.dp)
+                            .clickable { navController.navigate("FAQScreen")})
                     Spacer(modifier = Modifier.width(210.dp))
                     TextButton(
                         onClick = {navController.navigate("FAQScreen")},
@@ -353,6 +375,7 @@ fun ProfileView(navController: NavHostController) {
                 }
                 Row(
                     modifier = Modifier.padding(15.dp)
+                        .clickable { navController.navigate("UserReviews") }
                 ) {
                     TextButton(
                         onClick = {navController.navigate("UserReviews")},
@@ -373,7 +396,12 @@ fun ProfileView(navController: NavHostController) {
                         )
                     }
                     Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "User Reviews", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
+                    Text(text = "User Reviews",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp,
+                        modifier = Modifier
+                            .padding(5.dp)
+                    )
                     Spacer(modifier = Modifier.width(135.dp))
                     TextButton(
                         onClick = {navController.navigate("UserReviews")},
