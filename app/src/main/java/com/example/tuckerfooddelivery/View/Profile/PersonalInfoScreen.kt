@@ -25,7 +25,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -40,6 +42,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
@@ -55,6 +58,10 @@ import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Storage
 import com.example.tuckerfooddelivery.View.getImageUrlFromFirebaseStorage
 import com.example.tuckerfooddelivery.ViewModel.storageRef
+import com.example.tuckerfooddelivery.ViewModel.userBio
+import com.example.tuckerfooddelivery.ViewModel.userEmail
+import com.example.tuckerfooddelivery.ViewModel.userName
+import com.example.tuckerfooddelivery.ViewModel.userPhone
 
 @Composable
 fun CircularButtonWithSymbol(onClick: () -> Unit) {
@@ -98,6 +105,11 @@ fun PersonalInfoDetails(navController: NavHostController) {
             Log.w("Error" ,"Failed to load User")
         }
     }
+    userName = fullName
+    userEmail = email
+    userPhone = phoneNumber
+    userBio = bio
+
     val launcher =
         rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             imageUri.value = uri
@@ -129,7 +141,23 @@ fun PersonalInfoDetails(navController: NavHostController) {
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            CircularButtonWithSymbol(onClick = { navController.popBackStack() })
+            if (navController.previousBackStackEntry?.destination?.route != "LoginScreen") {
+                CircularButtonWithSymbol(onClick = { navController.popBackStack() })
+            } else {
+                Button( onClick = { navController.navigate("MainScreen") },
+                    colors = ButtonDefaults.buttonColors(colorResource(id = R.color.White_Blue)),
+                    contentPadding = PaddingValues(0.dp),
+                    modifier = Modifier
+                        .size(50.dp)
+                        .background(Color.Transparent, CircleShape)
+                ) {
+                    Image(Icons.Default.Home,
+                        contentDescription = "Home" ,
+                        Modifier.size(30.dp))
+                }
+            }
+
+
             Text(
                 text = "Personal Info",
                 color = Color.Black,
@@ -152,7 +180,9 @@ fun PersonalInfoDetails(navController: NavHostController) {
                 modifier = Modifier
                     .size(100.dp)
                     .clip(CircleShape)
-                    .border(2.dp, Color.Gray, CircleShape)
+                    .border(2.dp, Color.Gray, CircleShape),
+                contentScale = ContentScale.Fit,
+
             )
             Spacer(modifier = Modifier.height(5.dp))
             TextButton(
@@ -200,7 +230,7 @@ fun PersonalInfoDetails(navController: NavHostController) {
             Text(text = "PHONE NUMBER", color = Color.Black, fontSize = 14.sp)
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
-                value = phoneNumber,
+                value = "+91 $phoneNumber",
                 onValueChange = { phoneNumber = it },
                 label = { Text("Enter your Phone Number") },
                 modifier = Modifier
@@ -224,8 +254,8 @@ fun PersonalInfoDetails(navController: NavHostController) {
             Spacer(modifier = Modifier.height(45.dp))
             Button(
                 onClick = {
-                    addUser(fullName ,email, phoneNumber ,bio)
-
+                    addUser(fullName ,email, phoneNumber ,bio);
+                    navController.navigate("MainScreen")
                 },
                 colors = ButtonDefaults.buttonColors(Color(0xFFD4AF37)), // Mustard color
                 shape = RoundedCornerShape(16.dp),

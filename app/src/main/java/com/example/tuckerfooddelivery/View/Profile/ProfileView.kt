@@ -35,6 +35,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.ViewModel.userBio
+import com.example.tuckerfooddelivery.ViewModel.userName
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 
@@ -102,14 +104,14 @@ fun ProfileView(navController: NavHostController) {
                     modifier = Modifier.padding(10.dp)
                 ) {
                     Text(
-                        text = "Vishal Khadok",
+                        text = userName,
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Black,
                         modifier = Modifier.padding(horizontal = 2.dp)
                     )
                     Text(
-                        text = "I love fast food",
+                        text = userBio,
                         fontSize = 14.sp,
                         color = Color.Black,
                         modifier = Modifier.padding(horizontal = 2.dp)

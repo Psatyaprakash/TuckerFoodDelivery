@@ -37,3 +37,9 @@ var PizzaCalzone_16=0
 var PizzaCalzone_10Price=0
 var PizzaCalzone_14Price=0
 var PizzaCalzone_16Price=0
+
+//Profile
+var userName = ""
+var userEmail = ""
+var userPhone = ""
+var userBio = ""
