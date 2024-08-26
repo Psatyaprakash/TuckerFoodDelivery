@@ -80,7 +80,7 @@ fun AppNavigation() {
                 slideOutOfContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "MainScreen"
+        startDestination = "PledgeScreen"
     ) {
         composable("Storage"){ Storage() }
 //        composable("NotificationScreen"){ NotificationScreen(NotificationTitle,NotificationContent ) }
