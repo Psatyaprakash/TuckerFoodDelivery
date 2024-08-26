@@ -119,7 +119,7 @@ fun HomePage(navController: NavController ) {
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
-
+                    softWrap = true
                 )
             }
 

@@ -78,7 +78,7 @@ fun RoseGarden(navController: NavController){
             },
                 backgroundColor = White,
                 modifier = Modifier
-                    .height(80.dp)
+                    .height(60.dp)
             )
         },
 
@@ -93,7 +93,7 @@ fun RoseGarden(navController: NavController){
 
             Spacer(modifier = Modifier.height(5.dp))
             Text(
-                text = "Patel Nagar, New Delhi \nPincode: 115800",
+                text = "Saheed Nagar Bhubaneswar \nPincode: 751024",
                 textAlign = TextAlign.Center,
                 color = Color.Black,
                 fontSize = 14.sp,
