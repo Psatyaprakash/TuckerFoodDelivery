@@ -20,9 +20,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -56,7 +54,6 @@ import androidx.compose.ui.unit.times
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.example.tuckerfooddelivery.MainScreen
 import com.example.tuckerfooddelivery.Model.Data.Cart
 import com.example.tuckerfooddelivery.Model.Fetch.db
 import com.example.tuckerfooddelivery.Model.Fetch.fetchCart
@@ -64,19 +61,11 @@ import com.example.tuckerfooddelivery.R
 //import com.example.tuckerfooddelivery.View.Items.ClassicFrenchFriesCart
 //import com.example.tuckerfooddelivery.View.Items.PizzaCalzoneCart
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
-import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Cart
-import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Large
-import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Regular
-import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_10
-import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_14
-import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_16
-import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_Cart
 import com.example.tuckerfooddelivery.ViewModel.ScreenHeight
 import com.example.tuckerfooddelivery.ViewModel.ScreenWidth
 import com.example.tuckerfooddelivery.ViewModel.platformFee
 import com.example.tuckerfooddelivery.ViewModel.storageRef
 import com.example.tuckerfooddelivery.ViewModel.totalAmount
-import com.example.tuckerfooddelivery.ViewModel.totalCartPrice_global
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
