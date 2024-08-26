@@ -1,10 +1,11 @@
-package com.example.tuckerfooddelivery.ViewModel
+package com.example.tuckerfooddelivery.Model.Add
 
 import android.content.ContentValues.TAG
 import android.util.Log
 import com.example.tuckerfooddelivery.Model.Data.Contact
 import com.example.tuckerfooddelivery.Model.Data.MenuCategory
 import com.example.tuckerfooddelivery.Model.Data.Restaurant
+import com.example.tuckerfooddelivery.Model.Fetch.db
 
 fun addRestaurant(name: String, id: String, contact: Contact, menuCategory: MenuCategory) {
     val restaurant = Restaurant(

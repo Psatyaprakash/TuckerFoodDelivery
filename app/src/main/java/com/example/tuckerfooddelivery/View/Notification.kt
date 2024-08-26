@@ -8,7 +8,6 @@ import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.example.tuckerfooddelivery.CartActivity
-import com.example.tuckerfooddelivery.MainActivity
 import com.example.tuckerfooddelivery.R
 
 /*
@@ -45,7 +44,7 @@ fun NotificationScreen(NotificationTitle: String, NotificationContent: String) {
 }
 */
 
-fun createNotification(context: Context, NotificationTitle : String , NotificationContent: String) {
+fun createNotification(context: Context, NotificationTitle: String, NotificationContent: String) {
     // Create a notification channel if needed (API 26+)
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         val channelId = "default_channel_id"

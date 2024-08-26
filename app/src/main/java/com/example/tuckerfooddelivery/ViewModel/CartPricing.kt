@@ -1,5 +1,11 @@
 package com.example.tuckerfooddelivery.ViewModel
 
+import androidx.compose.ui.unit.dp
+import com.google.firebase.Firebase
+import com.google.firebase.storage.storage
+
+val storage = Firebase.storage
+val storageRef = storage.reference
 
 //Variable storing Total Cart value
 var totalCartPrice_global=0
@@ -14,9 +20,6 @@ fun updatePrice(){
 }
 
 
-//Global Variables used for items
-//ClassicFrenchFries item
-var ClassicFrenchFries_Cart=0
 var ClassicFrenchFries_Wishlist =0
 var ClassicFrenchFries_Regular=0
 var ClassicFrenchFries_Large=0
@@ -32,3 +35,17 @@ var PizzaCalzone_16=0
 var PizzaCalzone_10Price=0
 var PizzaCalzone_14Price=0
 var PizzaCalzone_16Price=0
+
+//Profile
+var userName = ""
+var userEmail = ""
+var userPhone = "1023456789"
+var userBio = ""
+
+//User
+var loggedInAs = ""
+var userPrimaryAddress = "Silicon University"
+
+//Screen Dimension
+var ScreenHeight = 0.dp
+var ScreenWidth = 0.dp

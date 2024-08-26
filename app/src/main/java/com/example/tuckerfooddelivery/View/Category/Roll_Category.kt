@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -28,34 +29,38 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.times
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
+import com.example.tuckerfooddelivery.ViewModel.ScreenHeight
+import com.example.tuckerfooddelivery.ViewModel.ScreenWidth
 
 @Composable
 fun Roll_Category(navController: NavController){
+    var cardwidth = 0.4 * ScreenWidth
+    var cardheight = 0.4 * ScreenHeight
+    var Boxwidth = 1.2 * cardwidth
+
+
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxSize()
             .verticalScroll(rememberScrollState())
     ) {
-        //first row of categories
         Row (
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(start = 15.dp, top=10.dp, end = 15.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-
-            Box(
-                modifier = Modifier
-                    .padding(16.dp)
-            ) {
-                CircularButtonWithSymbol(onClick = { navController.popBackStack() })
+            CircularButtonWithSymbol {
+                navController.popBackStack()
             }
             Card(
                 modifier = Modifier
-                    .padding(16.dp)
-                    .width(150.dp)
+                    .padding(10.dp)
+                    .width(Boxwidth)
                     .height(60.dp),
                 shape = RoundedCornerShape(36.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
@@ -65,128 +70,120 @@ fun Roll_Category(navController: NavController){
                 Box(
                     modifier = Modifier
                         .fillMaxSize(),
-                    contentAlignment = Alignment.CenterStart
+                    contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "    Rolls",
-                        fontSize = 24.sp,
+                        text = "Popular Rolls",
+                        fontSize = 23.sp,
                         fontWeight = FontWeight.ExtraBold,
                     )
                 }
             }
         }
-
-        Spacer(modifier = Modifier.height(10.dp))
-        // second row
-        Row (
-            modifier = Modifier
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Text(
-                text = "Popular Rolls",
-                fontSize = 18.sp
-            )
-        }
-
-        //third row of two cards
+        //1st row of 2 burger cards
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 40.dp, vertical = 15.dp),
-            verticalAlignment = Alignment.Top,
-            horizontalArrangement = Arrangement.Start
+                .padding(horizontal = 15.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly
+
         ) {
+            //card1
             Card(
                 modifier = Modifier
-                    .height(230.dp)
-                    .width(130.dp)
+                    .height(cardheight)
+                    .width(cardwidth)
+                    .wrapContentHeight()
                     .clickable { navController.navigate("CrispyChickenRoll") },
                 shape = RoundedCornerShape(15.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 colors = CardDefaults.cardColors(Color.White)
             ) {
                 Column(
-                    modifier = Modifier.padding(7.dp) // Add some padding inside the card
+                    modifier = Modifier.padding(10.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
                         painter = painterResource(R.drawable.chickencrispy_roll),
-                        contentDescription = "roollImage",
+                        contentDescription = "rollImage",
                         modifier = Modifier
-                            .size(96.dp)
+                            .size(cardwidth)
                     )
                     Text(
-                        text = "Crispy Chicken Roll",
-                        fontSize = 16.sp,
+                        text = "Crispy Chicken",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(top = 4.dp) // Adjust top padding
+                    )
+                    Text(
+                        text = "Roll",
+                        fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 4.dp) // Adjust top padding
                     )
                     Text(
                         text = "Fiona Hatty",
-                        fontSize = 14.sp,
+                        fontSize = 15.sp,
                         modifier = Modifier.padding(top = 1.dp)
                     )
-                    Row(
-                        modifier = Modifier.padding(top = 1.dp)
-                            .fillMaxWidth(),
-                        verticalAlignment = Alignment.Top,
-                        horizontalArrangement = Arrangement.Start
-                    ) {
                         Text(
-                            text = "Rs.115",
+                            text = "Rs.75",
                             modifier = Modifier.padding(top = 12.dp),
                             fontSize = 22.sp,
                             fontWeight = FontWeight.ExtraBold,
                         )
-                        Spacer(modifier = Modifier.width(22.dp))
-                    }
+                    Spacer(modifier = Modifier.height(0.02*cardheight))
+
                 }
             }
-            Spacer(modifier = Modifier.width(40.dp))
             Card(
                 modifier = Modifier
-                    .height(230.dp)
-                    .width(130.dp)
+                    .height(cardheight)
+                    .width(cardwidth)
+                    .wrapContentHeight()
                     .clickable { navController.navigate("PaneerRoll") },
                 shape = RoundedCornerShape(15.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 colors = CardDefaults.cardColors(Color.White)
             ) {
                 Column(
-                    modifier = Modifier.padding(4.dp) // Add some padding inside the card
+                    modifier = Modifier.padding(10.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
                         painter = painterResource(R.drawable.paneer_roll),
                         contentDescription = "Roll Image",
                         modifier = Modifier
-                            .size(97.dp)
+                            .size(cardwidth)
                     )
                     Text(
-                        text = "Veg Paneer Roll",
-                        fontSize = 16.sp,
+                        text = "Veg Paneer",
+                        fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 8.dp) // Adjust top padding
                     )
                     Text(
+                        text = "Roll",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(top = 4.dp) // Adjust top padding
+                    )
+                    Text(
                         text = "SkyHigh Way",
-                        fontSize = 14.sp,
+                        fontSize = 15.sp,
                         modifier = Modifier.padding(top = 1.dp)
                     )
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        verticalAlignment = Alignment.Top,
-                        horizontalArrangement = Arrangement.Start
-                    ) {
+
                         Text(
-                            text = "Rs.145",
+                            text = "Rs.70",
                             modifier = Modifier.padding(top = 12.dp),
                             fontSize = 22.sp,
                             fontWeight = FontWeight.ExtraBold,
                         )
-                        Spacer(modifier = Modifier.width(25.dp))
-                    }
+                    Spacer(modifier = Modifier.height(0.02*cardheight))
+
                 }
             }
         }

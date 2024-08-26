@@ -1,14 +1,21 @@
 package com.example.tuckerfooddelivery.View.Items
 
+import android.os.Build
+import android.util.Log
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,15 +29,18 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddShoppingCart
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -38,28 +48,32 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.tuckerfooddelivery.Model.Add.addCart
+import com.example.tuckerfooddelivery.Model.Add.addWishlist
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 
 
-
-var ChickenWings_Cart=0
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ChickenWings(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
-    var  ChickenWings_image: Any = Image(
-        painter = painterResource(id = R.drawable.chicken_wings),
-        contentDescription = "Chicken wings",
-        modifier = Modifier
-            .padding(100.dp)
-//            .align(Alignment.Center)
-            .size(100.dp)
-    )
+//    var  ChickenWings_image: Any = Image(
+//        painter = painterResource(id = R.drawable.chicken_wings),
+//        contentDescription = "Chicken wings",
+//        modifier = Modifier
+//            .padding(100.dp)
+//           .align(Alignment.Center)
+//            .size(100.dp)
+//    )
     var selectedButtonIndex by remember { mutableStateOf(1) }
 
     fun getButtonColor(index: Int): Color {
@@ -69,45 +83,44 @@ fun ChickenWings(navController: NavController) {
     fun onButtonClick(index: Int) {
         selectedButtonIndex = index
     }
-    val Item_Name = "Chicken Wings"
-    var totalprice : Int by remember {
-        mutableStateOf<Int>(125)
-    }
+    val Item_Name = "ChickenWings"
+    var totalprice: Int by remember { mutableStateOf(125) }
+    val unitPriceRegular: Int by remember { mutableIntStateOf(125) }
+    val unitPriceLarge: Int by remember { mutableStateOf(190) }
+    var size by remember { mutableStateOf("Regular") }
+    val Name = "Chicken Wings"
+
+
     var count by remember {
         mutableStateOf<Int>(1)
     }
 
-
+    val context = LocalContext.current
 
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
-    Column {
+    Column(
+        Modifier
+            .fillMaxSize()
+            .padding(0.dp),
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.CenterHorizontally) {
         Column(
             modifier = Modifier
-                .padding(horizontal = 15.dp)
-                .size(width = 500.dp, height = 670.dp)
+                .padding(horizontal =10.dp)
+                .background(White)
+                .fillMaxHeight(.92f)
                 .verticalScroll(rememberScrollState())
         ) {
             Spacer(modifier = Modifier.height(15.dp))
-            Row {
-                TextButton(
-                    onClick = {navController.popBackStack() },
-                    colors = ButtonDefaults.buttonColors(Color.LightGray),
-                    shape = CircleShape,
-                    contentPadding = PaddingValues(0.dp),
-                    modifier = Modifier
-                        .size(50.dp)
-                        .background(Color.Gray, CircleShape)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.leftarrow),
-                        contentDescription = "",
-                        modifier = Modifier.size(30.dp)
-                    )
+            //Jaggu
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                CircularButtonWithSymbol {
+                    navController.popBackStack()
                 }
                 Spacer(modifier = Modifier.width(1.dp))
                 Text(
                     text = "Details",
-                    fontSize = 16.sp,
+                    fontSize = 25.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(16.dp)
                 )
@@ -143,29 +156,36 @@ fun ChickenWings(navController: NavController) {
                             .size(40.dp)
                             .background(Color.Red, shape = CircleShape)
                             .padding(8.dp)
+                            .clickable {
+                                if(totalprice == unitPriceRegular)size = "Regular" else size = "Large"
+                                addWishlist(Item_Name,totalprice ,count,size)
+                            Toast.makeText(context , "Added to Wishlist" , Toast.LENGTH_SHORT).show()
+                            }
+
                     )
                 }
             }
             Spacer(modifier = Modifier.height(15.dp))
 
             Text(
-                text = "$Item_Name",
-                fontSize = 20.sp,
+                text = Name,
+                fontSize = 25.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
-                modifier = Modifier.padding(10.dp)
+                modifier = Modifier.padding(horizontal = 15.dp, vertical = 10.dp)
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = "Fried Chicken Wings with peri peri spicy. Each bite is a succulent sensation, where chicken meat meets a tantalizing blend of seasonings.",
-                modifier = Modifier.padding(horizontal = 10.dp)
+                fontSize = 18.sp
+                ,modifier = Modifier.padding(horizontal = 15.dp)
             )
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(25.dp))
             Row(
                 modifier = Modifier
-                    .padding(horizontal = 8.dp)
+                    .padding(horizontal = 0.dp)
                     .fillMaxWidth(),
-                //horizontalArrangement = Arrangement.Center,
+                horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
@@ -219,7 +239,7 @@ fun ChickenWings(navController: NavController) {
                     modifier = Modifier.padding(horizontal = 2.dp)
                 )
             }
-            Spacer(modifier = Modifier.height(25.dp))
+            Spacer(modifier = Modifier.height(35.dp))
             Row(
                 modifier = Modifier
                     .padding(horizontal = 1.dp)
@@ -228,8 +248,12 @@ fun ChickenWings(navController: NavController) {
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "SIZE:", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
-                TextButton(onClick = { onButtonClick(1); totalprice = 125 },
+                Text(text = "SIZE:",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier
+                        .padding(horizontal = 15.dp))
+                TextButton(onClick = { onButtonClick(1); totalprice = unitPriceRegular},
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(1)
                     ),
@@ -240,7 +264,7 @@ fun ChickenWings(navController: NavController) {
                     Text(text = "Regular", fontSize = 20.sp)
                 }
                 Spacer(modifier = Modifier.width(30.dp))
-                TextButton(onClick = { onButtonClick(2); totalprice = 220 },
+                TextButton(onClick = { onButtonClick(2); totalprice = unitPriceLarge },
                     colors = ButtonDefaults.textButtonColors(
                         getButtonColor(2)
                     ),
@@ -252,14 +276,17 @@ fun ChickenWings(navController: NavController) {
                 }
                 Spacer(modifier = Modifier.width(20.dp))
             }
-            Spacer(modifier = Modifier.height(20.dp))
-            Text(text = "INGRIDENTS", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
+            Spacer(modifier = Modifier.height(25.dp))
+            Text(text = "INGRIDENTS",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(horizontal = 15.dp))
             Spacer(modifier = Modifier.height(25.dp))
             Row(
                 modifier = Modifier
                     .padding(horizontal = 0.dp)
-                    .fillMaxWidth(),
-                //.align(Alignment.CenterHorizontally),
+                    .fillMaxWidth()
+                .align(Alignment.CenterHorizontally),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -278,7 +305,6 @@ fun ChickenWings(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -294,7 +320,6 @@ fun ChickenWings(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -310,7 +335,6 @@ fun ChickenWings(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -326,7 +350,6 @@ fun ChickenWings(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -342,214 +365,96 @@ fun ChickenWings(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
             }
-            Spacer(modifier = Modifier.height(75.dp))
 
         }
         Column(
             modifier = Modifier
-                .background(Color.LightGray)
+                .background(colorResource(id = R.color.White_Blue))
                 .fillMaxWidth()
-                .size(height = 200.dp, width = 700.dp)
-                .verticalScroll(rememberScrollState())
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row(
-                modifier = Modifier.padding(10.dp),
-                horizontalArrangement = Arrangement.Center
+                modifier = Modifier
+                    .padding(5.dp, 2.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-
                 Text(
-                    text = "PRICE : Rs ${totalprice * count}",
+                    text = "Rs ${totalprice * count}", //to get total price
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(vertical = 20.dp, horizontal = 10.dp),
                     fontSize = 25.sp
                 )
-                Spacer(modifier = Modifier.width(50.dp))
-                Box(
-                    modifier = Modifier
-                        .size(height = 50.dp, width = 150.dp)
-                        .background(color = Mustard_yellow, shape = CircleShape)
-                        .align(Alignment.CenterVertically)
-                ) {
-                    Row {
-                        IconButton(onClick = { if(count == 1) count = 1 else count-- }) {
-                            Icon(
-                                Icons.Default.KeyboardArrowDown,
-                                contentDescription = null,
-                                modifier = Modifier.size(50.dp)
-                            )
-                        }
-                        Spacer(modifier = Modifier.width(5.dp))
-                        //var count = 0
-                        Text(
-                            text = "$count", modifier = Modifier
-                                .padding(vertical = 15.dp)
-                                .padding(horizontal = 15.dp),
-                            fontSize = 20.sp
+                Row(modifier = Modifier
+                    .width(120.dp)
+                    .background(Mustard_yellow, shape = RoundedCornerShape(30.dp)),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ){
+                    IconButton(onClick = {
+                        if (count == 1) count = 1 else count--
+                    }) { //to set default limit as 1
+                        Icon(
+                            Icons.Default.KeyboardArrowDown,
+                            contentDescription = null,
+                            modifier = Modifier.size(30.dp)
                         )
-                        Spacer(modifier = Modifier.width(1.dp))
-                        IconButton(onClick = { count++ }) {
-                            Icon(
-                                Icons.Default.KeyboardArrowUp,
-                                contentDescription = null,
-                                modifier = Modifier.size(50.dp)
-                            )
-                        }
+                    }
+                    Text(
+                        text = "$count",
+                        fontSize = 20.sp
+                    )
+
+                    IconButton(onClick = { count++ }) {
+                        Icon(
+                            Icons.Default.KeyboardArrowUp,
+                            contentDescription = null,
+                            modifier = Modifier.size(30.dp)
+                        )
                     }
                 }
 
-            }
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically
-            ){
-                var value=0
-                TextButton(onClick = { ChickenWings_Cart =1}
-                    ,
+                TextButton(
+                    onClick = {
+                        if(totalprice == unitPriceRegular)size = "Regular" else size = "Large"
+                        addCart(Item_Name,totalprice ,count,size);
+                            Toast.makeText(context , "Item added successfully" , Toast.LENGTH_SHORT).show()
+                    },
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
-                    border = BorderStroke(width = 0.dp, color = Color.Transparent),
-                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
                     modifier = Modifier
-                        .padding(horizontal = 20.dp, vertical = 20.dp)
-                        //.size(height = 40.dp, width = 400.dp),
-                        // .fillMaxWidth()
+                        .padding(2.dp, 0.dp)
                         .height(54.dp),
                     shape = RoundedCornerShape(15.dp)
                 ) {
-                    Text(
-                        text = " ADD TO CART ",
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White,
-                        fontSize = 20.sp
+                    Icon(
+                        Icons.Default.AddShoppingCart,
+                        contentDescription = null,
+                        modifier = Modifier.size(30.dp)
                     )
                 }
-                TextButton(onClick = {
-                    /*Add_to_cart(Item_Name, unitprice, count ,Fries_image)*/
-
-                    navController.navigate("Cart")
-                }
-                    ,
-                    colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
-                    border = BorderStroke(width = 0.dp, color = Color.Transparent),
-                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
-                    modifier = Modifier
-                        .padding(horizontal = 20.dp, vertical = 20.dp)
-                        //.size(height = 40.dp, width = 400.dp),
-                        //.fillMaxWidth()
-                        .height(54.dp),
-                    shape = RoundedCornerShape(15.dp)
-                ) {
-                    Text(
-                        text = " GO TO CART ",
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White,
-                        fontSize = 20.sp
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun ChickenWingsCart() {
-    val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
-    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
-    var unitprice: Int by remember {
-        mutableStateOf<Int>(35)
-    }
-    var totalprice: Int by remember {
-        mutableStateOf<Int>(35)
-    }
-    var count by remember {
-        mutableStateOf<Int>(1)
-    }
-
-    Card(
-        shape = RoundedCornerShape(16.dp),
-        backgroundColor = Mustard_yellow,
-        modifier = Modifier
-            .padding(10.dp)
-            .fillMaxWidth()
-            .wrapContentHeight(),
-    ) {
-        Box(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .background(color = Mustard_yellow_light)
-        ) {
-            Row {
-                Card(
-                    shape = RoundedCornerShape(15.dp),
-                    modifier = Modifier
-                        .padding(0.dp)
-                        .size(100.dp)
-                        .wrapContentHeight(),
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.chicken_wings),
-                        contentDescription = "chicken_wings",
-                        modifier = Modifier
-                            //.align(Alignment.Center)
-                            .size(220.dp)
-                    )
-                }
-                Spacer(modifier = Modifier.width(10.dp))
-                Column(
-                    modifier = Modifier
-                        .padding(horizontal = 5.dp)
-                        .fillMaxWidth()
-                ) {
-                    Text(
-                        text = "Chicken Wings",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 22.sp
-                    )
-
-                    Text(
-                        text = "PRICE : Rs $totalprice",
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(
-                            vertical = 10.dp,
-                            horizontal = 2.dp
-                        ),
-                        fontSize = 15.sp
-                    )
-                    Box(
-                        modifier = Modifier
-                            .size(height = 30.dp, width = 150.dp)
-                            .background(color = Color.White, shape = CircleShape)
-
-                    ) {
-                        Row {
-                            IconButton(onClick = { if(count == 1) count = 1 else count-- }) {
-                                Icon(
-                                    Icons.Default.KeyboardArrowDown,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(50.dp)
-                                )
-                            }
-                            Spacer(modifier = Modifier.width(5.dp))
-                            Text(
-                                text = "$count", modifier = Modifier
-                                    .padding(vertical = 5.dp)
-                                    .padding(horizontal = 15.dp),
-                                fontSize = 20.sp
-                            )
-                            Spacer(modifier = Modifier.width(1.dp))
-                            IconButton(onClick = { count++ }) {
-                                Icon(
-                                    Icons.Default.KeyboardArrowUp,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(50.dp)
-                                )
-                            }
+                TextButton(
+                    onClick = {
+                        try {
+                            navController.navigate("AddToCart")
+                        } catch (e: Exception) {
+                            Log.e("Navigation Error", e.toString())
                         }
-                    }
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
+                    modifier = Modifier
+                        .padding(2.dp, 0.dp)
+                        .height(54.dp),
+                    shape = RoundedCornerShape(15.dp)
+                ) {
+                    Icon(
+                        Icons.Default.ShoppingCart,
+                        contentDescription = null,
+                        modifier = Modifier.size(30.dp)
+                    )
                 }
             }
         }

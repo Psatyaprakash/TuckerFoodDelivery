@@ -1,35 +1,52 @@
 package com.example.tuckerfooddelivery.View.Items
 
+import android.content.ContentValues.TAG
+import android.os.Build
+import android.util.Log
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddShoppingCart
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -38,520 +55,448 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import coil.compose.AsyncImage
+import com.example.tuckerfooddelivery.Model.Add.addCart
+import com.example.tuckerfooddelivery.Model.Add.addWishlist
+import com.example.tuckerfooddelivery.Model.Data.Cart
+import com.example.tuckerfooddelivery.Model.Fetch.db
+import com.example.tuckerfooddelivery.Model.Fetch.fetchCart
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
+import com.example.tuckerfooddelivery.View.createNotification
+import com.example.tuckerfooddelivery.ViewModel.platformFee
+import com.example.tuckerfooddelivery.ViewModel.storageRef
+import com.example.tuckerfooddelivery.ViewModel.totalAmount
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 
-
-var BlueLagoon_Cart=0
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun BlueLagoon(navController: NavController) {
+fun BlueLagoon(navController: NavController){
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
-    var  BlueLagoon_image: Any = Image(
-        painter = painterResource(id = R.drawable.bluelagoon),
-        contentDescription = "Mocktail",
-        modifier = Modifier
-            .padding(100.dp)
-//            .align(Alignment.Center)
-            .size(100.dp)
-    )
+    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
+    val White_Blue = colorResource(id = R.color.White_Blue)
+
+    var totalprice: Int by remember { mutableStateOf(59) }
+    var unitPriceHalf: Int by remember { mutableStateOf(59) }
+    var unitPriceFull: Int by remember { mutableStateOf(109) }
+    var count by remember { mutableStateOf(1) }
+    val Name = "Blue Lagoon"
+    val Item_Name = "BlueLagoon"
+    var size by remember { mutableStateOf("Half")    }
+    val context = LocalContext.current
+
     var selectedButtonIndex by remember { mutableStateOf(1) }
 
     fun getButtonColor(index: Int): Color {
-        return if (index == selectedButtonIndex) Mustard_yellow else Color.LightGray
+        return if (index == selectedButtonIndex) Mustard_yellow else White_Blue
     }
 
     fun onButtonClick(index: Int) {
         selectedButtonIndex = index
     }
-    val Item_Name = "Blue Lagoon"
-    var totalprice : Int by remember {
-        mutableStateOf<Int>(112)
-    }
-    var count by remember {
-        mutableStateOf<Int>(1)
-    }
 
-
-
-    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
-    Column {
-        Column(
-            modifier = Modifier
-                .padding(horizontal = 15.dp)
-                .size(width = 500.dp, height = 670.dp)
-                .verticalScroll(rememberScrollState())
-        ) {
-            Spacer(modifier = Modifier.height(15.dp))
-            Row {
-                TextButton(
-                    onClick = {navController.popBackStack()},
-                    colors = ButtonDefaults.buttonColors(Color.LightGray),
-                    shape = CircleShape,
-                    contentPadding = PaddingValues(0.dp),
-                    modifier = Modifier
-                        .size(50.dp)
-                        .background(Color.Gray, CircleShape)
+    Scaffold(
+        modifier = Modifier.background(White),
+        topBar = {
+            TopAppBar(title =
+            {
+                Row(Modifier.padding(5.dp,0.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.leftarrow),
-                        contentDescription = "",
-                        modifier = Modifier.size(30.dp)
+                    CircularButtonWithSymbol(onClick = { navController.popBackStack() })
+
+                    Spacer(modifier = Modifier.width(1.dp))
+                    Text(
+                        text = "Details",
+                        fontSize = 26.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(16.dp)
                     )
                 }
-                Spacer(modifier = Modifier.width(1.dp))
-                Text(
-                    text = "Details",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(16.dp)
-                )
-            }
-            Spacer(modifier = Modifier.height(10.dp))
-            Card(
-                shape = RoundedCornerShape(16.dp),
-                backgroundColor = Mustard_yellow,
+            },
+                backgroundColor = White,
+                modifier = Modifier
+                    .height(80.dp)
+            )
+        },
+
+    ) { innerPadding ->
+        var iP = innerPadding
+        Column(
+            Modifier
+                .fillMaxSize()
+                .padding(0.dp),
+            verticalArrangement = Arrangement.SpaceBetween,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Column(
                 modifier = Modifier
                     .padding(10.dp)
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
+                    .background(White)
+                    .fillMaxHeight(.9f)
+                    .verticalScroll(rememberScrollState())
             ) {
-                Box(
+                Spacer(modifier = Modifier.height(70.dp))
+                Card(
+                    shape = RoundedCornerShape(16.dp),
+                    backgroundColor = Mustard_yellow,
                     modifier = Modifier
-                        .padding(16.dp)
+                        .padding(20.dp, 10.dp)
                         .fillMaxWidth()
+                        //.size(300.dp)
                         .wrapContentHeight()
                 ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.bluelagoon),
-                        contentDescription = "Mocktail",
+                    Box(
                         modifier = Modifier
-                            .align(Alignment.Center)
-                            .size(220.dp)
-                    )
-                    Icon(
-                        imageVector = Icons.Default.Favorite,
-                        contentDescription = "Add",
-                        tint = Color.White,
-                        modifier = Modifier
-                            .align(Alignment.BottomEnd)
-                            .size(40.dp)
-                            .background(Color.Red, shape = CircleShape)
-                            .padding(8.dp)
-                    )
+                            .padding(30.dp)
+                            .fillMaxWidth()
+//                        .wrapContentHeight()
+                    ) {
+                       Image(
+                            painter = painterResource(id = R.drawable.bluelagoon),
+                            contentDescription = "Mocktail",
+                            modifier = Modifier
+//                            .padding(100.dp)
+                                .align(Alignment.Center)
+                                .size(270.dp)
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Favorite,
+                            contentDescription = "Add",
+                            tint = White,
+                            modifier = Modifier
+                                .align(Alignment.BottomEnd)
+                                .size(40.dp)
+                                .background(Color.Red, shape = CircleShape)
+                                .padding(8.dp)
+                                .clickable {
+                                    if(totalprice == unitPriceHalf)size = "Half" else size = "Full"
+                                    addWishlist(Item_Name,totalprice ,count,size)
+                            Toast.makeText(context , "Added to Wishlist" , Toast.LENGTH_SHORT).show()
+                                }
+                        )
+                    }
                 }
-            }
-            Spacer(modifier = Modifier.height(15.dp))
-
-            Text(
-                text = "$Item_Name",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black,
-                modifier = Modifier.padding(10.dp)
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = "Freshly pressed Mocktail that is pulpy, tangy and so refreshing.",
-                modifier = Modifier.padding(horizontal = 10.dp)
-            )
-            Spacer(modifier = Modifier.height(15.dp))
-            Row(
-                modifier = Modifier
-                    .padding(horizontal = 8.dp)
-                    .fillMaxWidth(),
-                //horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.star__),
-                    contentDescription = "Pizza",
-                    modifier = Modifier
-                        //.align(Alignment.Top)
-                        .size(30.dp)
-                        .padding(0.dp)
-                )
-                Spacer(modifier = Modifier.width(5.dp))
+                Spacer(modifier = Modifier.height(15.dp))
 
                 Text(
-                    text = "4.7",
-                    fontWeight = FontWeight.Medium,
-                    color = Color.Black,
-                    fontSize = 22.sp,
-                    modifier = Modifier.padding(horizontal = 2.dp)
-                )
-                Spacer(modifier = Modifier.width(40.dp))
-                Image(
-                    painter = painterResource(id = R.drawable.truck__),
-                    contentDescription = "Pizza",
-                    modifier = Modifier
-                        .size(35.dp)
-                        .padding(0.dp)
-                )
-                Spacer(modifier = Modifier.width(5.dp))
-                Text(
-                    text = "Free",
-                    fontWeight = FontWeight.Normal,
-                    color = Color.Black,
-                    fontSize = 22.sp,
-                    modifier = Modifier.padding(horizontal = 2.dp)
-                )
-
-                Spacer(modifier = Modifier.width(40.dp))
-                Image(
-                    painter = painterResource(id = R.drawable.clock__),
-                    contentDescription = "Pizza",
-                    modifier = Modifier
-                        .size(35.dp)
-                        .padding(0.dp)
-                )
-                Spacer(modifier = Modifier.width(5.dp))
-                Text(
-                    text = "20 min",
-                    fontWeight = FontWeight.Normal,
-                    color = Color.Black,
-                    fontSize = 22.sp,
-                    modifier = Modifier.padding(horizontal = 2.dp)
-                )
-            }
-            Spacer(modifier = Modifier.height(25.dp))
-            Row(
-                modifier = Modifier
-                    .padding(horizontal = 1.dp)
-                    .fillMaxWidth()
-                    .align(Alignment.CenterHorizontally),
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(text = "SIZE:", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
-                TextButton(onClick = { onButtonClick(1); totalprice = 112 }, //unitprice of half mocktail is Rs 112
-                    colors = ButtonDefaults.textButtonColors(
-                        getButtonColor(1)
-                    ),
-                    modifier = Modifier
-                        .size(height = 50.dp, width = 100.dp),
-                    shape = RoundedCornerShape(15.dp)
-                ){
-                    Text(text = "Half", fontSize = 20.sp)
-                }
-                Spacer(modifier = Modifier.width(30.dp))
-                TextButton(onClick = { onButtonClick(2); totalprice = 173 }, //unit price of full is Rs 173
-                    colors = ButtonDefaults.textButtonColors(
-                        getButtonColor(2)
-                    ),
-                    modifier = Modifier
-                        .size(height = 50.dp, width = 100.dp),
-                    shape = RoundedCornerShape(15.dp)
-                ){
-                    Text(text = "Full", fontSize = 20.sp)
-                }
-                Spacer(modifier = Modifier.width(20.dp))
-            }
-            Spacer(modifier = Modifier.height(20.dp))
-            Text(text = "INGRIDENTS", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
-            Spacer(modifier = Modifier.height(25.dp))
-            Row(
-                modifier = Modifier
-                    .padding(horizontal = 0.dp)
-                    .fillMaxWidth(),
-                //.align(Alignment.CenterHorizontally),
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Box(
-                    modifier = Modifier
-                        .size(60.dp)
-                        .clip(CircleShape)
-                        .background(Mustard_yellow_light)
-                        .align(Alignment.CenterVertically)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.salt),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .size(50.dp)
-                            .align(Alignment.Center)
-                    )
-                }
-                //Spacer(modifier = Modifier.width(20.dp))
-                Box(
-                    modifier = Modifier
-                        .size(60.dp)
-                        .clip(CircleShape)
-                        .background(Mustard_yellow_light)
-                        .align(Alignment.CenterVertically)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.lemon_icon),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .size(40.dp)
-                            .align(Alignment.Center)
-                    )
-                }
-                //Spacer(modifier = Modifier.width(20.dp))
-                Box(
-                    modifier = Modifier
-                        .size(60.dp)
-                        .clip(CircleShape)
-                        .background(Mustard_yellow_light)
-                        .align(Alignment.CenterVertically)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.garlic),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .size(50.dp)
-                            .align(Alignment.Center)
-                    )
-                }
-                //Spacer(modifier = Modifier.width(20.dp))
-                Box(
-                    modifier = Modifier
-                        .size(60.dp)
-                        .clip(CircleShape)
-                        .background(Mustard_yellow_light)
-                        .align(Alignment.CenterVertically)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.onion),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .size(50.dp)
-                            .align(Alignment.Center)
-                    )
-                }
-                //Spacer(modifier = Modifier.width(20.dp))
-                Box(
-                    modifier = Modifier
-                        .size(60.dp)
-                        .clip(CircleShape)
-                        .background(Mustard_yellow_light)
-                        .align(Alignment.CenterVertically)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.chilli),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .size(50.dp)
-                            .align(Alignment.Center)
-                    )
-                }
-                //Spacer(modifier = Modifier.width(20.dp))
-            }
-            Spacer(modifier = Modifier.height(75.dp))
-
-        }
-        Column(
-            modifier = Modifier
-                .background(Color.LightGray)
-                .fillMaxWidth()
-                .size(height = 200.dp, width = 700.dp)
-                .verticalScroll(rememberScrollState())
-        ) {
-            Row(
-                modifier = Modifier.padding(10.dp),
-                horizontalArrangement = Arrangement.Center
-            ) {
-
-                Text(
-                    text = "PRICE : Rs ${totalprice * count}", //to get total price
+                    text = Item_Name,
+                    fontSize = 25.sp,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(vertical = 20.dp, horizontal = 10.dp),
-                    fontSize = 25.sp
+                    color = Color.Black,
+                    modifier = Modifier.padding(vertical = 10.dp, horizontal = 15.dp)
                 )
-                Spacer(modifier = Modifier.width(50.dp))
-                Box(
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = "Freshly made Mocktail that is pulpy, tangy and so refreshing.",
+                    fontSize = 18.sp,
+                    modifier = Modifier.padding(horizontal = 15.dp)
+                )
+                Spacer(modifier = Modifier.height(15.dp))
+                Row(
                     modifier = Modifier
-                        .size(height = 50.dp, width = 150.dp)
-                        .background(color = Mustard_yellow, shape = CircleShape)
-                        .align(Alignment.CenterVertically)
+                        .padding(horizontal = 8.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Row {
-                        IconButton(onClick = { if(count == 1) count = 1 else count-- }) { //to set default limit as 1
+                    Image(
+                        painter = painterResource(id = R.drawable.star__),
+                        contentDescription = "Pizza",
+                        modifier = Modifier
+                            .size(30.dp)
+                            .padding(0.dp)
+                    )
+                    Spacer(modifier = Modifier.width(5.dp))
+
+                    Text(
+                        text = "4.7",
+                        fontWeight = FontWeight.Medium,
+                        color = Color.Black,
+                        fontSize = 22.sp,
+                        modifier = Modifier.padding(horizontal = 2.dp)
+                    )
+                    Spacer(modifier = Modifier.width(40.dp))
+                    Image(
+                        painter = painterResource(id = R.drawable.truck__),
+                        contentDescription = "Pizza",
+                        modifier = Modifier
+                            .size(35.dp)
+                            .padding(0.dp)
+                    )
+                    Spacer(modifier = Modifier.width(5.dp))
+                    Text(
+                        text = "Free",
+                        fontWeight = FontWeight.Normal,
+                        color = Color.Black,
+                        fontSize = 22.sp,
+                        modifier = Modifier.padding(horizontal = 2.dp)
+                    )
+
+                    Spacer(modifier = Modifier.width(40.dp))
+                    Image(
+                        painter = painterResource(id = R.drawable.clock__),
+                        contentDescription = "Pizza",
+                        modifier = Modifier
+                            .size(35.dp)
+                            .padding(0.dp)
+                    )
+                    Spacer(modifier = Modifier.width(5.dp))
+                    Text(
+                        text = "20 min",
+                        fontWeight = FontWeight.Normal,
+                        color = Color.Black,
+                        fontSize = 22.sp,
+                        modifier = Modifier.padding(horizontal = 2.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.height(25.dp))
+                Row(
+                    modifier = Modifier
+                        .padding(horizontal = 1.dp)
+                        .fillMaxWidth()
+                        .align(Alignment.CenterHorizontally),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "SIZE:",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(horizontal = 10.dp)
+                    )
+                    TextButton(
+                        onClick = {
+                            onButtonClick(1); totalprice = unitPriceHalf
+                        }, //unitprice of half mocktail is Rs 112
+                        colors = ButtonDefaults.textButtonColors(
+                            getButtonColor(1)
+                        ),
+                        modifier = Modifier
+                            .size(height = 50.dp, width = 100.dp),
+                        shape = RoundedCornerShape(15.dp)
+                    ) {
+                        Text(text = "Half", fontSize = 20.sp)
+                    }
+                    Spacer(modifier = Modifier.width(30.dp))
+                    TextButton(
+                        onClick = {
+                            onButtonClick(2); totalprice = unitPriceFull
+                        }, //unit price of full is Rs 173
+                        colors = ButtonDefaults.textButtonColors(
+                            getButtonColor(2)
+                        ),
+                        modifier = Modifier
+                            .size(height = 50.dp, width = 100.dp),
+                        shape = RoundedCornerShape(15.dp)
+                    ) {
+                        Text(text = "Full", fontSize = 20.sp)
+                    }
+                    Spacer(modifier = Modifier.width(20.dp))
+                }
+                Spacer(modifier = Modifier.height(25.dp))
+                Text(
+                    text = "INGRIDENTS",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(horizontal = 15.dp)
+                )
+                Spacer(modifier = Modifier.height(25.dp))
+                Row(
+                    modifier = Modifier
+                        .padding(horizontal = 0.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(60.dp)
+                            .clip(CircleShape)
+                            .background(Mustard_yellow_light)
+                            .align(Alignment.CenterVertically)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.salt),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(50.dp)
+                                .align(Alignment.Center)
+                        )
+                    }
+                    //Spacer(modifier = Modifier.width(20.dp))
+                    Box(
+                        modifier = Modifier
+                            .size(60.dp)
+                            .clip(CircleShape)
+                            .background(Mustard_yellow_light)
+                            .align(Alignment.CenterVertically)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.lemon_icon),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(40.dp)
+                                .align(Alignment.Center)
+                        )
+                    }
+                    //Spacer(modifier = Modifier.width(20.dp))
+                    Box(
+                        modifier = Modifier
+                            .size(60.dp)
+                            .clip(CircleShape)
+                            .background(Mustard_yellow_light)
+                            .align(Alignment.CenterVertically)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.garlic),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(50.dp)
+                                .align(Alignment.Center)
+                        )
+                    }
+                    //Spacer(modifier = Modifier.width(20.dp))
+                    Box(
+                        modifier = Modifier
+                            .size(60.dp)
+                            .clip(CircleShape)
+                            .background(Mustard_yellow_light)
+                            .align(Alignment.CenterVertically)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.onion),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(50.dp)
+                                .align(Alignment.Center)
+                        )
+                    }
+                    //Spacer(modifier = Modifier.width(20.dp))
+                    Box(
+                        modifier = Modifier
+                            .size(60.dp)
+                            .clip(CircleShape)
+                            .background(Mustard_yellow_light)
+                            .align(Alignment.CenterVertically)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.chilli),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(50.dp)
+                                .align(Alignment.Center)
+                        )
+                    }
+                }
+
+            }
+            Column(
+                modifier = Modifier
+                    .background(colorResource(id = R.color.White_Blue))
+                    .fillMaxWidth()
+//                    .fillMaxHeight(.2f)
+                    .verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Row(
+                    modifier = Modifier
+                        .padding(5.dp, 2.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "Rs ${totalprice * count}", //to get total price
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(vertical = 20.dp, horizontal = 10.dp),
+                        fontSize = 25.sp
+                    )
+                    Row(modifier = Modifier
+                        .width(120.dp)
+                        .background(Mustard_yellow, shape = RoundedCornerShape(30.dp)),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ){
+                        IconButton(onClick = {
+                            if (count == 1) count = 1 else count--
+                        }) { //to set default limit as 1
                             Icon(
                                 Icons.Default.KeyboardArrowDown,
                                 contentDescription = null,
-                                modifier = Modifier.size(50.dp)
+                                modifier = Modifier.size(30.dp)
                             )
                         }
-                        Spacer(modifier = Modifier.width(5.dp))
-                        //var count = 0
                         Text(
-                            text = "$count", modifier = Modifier
-                                .padding(vertical = 15.dp)
-                                .padding(horizontal = 15.dp),
+                            text = "$count",
                             fontSize = 20.sp
                         )
-                        Spacer(modifier = Modifier.width(1.dp))
+
                         IconButton(onClick = { count++ }) {
                             Icon(
                                 Icons.Default.KeyboardArrowUp,
                                 contentDescription = null,
-                                modifier = Modifier.size(50.dp)
+                                modifier = Modifier.size(30.dp)
                             )
                         }
                     }
-                }
 
-            }
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically
-            ){
-                var value=0
-                TextButton(onClick = { BlueLagoon_Cart =1}
-                    ,
-                    colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
-                    border = BorderStroke(width = 0.dp, color = Color.Transparent),
-                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
-                    modifier = Modifier
-                        .padding(horizontal = 20.dp, vertical = 20.dp)
-                        //.size(height = 40.dp, width = 400.dp),
-                        // .fillMaxWidth()
-                        .height(54.dp),
-                    shape = RoundedCornerShape(15.dp)
-                ) {
-                    Text(
-                        text = " ADD TO CART ",
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White,
-                        fontSize = 20.sp
-                    )
-                }
-                TextButton(onClick = {
-                    /*Add_to_cart(Item_Name, unitprice, count ,Fries_image)*/
-
-                    navController.navigate("Cart")
-                }
-                    ,
-                    colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
-                    border = BorderStroke(width = 0.dp, color = Color.Transparent),
-                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
-                    modifier = Modifier
-                        .padding(horizontal = 20.dp, vertical = 20.dp)
-                        //.size(height = 40.dp, width = 400.dp),
-                        //.fillMaxWidth()
-                        .height(54.dp),
-                    shape = RoundedCornerShape(15.dp)
-                ) {
-                    Text(
-                        text = " GO TO CART ",
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White,
-                        fontSize = 20.sp
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun BlueLagoonCart() {
-    val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
-    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
-    var unitprice: Int by remember {
-        mutableStateOf<Int>(35)
-    }
-    var totalprice: Int by remember {
-        mutableStateOf<Int>(35)
-    }
-    var count by remember {
-        mutableStateOf<Int>(1)
-    }
-
-    Card(
-        shape = RoundedCornerShape(16.dp),
-        backgroundColor = Mustard_yellow,
-        modifier = Modifier
-            .padding(10.dp)
-            .fillMaxWidth()
-            .wrapContentHeight(),
-    ) {
-        Box(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .background(color = Mustard_yellow_light)
-        ) {
-            Row {
-                Card(
-                    shape = RoundedCornerShape(15.dp),
-                    modifier = Modifier
-                        .padding(0.dp)
-                        .size(100.dp)
-                        .wrapContentHeight(),
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.bluelagoon),
-                        contentDescription = "blue_lagoon",
+                    TextButton(
+                        onClick = {
+                            if(totalprice == unitPriceHalf)size = "Half" else size = "Full"
+                            addCart(Item_Name,totalprice ,count,size);
+                            Toast.makeText(context , "Item added successfully" , Toast.LENGTH_SHORT).show()
+                        },
+                        colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                         modifier = Modifier
-                            //.align(Alignment.Center)
-                            .size(220.dp)
-                    )
-                }
-                Spacer(modifier = Modifier.width(10.dp))
-                Column(
-                    modifier = Modifier
-                        .padding(horizontal = 5.dp)
-                        .fillMaxWidth()
-                ) {
-                    Text(
-                        text = "Blue Lagoon",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 22.sp
-                    )
-
-                    Text(
-                        text = "PRICE : Rs $totalprice",
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(
-                            vertical = 10.dp,
-                            horizontal = 2.dp
-                        ),
-                        fontSize = 15.sp
-                    )
-                    Box(
-                        modifier = Modifier
-                            .size(height = 30.dp, width = 150.dp)
-                            .background(color = Color.White, shape = CircleShape)
-
+                            .padding(2.dp, 0.dp)
+                            .height(54.dp),
+                        shape = RoundedCornerShape(15.dp)
                     ) {
-                        Row {
-                            IconButton(onClick = { if(count == 1) count = 1 else count-- }) {
-                                Icon(
-                                    Icons.Default.KeyboardArrowDown,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(50.dp)
-                                )
+                        Icon(
+                            Icons.Default.AddShoppingCart,
+                            contentDescription = null,
+                            modifier = Modifier.size(30.dp)
+                        )
+                    }
+                    TextButton(
+                        onClick = {
+                            try {
+                                navController.navigate("AddToCart")
+                            } catch (e: Exception) {
+                                Log.e("Navigation Error", e.toString())
                             }
-                            Spacer(modifier = Modifier.width(5.dp))
-                            Text(
-                                text = "$count", modifier = Modifier
-                                    .padding(vertical = 5.dp)
-                                    .padding(horizontal = 15.dp),
-                                fontSize = 20.sp
-                            )
-                            Spacer(modifier = Modifier.width(1.dp))
-                            IconButton(onClick = { count++ }) {
-                                Icon(
-                                    Icons.Default.KeyboardArrowUp,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(50.dp)
-                                )
-                            }
-                        }
+                        },
+                        colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
+                        modifier = Modifier
+                            .padding(2.dp, 0.dp)
+                            .height(54.dp),
+                        shape = RoundedCornerShape(15.dp)
+                    ) {
+                        Icon(
+                            Icons.Default.ShoppingCart,
+                            contentDescription = null,
+                            modifier = Modifier.size(30.dp)
+                        )
                     }
                 }
             }
         }
-    }
-}
+    }}

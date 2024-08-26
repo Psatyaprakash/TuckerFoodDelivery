@@ -5,6 +5,7 @@ import androidx.compose.animation.expandIn
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
@@ -40,10 +42,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.times
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.ViewModel.ScreenHeight
+import com.example.tuckerfooddelivery.ViewModel.loggedInAs
 import com.google.firebase.Firebase
 import com.google.firebase.storage.storage
 //import kotlin.coroutines.jvm.internal.CompletedContinuation.context
@@ -55,27 +60,24 @@ fun Start(navController: NavHostController) {
     Box(modifier = Modifier
         .fillMaxSize()
         .background(Color.White)
-//        slideOutHorizontally {  }
     ){
         Column(modifier = Modifier
             .padding(40.dp)
-            //.fillMaxSize()
-            //.verticalScroll(rememberScrollState())
+            .fillMaxSize()
             .background(Color.White),
-            verticalArrangement = Arrangement.Bottom,
+            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
             Image(painter = painterResource(R.drawable.all_your_fav),
                 contentDescription = "" ,
                 Modifier
-                    .size(400.dp)
+                    .size(300.dp)
                     .fillMaxWidth()
             )
             Text(text = "All your favorites" , fontSize = 26.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier .height(20.dp) )
-            Text(text = "Get all your loved foods in one once place,\n" +
-                    "you just place the order we do the rest" ,
+            Text(text = "Get all your loved foods in one once place you just place the order we do the rest" ,
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center ,
                 color = Color.Gray ,
@@ -109,10 +111,7 @@ fun Start(navController: NavHostController) {
             ) {
                 Text(text = "Next" , fontSize = 22.sp , color = Color.White)
             }
-            // TextButton(onClick = { navController.navigate("LoginScreen") }) {
-            // Navigating to HomePage for testing. Later will change navigation to LoginScreen
-
-            TextButton(onClick = { navController.navigate("HomePage") }) {
+             TextButton(onClick = { navController.navigate("Start3") }) {
                 Text(text = "Skip", fontSize = 25.sp, fontFamily = FontFamily.SansSerif , color = Color.Black)
             }
             Spacer(modifier = Modifier.height(50.dp))
@@ -131,16 +130,15 @@ fun Start2(navController: NavHostController) {
     ){
         Column(modifier = Modifier
             .padding(40.dp)
-//            .fillMaxSize()
-//            .verticalScroll(rememberScrollState())
+            .fillMaxSize()
             .background(Color.White),
-            verticalArrangement = Arrangement.Top,
+            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(painter = painterResource(R.drawable.order),
                 contentDescription = "" ,
                 Modifier
-                    .size(400.dp)
+                    .size(300.dp)
             )
             Text(text = "Order from chosen chef" , fontSize = 26.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier .height(20.dp) )
@@ -150,7 +148,7 @@ fun Start2(navController: NavHostController) {
                 color = Color.Gray ,
                 fontWeight = FontWeight.W700
             )
-            Spacer(modifier = Modifier .height(40.dp) )
+            Spacer(modifier = Modifier .height(20.dp) )
             Row{
                 for (i in 1..3) {
                     var col_mus = Mustard_yellow_light
@@ -167,7 +165,6 @@ fun Start2(navController: NavHostController) {
                     Spacer(modifier = Modifier.width(5.dp))
                 }
             }
-            Spacer(modifier = Modifier .height(10.dp) )
             Button(onClick = { navController.navigate("Start3") },
                 Modifier
                     .fillMaxWidth()
@@ -178,7 +175,7 @@ fun Start2(navController: NavHostController) {
             ) {
                 Text(text = "Next" , fontSize = 22.sp , color = Color.White)
             }
-            TextButton(onClick = { navController.navigate("LoginScreen") }) {
+            TextButton(onClick = { navController.navigate("Start3") }) {
                 Text(text = "Skip", fontSize = 25.sp, fontFamily = FontFamily.SansSerif , color = Color.Black)
             }
             Spacer(modifier = Modifier.height(50.dp))
@@ -197,27 +194,25 @@ fun Start3(navController: NavHostController) {
     ){
         Column(modifier = Modifier
             .padding(40.dp)
-//            .fillMaxSize()
-//            .verticalScroll(rememberScrollState())
             .background(Color.White),
-            verticalArrangement = Arrangement.Top,
+            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(painter = painterResource(R.drawable.delivery),
                 contentDescription = "" ,
                 Modifier
                     .size(400.dp)
+                    , contentScale = ContentScale.FillWidth
             )
             Text(text = "Free delivery offers" , fontSize = 26.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier .height(20.dp) )
-            Text(text = "Get all your loved foods in one once place,\n" +
-                    "you just place the order we do the rest" ,
+            Text(text = "Get all your loved foods in one once place, you just place the order we do the rest" ,
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center ,
                 color = Color.Gray ,
                 fontWeight = FontWeight.W700
             )
-            Spacer(modifier = Modifier .height(40.dp) )
+            Spacer(modifier = Modifier .height(10.dp) )
             Row{
                 for (i in 1..3) {
                     var col_mus = Mustard_yellow_light
@@ -235,18 +230,30 @@ fun Start3(navController: NavHostController) {
                 }
             }
             Spacer(modifier = Modifier .height(10.dp) )
-            Button(onClick = { navController.navigate("LoginScreen") },
+            Button(
+                onClick = {
+                    loggedInAs = "Customer";
+                    navController.navigate("LoginScreen")
+                },
                 Modifier
                     .fillMaxWidth()
-                    .padding(30.dp)
-                    .height(60.dp),
+                    .padding(10.dp)
+                    .height(40.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(Mustard_yellow)
             ) {
-                Text(text = "Get Started" , fontSize = 22.sp , color = Color.White)
+                Text(text = "Get Started" , fontSize = 20.sp , color = Color.White)
             }
-
-            Spacer(modifier = Modifier.height(50.dp))
+            Button(onClick = { loggedInAs = "Restaurant" ; navController.navigate("LoginScreen") },
+                Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp)
+                    .height(40.dp),
+                shape = RoundedCornerShape(10.dp),
+                colors = ButtonDefaults.buttonColors(Mustard_yellow)
+            ) {
+                Text(text = "Continue As Restaurant" , fontSize = 18.sp , color = Color.White)
+            }
         }
     }
 }

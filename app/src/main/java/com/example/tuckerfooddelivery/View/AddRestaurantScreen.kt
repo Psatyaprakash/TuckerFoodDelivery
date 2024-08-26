@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.example.tuckerfooddelivery.Model.Data.Contact
 import com.example.tuckerfooddelivery.Model.Data.MenuCategory
 import com.example.tuckerfooddelivery.Model.Data.MenuItem
-import com.example.tuckerfooddelivery.ViewModel.addRestaurant
+import com.example.tuckerfooddelivery.Model.Add.addRestaurant
 
 @Composable
 fun AddRestaurantScreen() {

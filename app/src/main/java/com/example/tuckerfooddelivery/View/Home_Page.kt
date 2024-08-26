@@ -1,5 +1,8 @@
 package com.example.tuckerfooddelivery.View
 
+//import androidx.compose.foundation.layout.FlowColumnScopeInstance.align
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -8,7 +11,6 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-//import androidx.compose.foundation.layout.FlowColumnScopeInstance.align
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,32 +26,19 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.ShoppingCart
-import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -58,28 +47,40 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.ViewModel.userPrimaryAddress
+import com.example.tuckerfooddelivery.ui.theme.PurpleGrey80
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 
 //Home Page UI
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
-//fun HomePage(navController: NavController , route : @Composable (NavController) -> Unit) {
 fun HomePage(navController: NavController ) {
 
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
+
+    var time by remember { mutableStateOf("") }
+    val currentTime = LocalTime.now()
+// Format the date to a readable string
+    val formatter = DateTimeFormatter.ofPattern("HH")
+    val formattedTime = currentTime.format(formatter)
+
+    time = if( formattedTime.toInt() < 12) "Good Morning"
+    else if (formattedTime.toInt() < 17 ) "Good Afternoon"
+    else if ( formattedTime.toInt() < 24 ) "Good Evening"
+    else ""
 
     Column(modifier = Modifier
         .fillMaxSize()
@@ -87,8 +88,8 @@ fun HomePage(navController: NavController ) {
         Row(
             Modifier
                 .fillMaxWidth()
-                .padding(5.dp, 10.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly,
+                .padding(20.dp, 10.dp, 20.dp, 0.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(
@@ -98,16 +99,15 @@ fun HomePage(navController: NavController ) {
                     .background(color = colorResource(id = R.color.White_Blue))
             ) {
                 Image(
-                    painter = painterResource(R.drawable.menu),
-                    contentDescription = "3 bars",
+                    Icons.Default.Person,
+                    contentDescription = "Profile ",
                     Modifier
-                        .size(22.dp)
+                        .size(30.dp)
                         .align(Alignment.Center)
+                        .clickable { navController.navigate("ProfileView") }
                 )
             }
-
-            Spacer(modifier = Modifier.width(5.dp))
-            Column() {
+            Column(Modifier.padding(0.dp,2.dp)) {
                 Text(
                     text = "DELIVER TO",
                     fontSize = 17.sp,
@@ -115,14 +115,14 @@ fun HomePage(navController: NavController ) {
                     color = Color.Red
                 )
                 Text(
-                    text = "Haldi Lab Office",
+                    text = userPrimaryAddress,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black
+                    color = Color.Black,
+                    softWrap = true
                 )
             }
 
-            Spacer(modifier = Modifier.width(180.dp))
             Box(
                 modifier = Modifier
                     .size(45.dp)
@@ -132,12 +132,12 @@ fun HomePage(navController: NavController ) {
 
             ) {
                 Image(
-                    painter = painterResource(R.drawable.shopping_bag__2),
+                    Icons.Default.Favorite,
                     contentDescription = "Fire",
                     Modifier
-                        .size(30.dp)
+                        .size(27.dp)
                         .align(Alignment.Center)
-                        .clickable { navController.navigate("Favourites") }
+                        .clickable { navController.navigate("Wishlist") }
                 )
             }
         }
@@ -149,7 +149,7 @@ fun HomePage(navController: NavController ) {
         ) {
             Column(
                 modifier = Modifier
-                    .padding(10.dp, 2.dp)
+                    .padding(12.dp, 0.dp)
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
             ) {
@@ -157,16 +157,15 @@ fun HomePage(navController: NavController ) {
                 Spacer(modifier = Modifier.height(15.dp))
                 Row {
                     Spacer(modifier = Modifier.width(12.dp))
-                    Text(text = "Hey David, ", fontSize = 15.sp, color = Color.Black)
+                    Text(text = "Hello , ", fontSize = 15.sp, color = Color.Black)
                     Text(
-                        text = "Good Afternoon!",
+                        text = "$time !",
                         fontSize = 15.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Black
                     )
                 }
                 Spacer(modifier = Modifier.height(5.dp))
-                var text by remember { mutableStateOf("") }
                 var searchQuery by remember { mutableStateOf("") }
 
                 OutlinedTextField(
@@ -188,16 +187,14 @@ fun HomePage(navController: NavController ) {
                             Icon(Icons.Default.Settings, contentDescription = null, tint = Color.Black)
                         }
                     },
-//            colors = TextFieldDefaults.textFieldColors(
-//                focusedIndicatorColor = colorResource(id = R.color.Blue_Slight),
-//                unfocusedIndicatorColor = colorResource(id = R.color.Blue_Slight)
-//            )
                     colors = TextFieldDefaults.textFieldColors(containerColor = colorResource(id = R.color.White_Blue)),
                     shape = RoundedCornerShape(20.dp)
                 )
                 Spacer(modifier = Modifier.height(5.dp))
-                Row(Modifier.fillMaxWidth()
-                    .padding(2.dp,0.dp),
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(2.dp, 0.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -218,6 +215,7 @@ fun HomePage(navController: NavController ) {
                     )
                 }
                 Spacer(modifier = Modifier.height(10.dp))
+
                 Row(
                     modifier = Modifier
                         .horizontalScroll(rememberScrollState())
@@ -524,8 +522,7 @@ fun HomePage(navController: NavController ) {
                     }
                 }
 
-
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(15.dp))
                 Row(modifier = Modifier
                     .fillMaxWidth()
                     ,verticalAlignment = Alignment.CenterVertically,
@@ -547,7 +544,8 @@ fun HomePage(navController: NavController ) {
                         modifier = Modifier.padding(horizontal = 10.dp)
                     )
                 }
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(15.dp))
+
                 //Card for Restaurant 1
                 Card(
                     shape = RoundedCornerShape(16.dp),
@@ -562,9 +560,7 @@ fun HomePage(navController: NavController ) {
                         disabledContentColor = Mustard_yellow,
                         disabledContainerColor = Mustard_yellow
                     ),
-
                     onClick = { navController.navigate("Rosegardenrestaurant_landingpage") }
-
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.restaurant_img_1),
@@ -584,33 +580,34 @@ fun HomePage(navController: NavController ) {
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
                     fontSize = 20.sp,
-                    modifier = Modifier.padding(horizontal = 10.dp)
+                    modifier = Modifier.padding(horizontal = 15.dp)
                 )
-
-                //Spacer(modifier = Modifier.height(1.dp).width(10.dp))
                 Text(
                     text = "Burger - Chicken - Rice - Wings ",
                     fontWeight = FontWeight.Normal,
                     color = Color.Black,
                     fontSize = 14.sp,
-                    modifier = Modifier.padding(horizontal = 12.dp)
+                    modifier = Modifier.padding(horizontal = 15.dp)
                 )
-
                 Spacer(modifier = Modifier.height(10.dp))
                 Row(
                     modifier = Modifier
-                        .padding(horizontal = 1.dp)
-                        .fillMaxWidth()
+                        .padding(horizontal = 15.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.star_),
-                        contentDescription = "Star Rating icon",
+                        painter = painterResource(id = R.drawable.star__),
+                        contentDescription = "Pizza",
                         modifier = Modifier
-                            .size(30.dp)
+                            //.align(Alignment.Top)
+                            .size(20.dp)
                             .padding(0.dp)
                     )
+                    Spacer(modifier = Modifier.width(5.dp))
 
-                    Text(
+                    androidx.compose.material.Text(
                         text = "4.7",
                         fontWeight = FontWeight.Medium,
                         color = Color.Black,
@@ -619,13 +616,14 @@ fun HomePage(navController: NavController ) {
                     )
                     Spacer(modifier = Modifier.width(40.dp))
                     Image(
-                        painter = painterResource(id = R.drawable.truck_icon),
-                        contentDescription = "Truck icon",
+                        painter = painterResource(id = R.drawable.truck__),
+                        contentDescription = "Pizza",
                         modifier = Modifier
-                            .size(35.dp)
+                            .size(25.dp)
                             .padding(0.dp)
                     )
-                    Text(
+                    Spacer(modifier = Modifier.width(5.dp))
+                    androidx.compose.material.Text(
                         text = "Free",
                         fontWeight = FontWeight.Normal,
                         color = Color.Black,
@@ -635,13 +633,14 @@ fun HomePage(navController: NavController ) {
 
                     Spacer(modifier = Modifier.width(40.dp))
                     Image(
-                        painter = painterResource(id = R.drawable.clock_icon),
-                        contentDescription = "Clock icon",
+                        painter = painterResource(id = R.drawable.clock__),
+                        contentDescription = "Pizza",
                         modifier = Modifier
-                            .size(35.dp)
+                            .size(25.dp)
                             .padding(0.dp)
                     )
-                    Text(
+                    Spacer(modifier = Modifier.width(5.dp))
+                    androidx.compose.material.Text(
                         text = "20 min",
                         fontWeight = FontWeight.Normal,
                         color = Color.Black,
@@ -649,6 +648,7 @@ fun HomePage(navController: NavController ) {
                         modifier = Modifier.padding(horizontal = 2.dp)
                     )
                 }
+                Spacer(modifier = Modifier.height(15.dp))
 
                 //Restaurant2 card
                 Card(
@@ -667,40 +667,32 @@ fun HomePage(navController: NavController ) {
                 ) {
                     Box(
                         modifier = Modifier
-                            .size(height = 400.dp, width = 500.dp)
+                            .wrapContentHeight()
+                            .size(height = 400.dp, width = 600.dp)
                             .clip(RoundedCornerShape(5.dp))
                             .background(Color.Transparent)
                             .clickable { navController.navigate("Fionah_landingpage") },
-
                         ) {
                         Image(
-                            painter = painterResource(id = R.drawable.restaurant_bg_2),
+                            painter = painterResource(id = R.drawable.group_598),
                             contentDescription = "Restaurant 2 image",
                             modifier = Modifier
                                 .align(Alignment.TopStart)
                                 .size(4009.dp),
-
                             )
-                        Image(
-                            painter = painterResource(id = R.drawable.res_img_2),
-                            contentDescription = "Restaurant 2 image",
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .size(250.dp)
-                        )
                     }
                 }
                 Spacer(
                     modifier = Modifier
-                        .height(15.dp)
+                        .height(25.dp)
                         .width(10.dp)
                 )
                 Text(
-                    text = "Fionah Restrauant",//Billu Da Dhaba
+                    text = "Fionah Restrauant",
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
                     fontSize = 20.sp,
-                    modifier = Modifier.padding(horizontal = 10.dp)
+                    modifier = Modifier.padding(horizontal = 20.dp)
                 )
 
                 Text(
@@ -708,25 +700,28 @@ fun HomePage(navController: NavController ) {
                     fontWeight = FontWeight.Normal,
                     color = Color.Black,
                     fontSize = 14.sp,
-                    modifier = Modifier.padding(horizontal = 12.dp)
+                    modifier = Modifier.padding(horizontal = 20.dp)
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
                 Row(
                     modifier = Modifier
-                        .padding(horizontal = 1.dp)
-                        .fillMaxWidth()
+                        .padding(horizontal = 15.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.star_),
-                        contentDescription = "Star icon",
+                        painter = painterResource(id = R.drawable.star__),
+                        contentDescription = "Pizza",
                         modifier = Modifier
-                            .size(30.dp)
+                            .size(20.dp)
                             .padding(0.dp)
                     )
+                    Spacer(modifier = Modifier.width(5.dp))
 
                     Text(
-                        text = "4.3",
+                        text = "4.2",
                         fontWeight = FontWeight.Medium,
                         color = Color.Black,
                         fontSize = 18.sp,
@@ -734,12 +729,13 @@ fun HomePage(navController: NavController ) {
                     )
                     Spacer(modifier = Modifier.width(40.dp))
                     Image(
-                        painter = painterResource(id = R.drawable.truck_icon),
+                        painter = painterResource(id = R.drawable.truck__),
                         contentDescription = "Pizza",
                         modifier = Modifier
-                            .size(35.dp)
+                            .size(25.dp)
                             .padding(0.dp)
                     )
+                    Spacer(modifier = Modifier.width(5.dp))
                     Text(
                         text = "Free",
                         fontWeight = FontWeight.Normal,
@@ -748,17 +744,17 @@ fun HomePage(navController: NavController ) {
                         modifier = Modifier.padding(horizontal = 2.dp)
                     )
 
-
                     Spacer(modifier = Modifier.width(40.dp))
                     Image(
-                        painter = painterResource(id = R.drawable.clock_icon),
+                        painter = painterResource(id = R.drawable.clock__),
                         contentDescription = "Pizza",
                         modifier = Modifier
-                            .size(35.dp)
+                            .size(25.dp)
                             .padding(0.dp)
                     )
-                    Text(
-                        text = "15 min",
+                    Spacer(modifier = Modifier.width(5.dp))
+                    androidx.compose.material.Text(
+                        text = "40 min",
                         fontWeight = FontWeight.Normal,
                         color = Color.Black,
                         fontSize = 18.sp,
@@ -766,8 +762,9 @@ fun HomePage(navController: NavController ) {
                     )
                 }
 
-                Spacer(modifier = Modifier.height(10.dp))
-                //Card for Restaurant 1
+                Spacer(modifier = Modifier.height(15.dp))
+
+                //Card for Restaurant 3
                 Card(
                     shape = RoundedCornerShape(16.dp),
                     modifier = Modifier
@@ -776,7 +773,7 @@ fun HomePage(navController: NavController ) {
                         .size(width = 400.dp, height = 200.dp)
                         .wrapContentHeight(),
                     colors = CardColors(
-                        containerColor = Mustard_yellow_light,
+                        containerColor = Color.Transparent,
                         contentColor = Color.Black,
                         disabledContentColor = Mustard_yellow,
                         disabledContainerColor = Mustard_yellow
@@ -788,7 +785,7 @@ fun HomePage(navController: NavController ) {
                         contentDescription = "Pizza",
                         modifier = Modifier
                             .align(Alignment.Start)
-                            .size(450.dp)
+                            .size(470.dp)
                     )
                 }
                 Spacer(
@@ -801,34 +798,35 @@ fun HomePage(navController: NavController ) {
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
                     fontSize = 20.sp,
-                    modifier = Modifier.padding(horizontal = 10.dp)
+                    modifier = Modifier.padding(horizontal = 20.dp)
                 )
-
-                //Spacer(modifier = Modifier.height(1.dp).width(10.dp))
                 Text(
                     text = "Burger - Fries - Chicken - Wings ",
                     fontWeight = FontWeight.Normal,
                     color = Color.Black,
                     fontSize = 14.sp,
-                    modifier = Modifier.padding(horizontal = 12.dp)
+                    modifier = Modifier.padding(horizontal = 20.dp)
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
                 Row(
                     modifier = Modifier
-                        .padding(horizontal = 1.dp)
-                        .fillMaxWidth()
+                        .padding(horizontal = 15.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.star_),
+                        painter = painterResource(id = R.drawable.star__),
                         contentDescription = "Pizza",
                         modifier = Modifier
                             //.align(Alignment.Top)
-                            .size(30.dp)
+                            .size(20.dp)
                             .padding(0.dp)
                     )
+                    Spacer(modifier = Modifier.width(5.dp))
 
-                    Text(
+                    androidx.compose.material.Text(
                         text = "4.7",
                         fontWeight = FontWeight.Medium,
                         color = Color.Black,
@@ -837,13 +835,14 @@ fun HomePage(navController: NavController ) {
                     )
                     Spacer(modifier = Modifier.width(40.dp))
                     Image(
-                        painter = painterResource(id = R.drawable.truck_icon),
+                        painter = painterResource(id = R.drawable.truck__),
                         contentDescription = "Pizza",
                         modifier = Modifier
-                            .size(35.dp)
+                            .size(25.dp)
                             .padding(0.dp)
                     )
-                    Text(
+                    Spacer(modifier = Modifier.width(5.dp))
+                    androidx.compose.material.Text(
                         text = "Free",
                         fontWeight = FontWeight.Normal,
                         color = Color.Black,
@@ -853,13 +852,14 @@ fun HomePage(navController: NavController ) {
 
                     Spacer(modifier = Modifier.width(40.dp))
                     Image(
-                        painter = painterResource(id = R.drawable.clock_icon),
+                        painter = painterResource(id = R.drawable.clock__),
                         contentDescription = "Pizza",
                         modifier = Modifier
-                            .size(35.dp)
+                            .size(25.dp)
                             .padding(0.dp)
                     )
-                    Text(
+                    Spacer(modifier = Modifier.width(5.dp))
+                    androidx.compose.material.Text(
                         text = "20 min",
                         fontWeight = FontWeight.Normal,
                         color = Color.Black,
@@ -867,6 +867,7 @@ fun HomePage(navController: NavController ) {
                         modifier = Modifier.padding(horizontal = 2.dp)
                     )
                 }
+                Spacer(modifier = Modifier.height(15.dp))
             }
         }
     }
