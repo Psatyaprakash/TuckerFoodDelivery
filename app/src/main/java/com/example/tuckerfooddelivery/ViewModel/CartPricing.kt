@@ -48,7 +48,7 @@ var userBio = ""
 
 //User
 var loggedInAs = ""
-var userPrimaryAddress = ""
+var userPrimaryAddress = "BHB Colony,New Delhi"
 
 //Screen Dimension
 var ScreenHeight = 0.dp

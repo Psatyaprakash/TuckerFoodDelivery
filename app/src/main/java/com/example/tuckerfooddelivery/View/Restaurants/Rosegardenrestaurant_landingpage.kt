@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -53,6 +54,8 @@ fun Rosegardenrestaurant_landingpage(navController: NavController) {
 
 @Composable
 fun RoseGarden(navController: NavController){
+    val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
+    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
     Scaffold(
         modifier = Modifier.background(White),
         topBar = {
@@ -68,7 +71,7 @@ fun RoseGarden(navController: NavController){
 
                     Text(
                         text = "Rose Garden Restaurant",
-                        color = Color(0xFFD4AF37),
+                        color = Mustard_yellow,
                         fontWeight = FontWeight.Bold,
                         fontSize = 24.sp,
                         modifier = Modifier.padding(20.dp),
@@ -113,7 +116,7 @@ fun RoseGarden(navController: NavController){
                 text = "Perfect for breakfast, lunch, or dinner. They have an onsite bar, serve a variety of alcoholic beverages, and provide convenient options like curbside pickup and dine-in cozy atmosphere and friendly staff make you feel like part of the family.",
                 textAlign = TextAlign.Justify,
                 color = Color.Black,
-                fontSize = 13.sp,
+                fontSize = 14.sp,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(15.dp)
@@ -129,11 +132,11 @@ fun RoseGarden(navController: NavController){
 //        )
             Text(
                 text = "MENU",
-                textDecoration = TextDecoration.Underline,
+                //textDecoration = TextDecoration.Underline,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
-                fontSize = 18.sp,
+                fontSize = 25.sp,
                 modifier = Modifier
                     .fillMaxWidth()
             )
@@ -144,7 +147,7 @@ fun RoseGarden(navController: NavController){
                     .padding(15.dp),
                 shape = RectangleShape,
                 colors = CardDefaults.cardColors(Color.Transparent),
-                border = BorderStroke(3.dp, Color(0xFFD4AF37))
+                border = BorderStroke(3.dp, Mustard_yellow)
             ) {
                 Column(
                     modifier = Modifier
