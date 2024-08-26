@@ -25,6 +25,15 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.CleanHands
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.House
+import androidx.compose.material.icons.filled.Map
+import androidx.compose.material.icons.filled.ShoppingBag
+import androidx.compose.material.icons.outlined.CleanHands
+import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.outlined.House
+import androidx.compose.material.icons.outlined.QuestionMark
+import androidx.compose.material.icons.outlined.Reviews
+import androidx.compose.material.icons.outlined.ShoppingBag
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
@@ -59,7 +68,6 @@ fun ProfileView(navController: NavHostController) {
                 .verticalScroll(rememberScrollState())
                 .fillMaxSize()
         ) {
-            Spacer(modifier = Modifier.height(10.dp))
             Row(
                 Modifier
                     .padding(5.dp)
@@ -93,7 +101,7 @@ fun ProfileView(navController: NavHostController) {
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(10.dp))
             Row(
                 modifier = Modifier
                     .padding(horizontal = 10.dp)
@@ -127,14 +135,13 @@ fun ProfileView(navController: NavHostController) {
                 }
 
             }
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(10.dp))
             Card(
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier
                     .padding(horizontal = 10.dp, vertical = 5.dp)
                     .fillMaxWidth()
                     .wrapContentHeight(),
-                   // .size(width = 200.dp, height = 650.dp),
                 colors = CardColors(
                     containerColor = colorResource(id = R.color.White_Blue),
                     contentColor = Color.Black,
@@ -142,309 +149,18 @@ fun ProfileView(navController: NavHostController) {
                     disabledContainerColor = Mustard_yellow)
             ) {
                 ProfileItems(navController = navController, icon = Icons.Default.AccountCircle , label = "Personal Info" , route = "PersonalInfoDetails" )
+                ProfileItems(navController = navController, icon = Icons.Outlined.House , label = "Address" , route = "AddressScreen" )
+                ProfileItems(navController = navController, icon = Icons.Outlined.ShoppingBag , label = "Cart" , route = "AddToCart" )
+                ProfileItems(navController = navController, icon = Icons.Outlined.FavoriteBorder , label = "Wishlist" , route = "Wishlist" )
+                ProfileItems(navController = navController, icon = Icons.Outlined.QuestionMark , label = "FAQs" , route = "FAQScreen" )
+                ProfileItems(navController = navController, icon = Icons.Outlined.Reviews , label = "User Reviews" , route = "UserReviews" )
+                ProfileItems(navController = navController, icon = Icons.Outlined.CleanHands , label = "Take a Pledge" , route = "PledgeScreen" )
+
                 Row(
                     modifier = Modifier.padding(15.dp)
                 ) {
                     TextButton(
-                        onClick = {navController.navigate("AddressScreen")},
-                        colors = ButtonDefaults.buttonColors(Color.White),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.add_icon),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(20.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "Addresses",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp,
-                        modifier = Modifier
-                            .padding(5.dp)
-                            .clickable { navController.navigate("AddressScreen") }
-                    )
-                    Spacer(modifier = Modifier.width(160.dp))
-                    TextButton(
-                        onClick = { navController.navigate("AddressScreen") },
-                        colors = ButtonDefaults.buttonColors(Color.Transparent),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.right_arrow),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(15.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-
-                }
-                Row(
-                    modifier = Modifier.padding(15.dp)
-                ) {
-                    TextButton(
-                        onClick = {navController.navigate("AddToCart")},
-                        colors = ButtonDefaults.buttonColors(Color.White),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.cart_icon),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(20.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "Cart",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp,
-                        modifier = Modifier
-                            .padding(5.dp)
-                            .clickable { navController.navigate("AddToCart") })
-                    Spacer(modifier = Modifier.width(220.dp))
-                    TextButton(
-                        onClick = {navController.navigate("AddToCart")},
-                        colors = ButtonDefaults.buttonColors(Color.Transparent),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.right_arrow),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(15.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-
-                }
-                Row(
-                    modifier = Modifier.padding(15.dp)
-                ) {
-                    TextButton(
-                        onClick = {navController.navigate("Wishlist")},
-                        colors = ButtonDefaults.buttonColors(Color.White),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.fav_icon),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(20.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "Favourite",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp,
-                        modifier = Modifier
-                            .padding(5.dp)
-                            .clickable { navController.navigate("Wishlist") })
-                    Spacer(modifier = Modifier.width(170.dp))
-                    TextButton(
-                        onClick = {navController.navigate("Wishlist")},
-                        colors = ButtonDefaults.buttonColors(Color.Transparent),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.right_arrow),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(15.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-
-                }
-                Row(
-                    modifier = Modifier.padding(15.dp)
-                ) {
-                    TextButton(
-                        onClick = {navController.navigate("FAQScreen")},
-                        colors = ButtonDefaults.buttonColors(Color.White),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.faqs_icon),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(35.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "FAQs",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp,
-                        modifier = Modifier
-                            .padding(5.dp)
-                            .clickable { navController.navigate("FAQScreen") })
-                    Spacer(modifier = Modifier.width(210.dp))
-                    TextButton(
-                        onClick = {navController.navigate("FAQScreen")},
-                        colors = ButtonDefaults.buttonColors(Color.Transparent),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.right_arrow),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(15.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-
-                }
-                Row(
-                    modifier = Modifier
-                        .padding(15.dp)
-                        .clickable { navController.navigate("UserReviews") }
-                ) {
-                    TextButton(
-                        onClick = {navController.navigate("UserReviews")},
-                        colors = ButtonDefaults.buttonColors(Color.White),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.user_review_icon),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(30.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "User Reviews",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp,
-                        modifier = Modifier
-                            .padding(5.dp)
-                    )
-                    Spacer(modifier = Modifier.width(135.dp))
-                    TextButton(
-                        onClick = {navController.navigate("UserReviews")},
-                        colors = ButtonDefaults.buttonColors(Color.Transparent),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.right_arrow),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(15.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-
-                }
-                Row(
-                    modifier = Modifier
-                        .padding(15.dp)
-                        .clickable { navController.navigate("PledgeScreen") }
-                ) {
-                    TextButton(
-                        onClick = {navController.navigate("PledgeScreen")},
-                        colors = ButtonDefaults.buttonColors(Color.White),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-                    ) {
-                        Image(
-                            Icons.Filled.CleanHands,
-                            contentDescription = "Donation",
-                            modifier = Modifier
-                                .size(30.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "Take a Pledge",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp,
-                        modifier = Modifier
-                            .padding(5.dp)
-                    )
-                    Spacer(modifier = Modifier.width(130.dp))
-                    TextButton(
-                        onClick = {navController.navigate("PledgeScreen")},
-                        colors = ButtonDefaults.buttonColors(Color.Transparent),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.right_arrow),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(15.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-
-                }
-                Row(
-                    modifier = Modifier.padding(15.dp)
-                ) {
-                    TextButton(
-                        onClick = {/* navigate to logout */},
+                        onClick = {Firebase.auth::signOut},
                         colors = ButtonDefaults.buttonColors(Color.White),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),
@@ -463,26 +179,7 @@ fun ProfileView(navController: NavHostController) {
                     }
                     Spacer(modifier = Modifier.width(5.dp))
                     Text(text = "Sign Out", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
-                    Spacer(modifier = Modifier.width(180.dp))
-                    TextButton(
-                        onClick = Firebase.auth::signOut,
-                        colors = ButtonDefaults.buttonColors(Color.Transparent),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
 
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.right_arrow),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(15.dp)
-                                .clickable { navController.navigate("Start") },
-                            alignment = Alignment.Center
-                        )
-                    }
 
                 }
             }
@@ -492,7 +189,9 @@ fun ProfileView(navController: NavHostController) {
 @Composable
 fun ProfileItems(navController: NavHostController , icon : ImageVector , label : String , route : String){
     Row(
-        modifier = Modifier.padding(15.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(15.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Row{
@@ -502,14 +201,14 @@ fun ProfileItems(navController: NavHostController , icon : ImageVector , label :
                 shape = CircleShape,
                 contentPadding = PaddingValues(0.dp),
                 modifier = Modifier
-                    .size(35.dp)
+                    .size(40.dp)
                     .background(Color.Transparent, CircleShape)
             ) {
                 Icon(
                     imageVector = icon,
                     contentDescription = label,
                     modifier = Modifier
-                        .size(30.dp)
+                        .size(27.dp)
                         .clickable { navController.navigate(route) },
                     tint = Color.Black
                 )
@@ -519,9 +218,9 @@ fun ProfileItems(navController: NavHostController , icon : ImageVector , label :
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
                 modifier = Modifier.padding(5.dp)
+                    .clickable { navController.navigate(route) }
             )
         }
-        Spacer(modifier = Modifier.width(135.dp))
         TextButton(
             onClick = {navController.navigate(route)},
             colors = ButtonDefaults.buttonColors(Color.Transparent),

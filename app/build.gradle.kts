@@ -74,6 +74,7 @@ dependencies {
     implementation(libs.volley)
     implementation(libs.places)
     implementation(libs.androidx.lifecycle.runtime.compose.android)
+    implementation(libs.androidx.core.i18n)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -76,7 +76,7 @@ fun Wishlist(navController: NavController){
         topBar = {
             TopAppBar(title = {
                 Row(
-                    Modifier.padding(5.dp, 0.dp),
+                    Modifier.padding(5.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     CircularButtonWithSymbol(onClick = { navController.popBackStack() })

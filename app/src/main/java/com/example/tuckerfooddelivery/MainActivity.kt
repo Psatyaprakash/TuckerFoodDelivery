@@ -98,11 +98,11 @@ fun MainScreen(navController: NavController , route: @Composable (NavController)
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {
-    val BottomNavHeight = 0.06 * ScreenHeight
+    val bottomNavHeight = 0.06 * ScreenHeight
     BottomAppBar(
         containerColor = colorResource(id = R.color.Mustard_yellow_light),
         contentColor = Black,
-        modifier = Modifier.height(BottomNavHeight)
+        modifier = Modifier.height(bottomNavHeight)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),

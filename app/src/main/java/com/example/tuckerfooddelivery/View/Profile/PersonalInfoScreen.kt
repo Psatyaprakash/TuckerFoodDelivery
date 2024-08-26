@@ -69,7 +69,7 @@ fun CircularButtonWithSymbol(onClick: () -> Unit) {
         shape = CircleShape,
         contentPadding = PaddingValues(0.dp),
         modifier = Modifier
-            .size(50.dp)
+            .size(40.dp)
             .background(Color.Transparent, CircleShape)
     ) {
         Image(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = "Back", Modifier.size(35.dp) )
@@ -141,7 +141,6 @@ fun PersonalInfoDetails(navController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(17.dp)
     ) {
         Row(
             modifier = Modifier

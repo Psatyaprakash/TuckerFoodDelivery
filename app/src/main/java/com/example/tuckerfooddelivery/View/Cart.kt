@@ -94,7 +94,7 @@ fun AddToCart(navController: NavController) {
                 title =
                 {
                     Row(
-                        Modifier.padding(5.dp, 0.dp),
+                        Modifier.padding(5.dp,0.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         CircularButtonWithSymbol(onClick = { navController.popBackStack() })
@@ -102,7 +102,7 @@ fun AddToCart(navController: NavController) {
                         Spacer(modifier = Modifier.width(1.dp))
                         Text(
                             text = "Cart",
-                            fontSize = 26.sp,
+                            fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(16.dp)
                         )
@@ -110,7 +110,7 @@ fun AddToCart(navController: NavController) {
                 },
                 backgroundColor = White,
                 modifier = Modifier
-                    .height(80.dp)
+                    .height(60.dp)
             )
         }
     ) { innerPadding ->
@@ -180,7 +180,7 @@ fun AddToCart(navController: NavController) {
                     modifier = Modifier
                         .background(colorResource(id = R.color.White_Blue))
                         .fillMaxWidth()
-                        .padding(0.dp, 15.dp, 0.dp, 0.dp),
+                        .padding(0.dp, 10.dp, 0.dp, 0.dp),
                     verticalArrangement = Arrangement.Bottom
                 ) {
 
@@ -189,7 +189,7 @@ fun AddToCart(navController: NavController) {
                         text = "Item Total : Rs $totalAmount",
                         fontWeight = FontWeight.Black,
                         modifier = Modifier.padding(horizontal = 30.dp),
-                        fontSize = 25.sp
+                        fontSize = 18.sp
                     )
                     Row(
                         modifier = Modifier.fillMaxWidth(),

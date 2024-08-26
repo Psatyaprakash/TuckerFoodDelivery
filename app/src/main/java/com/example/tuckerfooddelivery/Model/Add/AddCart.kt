@@ -26,10 +26,7 @@ fun addCart(name: String, price : Int, count : Int, size : String ) {
 //        image = image
     )
 
-    val currentDate = LocalDate.now()
-// Format the date to a readable string
-    val formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
-    val formattedDate = currentDate.format(formatter)
+
 
     db.collection("Cart")
         .document(name+"_$size" )

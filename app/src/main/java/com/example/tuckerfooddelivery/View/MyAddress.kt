@@ -64,7 +64,7 @@ fun AddressScreen(navController: NavHostController) {
         }
         AddressCard(
             label = "HOME",
-            address = "2464 Royal Ln. Meso, New Jersey 45463",
+            address = "Silicon University , Patia, Bhubaneswar",
             icon = Icons.Default.Home,
             onEditClick = { /* Handle edit */ },
             onDeleteClick = { /* Handle delete */ }
