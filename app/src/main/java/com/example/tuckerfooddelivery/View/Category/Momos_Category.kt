@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -28,34 +29,38 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.times
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
+import com.example.tuckerfooddelivery.ViewModel.ScreenHeight
+import com.example.tuckerfooddelivery.ViewModel.ScreenWidth
 
 @Composable
 fun Momos_Category(navController: NavController){
+    var cardwidth = 0.4 * ScreenWidth
+    var cardheight = 0.4 * ScreenHeight
+    var Boxwidth = 1.35 * cardwidth
+
+
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxSize()
             .verticalScroll(rememberScrollState())
     ) {
-        //first row of categories
         Row (
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(start = 15.dp, top=10.dp, end = 15.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-
-            Box(
-                modifier = Modifier
-                    .padding(16.dp)
-            ) {
-                CircularButtonWithSymbol(onClick = { navController.popBackStack()})
+            CircularButtonWithSymbol {
+                navController.popBackStack()
             }
             Card(
                 modifier = Modifier
-                    .padding(16.dp)
-                    .width(150.dp)
+                    .padding(10.dp)
+                    .width(Boxwidth)
                     .height(60.dp),
                 shape = RoundedCornerShape(36.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
@@ -65,128 +70,107 @@ fun Momos_Category(navController: NavController){
                 Box(
                     modifier = Modifier
                         .fillMaxSize(),
-                    contentAlignment = Alignment.CenterStart
+                    contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "   Momos",
-                        fontSize = 24.sp,
+                        text = "Popular Momos",
+                        fontSize = 23.sp,
                         fontWeight = FontWeight.ExtraBold,
                     )
                 }
             }
         }
-
-        Spacer(modifier = Modifier.height(10.dp))
-        // second row
-        Row (
-            modifier = Modifier
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Text(
-                text = "Popular Momos",
-                fontSize = 18.sp
-            )
-        }
-
-        //third row of two cards
+        //1st row of 2 burger cards
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 40.dp, vertical = 15.dp),
-            verticalAlignment = Alignment.Top,
-            horizontalArrangement = Arrangement.Start
+                .padding(horizontal = 15.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly
+
         ) {
+            //card1
             Card(
                 modifier = Modifier
-                    .height(230.dp)
-                    .width(130.dp)
+                    .height(cardheight)
+                    .width(cardwidth)
+                    .wrapContentHeight()
                     .clickable { navController.navigate("TibetanMomos") },
                 shape = RoundedCornerShape(15.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 colors = CardDefaults.cardColors(Color.White)
             ) {
                 Column(
-                    modifier = Modifier.padding(7.dp) // Add some padding inside the card
+                    modifier = Modifier.padding(10.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
                         painter = painterResource(R.drawable.tibetianmomos),
                         contentDescription = "tibetan momos image",
                         modifier = Modifier
-                            .size(96.dp)
+                            .size(cardwidth)
                     )
                     Text(
                         text = "Tibetan Momos",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(top = 4.dp) // Adjust top padding
+                        modifier = Modifier.padding(top = 10.dp) // Adjust top padding
                     )
                     Text(
                         text = "Rose Garden",
                         fontSize = 14.sp,
                         modifier = Modifier.padding(top = 1.dp)
                     )
-                    Row(
-                        modifier = Modifier.padding(top = 1.dp)
-                            .fillMaxWidth(),
-                        verticalAlignment = Alignment.Top,
-                        horizontalArrangement = Arrangement.Start
-                    ) {
                         Text(
-                            text = "Rs.55",
+                            text = "Rs.49",
                             modifier = Modifier.padding(top = 12.dp),
                             fontSize = 22.sp,
                             fontWeight = FontWeight.ExtraBold,
                         )
-                        Spacer(modifier = Modifier.width(22.dp))
-                    }
+                    Spacer(modifier = Modifier.height(0.02*cardheight))
+
                 }
             }
-            Spacer(modifier = Modifier.width(40.dp))
             Card(
                 modifier = Modifier
-                    .height(230.dp)
-                    .width(130.dp)
-                    .clickable { navController.navigate("NepaliDumplingMomos") }, //error
+                    .height(cardheight)
+                    .width(cardwidth)
+                    .wrapContentHeight()
+                    .clickable { navController.navigate("NepaliDumplingMomos") },
                 shape = RoundedCornerShape(15.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 colors = CardDefaults.cardColors(Color.White)
             ) {
                 Column(
-                    modifier = Modifier.padding(4.dp) // Add some padding inside the card
+                    modifier = Modifier.padding(10.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
                         painter = painterResource(R.drawable.nepalidumpling),
                         contentDescription = "nepali dumpling Image",
                         modifier = Modifier
-                            .size(97.dp)
+                            .size(cardwidth)
                     )
                     Text(
                         text = "Nepali Dumpling",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(top = 8.dp) // Adjust top padding
+                        modifier = Modifier.padding(top = 10.dp) // Adjust top padding
                     )
                     Text(
                         text = "SkyHigh Way",
                         fontSize = 14.sp,
                         modifier = Modifier.padding(top = 1.dp)
                     )
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        verticalAlignment = Alignment.Top,
-                        horizontalArrangement = Arrangement.Start
-                    ) {
+
                         Text(
-                            text = "Rs.145",
+                            text = "Rs.109",
                             modifier = Modifier.padding(top = 12.dp),
                             fontSize = 22.sp,
                             fontWeight = FontWeight.ExtraBold,
                         )
-                        Spacer(modifier = Modifier.width(25.dp))
-                    }
+                    Spacer(modifier = Modifier.height(0.02*cardheight))
                 }
             }
         }

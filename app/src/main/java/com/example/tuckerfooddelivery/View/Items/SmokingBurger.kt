@@ -87,9 +87,9 @@ fun SmokingBurger(navController: NavController) {
     }
     val Item_Name = "SmokingBurger"
     //Jaggu
-    var totalprice: Int by remember { mutableStateOf(116) }
-    val unitPriceRegular: Int by remember { mutableIntStateOf(116) }
-    val unitPriceLarge: Int by remember { mutableStateOf(189) }
+    var totalprice: Int by remember { mutableStateOf(175) }
+    val unitPriceRegular: Int by remember { mutableIntStateOf(175) }
+    val unitPriceLarge: Int by remember { mutableStateOf(199) }
     var size by remember { mutableStateOf("Regular") }
 
     val Name = "Smoking Burger"
