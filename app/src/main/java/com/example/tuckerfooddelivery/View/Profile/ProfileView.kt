@@ -205,9 +205,10 @@ fun ProfileItems(navController: NavHostController , icon : ImageVector , label :
         modifier = Modifier
             .fillMaxWidth()
             .padding(15.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Row{
+        Row(verticalAlignment = Alignment.CenterVertically){
             TextButton(
                 onClick = { navController.navigate(route) },
                 colors = ButtonDefaults.buttonColors(Color.White),
