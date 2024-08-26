@@ -2,6 +2,7 @@ package com.example.tuckerfooddelivery.View.Profile
 
 import android.annotation.SuppressLint
 import android.media.Image
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -45,6 +46,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -52,6 +54,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.View.createNotification
+import com.example.tuckerfooddelivery.ViewModel.platformFee
+import com.example.tuckerfooddelivery.ViewModel.totalAmount
 import com.example.tuckerfooddelivery.ViewModel.userBio
 import com.example.tuckerfooddelivery.ViewModel.userName
 import com.google.firebase.Firebase
@@ -62,6 +67,8 @@ import com.google.firebase.auth.auth
 fun ProfileView(navController: NavHostController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
+    val context = LocalContext.current
+
         Column(
             modifier = Modifier
                 .padding(15.dp)
@@ -160,7 +167,13 @@ fun ProfileView(navController: NavHostController) {
                     modifier = Modifier.padding(15.dp)
                 ) {
                     TextButton(
-                        onClick = {Firebase.auth::signOut},
+                        onClick = {
+                            createNotification(
+                            context,
+                            "Signed Out",
+                            "Login to continue"
+                        )   ;
+                            Firebase.auth::signOut},
                         colors = ButtonDefaults.buttonColors(Color.White),
                         shape = CircleShape,
                         contentPadding = PaddingValues(0.dp),

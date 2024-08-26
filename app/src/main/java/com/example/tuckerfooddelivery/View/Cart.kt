@@ -299,20 +299,6 @@ fun AddToCart(navController: NavController) {
                                                     "Order Summary",
                                                     "Order placed \nTotal Amount : ${totalAmount + platformFee}"
                                                 );
-                                                val collectionRef = db.collection("Cart")
-                                                coroutineScope.launch {
-                                                    try {
-                                                        val documents = collectionRef.get().await()
-
-                                                        // Iterate over each document and delete it
-                                                        for (document in documents.documents) {  // Access `documents` list
-                                                            document.reference.delete().await()  // Delete the document
-                                                        }
-                                                    } catch (e: Exception) {
-                                                        // Handle any exceptions
-                                                        e.printStackTrace()
-                                                    }
-                                                }
                                                 ; navController.navigate("Congrats")
                                             },
                                             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.Mustard_yellow))
