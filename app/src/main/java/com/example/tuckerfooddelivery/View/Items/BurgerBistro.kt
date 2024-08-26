@@ -2,6 +2,7 @@ package com.example.tuckerfooddelivery.View.Items
 
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -48,6 +49,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -78,7 +80,7 @@ fun BurgerBistro(navController: NavController) {
     //Jaggu
     var totalprice: Int by remember { mutableStateOf(116) }
     val unitPriceRegular: Int by remember { mutableIntStateOf(116) }
-    val unitPriceLarge: Int by remember { mutableStateOf(189) }
+    val unitPriceLarge: Int by remember { mutableStateOf(159) }
     var size by remember { mutableStateOf("Regular") }
     val Item_Name = "BurgerBistro"
     val Name = "Burger Bistro"
@@ -87,6 +89,8 @@ fun BurgerBistro(navController: NavController) {
         mutableStateOf<Int>(1)
     }
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
+    val context = LocalContext.current
+
 
 //Jaggu
     Column(
@@ -99,7 +103,7 @@ fun BurgerBistro(navController: NavController) {
             modifier = Modifier
                 .padding(horizontal =10.dp)
                 .background(White)
-                .fillMaxHeight(.92f)
+                .fillMaxHeight(.91f)
                 .verticalScroll(rememberScrollState())
         ) {
             Spacer(modifier = Modifier.height(15.dp))
@@ -136,7 +140,7 @@ fun BurgerBistro(navController: NavController) {
                         contentDescription = "Burger Bistro",
                         modifier = Modifier
                             .align(Alignment.Center)
-                            .size(250.dp)
+                            .size(270.dp)
                     )
                     Icon(
                         imageVector = Icons.Default.Favorite,
@@ -169,12 +173,12 @@ fun BurgerBistro(navController: NavController) {
                 text = "Soft burger buns filled with spicy and juicy Grilled chicken beast with veggies and sauces.",
                 modifier = Modifier.padding(horizontal = 10.dp)
             )
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(25.dp))
             Row(
                 modifier = Modifier
                     .padding(horizontal = 8.dp)
                     .fillMaxWidth(),
-                //horizontalArrangement = Arrangement.Center,
+                horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
@@ -278,7 +282,6 @@ fun BurgerBistro(navController: NavController) {
                 modifier = Modifier
                     .padding(horizontal = 0.dp)
                     .fillMaxWidth(),
-                //.align(Alignment.CenterHorizontally),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -297,7 +300,6 @@ fun BurgerBistro(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -313,7 +315,6 @@ fun BurgerBistro(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -329,7 +330,6 @@ fun BurgerBistro(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -345,7 +345,6 @@ fun BurgerBistro(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
                 Box(
                     modifier = Modifier
                         .size(60.dp)
@@ -361,7 +360,6 @@ fun BurgerBistro(navController: NavController) {
                             .align(Alignment.Center)
                     )
                 }
-                //Spacer(modifier = Modifier.width(20.dp))
             }
         }
 
@@ -383,7 +381,7 @@ fun BurgerBistro(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Rs ${totalprice * count}", //to get total price
+                    text = "Rs ${totalprice * count}",
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(vertical = 20.dp, horizontal = 10.dp),
                     fontSize = 25.sp
@@ -396,7 +394,7 @@ fun BurgerBistro(navController: NavController) {
                 ){
                     IconButton(onClick = {
                         if (count == 1) count = 1 else count--
-                    }) { //to set default limit as 1
+                    }) {
                         Icon(
                             Icons.Default.KeyboardArrowDown,
                             contentDescription = null,
@@ -420,7 +418,8 @@ fun BurgerBistro(navController: NavController) {
                 TextButton(
                     onClick = {
                         if(totalprice == unitPriceRegular)size = "Regular" else size = "Large"
-                        addCart(Item_Name,totalprice ,count,size)
+                        addCart(Item_Name,totalprice ,count,size);
+                            Toast.makeText(context , "Item added successfully" , Toast.LENGTH_SHORT).show()
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     modifier = Modifier
@@ -456,6 +455,5 @@ fun BurgerBistro(navController: NavController) {
                 }
             }
         }
-
     }
 }

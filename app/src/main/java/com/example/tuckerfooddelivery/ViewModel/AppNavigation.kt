@@ -7,12 +7,12 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.ViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tuckerfooddelivery.MainScreen
-import com.example.tuckerfooddelivery.View.Cart
+import com.example.tuckerfooddelivery.View.AddToCart
+import com.example.tuckerfooddelivery.View.AddressScreen
 import com.example.tuckerfooddelivery.View.Category.Burger_Category
 import com.example.tuckerfooddelivery.View.Category.Fries_Category
 import com.example.tuckerfooddelivery.View.Category.Mocktails_Category
@@ -21,9 +21,9 @@ import com.example.tuckerfooddelivery.View.Category.Pizza_Category
 import com.example.tuckerfooddelivery.View.Category.Roll_Category
 import com.example.tuckerfooddelivery.View.Category.Starters_Category
 import com.example.tuckerfooddelivery.View.Category.Wings_Category
-import com.example.tuckerfooddelivery.View.Favorites
+import com.example.tuckerfooddelivery.View.Congrats
+import com.example.tuckerfooddelivery.View.Delivery
 import com.example.tuckerfooddelivery.View.HomePage
-import com.example.tuckerfooddelivery.View.Items.AddToCart
 import com.example.tuckerfooddelivery.View.Items.AmericanCorn
 import com.example.tuckerfooddelivery.View.Items.BlueLagoon
 import com.example.tuckerfooddelivery.View.Items.BuffaloWings
@@ -43,17 +43,23 @@ import com.example.tuckerfooddelivery.View.Items.PizzaCalzone
 import com.example.tuckerfooddelivery.View.Items.SmokingBurger
 import com.example.tuckerfooddelivery.View.Items.TibetanMomos
 import com.example.tuckerfooddelivery.View.LoginScreen
+import com.example.tuckerfooddelivery.View.PledgeScreen
+import com.example.tuckerfooddelivery.View.PreparedOrderScreen
 import com.example.tuckerfooddelivery.View.Profile.FAQScreen
 import com.example.tuckerfooddelivery.View.Profile.PersonalInfoDetails
 import com.example.tuckerfooddelivery.View.Profile.ProfileView
 import com.example.tuckerfooddelivery.View.Profile.UserReviews
+import com.example.tuckerfooddelivery.View.Restaurant_Pages.RestaurantHomePage
+import com.example.tuckerfooddelivery.View.Restaurant_Pages.Timing
 import com.example.tuckerfooddelivery.View.Restaurants.Rosegardenrestaurant_landingpage
 import com.example.tuckerfooddelivery.View.Restaurants.SkyHighW_landingpage
 import com.example.tuckerfooddelivery.View.Restaurants.fionah_landingpage
+import com.example.tuckerfooddelivery.View.SaveLocationScreen
 import com.example.tuckerfooddelivery.View.Start
 import com.example.tuckerfooddelivery.View.Start2
 import com.example.tuckerfooddelivery.View.Start3
 import com.example.tuckerfooddelivery.View.Storage
+import com.example.tuckerfooddelivery.View.ThankYouScreen
 import com.example.tuckerfooddelivery.View.Wishlist
 
 
@@ -74,20 +80,31 @@ fun AppNavigation() {
                 slideOutOfContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "MargheritaCornPizza"
+        startDestination = "Timing"
     ) {
         composable("Storage"){ Storage() }
-//        composable("NotificationScreen"){ NotificationScreen(NotificationTitle,NotiC ) }
+//        composable("NotificationScreen"){ NotificationScreen(NotificationTitle,NotificationContent ) }
 
         composable("Start") { Start(navController) }
         composable("Start2") { Start2(navController) }
         composable("Start3") { Start3(navController) }
         composable("LoginScreen") { LoginScreen(navController) }
-//        composable("HomePage"){ HomePage(navController) , route={ HomePage(navController = it)}}
-        composable("HomePage"){ HomePage(navController) }
         composable("MainScreen"){ MainScreen(navController, route={ HomePage(navController = it)}) }
-        
-        composable("Favourites"){ Favorites(navController = navController)}
+        composable("HomePage"){ HomePage(navController) }
+        composable("PledgeScreen") { PledgeScreen(navController) }
+        composable("ThankYouScreen") { ThankYouScreen(navController) }
+
+        //Congrats
+        composable("Congrats"){ Congrats(navController = navController) }
+        composable("Delivery"){ Delivery(navController = navController) }
+
+        //Restaurant Homepage
+        composable("RestaurantHomePage"){ RestaurantHomePage(navController = navController) }
+        composable("Timing"){ Timing(navController = navController) }
+        composable("PreparedOrderScreen"){ PreparedOrderScreen(navController = navController) }
+
+
+
 
         //items
         composable("PizzaCalzone"){
@@ -127,7 +144,7 @@ fun AppNavigation() {
         composable("Fionah_landingpage"){ fionah_landingpage(navController) }
 
         //Cart
-        composable("Cart"){ Cart(navController) }
+//      composable("Carts"){ Carts(navController) }
         composable("AddToCart"){ AddToCart(navController) }
         composable("Wishlist"){ Wishlist(navController) }
 
@@ -136,6 +153,10 @@ fun AppNavigation() {
         composable("PersonalInfoDetails") { PersonalInfoDetails(navController) }
         composable("UserReviews") { UserReviews(navController) }
         composable("FAQScreen") { FAQScreen(navController) }
+
+        //Address
+        composable("AddressScreen") { AddressScreen(navController) }
+        composable("SaveLocationScreen") { SaveLocationScreen(navController) }
 
     }
 }

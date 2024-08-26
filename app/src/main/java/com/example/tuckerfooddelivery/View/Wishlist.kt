@@ -4,6 +4,7 @@ package com.example.tuckerfooddelivery.View
 import android.content.ContentValues.TAG
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -46,11 +47,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.times
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.tuckerfooddelivery.Model.Add.addCart
@@ -58,8 +62,9 @@ import com.example.tuckerfooddelivery.Model.Data.Wishlist
 import com.example.tuckerfooddelivery.Model.Fetch.db
 import com.example.tuckerfooddelivery.Model.Fetch.fetchWishlist
 import com.example.tuckerfooddelivery.R
-import com.example.tuckerfooddelivery.View.Items.getImageUrlFromFirebaseStorage
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
+import com.example.tuckerfooddelivery.ViewModel.ScreenHeight
+import com.example.tuckerfooddelivery.ViewModel.ScreenWidth
 import com.example.tuckerfooddelivery.ViewModel.storageRef
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -168,6 +173,9 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
             onFailure = { exception -> loadError = exception },
         )
     }
+    var cardwidth = 1 * ScreenWidth
+    var boxwidth = 0.3 * ScreenWidth
+    var cardheight = 0.18 * ScreenHeight
 
     if (imageUrl != null) {
         Log.w("ImagePath", "${storageRef.child(imagePath)} \n$imageUrl")
@@ -175,16 +183,16 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .size(150.dp),
+                .size(height = cardheight, width = cardwidth),
             elevation = 8.dp,
             backgroundColor = colorResource(id = R.color.Mustard_yellow),
             shape = RoundedCornerShape(15.dp)
         ) {
-            Row {
+            Row (verticalAlignment = Alignment.CenterVertically){
                 Box(
                     modifier = Modifier
                         .padding(15.dp)
-                        .size(130.dp)
+                        .size(boxwidth)
                         .background(White, shape = RoundedCornerShape(15.dp))
                         .fillMaxWidth(.3f)
                 ) {
@@ -204,29 +212,30 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
                 }
                 Column(
                     Modifier
-                        .fillMaxSize()
-                        .padding(10.dp, 20.dp),
+//                        .fillMaxHeight()
+                        .height(140.dp)
+                        .padding(10.dp, 5.dp),
                     verticalArrangement = Arrangement.SpaceBetween,
                     horizontalAlignment = Alignment.Start
                 ) {
 
-                    Row(
+                    /*Row(
                         Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
+                    ) {*/
                         Text(
                             text = wishlist.name,
-                            fontSize = 25.sp,
+                            fontSize = 20.sp,
                             fontWeight = FontWeight.Bold
                         )
 
                         Text(
                             text = "( ${wishlist.size} )",
-                            fontSize = 18.sp,
+                            fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         )
-                    }
+                    //}
                     val price = wishlist.price
                     var count by remember { mutableIntStateOf(wishlist.count) }
 
@@ -279,24 +288,15 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
                         }
                         Box(modifier = Modifier.padding(1.dp)) {
                             Row {
-
+                                val context = LocalContext.current
                             IconButton(onClick = {
 //                                if(totalprice == unitPriceHalf)size = "Half" else size = "Full"
                                 addCart(wishlist.name,wishlist.price ,wishlist.count,wishlist.size);
-                                db.collection("Wishlist").document(wishlist.name + "_${wishlist.size}")
-                                    .delete()
-                                    .addOnSuccessListener {
-                                        Log.d(TAG, "DocumentSnapshot successfully deleted!")
-                                    }
-                                    .addOnFailureListener { e ->
-                                        Log.w(TAG, "Error deleting document", e)
-                                    };
-                                navController.navigate("Wishlist")
-
+                                Toast.makeText(context , "Item added successfully" , Toast.LENGTH_SHORT).show()
                             }) {
                                 Icon(
                                     Icons.Default.AddCircleOutline,
-                                    contentDescription = "Delete",
+                                    contentDescription = "Add",
                                     tint = colorResource(id = R.color.White_Blue)
                                 )
                             }
@@ -305,10 +305,12 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
                                     .delete()
                                     .addOnSuccessListener {
                                         Log.d(TAG, "DocumentSnapshot successfully deleted!")
+                                        Toast.makeText(context , "Item deleted successfully" , Toast.LENGTH_SHORT).show()
                                     }
                                     .addOnFailureListener { e ->
                                         Log.w(TAG, "Error deleting document", e)
                                     };
+                                navController.popBackStack();
                                 navController.navigate("Wishlist")
 
                             }) {

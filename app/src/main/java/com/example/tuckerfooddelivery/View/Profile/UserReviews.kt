@@ -44,13 +44,12 @@ fun UserReviews(navController: NavHostController) {
     Column(
         modifier = Modifier
             .padding(15.dp)
-            //.size(width = 500.dp, height = 655.dp)
             .verticalScroll(rememberScrollState())
             .fillMaxSize()
     ) {
         TextButton(
-            onClick = { navController.navigate("ProfileView") },
-            colors = ButtonDefaults.buttonColors(Color.LightGray),
+            onClick = { navController.popBackStack() },
+            colors = ButtonDefaults.buttonColors(colorResource(id = R.color.White_Blue)),
             shape = CircleShape,
             contentPadding = PaddingValues(0.dp),
             modifier = Modifier
@@ -91,8 +90,6 @@ fun UserReviews(navController: NavHostController) {
                 contentPadding = PaddingValues(0.dp),
                 modifier = Modifier
                     .size(50.dp)
-                //.background(Mustard_yellow_light, CircleShape)
-
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.user_icon),

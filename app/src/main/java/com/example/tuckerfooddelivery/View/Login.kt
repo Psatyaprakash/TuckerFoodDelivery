@@ -5,11 +5,27 @@ import android.content.ContentValues.TAG
 import android.content.Context
 import android.util.Log
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Text
+import androidx.compose.material.TextFieldDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,6 +38,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.ViewModel.loggedInAs
+import com.example.tuckerfooddelivery.ViewModel.userPhone
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.FirebaseAuth
@@ -47,12 +65,18 @@ val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks()
     override fun onVerificationFailed(e: FirebaseException) {
         Log.w(TAG, "onVerificationFailed", e)
 
-        if (e is FirebaseAuthInvalidCredentialsException) {
-            // Invalid request
-        } else if (e is FirebaseTooManyRequestsException) {
-            // The SMS quota for the project has been exceeded
-        } else if (e is FirebaseAuthMissingActivityForRecaptchaException) {
-            // reCAPTCHA verification attempted with null Activity
+        when (e) {
+            is FirebaseAuthInvalidCredentialsException -> {
+                Log.w("Login","Firebase Auth Invalid Credentials" )
+            }
+
+            is FirebaseTooManyRequestsException -> {
+                Log.w("Login","Firebase Too Many Exception" )
+            }
+
+            is FirebaseAuthMissingActivityForRecaptchaException -> {
+                Log.w("Login", "FirebaseAuthMissingActivityForRecaptchaException")
+            }
         }
 
     }
@@ -62,19 +86,18 @@ val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks()
         token: PhoneAuthProvider.ForceResendingToken,
     ) {
         Log.d(TAG, "onCodeSent:$verificationId")
-
-        // Save verification ID and resending token so we can use them later
         storedVerificationId = verificationId
         resendToken = token
     }
 }
 
 fun startPhoneNumberVerification(context: Context , phoneNumber: String) {
+    Log.w( "phoneNumber",phoneNumber)
     val options = PhoneAuthOptions.newBuilder(auth)
-        .setPhoneNumber(phoneNumber) // Phone number to verify
-        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-        .setActivity(context as Activity) // Activity (for callback binding)
-        .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
+        .setPhoneNumber(phoneNumber)
+        .setTimeout(60L, TimeUnit.SECONDS)
+        .setActivity(context as Activity)
+        .setCallbacks(callbacks)
         .build()
     PhoneAuthProvider.verifyPhoneNumber(options)
 }
@@ -90,17 +113,14 @@ fun signInWithPhoneAuthCredential(context: Context , credential: PhoneAuthCreden
     auth.signInWithCredential(credential)
         .addOnCompleteListener(context as Activity) { task ->
             if (task.isSuccessful) {
-                // Sign in success, update UI with the signed-in user's information
                 Log.d(TAG, "signInWithCredential:success")
                 val user = task.result?.user
                 check = 1
             } else {
-                // Sign in failed, display a message and update the UI
                 Log.w(TAG, "signInWithCredential:failure", task.exception)
                 if (task.exception is FirebaseAuthInvalidCredentialsException) {
                     Log.w(TAG,"The verification code entered was invalid")
                 }
-                // Update UI
                 check = 0
             }
         }
@@ -110,7 +130,7 @@ fun signInWithPhoneAuthCredential(context: Context , credential: PhoneAuthCreden
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
-    val phoneNumber = remember { mutableStateOf("" ) }
+    var phoneNumber by remember { mutableStateOf("+91" ) }
     val otp = remember { mutableStateOf("") }
 
     val context = LocalContext.current
@@ -164,7 +184,7 @@ fun LoginScreen(navController: NavHostController) {
                         .padding(16.dp)
                 ) {
                     Text(
-                        text = "We will send a code to your phone number",
+                        text = "A code will be send to your phone number",
                         color = Color.Black,
                         fontSize = 16.sp,
                        fontWeight = FontWeight.W500
@@ -178,9 +198,8 @@ fun LoginScreen(navController: NavHostController) {
                     )
                     Spacer(modifier = Modifier.height(15.dp))
                     OutlinedTextField(
-                        value = phoneNumber.value,
-                        onValueChange = { phoneNumber.value = it },
-
+                        value = phoneNumber,
+                        onValueChange = { phoneNumber = it },
                         modifier = Modifier
                             .fillMaxWidth()
 //                            .background(Color(0xFFF0E68C))
@@ -196,14 +215,15 @@ fun LoginScreen(navController: NavHostController) {
                             unfocusedIndicatorColor = Color.Transparent,
                             textColor = Color.Black
                         )
-
                     )
-                    Spacer(modifier = Modifier.height(30.dp))
-                    Button(onClick = { startPhoneNumberVerification(context,phoneNumber.value) },
+                    userPhone = phoneNumber.toString()
+
+                    Button(onClick = { startPhoneNumberVerification(context,phoneNumber) },
                         colors = ButtonDefaults.buttonColors(colorResource(id = R.color.Mustard_yellow)),
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier
                             .width(200.dp)
+                            .padding(10.dp)
                             .align(Alignment.CenterHorizontally)
                         ) {
                         Text(text = "Send OTP", fontSize = 20.sp , color = Color.White)
@@ -232,57 +252,20 @@ fun LoginScreen(navController: NavHostController) {
                             textColor = Color.Black
                         )
                     )
-                    /*
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        repeat(6) {
-                            TextField(
-                                value = otp.getOrNull(it)?.toString() ?: "",
-                                onValueChange = { newValue ->
-                                    if (newValue.length <= 1) {
-                                        otp =
-                                            otp.substring(0, it) + newValue + otp.substring(it + 1)
-                                    }
-                                },
-                                modifier = Modifier
-                                    .width(60.dp)
-                                    .height(60.dp)
-                                    .background(
-                                        Color(0xFFF0E68C),
-                                        shape = RoundedCornerShape(10.dp)
-                                    )
-                                    .padding(1.dp)
-                                ,
-                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                                singleLine = true,
-                                textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
-                                colors = TextFieldDefaults.textFieldColors(
-                                    backgroundColor = Color(0xFFF0E68C),
-                                    focusedIndicatorColor = Color.Transparent,
-                                    unfocusedIndicatorColor = Color.Transparent,
-                                    textColor = Color.Black
-                                )
-                            )
-                        }
-                    }
-                    */
                 }
-
-                Spacer(modifier = Modifier.height(50.dp))
 
                 Button(
                     onClick = {
                         verifyOTP(context,otp.value)
                         if(check == 1 ){
-                            navController.navigate("HomePage")
+                            if (loggedInAs == "Customer") navController.navigate("MainScreen")
+                            else navController.navigate("RestaurantHomePage")
                         }
                     },
                     colors = ButtonDefaults.buttonColors(colorResource(id = R.color.Mustard_yellow)),
                     modifier = Modifier
                         .width(250.dp)
-                        .padding(20.dp)
+                        .padding(10.dp)
                         .height(50.dp)
                         .align(Alignment.CenterHorizontally),
                     shape = RoundedCornerShape(16.dp),
@@ -300,11 +283,3 @@ fun LoginScreen(navController: NavHostController) {
         }
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun LoginScreenPreview() {
-//    TuckerFoodDeliveryTheme{
-//        LoginScreen()
-//    }
-//}

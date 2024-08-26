@@ -2,10 +2,12 @@ package com.example.tuckerfooddelivery.View.Items
 
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -47,6 +49,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -54,6 +57,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.Model.Add.addCart
+import com.example.tuckerfooddelivery.Model.Add.addWishlist
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 
@@ -62,14 +66,7 @@ import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 @Composable
 fun ManchowSoup(navController: NavController) {
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
-//    var  ManchowSoup_image: Any = Image(
-//        painter = painterResource(id = R.drawable.manchow_soup),
-//        contentDescription = "Soup",
-//        modifier = Modifier
-//            .padding(100.dp)
-////            .align(Alignment.Center)
-//            .size(100.dp)
-//    )
+
     var selectedButtonIndex by remember { mutableStateOf(1) }
 
     @Composable
@@ -91,6 +88,7 @@ fun ManchowSoup(navController: NavController) {
     var count by remember {
         mutableStateOf<Int>(1)
     }
+    val context = LocalContext.current
 
 
 
@@ -153,6 +151,10 @@ fun ManchowSoup(navController: NavController) {
                             .size(40.dp)
                             .background(Color.Red, shape = CircleShape)
                             .padding(8.dp)
+                            .clickable {
+                                if(totalprice == unitPriceRegular)size = "Regular" else size = "Large"
+                                addWishlist(Item_Name,totalprice ,count,size)
+                            }
                     )
                 }
             }
@@ -416,7 +418,8 @@ fun ManchowSoup(navController: NavController) {
                 TextButton(
                     onClick = {
                         if(totalprice == unitPriceRegular)size = "Regular" else size = "Large"
-                        addCart(Item_Name,totalprice ,count,size)
+                        addCart(Item_Name,totalprice ,count,size);
+                            Toast.makeText(context , "Item added successfully" , Toast.LENGTH_SHORT).show()
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
                     modifier = Modifier
@@ -449,109 +452,6 @@ fun ManchowSoup(navController: NavController) {
                         contentDescription = null,
                         modifier = Modifier.size(30.dp)
                     )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun ManchowSoupCart() {
-    val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
-    val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
-    var unitprice: Int by remember {
-        mutableStateOf<Int>(35)
-    }
-    var totalprice: Int by remember {
-        mutableStateOf<Int>(35)
-    }
-    var count by remember {
-        mutableStateOf<Int>(1)
-    }
-
-    Card(
-        shape = RoundedCornerShape(16.dp),
-        backgroundColor = Mustard_yellow,
-        modifier = Modifier
-            .padding(10.dp)
-            .fillMaxWidth()
-            .wrapContentHeight(),
-    ) {
-        Box(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .background(color = Mustard_yellow_light)
-        ) {
-            Row {
-                Card(
-                    shape = RoundedCornerShape(15.dp),
-                    modifier = Modifier
-                        .padding(0.dp)
-                        .size(100.dp)
-                        .wrapContentHeight(),
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.manchow_soup),
-                        contentDescription = "manchow_soup",
-                        modifier = Modifier
-                            //.align(Alignment.Center)
-                            .size(220.dp)
-                    )
-                }
-                Spacer(modifier = Modifier.width(10.dp))
-                Column(
-                    modifier = Modifier
-                        .padding(horizontal = 5.dp)
-                        .fillMaxWidth()
-                ) {
-                    Text(
-                        text = "Manchow Soup",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 22.sp
-                    )
-
-                    Text(
-                        text = "PRICE : Rs $totalprice",
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(
-                            vertical = 10.dp,
-                            horizontal = 2.dp
-                        ),
-                        fontSize = 15.sp
-                    )
-                    Box(
-                        modifier = Modifier
-                            .size(height = 30.dp, width = 150.dp)
-                            .background(color = Color.White, shape = CircleShape)
-
-                    ) {
-                        Row {
-                            IconButton(onClick = { if(count == 1) count = 1 else count-- }) {
-                                Icon(
-                                    Icons.Default.KeyboardArrowDown,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(50.dp)
-                                )
-                            }
-                            Spacer(modifier = Modifier.width(5.dp))
-                            Text(
-                                text = "$count", modifier = Modifier
-                                    .padding(vertical = 5.dp)
-                                    .padding(horizontal = 15.dp),
-                                fontSize = 20.sp
-                            )
-                            Spacer(modifier = Modifier.width(1.dp))
-                            IconButton(onClick = { count++ }) {
-                                Icon(
-                                    Icons.Default.KeyboardArrowUp,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(50.dp)
-                                )
-                            }
-                        }
-                    }
                 }
             }
         }

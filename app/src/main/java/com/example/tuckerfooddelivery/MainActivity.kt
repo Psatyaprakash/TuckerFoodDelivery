@@ -42,14 +42,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.times
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 import com.example.tuckerfooddelivery.View.Storage
+import com.example.tuckerfooddelivery.View.ThankYouScreen
 import com.example.tuckerfooddelivery.ViewModel.AppNavigation
+import com.example.tuckerfooddelivery.ViewModel.ScreenHeight
+import com.example.tuckerfooddelivery.ViewModel.ScreenWidth
 
 class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -58,13 +63,20 @@ class MainActivity : ComponentActivity() {
         // enableEdgeToEdge()
         setContent {
             AppNavigation()
-//            Storage()
         }
     }
 }
 
 @Composable
 fun MainScreen(navController: NavController , route: @Composable (NavController) -> Unit ) {
+
+    val configuration = LocalConfiguration.current
+    val screenHeight = configuration.screenHeightDp.dp
+    val screenWidth = configuration.screenWidthDp.dp
+
+    ScreenHeight = screenHeight
+    ScreenWidth = screenWidth
+
     Scaffold(
         modifier = Modifier.background(White),
         /*topBar = {
@@ -86,10 +98,11 @@ fun MainScreen(navController: NavController , route: @Composable (NavController)
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {
+    val BottomNavHeight = 0.06 * ScreenHeight
     BottomAppBar(
         containerColor = colorResource(id = R.color.Mustard_yellow_light),
         contentColor = Black,
-        modifier = Modifier.height(60.dp)
+        modifier = Modifier.height(BottomNavHeight)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -99,9 +112,9 @@ fun BottomNavigationBar(navController: NavController) {
             Row{
                 BottomNavIcon(
                     Icons.Filled.CleanHands,
-                    "Notifications",
+                    "Pledge",
                     navController,
-                    "Notification"
+                    "PledgeScreen"
                 )
             }
             BottomNavIcon(Icons.Filled.Home, "Home", navController, "MainScreen")
