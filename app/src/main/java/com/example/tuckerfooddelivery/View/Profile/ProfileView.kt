@@ -1,6 +1,7 @@
 package com.example.tuckerfooddelivery.View.Profile
 
 import android.annotation.SuppressLint
+import android.media.Image
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -21,17 +22,20 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.CleanHands
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -56,9 +60,10 @@ fun ProfileView(navController: NavHostController) {
                 .fillMaxSize()
         ) {
             Spacer(modifier = Modifier.height(10.dp))
-            Row(Modifier
-                .padding(5.dp)
-                .fillMaxWidth(),
+            Row(
+                Modifier
+                    .padding(5.dp)
+                    .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween)
             {
@@ -83,7 +88,7 @@ fun ProfileView(navController: NavHostController) {
                 ) {
                     Image(
                         Icons.Default.Home,
-                        contentDescription = "",
+                        contentDescription = "Home",
                         modifier = Modifier.size(30.dp)
                     )
                 }
@@ -136,49 +141,7 @@ fun ProfileView(navController: NavHostController) {
                     disabledContentColor = Mustard_yellow,
                     disabledContainerColor = Mustard_yellow)
             ) {
-                Row(
-                    modifier = Modifier.padding(15.dp)
-                ) {
-                    TextButton(
-                        onClick = {navController.navigate("PersonalInfoDetails")},
-                        colors = ButtonDefaults.buttonColors(Color.White),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.per_info),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(20.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "Personal Info", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(5.dp))
-                    Spacer(modifier = Modifier.width(135.dp))
-                    TextButton(
-                        onClick = {navController.navigate("PersonalInfoDetails")},
-                        colors = ButtonDefaults.buttonColors(Color.Transparent),
-                        shape = CircleShape,
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .size(35.dp)
-                            .background(Color.Transparent, CircleShape)
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.right_arrow),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(15.dp),
-                            alignment = Alignment.Center
-                        )
-                    }
-
-                }
+                ProfileItems(navController = navController, icon = Icons.Default.AccountCircle , label = "Personal Info" , route = "PersonalInfoDetails" )
                 Row(
                     modifier = Modifier.padding(15.dp)
                 ) {
@@ -354,7 +317,7 @@ fun ProfileView(navController: NavHostController) {
                         fontSize = 20.sp,
                         modifier = Modifier
                             .padding(5.dp)
-                            .clickable { navController.navigate("FAQScreen")})
+                            .clickable { navController.navigate("FAQScreen") })
                     Spacer(modifier = Modifier.width(210.dp))
                     TextButton(
                         onClick = {navController.navigate("FAQScreen")},
@@ -377,7 +340,8 @@ fun ProfileView(navController: NavHostController) {
 
                 }
                 Row(
-                    modifier = Modifier.padding(15.dp)
+                    modifier = Modifier
+                        .padding(15.dp)
                         .clickable { navController.navigate("UserReviews") }
                 ) {
                     TextButton(
@@ -427,7 +391,8 @@ fun ProfileView(navController: NavHostController) {
 
                 }
                 Row(
-                    modifier = Modifier.padding(15.dp)
+                    modifier = Modifier
+                        .padding(15.dp)
                         .clickable { navController.navigate("PledgeScreen") }
                 ) {
                     TextButton(
@@ -523,3 +488,58 @@ fun ProfileView(navController: NavHostController) {
             }
         }
     }
+
+@Composable
+fun ProfileItems(navController: NavHostController , icon : ImageVector , label : String , route : String){
+    Row(
+        modifier = Modifier.padding(15.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Row{
+            TextButton(
+                onClick = { navController.navigate(route) },
+                colors = ButtonDefaults.buttonColors(Color.White),
+                shape = CircleShape,
+                contentPadding = PaddingValues(0.dp),
+                modifier = Modifier
+                    .size(35.dp)
+                    .background(Color.Transparent, CircleShape)
+            ) {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = label,
+                    modifier = Modifier
+                        .size(30.dp)
+                        .clickable { navController.navigate(route) },
+                    tint = Color.Black
+                )
+            }
+            Text(
+                text = label ,
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp,
+                modifier = Modifier.padding(5.dp)
+            )
+        }
+        Spacer(modifier = Modifier.width(135.dp))
+        TextButton(
+            onClick = {navController.navigate(route)},
+            colors = ButtonDefaults.buttonColors(Color.Transparent),
+            shape = CircleShape,
+            contentPadding = PaddingValues(0.dp),
+            modifier = Modifier
+                .size(35.dp)
+                .background(Color.Transparent, CircleShape)
+
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.right_arrow),
+                contentDescription = "",
+                modifier = Modifier
+                    .size(15.dp),
+                alignment = Alignment.Center
+            )
+        }
+
+    }
+}

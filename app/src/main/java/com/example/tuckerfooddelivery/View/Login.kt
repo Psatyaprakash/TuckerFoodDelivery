@@ -22,8 +22,10 @@ import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -128,7 +130,7 @@ fun signInWithPhoneAuthCredential(context: Context , credential: PhoneAuthCreden
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
-    val phoneNumber = remember { mutableStateOf("+91" ) }
+    var phoneNumber by remember { mutableStateOf("+91" ) }
     val otp = remember { mutableStateOf("") }
 
     val context = LocalContext.current
@@ -196,8 +198,8 @@ fun LoginScreen(navController: NavHostController) {
                     )
                     Spacer(modifier = Modifier.height(15.dp))
                     OutlinedTextField(
-                        value = phoneNumber.value,
-                        onValueChange = { phoneNumber.value = it },
+                        value = phoneNumber,
+                        onValueChange = { phoneNumber = it },
                         modifier = Modifier
                             .fillMaxWidth()
 //                            .background(Color(0xFFF0E68C))
@@ -216,7 +218,7 @@ fun LoginScreen(navController: NavHostController) {
                     )
                     userPhone = phoneNumber.toString()
 
-                    Button(onClick = { startPhoneNumberVerification(context,phoneNumber.value) },
+                    Button(onClick = { startPhoneNumberVerification(context,phoneNumber) },
                         colors = ButtonDefaults.buttonColors(colorResource(id = R.color.Mustard_yellow)),
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier
@@ -256,7 +258,7 @@ fun LoginScreen(navController: NavHostController) {
                     onClick = {
                         verifyOTP(context,otp.value)
                         if(check == 1 ){
-                            if (loggedInAs == "Customer") navController.navigate("HomePage")
+                            if (loggedInAs == "Customer") navController.navigate("MainScreen")
                             else navController.navigate("RestaurantHomePage")
                         }
                     },

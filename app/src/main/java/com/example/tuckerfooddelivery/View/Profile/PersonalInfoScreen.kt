@@ -249,9 +249,9 @@ fun PersonalInfoDetails(navController: NavHostController) {
             Text(text = "PHONE NUMBER", color = Color.Black, fontSize = 14.sp)
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
-                value = "+91 $userPhone",
+                value = userPhone ,
                 onValueChange = { phoneNumber = it },
-//                readOnly = true,
+                readOnly = true,
                 label = { Text("Enter your Phone Number") },
                 modifier = Modifier
                     .fillMaxWidth()

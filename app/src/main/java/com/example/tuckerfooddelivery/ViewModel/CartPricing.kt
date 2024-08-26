@@ -1,5 +1,7 @@
 package com.example.tuckerfooddelivery.ViewModel
 
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.unit.dp
 import com.google.firebase.Firebase
 import com.google.firebase.storage.storage
 
@@ -47,3 +49,7 @@ var userBio = ""
 //User
 var loggedInAs = ""
 var userPrimaryAddress = ""
+
+//Screen Dimension
+var ScreenHeight = 0.dp
+var ScreenWidth = 0.dp
