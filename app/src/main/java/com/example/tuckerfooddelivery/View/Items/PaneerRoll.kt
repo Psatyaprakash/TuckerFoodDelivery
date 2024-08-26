@@ -86,9 +86,9 @@ fun PaneerRoll(navController: NavController) {
         selectedButtonIndex = index
     }
     val Item_Name = "VegPaneerRoll"
-    var totalprice: Int by remember { mutableStateOf(145) }
-    val unitPriceRegular: Int by remember { mutableIntStateOf(145) }
-    val unitPriceLarge: Int by remember { mutableStateOf(198) }
+    var totalprice: Int by remember { mutableStateOf(70) }
+    val unitPriceRegular: Int by remember { mutableIntStateOf(70) }
+    val unitPriceLarge: Int by remember { mutableStateOf(85) }
     var size by remember { mutableStateOf("Regular") }
     val Name = "Veg Paneer Roll"
     var count by remember {
