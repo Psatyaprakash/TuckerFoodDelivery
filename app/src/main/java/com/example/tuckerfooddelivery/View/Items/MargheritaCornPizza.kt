@@ -73,10 +73,10 @@ fun MargheritaCornPizza(navController: NavController) {
     var deliveryTime by remember { mutableStateOf(0) }
     var context = LocalContext.current
 
-    var totalprice: Int by remember { mutableStateOf(199) }
-    val unitPrice10: Int by remember { mutableIntStateOf(199) }
-    val unitPrice14: Int by remember { mutableStateOf(239) }
-    val unitPrice16: Int by remember { mutableStateOf(259) }
+    var totalprice: Int by remember { mutableStateOf(169) }
+    val unitPrice10: Int by remember { mutableIntStateOf(169) }
+    val unitPrice14: Int by remember { mutableStateOf(189) }
+    val unitPrice16: Int by remember { mutableStateOf(229) }
     var size by remember { mutableStateOf("10''") }
     val Item_Name = "MargheritaCornPizza"
     val Name = "Margherita Corn Pizza"

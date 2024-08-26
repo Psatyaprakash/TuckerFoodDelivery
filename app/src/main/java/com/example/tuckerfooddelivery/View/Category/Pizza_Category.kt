@@ -164,7 +164,7 @@ fun Pizza_Category(navController: NavController){
                         modifier = Modifier.padding(top = 1.dp)
                     )
                     Text(
-                            text = "Rs.199",
+                            text = "Rs.169",
                             modifier = Modifier.padding(top = 12.dp),
                             fontSize = 22.sp,
                             fontWeight = FontWeight.ExtraBold,
