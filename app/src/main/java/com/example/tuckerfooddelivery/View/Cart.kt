@@ -20,9 +20,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -42,7 +40,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -53,10 +50,10 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.times
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.example.tuckerfooddelivery.MainScreen
 import com.example.tuckerfooddelivery.Model.Data.Cart
 import com.example.tuckerfooddelivery.Model.Fetch.db
 import com.example.tuckerfooddelivery.Model.Fetch.fetchCart
@@ -64,21 +61,13 @@ import com.example.tuckerfooddelivery.R
 //import com.example.tuckerfooddelivery.View.Items.ClassicFrenchFriesCart
 //import com.example.tuckerfooddelivery.View.Items.PizzaCalzoneCart
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
-import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Cart
-import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Large
-import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Regular
-import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_10
-import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_14
-import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_16
-import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_Cart
+import com.example.tuckerfooddelivery.ViewModel.ScreenHeight
+import com.example.tuckerfooddelivery.ViewModel.ScreenWidth
 import com.example.tuckerfooddelivery.ViewModel.platformFee
 import com.example.tuckerfooddelivery.ViewModel.storageRef
 import com.example.tuckerfooddelivery.ViewModel.totalAmount
-import com.example.tuckerfooddelivery.ViewModel.totalCartPrice_global
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 
 
 @Composable
@@ -89,7 +78,6 @@ fun AddToCart(navController: NavController) {
     var totalCartPrice by remember { mutableStateOf(0) }
     val context = LocalContext.current
 
-    val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
         modifier = Modifier.background(White),
@@ -98,7 +86,7 @@ fun AddToCart(navController: NavController) {
                 title =
                 {
                     Row(
-                        Modifier.padding(5.dp,0.dp),
+                        Modifier.padding(5.dp, 0.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         CircularButtonWithSymbol(onClick = { navController.popBackStack() })
@@ -106,7 +94,7 @@ fun AddToCart(navController: NavController) {
                         Spacer(modifier = Modifier.width(1.dp))
                         Text(
                             text = "Cart",
-                            fontSize = 20.sp,
+                            fontSize = 26.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(16.dp)
                         )
@@ -114,7 +102,7 @@ fun AddToCart(navController: NavController) {
                 },
                 backgroundColor = White,
                 modifier = Modifier
-                    .height(60.dp)
+                    .height(80.dp)
             )
         }
     ) { innerPadding ->
@@ -184,7 +172,7 @@ fun AddToCart(navController: NavController) {
                     modifier = Modifier
                         .background(colorResource(id = R.color.White_Blue))
                         .fillMaxWidth()
-                        .padding(0.dp, 10.dp, 0.dp, 0.dp),
+                        .padding(0.dp, 15.dp, 0.dp, 0.dp),
                     verticalArrangement = Arrangement.Bottom
                 ) {
 
@@ -193,7 +181,7 @@ fun AddToCart(navController: NavController) {
                         text = "Item Total : Rs $totalAmount",
                         fontWeight = FontWeight.Black,
                         modifier = Modifier.padding(horizontal = 30.dp),
-                        fontSize = 18.sp
+                        fontSize = 25.sp
                     )
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -298,7 +286,7 @@ fun AddToCart(navController: NavController) {
                                                     context,
                                                     "Order Summary",
                                                     "Order placed \nTotal Amount : ${totalAmount + platformFee}"
-                                                );
+                                                )
                                                 ; navController.navigate("Congrats")
                                             },
                                             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.Mustard_yellow))
@@ -343,6 +331,10 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
         mutableStateOf(cart.count)
     }
 
+    var cardwidth = 1 * ScreenWidth
+    var boxwidth = 0.3 * ScreenWidth
+    var cardheight = 0.18 * ScreenHeight
+
     // Fetch the image URL
     LaunchedEffect(imagePath) {
         getImageUrlFromFirebaseStorage(
@@ -358,7 +350,9 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .wrapContentHeight(),
+                .wrapContentHeight()
+                .size(height = cardheight, width = cardwidth),
+
             elevation = 8.dp,
             backgroundColor = colorResource(id = R.color.Mustard_yellow),
             shape = RoundedCornerShape(15.dp)
@@ -367,7 +361,7 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
                 Box(
                     modifier = Modifier
                         .padding(15.dp)
-                        .size(150.dp)
+                        .size(boxwidth)
                         .background(White, shape = RoundedCornerShape(15.dp))
                         .fillMaxWidth(.3f)
 //                        .align(Alignment.CenterVertically)
@@ -389,108 +383,113 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
                 Column {
 
 
-                Column(
-                    Modifier
-                        .fillMaxSize()
-                        .padding(0.dp, 15.dp, 10.dp, 10.dp),
-                    verticalArrangement = Arrangement.SpaceAround,
-                    horizontalAlignment = Alignment.Start
-                ) {
-                    Text(
-                        text = cart.name,
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Spacer(modifier = Modifier.height(3.dp))
-
-                    Text(
-                        text = "( ${cart.size} )",
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-
-                    Spacer(modifier = Modifier.height(15.dp))
-
-                    Text(
-                        text = "Rs.${price * count}",
-                        fontSize = 20.sp
-                    )
-                }
-                    Row(
-                        Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
+                    Column(
+                        Modifier
+                            .fillMaxSize()
+                            .padding(0.dp, 15.dp, 10.dp, 10.dp),
+                        verticalArrangement = Arrangement.SpaceAround,
+                        horizontalAlignment = Alignment.Start
                     ) {
+//                    Row(
+//                        Modifier.fillMaxWidth(),
+//                        verticalAlignment = Alignment.CenterVertically,
+//                        horizontalArrangement = Arrangement.SpaceBetween
+//                    ) {}
+                        Text(
+                            text = cart.name,
+                            fontSize = 22.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Spacer(modifier = Modifier.height(3.dp))
+
+                        Text(
+                            text = "( ${cart.size} )",
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+
+                        Spacer(modifier = Modifier.height(15.dp))
+
+                        Text(
+                            text = "Rs.${price * count}",
+                            fontSize = 20.sp
+                        )
+
                         Row(
-                            modifier = Modifier
-                                .size(height = 30.dp, width = 150.dp)
-                                .background(
-                                    White,
-                                    shape = RoundedCornerShape(30.dp)
-                                ),
+                            Modifier.fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            IconButton(onClick = {
-                                if (cart.count > 1) cart.count--
-                                count = cart.count
-                                onQuantityChange()
-                            }) {
-                                Icon(
-                                    Icons.Default.KeyboardArrowDown,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(30.dp)
+                            Row(
+                                modifier = Modifier
+                                    .size(height = 30.dp, width = 150.dp)
+                                    .background(
+                                        White,
+                                        shape = RoundedCornerShape(30.dp)
+                                    ),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                IconButton(onClick = {
+                                    if (cart.count > 1) cart.count--
+                                    count = cart.count
+                                    onQuantityChange()
+                                }) {
+                                    Icon(
+                                        Icons.Default.KeyboardArrowDown,
+                                        contentDescription = null,
+                                        modifier = Modifier.size(30.dp)
+                                    )
+                                }
+                                Text(
+                                    text = "$count",
+                                    fontSize = 20.sp
                                 )
-                            }
-                            Text(
-                                text = "$count",
-                                fontSize = 20.sp
-                            )
 
-                            IconButton(onClick = {
-                                cart.count++
-                                count = cart.count
-                                onQuantityChange()
-                            }) {
-                                Icon(
-                                    Icons.Default.KeyboardArrowUp,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(30.dp)
-                                )
+                                IconButton(onClick = {
+                                    cart.count++
+                                    count = cart.count
+                                    onQuantityChange()
+                                }) {
+                                    Icon(
+                                        Icons.Default.KeyboardArrowUp,
+                                        contentDescription = null,
+                                        modifier = Modifier.size(30.dp)
+                                    )
+                                }
+                            }
+                            Box(modifier = Modifier.padding(1.dp)) {
+                                IconButton(onClick = {
+                                    db.collection("Cart").document(cart.name + "_${cart.size}")
+                                        .delete()
+                                        .addOnSuccessListener {
+                                            Log.d(TAG, "DocumentSnapshot successfully deleted!")
+                                            Toast.makeText(
+                                                context,
+                                                "Item deleted successfully",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                        .addOnFailureListener { e ->
+                                            Log.w(TAG, "Error deleting document", e)
+                                        };
+                                    navController.popBackStack();
+                                    navController.navigate("AddToCart")
+
+                                }) {
+                                    Icon(
+                                        Icons.Default.Delete,
+                                        contentDescription = "Delete",
+                                        tint = colorResource(id = R.color.White_Blue)
+                                    )
+                                }
                             }
                         }
-                        Box(modifier = Modifier.padding(1.dp)) {
-                            IconButton(onClick = {
-                                db.collection("Cart").document(cart.name + "_${cart.size}")
-                                    .delete()
-                                    .addOnSuccessListener {
-                                        Log.d(TAG, "DocumentSnapshot successfully deleted!")
-                                        Toast.makeText(
-                                            context,
-                                            "Item deleted successfully",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    }
-                                    .addOnFailureListener { e ->
-                                        Log.w(TAG, "Error deleting document", e)
-                                    };
-                                navController.popBackStack();
-                                navController.navigate("AddToCart")
-
-                            }) {
-                                Icon(
-                                    Icons.Default.Delete,
-                                    contentDescription = "Delete",
-                                    tint = colorResource(id = R.color.White_Blue)
-                                )
-                            }
-                        }
-                    }
-
                     }
                 }
             }
         }
+    }
 
 
 

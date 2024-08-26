@@ -54,9 +54,12 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.times
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
+import com.example.tuckerfooddelivery.ViewModel.ScreenHeight
+import com.example.tuckerfooddelivery.ViewModel.ScreenWidth
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -64,6 +67,9 @@ fun Timing(navController: NavController) {
 
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
     val Mustard_yellow_light = colorResource(id = R.color.Mustard_yellow_light)
+    var cardwidth = 1 * ScreenWidth
+    var boxwidth = 0.3 * ScreenWidth
+    var cardheight = 0.18 * ScreenHeight
 
     Column {
         Column(
@@ -112,44 +118,64 @@ fun Timing(navController: NavController) {
                 Column(
                     modifier = Modifier
                         .padding(25.dp)
-
+                        .fillMaxSize()
+                        .wrapContentHeight()
                 ) {
-                    Row {
-                        Spacer(modifier = Modifier.width(150.dp))
-                        Text(text = " Opens", fontSize = 25.sp, fontWeight = FontWeight.Bold, fontFamily = FontFamily.Serif, fontStyle = FontStyle.Italic, color = Color.Black)
+                    Row (
+                        modifier = Modifier
+                            .align(Alignment.End),
+                        horizontalArrangement = Arrangement.End
+                    ){
+                        Spacer(modifier = Modifier.width(1.dp))
+                        Text(text = "Opens",
+                            fontSize = 22.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily.Serif,
+                            fontStyle = FontStyle.Italic,
+                            color = Color.Black)
                         Spacer(modifier = Modifier.width(20.dp))
-                        Text(text = "Closes", fontSize = 25.sp, fontWeight = FontWeight.Bold,fontFamily = FontFamily.Serif, fontStyle = FontStyle.Italic,color = Color.Black)
+                        Text(text = "Closes",
+                            fontSize = 22.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily.Serif,
+                            fontStyle = FontStyle.Italic,
+                            color = Color.Black)
+                        Spacer(modifier = Modifier.width(20.dp))
+
                     }
-                    Spacer(modifier = Modifier.height(30.dp))
+                    Spacer(modifier = Modifier.height(20.dp))
 
                     //Monday
                     Row (
                         modifier = Modifier
                             .fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
                     ){
-                        Text(text = "Monday", fontSize = 25.sp, fontWeight = FontWeight.Normal)
-                        Spacer(modifier = Modifier.width(60.dp))
-
-                        var MonOpen by remember { mutableStateOf("9:00am") }
-                        androidx.compose.material3.TextField(
-                            value = MonOpen,
-                            onValueChange = { MonOpen = it },
-                            //label = { androidx.compose.material3.Text("9:00am") },
-                            modifier = Modifier
-                                .size(width = 90.dp, height = 60.dp)
-                                .height(56.dp)
-                        )
-                        Spacer(modifier = Modifier.width(15.dp))
-                        var MonClose by remember { mutableStateOf("8:00pm") }
-                        androidx.compose.material3.TextField(
-                            value = MonClose,
-                            onValueChange = { MonClose = it },
-                            //label = { androidx.compose.material3.Text("8:00pm") },
-                            modifier = Modifier
-                                .size(width = 90.dp, height = 60.dp)
-                                .height(56.dp)
-                        )
+                        Row {
+                            Text(text = " Mon", fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                        }
+                        Row {
+                            var MonOpen by remember { mutableStateOf("9:00am") }
+                            TextField(
+                                value = MonOpen,
+                                onValueChange = { MonOpen = it },
+                                //label = { androidx.compose.material3.Text("9:00am") },
+                                modifier = Modifier
+                                    .size(width = 90.dp, height = 60.dp)
+                                    .height(56.dp)
+                            )
+                            Spacer(modifier = Modifier.width(10.dp))
+                            var MonClose by remember { mutableStateOf("8:00pm") }
+                            TextField(
+                                value = MonClose,
+                                onValueChange = { MonClose = it },
+                                //label = { androidx.compose.material3.Text("8:00pm") },
+                                modifier = Modifier
+                                    .size(width = 90.dp, height = 60.dp)
+                                    .height(56.dp)
+                            )
+                        }
                     }
                     Spacer(modifier = Modifier.height(25.dp))
 
@@ -157,28 +183,31 @@ fun Timing(navController: NavController) {
                     Row (
                         modifier = Modifier
                             .fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
                     ){
-                        Text(text = "Tuesday", fontSize = 25.sp, fontWeight = FontWeight.Normal)
-                        Spacer(modifier = Modifier.width(55.dp))
-
-                        var TueOpen by remember { mutableStateOf("9:00am") }
-                        androidx.compose.material3.TextField(
-                            value = TueOpen,
-                            onValueChange = { TueOpen = it },
-                            modifier = Modifier
-                                .size(width = 90.dp, height = 60.dp)
-                                .height(56.dp)
-                        )
-                        Spacer(modifier = Modifier.width(15.dp))
-                        var TueClose by remember { mutableStateOf("8:00pm") }
-                        androidx.compose.material3.TextField(
-                            value = TueClose,
-                            onValueChange = { TueClose = it },
-                            modifier = Modifier
-                                .size(width = 90.dp, height = 60.dp)
-                                .height(56.dp)
-                        )
+                        Row {
+                            Text(text = " Tue", fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                        }
+                        Row {
+                            var TueOpen by remember { mutableStateOf("9:00am") }
+                            TextField(
+                                value = TueOpen,
+                                onValueChange = { TueOpen = it },
+                                modifier = Modifier
+                                    .size(width = 90.dp, height = 60.dp)
+                                    .height(56.dp)
+                            )
+                            Spacer(modifier = Modifier.width(10.dp))
+                            var TueClose by remember { mutableStateOf("8:00pm") }
+                            TextField(
+                                value = TueClose,
+                                onValueChange = { TueClose = it },
+                                modifier = Modifier
+                                    .size(width = 90.dp, height = 60.dp)
+                                    .height(56.dp)
+                            )
+                        }
                     }
                     Spacer(modifier = Modifier.height(25.dp))
 
@@ -186,28 +215,33 @@ fun Timing(navController: NavController) {
                     Row (
                         modifier = Modifier
                             .fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
-                    ){
-                        Text(text = "Wednesday", fontSize = 25.sp, fontWeight = FontWeight.Normal)
-                        Spacer(modifier = Modifier.width(20.dp))
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
 
-                        var WedOpen by remember { mutableStateOf("9:00am") }
-                        androidx.compose.material3.TextField(
-                            value = WedOpen,
-                            onValueChange = { WedOpen = it },
-                            modifier = Modifier
-                                .size(width = 90.dp, height = 60.dp)
-                                .height(56.dp)
-                        )
-                        Spacer(modifier = Modifier.width(15.dp))
-                        var MondayClose by remember { mutableStateOf("8:00pm") }
-                        androidx.compose.material3.TextField(
-                            value = MondayClose,
-                            onValueChange = { MondayClose = it },
-                            modifier = Modifier
-                                .size(width = 90.dp, height = 60.dp)
-                                .height(56.dp)
-                        )
+                    ){
+                        Row {
+                            Text(text = " Wed", fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                        }
+
+                        Row {
+                            var WedOpen by remember { mutableStateOf("9:00am") }
+                            TextField(
+                                value = WedOpen,
+                                onValueChange = { WedOpen = it },
+                                modifier = Modifier
+                                    .size(width = 90.dp, height = 60.dp)
+                                    .height(56.dp)
+                            )
+                            Spacer(modifier = Modifier.width(10.dp))
+                            var MondayClose by remember { mutableStateOf("8:00pm") }
+                            TextField(
+                                value = MondayClose,
+                                onValueChange = { MondayClose = it },
+                                modifier = Modifier
+                                    .size(width = 90.dp, height = 60.dp)
+                                    .height(56.dp)
+                            )
+                        }
                     }
                     Spacer(modifier = Modifier.height(25.dp))
 
@@ -215,28 +249,33 @@ fun Timing(navController: NavController) {
                     Row (
                         modifier = Modifier
                             .fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
-                    ){
-                        Text(text = "Thursday", fontSize = 25.sp, fontWeight = FontWeight.Normal)
-                        Spacer(modifier = Modifier.width(45.dp))
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
 
-                        var ThurOpen by remember { mutableStateOf("9:00am") }
-                        androidx.compose.material3.TextField(
-                            value = ThurOpen,
-                            onValueChange = { ThurOpen = it },
-                            modifier = Modifier
-                                .size(width = 90.dp, height = 60.dp)
-                                .height(56.dp)
-                        )
-                        Spacer(modifier = Modifier.width(15.dp))
-                        var ThurClose by remember { mutableStateOf("8:00pm") }
-                        androidx.compose.material3.TextField(
-                            value = ThurClose,
-                            onValueChange = { ThurClose = it },
-                            modifier = Modifier
-                                .size(width = 90.dp, height = 60.dp)
-                                .height(56.dp)
-                        )
+                    ){
+                        Row {
+                            Text(text = " Thur", fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                        }
+
+                        Row {
+                            var ThurOpen by remember { mutableStateOf("9:00am") }
+                            TextField(
+                                value = ThurOpen,
+                                onValueChange = { ThurOpen = it },
+                                modifier = Modifier
+                                    .size(width = 90.dp, height = 60.dp)
+                                    .height(56.dp)
+                            )
+                            Spacer(modifier = Modifier.width(10.dp))
+                            var ThurClose by remember { mutableStateOf("8:00pm") }
+                            TextField(
+                                value = ThurClose,
+                                onValueChange = { ThurClose = it },
+                                modifier = Modifier
+                                    .size(width = 90.dp, height = 60.dp)
+                                    .height(56.dp)
+                            )
+                        }
                     }
                     Spacer(modifier = Modifier.height(25.dp))
 
@@ -244,28 +283,32 @@ fun Timing(navController: NavController) {
                     Row (
                         modifier = Modifier
                             .fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
                     ){
-                        Text(text = "Friday", fontSize = 25.sp, fontWeight = FontWeight.Normal)
-                        Spacer(modifier = Modifier.width(80.dp))
+                        Row {
+                            Text(text = " Fri", fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                        }
 
-                        var FriOpen by remember { mutableStateOf("9:00am") }
-                        androidx.compose.material3.TextField(
-                            value = FriOpen,
-                            onValueChange = { FriOpen = it },
-                            modifier = Modifier
-                                .size(width = 90.dp, height = 60.dp)
-                                .height(56.dp)
-                        )
-                        Spacer(modifier = Modifier.width(15.dp))
-                        var FriClose by remember { mutableStateOf("8:00pm") }
-                        androidx.compose.material3.TextField(
-                            value = FriClose,
-                            onValueChange = { FriClose = it },
-                            modifier = Modifier
-                                .size(width = 90.dp, height = 60.dp)
-                                .height(56.dp)
-                        )
+                        Row {
+                            var FriOpen by remember { mutableStateOf("9:00am") }
+                            TextField(
+                                value = FriOpen,
+                                onValueChange = { FriOpen = it },
+                                modifier = Modifier
+                                    .size(width = 90.dp, height = 60.dp)
+                                    .height(56.dp)
+                            )
+                            Spacer(modifier = Modifier.width(10.dp))
+                            var FriClose by remember { mutableStateOf("8:00pm") }
+                            TextField(
+                                value = FriClose,
+                                onValueChange = { FriClose = it },
+                                modifier = Modifier
+                                    .size(width = 90.dp, height = 60.dp)
+                                    .height(56.dp)
+                            )
+                        }
                     }
                     Spacer(modifier = Modifier.height(25.dp))
 
@@ -273,28 +316,32 @@ fun Timing(navController: NavController) {
                     Row (
                         modifier = Modifier
                             .fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
                     ){
-                        Text(text = "Saturday", fontSize = 25.sp, fontWeight = FontWeight.Normal)
-                        Spacer(modifier = Modifier.width(50.dp))
+                        Row {
+                            Text(text = " Sat", fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                        }
 
-                        var SatOpen by remember { mutableStateOf("9:00am") }
-                        androidx.compose.material3.TextField(
-                            value = SatOpen,
-                            onValueChange = { SatOpen = it },
-                            modifier = Modifier
-                                .size(width = 90.dp, height = 60.dp)
-                                .height(56.dp)
-                        )
-                        Spacer(modifier = Modifier.width(15.dp))
-                        var SatClose by remember { mutableStateOf("8:00pm") }
-                        androidx.compose.material3.TextField(
-                            value = SatClose,
-                            onValueChange = { SatClose = it },
-                            modifier = Modifier
-                                .size(width = 90.dp, height = 60.dp)
-                                .height(56.dp)
-                        )
+                        Row {
+                            var SatOpen by remember { mutableStateOf("9:00am") }
+                            TextField(
+                                value = SatOpen,
+                                onValueChange = { SatOpen = it },
+                                modifier = Modifier
+                                    .size(width = 90.dp, height = 60.dp)
+                                    .height(56.dp)
+                            )
+                        Spacer(modifier = Modifier.width(10.dp))
+                            var SatClose by remember { mutableStateOf("8:00pm") }
+                            TextField(
+                                value = SatClose,
+                                onValueChange = { SatClose = it },
+                                modifier = Modifier
+                                    .size(width = 90.dp, height = 60.dp)
+                                    .height(56.dp)
+                            )
+                        }
                     }
                     Spacer(modifier = Modifier.height(25.dp))
 
@@ -302,30 +349,33 @@ fun Timing(navController: NavController) {
                     Row (
                         modifier = Modifier
                             .fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
-                    ){
-                        Text(text = "Sunday", fontSize = 25.sp, fontWeight = FontWeight.Normal)
-                        Spacer(modifier = Modifier.width(65.dp))
-
-                        var SunOpen by remember { mutableStateOf("9:00am") }
-                        androidx.compose.material3.TextField(
-                            value = SunOpen,
-                            onValueChange = { SunOpen = it },
-                            modifier = Modifier
-                                .size(width = 90.dp, height = 60.dp)
-                                .height(56.dp)
-                        )
-                        Spacer(modifier = Modifier.width(15.dp))
-                        var SunClose by remember { mutableStateOf("8:00pm") }
-                        androidx.compose.material3.TextField(
-                            value = SunClose,
-                            onValueChange = { SunClose = it },
-                            modifier = Modifier
-                                .size(width = 90.dp, height = 60.dp)
-                                .height(56.dp)
-                        )
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Row {
+                            Text(text = " Sun", fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                        }
+                        Row {
+                            var SunOpen by remember { mutableStateOf("9:00am") }
+                            TextField(
+                                value = SunOpen,
+                                onValueChange = { SunOpen = it },
+                                modifier = Modifier
+                                    .size(width = 90.dp, height = 60.dp)
+                                    .height(56.dp)
+                            )
+                            Spacer(modifier = Modifier.width(10.dp))
+                            var SunClose by remember { mutableStateOf("8:00pm") }
+                            TextField(
+                                value = SunClose,
+                                onValueChange = { SunClose = it },
+                                modifier = Modifier
+                                    .size(width = 90.dp, height = 60.dp)
+                                    .height(56.dp)
+                            )
+                        }
                     }
-                    Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(5.dp))
 
 //                    Text(text = "Tuesday",fontSize = 20.sp, fontWeight = FontWeight.SemiBold)
 //                    Spacer(modifier = Modifier.height(20.dp))
@@ -351,7 +401,7 @@ fun Timing(navController: NavController) {
                     modifier = Modifier
                         .align(Alignment.Center)
                         .size(width = 100.dp, height = 45.dp),
-                    // colors = ButtonColors(contentColor = Color.White, containerColor = Color.Blue, disabledContentColor = Color.Black, disabledContainerColor = Color.Gray),
+                   // colors = ButtonDefaults.buttonColors(Mustard_yellow),
                     border = BorderStroke(width = 0.dp, color = Color.Transparent),
 //                elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp),
                     shape = RoundedCornerShape(10.dp)
@@ -359,6 +409,8 @@ fun Timing(navController: NavController) {
                     Text(text = "SAVE", fontSize = 17.sp)
                 }
             }
+            Spacer(modifier = Modifier.height(25.dp))
+
 
         }
     }

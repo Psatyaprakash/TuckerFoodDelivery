@@ -155,6 +155,7 @@ fun OrangeMimosa(navController: NavController) {
                             .clickable {
                                 if(totalprice == unitPriceHalf)size = "Half" else size = "Full"
                                 addWishlist(Item_Name,totalprice ,count,size)
+                            Toast.makeText(context , "Added to Wishlist" , Toast.LENGTH_SHORT).show()
                             }
                     )
                 }

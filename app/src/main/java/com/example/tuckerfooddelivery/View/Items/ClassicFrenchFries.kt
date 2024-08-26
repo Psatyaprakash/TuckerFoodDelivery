@@ -4,14 +4,12 @@ import android.os.Build
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -27,11 +25,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddShoppingCart
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
@@ -60,19 +56,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.Model.Add.addCart
 import com.example.tuckerfooddelivery.Model.Add.addWishlist
-import com.example.tuckerfooddelivery.Model.Data.Restaurant
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
-import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Cart
-import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Large
-import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_LargePrice
-import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Regular
-import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_RegularPrice
-import com.example.tuckerfooddelivery.ViewModel.ClassicFrenchFries_Wishlist
-import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_Wishlist
-import com.example.tuckerfooddelivery.ViewModel.storage
-import com.example.tuckerfooddelivery.ViewModel.storageRef
-import com.example.tuckerfooddelivery.ViewModel.updatePrice
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -169,6 +154,7 @@ fun ClassicFrenchFries(navController: NavController) {
                                 .clickable {
                                     if(totalprice == unitPriceRegular)size = "Regular" else size = "Large"
                                     addWishlist(Item_Name,totalprice ,count,size)
+                            Toast.makeText(context , "Added to Wishlist" , Toast.LENGTH_SHORT).show()
                                 }
 
                         )

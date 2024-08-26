@@ -64,6 +64,7 @@ import com.example.tuckerfooddelivery.Model.Fetch.fetchWishlist
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
 import com.example.tuckerfooddelivery.ViewModel.ScreenHeight
+import com.example.tuckerfooddelivery.ViewModel.ScreenWidth
 import com.example.tuckerfooddelivery.ViewModel.storageRef
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -78,7 +79,7 @@ fun Wishlist(navController: NavController){
         topBar = {
             TopAppBar(title = {
                 Row(
-                    Modifier.padding(5.dp),
+                    Modifier.padding(5.dp, 0.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     CircularButtonWithSymbol(onClick = { navController.popBackStack() })
@@ -95,20 +96,16 @@ fun Wishlist(navController: NavController){
         },
         bottomBar = {
             BottomAppBar(
-                containerColor = White,
-                modifier = Modifier.height(0.06 * ScreenHeight)
+                containerColor = White
             ) {
-                Row(Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically){
+                Row(Modifier.fillMaxWidth(),horizontalArrangement = Arrangement.Center){
                     Button(
                         onClick =
                         {
                             navController.navigate("AddToCart")
                         },
                         Modifier
-                            .fillMaxWidth(.6f)
-                            .padding(0.dp,0.dp,0.dp,15.dp),
+                            .fillMaxWidth(.6f),
                         shape = RoundedCornerShape(10.dp),
                         colors = ButtonDefaults.buttonColors(colorResource(id = R.color.Mustard_yellow))
                     ) {
@@ -142,7 +139,7 @@ fun Wishlist(navController: NavController){
         ){
             Column(
                 Modifier
-                    .fillMaxHeight(1f)
+                    .fillMaxHeight(.80f)
                     .padding(16.dp, 10.dp)
             ) {
                 LazyColumn {
@@ -176,14 +173,17 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
             onFailure = { exception -> loadError = exception },
         )
     }
+    var cardwidth = 1 * ScreenWidth
+    var boxwidth = 0.3 * ScreenWidth
+    var cardheight = 0.18 * ScreenHeight
 
     if (imageUrl != null) {
         Log.w("ImagePath", "${storageRef.child(imagePath)} \n$imageUrl")
 
         Card(
             modifier = Modifier
-                .fillMaxWidth(),
-//                .size(150.dp),
+                .fillMaxWidth()
+                .size(height = cardheight, width = cardwidth),
             elevation = 8.dp,
             backgroundColor = colorResource(id = R.color.Mustard_yellow),
             shape = RoundedCornerShape(15.dp)
@@ -192,7 +192,7 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
                 Box(
                     modifier = Modifier
                         .padding(15.dp)
-                        .size(130.dp)
+                        .size(boxwidth)
                         .background(White, shape = RoundedCornerShape(15.dp))
                         .fillMaxWidth(.3f)
                 ) {
