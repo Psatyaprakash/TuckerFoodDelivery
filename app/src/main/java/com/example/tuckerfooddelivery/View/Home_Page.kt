@@ -522,7 +522,6 @@ fun HomePage(navController: NavController ) {
                     }
                 }
 
-
                 Spacer(modifier = Modifier.height(15.dp))
                 Row(modifier = Modifier
                     .fillMaxWidth()
