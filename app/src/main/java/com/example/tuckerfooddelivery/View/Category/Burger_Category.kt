@@ -120,13 +120,13 @@ fun Burger_Category(navController: NavController){
                     )
                     Text(
                         text = "Burger Bistro",
-                        fontSize = 16.sp,
+                        fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 10.dp) // Adjust top padding
                     )
                     Text(
                         text = "Rose Garden",
-                        fontSize = 14.sp,
+                        fontSize = 15.sp,
                         modifier = Modifier.padding(top = 1.dp)
                     )
                     Row(
@@ -171,14 +171,14 @@ fun Burger_Category(navController: NavController){
                             .size(cardwidth)
                     )
                     Text(
-                        text = "Smokin burger",
-                        fontSize = 16.sp,
+                        text = "Smoking burger",
+                        fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 10.dp) // Adjust top padding
                     )
                     Text(
                         text = "Fiona Hatty",
-                        fontSize = 14.sp,
+                        fontSize = 15.sp,
                         modifier = Modifier.padding(top = 1.dp)
                     )
                     Row(
@@ -230,13 +230,13 @@ fun Burger_Category(navController: NavController){
                     )
                     Text(
                         text = "Classic Burger",
-                        fontSize = 16.sp,
+                        fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 10.dp) // Adjust top padding
                     )
                     Text(
                         text = "SkyHigh Way",
-                        fontSize = 14.sp,
+                        fontSize = 15.sp,
                         modifier = Modifier.padding(top = 1.dp)
                     )
                     Row(
