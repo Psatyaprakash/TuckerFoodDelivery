@@ -170,6 +170,7 @@ fun MexicanPepperoniPizza(navController: NavController) {
                             else if (totalprice == unitPrice14){size = "14''"}
                             else{ size = "16''"};
                                 addWishlist(Item_Name,totalprice ,count,size)
+                            Toast.makeText(context , "Added to Wishlist" , Toast.LENGTH_SHORT).show()
                             }
                     )
                 }

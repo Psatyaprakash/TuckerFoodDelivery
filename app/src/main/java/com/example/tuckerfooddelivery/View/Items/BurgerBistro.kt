@@ -154,6 +154,7 @@ fun BurgerBistro(navController: NavController) {
                             .clickable {
                                 if(totalprice == unitPriceRegular)size = "Regular" else size = "Large"
                                 addWishlist(Item_Name,totalprice ,count,size)
+                            Toast.makeText(context , "Added to Wishlist" , Toast.LENGTH_SHORT).show()
                             }
 
                     )
