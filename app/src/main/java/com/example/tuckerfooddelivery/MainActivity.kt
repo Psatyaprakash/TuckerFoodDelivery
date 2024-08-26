@@ -114,7 +114,7 @@ fun BottomNavigationBar(navController: NavController) {
 /*            Image(painter = painterResource(R.drawable.pledge) ,
                 contentDescription = "" ,
                 Modifier.clickable { navController.navigate("Pledge") })*/
-            BottomNavIcon(Icons.Filled.CleanHands, "Pledge", navController, "Pledge")
+            BottomNavIcon(Icons.Filled.CleanHands, "Pledge", navController, "PledgeScreen")
             BottomNavIcon(Icons.Filled.Home, "Home", navController, "MainScreen")
 //            BottomNavIcon(Icons.Filled.Favorite, "Favourites", navController, "Favourites")
             BottomNavIcon(Icons.Filled.ShoppingCart, "Cart", navController, "AddToCart")
