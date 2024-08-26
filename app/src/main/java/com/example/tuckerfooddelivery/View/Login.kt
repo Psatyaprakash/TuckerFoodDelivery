@@ -287,7 +287,8 @@ fun LoginScreen(navController: NavHostController) {
                 }
 
                 Button(onClick =  { userPhone =  "1023456789" ;
-                    navController.navigate("MainScreen")
+                    if (loggedInAs == "Customer") navController.navigate("MainScreen")
+                    else navController.navigate("RestaurantHomePage")
                     },
                     colors = ButtonDefaults.buttonColors(Color.LightGray),
                     modifier = Modifier.fillMaxWidth() ) {

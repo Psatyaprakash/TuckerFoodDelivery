@@ -80,7 +80,7 @@ fun CircularButtonWithSymbol(onClick: () -> Unit) {
 fun PersonalInfoDetails(navController: NavHostController) {
     var fullName by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
-    var phoneNumber by remember { mutableStateOf("") }
+    var phoneNumber by remember { mutableStateOf("1023456789") }
     var bio by remember { mutableStateOf("") }
     val Mustard_yellow = colorResource(id = R.color.Mustard_yellow)
 
