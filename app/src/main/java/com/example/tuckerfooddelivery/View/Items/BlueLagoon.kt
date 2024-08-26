@@ -498,8 +498,4 @@ fun BlueLagoon(navController: NavController){
                 }
             }
         }
-    }
-}
-
-
-
+    }}

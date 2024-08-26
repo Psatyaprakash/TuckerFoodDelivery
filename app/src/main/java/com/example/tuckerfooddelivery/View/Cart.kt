@@ -52,6 +52,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.times
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
@@ -70,6 +71,8 @@ import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_10
 import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_14
 import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_16
 import com.example.tuckerfooddelivery.ViewModel.PizzaCalzone_Cart
+import com.example.tuckerfooddelivery.ViewModel.ScreenHeight
+import com.example.tuckerfooddelivery.ViewModel.ScreenWidth
 import com.example.tuckerfooddelivery.ViewModel.platformFee
 import com.example.tuckerfooddelivery.ViewModel.storageRef
 import com.example.tuckerfooddelivery.ViewModel.totalAmount
@@ -339,6 +342,10 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
         mutableStateOf(cart.count)
     }
 
+    var cardwidth = 1 * ScreenWidth
+    var boxwidth = 0.3 * ScreenWidth
+    var cardheight = 0.18 * ScreenHeight
+
     // Fetch the image URL
     LaunchedEffect(imagePath) {
         getImageUrlFromFirebaseStorage(
@@ -354,8 +361,8 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .wrapContentHeight(),
-//                        .size(150.dp),
+                .wrapContentHeight()
+                .size(height = cardheight, width = cardwidth),
 
             elevation = 8.dp,
             backgroundColor = colorResource(id = R.color.Mustard_yellow),
@@ -365,7 +372,7 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
                 Box(
                     modifier = Modifier
                         .padding(15.dp)
-                        .size(150.dp)
+                        .size(boxwidth)
                         .background(White, shape = RoundedCornerShape(15.dp))
                         .fillMaxWidth(.3f)
 //                        .align(Alignment.CenterVertically)
@@ -387,113 +394,113 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
                 Column {
 
 
-                Column(
-                    Modifier
-                        .fillMaxSize()
-                        .padding(0.dp, 15.dp, 10.dp, 10.dp),
-                    verticalArrangement = Arrangement.SpaceAround,
-                    horizontalAlignment = Alignment.Start
-                ) {
+                    Column(
+                        Modifier
+                            .fillMaxSize()
+                            .padding(0.dp, 15.dp, 10.dp, 10.dp),
+                        verticalArrangement = Arrangement.SpaceAround,
+                        horizontalAlignment = Alignment.Start
+                    ) {
 //                    Row(
 //                        Modifier.fillMaxWidth(),
 //                        verticalAlignment = Alignment.CenterVertically,
 //                        horizontalArrangement = Arrangement.SpaceBetween
 //                    ) {}
-                    Text(
-                        text = cart.name,
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Spacer(modifier = Modifier.height(3.dp))
+                        Text(
+                            text = cart.name,
+                            fontSize = 22.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Spacer(modifier = Modifier.height(3.dp))
 
-                    Text(
-                        text = "( ${cart.size} )",
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight.Bold
-                    )
+                        Text(
+                            text = "( ${cart.size} )",
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Bold
+                        )
 
-                    Spacer(modifier = Modifier.height(15.dp))
+                        Spacer(modifier = Modifier.height(15.dp))
 
-                    Text(
-                        text = "Rs.${price * count}",
-                        fontSize = 20.sp
-                    )
-                }
-                    Row(
-                        Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
+                        Text(
+                            text = "Rs.${price * count}",
+                            fontSize = 20.sp
+                        )
+
                         Row(
-                            modifier = Modifier
-                                .size(height = 30.dp, width = 150.dp)
-                                .background(
-                                    White,
-                                    shape = RoundedCornerShape(30.dp)
-                                ),
+                            Modifier.fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            IconButton(onClick = {
-                                if (cart.count > 1) cart.count--
-                                count = cart.count
-                                onQuantityChange()
-                            }) {
-                                Icon(
-                                    Icons.Default.KeyboardArrowDown,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(30.dp)
+                            Row(
+                                modifier = Modifier
+                                    .size(height = 30.dp, width = 150.dp)
+                                    .background(
+                                        White,
+                                        shape = RoundedCornerShape(30.dp)
+                                    ),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                IconButton(onClick = {
+                                    if (cart.count > 1) cart.count--
+                                    count = cart.count
+                                    onQuantityChange()
+                                }) {
+                                    Icon(
+                                        Icons.Default.KeyboardArrowDown,
+                                        contentDescription = null,
+                                        modifier = Modifier.size(30.dp)
+                                    )
+                                }
+                                Text(
+                                    text = "$count",
+                                    fontSize = 20.sp
                                 )
-                            }
-                            Text(
-                                text = "$count",
-                                fontSize = 20.sp
-                            )
 
-                            IconButton(onClick = {
-                                cart.count++
-                                count = cart.count
-                                onQuantityChange()
-                            }) {
-                                Icon(
-                                    Icons.Default.KeyboardArrowUp,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(30.dp)
-                                )
+                                IconButton(onClick = {
+                                    cart.count++
+                                    count = cart.count
+                                    onQuantityChange()
+                                }) {
+                                    Icon(
+                                        Icons.Default.KeyboardArrowUp,
+                                        contentDescription = null,
+                                        modifier = Modifier.size(30.dp)
+                                    )
+                                }
+                            }
+                            Box(modifier = Modifier.padding(1.dp)) {
+                                IconButton(onClick = {
+                                    db.collection("Cart").document(cart.name + "_${cart.size}")
+                                        .delete()
+                                        .addOnSuccessListener {
+                                            Log.d(TAG, "DocumentSnapshot successfully deleted!")
+                                            Toast.makeText(
+                                                context,
+                                                "Item deleted successfully",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                        .addOnFailureListener { e ->
+                                            Log.w(TAG, "Error deleting document", e)
+                                        };
+                                    navController.popBackStack();
+                                    navController.navigate("AddToCart")
+
+                                }) {
+                                    Icon(
+                                        Icons.Default.Delete,
+                                        contentDescription = "Delete",
+                                        tint = colorResource(id = R.color.White_Blue)
+                                    )
+                                }
                             }
                         }
-                        Box(modifier = Modifier.padding(1.dp)) {
-                            IconButton(onClick = {
-                                db.collection("Cart").document(cart.name + "_${cart.size}")
-                                    .delete()
-                                    .addOnSuccessListener {
-                                        Log.d(TAG, "DocumentSnapshot successfully deleted!")
-                                        Toast.makeText(
-                                            context,
-                                            "Item deleted successfully",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    }
-                                    .addOnFailureListener { e ->
-                                        Log.w(TAG, "Error deleting document", e)
-                                    };
-                                navController.popBackStack();
-                                navController.navigate("AddToCart")
-
-                            }) {
-                                Icon(
-                                    Icons.Default.Delete,
-                                    contentDescription = "Delete",
-                                    tint = colorResource(id = R.color.White_Blue)
-                                )
-                            }
-                        }
-                    }
-
                     }
                 }
             }
         }
+    }
 
 
 

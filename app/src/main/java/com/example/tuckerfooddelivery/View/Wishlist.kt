@@ -54,6 +54,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.times
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.tuckerfooddelivery.Model.Add.addCart
@@ -62,6 +63,8 @@ import com.example.tuckerfooddelivery.Model.Fetch.db
 import com.example.tuckerfooddelivery.Model.Fetch.fetchWishlist
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
+import com.example.tuckerfooddelivery.ViewModel.ScreenHeight
+import com.example.tuckerfooddelivery.ViewModel.ScreenWidth
 import com.example.tuckerfooddelivery.ViewModel.storageRef
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -170,14 +173,17 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
             onFailure = { exception -> loadError = exception },
         )
     }
+    var cardwidth = 1 * ScreenWidth
+    var boxwidth = 0.3 * ScreenWidth
+    var cardheight = 0.18 * ScreenHeight
 
     if (imageUrl != null) {
         Log.w("ImagePath", "${storageRef.child(imagePath)} \n$imageUrl")
 
         Card(
             modifier = Modifier
-                .fillMaxWidth(),
-//                .size(150.dp),
+                .fillMaxWidth()
+                .size(height = cardheight, width = cardwidth),
             elevation = 8.dp,
             backgroundColor = colorResource(id = R.color.Mustard_yellow),
             shape = RoundedCornerShape(15.dp)
@@ -186,7 +192,7 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
                 Box(
                     modifier = Modifier
                         .padding(15.dp)
-                        .size(130.dp)
+                        .size(boxwidth)
                         .background(White, shape = RoundedCornerShape(15.dp))
                         .fillMaxWidth(.3f)
                 ) {
