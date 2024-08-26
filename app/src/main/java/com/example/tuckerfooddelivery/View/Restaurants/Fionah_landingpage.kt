@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -52,7 +53,7 @@ fun Fionah(navController: NavController){
         modifier = Modifier
             .fillMaxWidth()
             .verticalScroll(rememberScrollState())
-            .padding(6.dp),
+            .padding(10.dp),
         verticalArrangement = Arrangement.Top
     ) {
         Row(
@@ -66,15 +67,13 @@ fun Fionah(navController: NavController){
             Spacer(modifier = Modifier.width(16.dp))
             Text(
                 text = "Fiona Hatty Restaurant",
-                color = Color(0xFFD4AF37),
+                color = colorResource(id = R.color.Mustard_yellow),
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp,
-                modifier = Modifier.padding(top = 11.dp)
             )
         }
-        Spacer(modifier = Modifier.height(5.dp))
         Text(
-            text = "Sharma Chowk, New Delhi \nPincode: 115970",
+            text = "Kiit Square Bhubhaneswar \n Pincode : 751236",
             textAlign = TextAlign.Center,
             color = Color.Black,
             fontSize = 14.sp,

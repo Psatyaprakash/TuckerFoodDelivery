@@ -36,6 +36,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.ViewModel.loggedInAs
@@ -278,6 +279,11 @@ fun LoginScreen(navController: NavHostController) {
                         fontSize = 20.sp,
                         lineHeight = 10.sp
                     )
+                }
+
+                Button(onClick = { navController.navigate("MainScreen") },
+                    colors = ButtonDefaults.buttonColors(Color.LightGray)) {
+                    Text(text = "CONTINUE WITHOUT REGISTRATION")
                 }
             }
         }

@@ -42,10 +42,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.times
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
 import com.example.tuckerfooddelivery.R
+import com.example.tuckerfooddelivery.ViewModel.ScreenHeight
 import com.example.tuckerfooddelivery.ViewModel.loggedInAs
 import com.google.firebase.Firebase
 import com.google.firebase.storage.storage
@@ -72,7 +74,7 @@ fun Start(navController: NavHostController) {
             Image(painter = painterResource(R.drawable.all_your_fav),
                 contentDescription = "" ,
                 Modifier
-                    .size(400.dp)
+                    .size(300.dp)
                     .fillMaxWidth()
             )
             Text(text = "All your favorites" , fontSize = 26.sp, fontWeight = FontWeight.Bold)
@@ -140,7 +142,7 @@ fun Start2(navController: NavHostController) {
             Image(painter = painterResource(R.drawable.order),
                 contentDescription = "" ,
                 Modifier
-                    .size(400.dp)
+                    .size(300.dp)
             )
             Text(text = "Order from chosen chef" , fontSize = 26.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier .height(20.dp) )
@@ -255,7 +257,7 @@ fun Start3(navController: NavHostController) {
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(Mustard_yellow)
             ) {
-                Text(text = "Continue As Restaurant" , fontSize = 20.sp , color = Color.White)
+                Text(text = "Continue As Restaurant" , fontSize = 18.sp , color = Color.White)
             }
         }
     }

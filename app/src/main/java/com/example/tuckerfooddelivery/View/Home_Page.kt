@@ -215,6 +215,7 @@ fun HomePage(navController: NavController ) {
                     )
                 }
                 Spacer(modifier = Modifier.height(10.dp))
+
                 Row(
                     modifier = Modifier
                         .horizontalScroll(rememberScrollState())
@@ -223,148 +224,238 @@ fun HomePage(navController: NavController ) {
                     Button(
                         onClick = { /* TODO: Insert action here */ },
                         colors = ButtonDefaults.buttonColors(containerColor = Mustard_yellow),
+                        border = BorderStroke(width = 0.dp, color = Color.Transparent),
                         elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
                         modifier = Modifier
-                            .height(40.dp)
-                            .padding(2.dp,0.dp)
+                            .padding(horizontal = 10.dp, vertical = 5.dp)
                     ) {
-
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Box(
-                                modifier = Modifier
+                        Box(
+                            modifier = Modifier
+                                .size(30.dp)
+                                .clip(CircleShape)
+                                .background(White)
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.fire),
+                                contentDescription = "Fire",
+                                Modifier
                                     .size(30.dp)
-                                    .clip(CircleShape)
-                                    .background(White)
-                            ) {
-                                Image(
-                                    painter = painterResource(R.drawable.fire),
-                                    contentDescription = "Fire",
-                                    Modifier
-                                        .size(30.dp)
-                                        .align(Alignment.Center)
-                                )
-                            }
+                                    .align(Alignment.Center)
+                            )
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(
                                 text = "All",
                                 fontWeight = FontWeight.Bold,
                                 color = Color.Black,
-                                fontSize = 16.sp
+                                fontSize = 18.sp
                             )
                         }
                     }
 
-                    @Composable
-                    fun CatScro(navController: NavController, image: @Composable () -> Unit, label: String, route: String) {
-                        Button(
-                            onClick = { navController.navigate(route) },
-                            colors = ButtonDefaults.buttonColors(containerColor = White),
-                            elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+                    //Button2
+                    Button(
+                        onClick = { navController.navigate("Mocktails_Category") },
+                        colors = ButtonDefaults.buttonColors(containerColor = White),
+                        border = BorderStroke(width = 0.dp, color = Color.Transparent),
+                        elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+                        modifier = Modifier
+                            .padding(horizontal = 10.dp, vertical = 5.dp)
+                    ) {
+                        Box(
                             modifier = Modifier
-                                .height(40.dp)
-                                .padding(5.dp,0.dp)
+                                .size(30.dp)
+                                .clip(CircleShape)
+                                .background(Color.LightGray)
                         ) {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                Box(
-                                    modifier = Modifier
-                                        .size(35.dp)
-                                        .clip(CircleShape)
-                                        .background(Color.LightGray)
-                                        .fillMaxWidth()
-                                ) {
-                                    image()
-                                }
-                                Spacer(modifier = Modifier.width(8.dp))
-                                Text(
-                                    text = label,
-                                    fontWeight = FontWeight.Bold,
-                                    color = Color.Black,
-                                    fontSize = 16.sp
-                                )
-                            }
-                        }
-                    }
-
-                    CatScro(
-                        navController = navController,
-                        image = {
                             Image(
                                 painter = painterResource(R.drawable.orange_mimosa),
                                 contentDescription = "Mocktail Icon",
-                                modifier = Modifier.size(30.dp)
+                                Modifier
+                                    .size(27.dp)
+                                    .align(Alignment.Center)
+
                             )
-                        },
-                        label = "Mocktail",
-                        route = "Mocktails_Category"
-                    )
-                    CatScro(
-                        navController = navController,
-                        image = {
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Spacer(modifier = Modifier.width(5.dp))
+                            Text(
+                                text = "Mocktail",
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Black,
+                                fontSize = 18.sp
+                            )
+                        }
+                    }
+
+                    //Button 3
+                    Button(
+                        onClick = { navController.navigate("Burger_Category") },
+                        colors = ButtonDefaults.buttonColors(containerColor = White),
+                        border = BorderStroke(width = 0.dp, color = Color.Transparent),
+                        elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+                        modifier = Modifier
+                            .padding(horizontal = 10.dp, vertical = 5.dp)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(30.dp)
+                                .clip(CircleShape)
+                                .background(Color.LightGray)
+                        ) {
                             Image(
                                 painter = painterResource(R.drawable.burger_icon),
                                 contentDescription = "Burger Icon",
                                 Modifier
                                     .size(27.dp)
+                                    .align(Alignment.Center)
+
                             )
-                        },
-                        label = "Burger",
-                        route = "Burger_Category"
-                    )
-                    CatScro(
-                        navController = navController,
-                        image = {
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Spacer(modifier = Modifier.width(5.dp))
+                            Text(
+                                text = "Burger",
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Black,
+                                fontSize = 18.sp
+                            )
+                        }
+                    }
+
+                    //Button 4
+                    Button(
+                        onClick = { navController.navigate("Pizza_Category") },
+                        colors = ButtonDefaults.buttonColors(containerColor = White),
+                        border = BorderStroke(width = 0.dp, color = Color.Transparent),
+                        elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+                        modifier = Modifier
+                            .padding(horizontal = 10.dp, vertical = 5.dp)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(30.dp)
+                                .clip(CircleShape)
+                                .background(Color.LightGray)
+                        ) {
                             Image(
                                 painter = painterResource(R.drawable.pizza),
                                 contentDescription = "Pizza Icon",
                                 Modifier
                                     .size(27.dp)
+                                    .align(Alignment.Center)
                             )
-                        },
-                        label = "Pizza",
-                        route = "Pizza_Category"
-                    )
-                    CatScro(
-                        navController = navController,
-                        image = {
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Spacer(modifier = Modifier.width(5.dp))
+                            Text(
+                                text = "Pizza",
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Black,
+                                fontSize = 18.sp
+                            )
+                        }
+                    }
+
+
+                    Button(
+                        onClick = { navController.navigate("Momos_Category") },
+                        colors = ButtonDefaults.buttonColors(containerColor = White),
+                        border = BorderStroke(width = 0.dp, color = Color.Transparent),
+                        elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+                        modifier = Modifier
+                            .padding(horizontal = 10.dp, vertical = 5.dp)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(30.dp)
+                                .clip(CircleShape)
+                                .background(Color.LightGray)
+                        ) {
                             Image(
                                 painter = painterResource(R.drawable.tibetianmomos),
                                 contentDescription = "Momos Icon",
                                 Modifier
                                     .size(27.dp)
+                                    .align(Alignment.Center)
                             )
-                        },
-                        label = "Momos",
-                        route = "Momos_Category"
-                    )
-                    CatScro(
-                        navController = navController,
-                        image = {
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Spacer(modifier = Modifier.width(5.dp))
+                            Text(
+                                text = "Momos",
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Black,
+                                fontSize = 18.sp
+                            )
+                        }
+                    }
+
+                    Button(
+                        onClick = { navController.navigate("Roll_Category") },
+                        colors = ButtonDefaults.buttonColors(containerColor = White),
+                        border = BorderStroke(width = 0.dp, color = Color.Transparent),
+                        elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+                        modifier = Modifier
+                            .padding(horizontal = 10.dp, vertical = 5.dp)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(30.dp)
+                                .clip(CircleShape)
+                                .background(Color.LightGray)
+                        ) {
                             Image(
                                 painter = painterResource(R.drawable.paneer_roll),
                                 contentDescription = "Roll Icon",
                                 Modifier
                                     .size(27.dp)
+                                    .align(Alignment.Center)
                             )
-                        },
-                        label = "Roll",
-                        route = "Roll_Category"
-                    )
-                    CatScro(
-                        navController = navController,
-                        image = {
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Spacer(modifier = Modifier.width(5.dp))
+                            Text(
+                                text = "Roll",
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Black,
+                                fontSize = 18.sp
+                            )
+                        }
+                    }
+                    Button(
+                        onClick = { navController.navigate("Wings_Category") },
+                        colors = ButtonDefaults.buttonColors(containerColor = White),
+                        border = BorderStroke(width = 0.dp, color = Color.Transparent),
+                        elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+                        modifier = Modifier
+                            .padding(horizontal = 10.dp, vertical = 5.dp)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(30.dp)
+                                .clip(CircleShape)
+                                .background(Color.LightGray)
+                        ) {
                             Image(
                                 painter = painterResource(R.drawable.buffalo_wings),
                                 contentDescription = "Wings Icon",
                                 Modifier
-                                    .size(30.dp),
-                                alignment = Alignment.Center
+                                    .size(27.dp)
+                                    .align(Alignment.Center)
                             )
-                        },
-                        label = "Wings",
-                        route = "Wings_Category"
-                    )
-
-                    //>>
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Spacer(modifier = Modifier.width(5.dp))
+                            Text(
+                                text = "Wings",
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Black,
+                                fontSize = 18.sp
+                            )
+                        }
+                    }
                     Button(
                         onClick = { navController.navigate("Fries_Category") },
                         colors = ButtonDefaults.buttonColors(containerColor = White),

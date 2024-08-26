@@ -168,13 +168,14 @@ fun Burger_Category(navController: NavController){
                         painter = painterResource(R.drawable.smokinburger),
                         contentDescription = "Smokin burger Image",
                         modifier = Modifier
-                            .size(cardwidth)
+                            .size(0.9 * cardwidth)
                     )
                     Text(
                         text = "Smoking burger",
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(top = 10.dp) // Adjust top padding
+                        modifier = Modifier.padding(top = 10.dp) // Adjust top padding,
+                        , textAlign = TextAlign.Center
                     )
                     Text(
                         text = "Fiona Hatty",

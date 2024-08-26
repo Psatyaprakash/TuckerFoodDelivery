@@ -355,8 +355,6 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight(),
-//                        .size(150.dp),
-
             elevation = 8.dp,
             backgroundColor = colorResource(id = R.color.Mustard_yellow),
             shape = RoundedCornerShape(15.dp)
@@ -394,11 +392,6 @@ fun CartItem(navController: NavController, cart: Cart, onQuantityChange: () -> U
                     verticalArrangement = Arrangement.SpaceAround,
                     horizontalAlignment = Alignment.Start
                 ) {
-//                    Row(
-//                        Modifier.fillMaxWidth(),
-//                        verticalAlignment = Alignment.CenterVertically,
-//                        horizontalArrangement = Arrangement.SpaceBetween
-//                    ) {}
                     Text(
                         text = cart.name,
                         fontSize = 22.sp,

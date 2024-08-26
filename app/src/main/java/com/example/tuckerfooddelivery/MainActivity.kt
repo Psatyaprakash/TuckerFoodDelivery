@@ -50,6 +50,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.times
 import androidx.navigation.NavController
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
+import com.example.tuckerfooddelivery.View.RestaurantList
 import com.example.tuckerfooddelivery.View.Storage
 import com.example.tuckerfooddelivery.View.ThankYouScreen
 import com.example.tuckerfooddelivery.ViewModel.AppNavigation

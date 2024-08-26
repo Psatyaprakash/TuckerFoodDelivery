@@ -80,7 +80,7 @@ fun AppNavigation() {
                 slideOutOfContainer(
                     AnimatedContentTransitionScope.SlideDirection.Left,
                     tween(200) )},
-        startDestination = "MainScreen"
+        startDestination = "Start"
     ) {
         composable("Storage"){ Storage() }
 //        composable("NotificationScreen"){ NotificationScreen(NotificationTitle,NotificationContent ) }
@@ -129,15 +129,19 @@ fun AppNavigation() {
         composable("NepaliDumplingMomos"){ NepaliDumplingMomos(navController) }
         composable("PeriPeriFries"){ PeriPeriFries(navController) }
         composable("OrangeMimosa"){ OrangeMimosa(navController) }
+
         //categories
-        composable("Burger_Category"){ Burger_Category(navController) }
-        composable("Wings_Category"){ Wings_Category(navController) }
-        composable("Starters_Category"){ Starters_Category(navController) }
-        composable("Roll_Category"){ Roll_Category(navController) }
-        composable("Pizza_Category"){ Pizza_Category(navController) }
-        composable("Fries_Category"){ Fries_Category(navController) }
-        composable("Momos_Category"){ Momos_Category(navController) }
-        composable("Mocktails_Category"){ Mocktails_Category(navController) }
+        composable("Burger_Category"){ MainScreen(navController ,route= { Burger_Category(navController = it) }) }
+        composable("Wings_Category"){ MainScreen(navController ,route= { Wings_Category(navController = it) }) }
+        composable("Starters_Category"){  MainScreen(navController  , route = {Starters_Category(navController = it) } ) }
+        composable("Roll_Category"){ MainScreen(navController, route = {Roll_Category( navController = it )}) }
+        composable("Pizza_Category"){ MainScreen(navController ,route= { Pizza_Category(navController = it) }) }
+        composable("Fries_Category"){ MainScreen(navController ,route= { Fries_Category(navController = it) }) }
+        composable("Momos_Category"){  MainScreen(navController  , route = {Momos_Category(navController = it) } ) }
+        composable("Mocktails_Category"){ MainScreen(navController, route = {Mocktails_Category( navController = it )}) }
+        //composable("Mocktails_Category"){ Mocktails_Category(navController) }
+
+
         //Restaurants
         composable("Rosegardenrestaurant_landingpage"){ Rosegardenrestaurant_landingpage(navController) }
         composable("SkyHighW_landingpage"){ SkyHighW_landingpage(navController) }
