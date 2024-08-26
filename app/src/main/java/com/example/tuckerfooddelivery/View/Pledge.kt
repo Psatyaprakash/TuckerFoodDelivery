@@ -151,7 +151,7 @@ fun PledgeScreen(navController: NavController) {
             modifier = Modifier.padding(bottom = 10.dp)
         )
 
-        OutlinedTextField(value = "100", onValueChange = {Amount = it}, modifier = Modifier
+        OutlinedTextField(value = Amount, onValueChange = {Amount = it}, modifier = Modifier
             .fillMaxWidth()
             .padding(0.dp, 0.dp))
         Spacer(modifier = Modifier.height(10.dp))
@@ -165,7 +165,7 @@ fun PledgeScreen(navController: NavController) {
             color = Color.Black,
             modifier = Modifier.padding(bottom = 10.dp)
         )
-        OutlinedTextField(value = "Child ..", onValueChange = {Feedback = it}, modifier = Modifier
+        OutlinedTextField(value = Feedback, onValueChange = {Feedback = it}, modifier = Modifier
             .fillMaxWidth()
             .padding(0.dp, 0.dp))
 

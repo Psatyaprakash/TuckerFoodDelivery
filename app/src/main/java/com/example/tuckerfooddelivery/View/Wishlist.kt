@@ -54,6 +54,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.times
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.tuckerfooddelivery.Model.Add.addCart
@@ -62,6 +63,7 @@ import com.example.tuckerfooddelivery.Model.Fetch.db
 import com.example.tuckerfooddelivery.Model.Fetch.fetchWishlist
 import com.example.tuckerfooddelivery.R
 import com.example.tuckerfooddelivery.View.Profile.CircularButtonWithSymbol
+import com.example.tuckerfooddelivery.ViewModel.ScreenHeight
 import com.example.tuckerfooddelivery.ViewModel.storageRef
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -93,16 +95,20 @@ fun Wishlist(navController: NavController){
         },
         bottomBar = {
             BottomAppBar(
-                containerColor = White
+                containerColor = White,
+                modifier = Modifier.height(0.06 * ScreenHeight)
             ) {
-                Row(Modifier.fillMaxWidth(),horizontalArrangement = Arrangement.Center){
+                Row(Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically){
                     Button(
                         onClick =
                         {
                             navController.navigate("AddToCart")
                         },
                         Modifier
-                            .fillMaxWidth(.6f),
+                            .fillMaxWidth(.6f)
+                            .padding(0.dp,0.dp,0.dp,15.dp),
                         shape = RoundedCornerShape(10.dp),
                         colors = ButtonDefaults.buttonColors(colorResource(id = R.color.Mustard_yellow))
                     ) {
@@ -136,7 +142,7 @@ fun Wishlist(navController: NavController){
         ){
             Column(
                 Modifier
-                    .fillMaxHeight(.80f)
+                    .fillMaxHeight(1f)
                     .padding(16.dp, 10.dp)
             ) {
                 LazyColumn {

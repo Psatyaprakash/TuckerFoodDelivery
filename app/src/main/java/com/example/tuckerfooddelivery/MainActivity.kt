@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -44,6 +45,7 @@ import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -110,14 +112,10 @@ fun BottomNavigationBar(navController: NavController) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            Row{
-                BottomNavIcon(
-                    Icons.Filled.CleanHands,
-                    "Pledge",
-                    navController,
-                    "PledgeScreen"
-                )
-            }
+/*            Image(painter = painterResource(R.drawable.pledge) ,
+                contentDescription = "" ,
+                Modifier.clickable { navController.navigate("Pledge") })*/
+            BottomNavIcon(Icons.Filled.CleanHands, "Pledge", navController, "Pledge")
             BottomNavIcon(Icons.Filled.Home, "Home", navController, "MainScreen")
 //            BottomNavIcon(Icons.Filled.Favorite, "Favourites", navController, "Favourites")
             BottomNavIcon(Icons.Filled.ShoppingCart, "Cart", navController, "AddToCart")

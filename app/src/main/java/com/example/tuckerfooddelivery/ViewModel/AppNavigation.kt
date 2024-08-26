@@ -96,7 +96,7 @@ fun AppNavigation() {
 
         //Congrats
         composable("Congrats"){ Congrats(navController = navController) }
-        composable("Delivery"){ Delivery(navController = navController) }
+        composable("Delivery"){ MainScreen(navController , route = { Delivery(navController = it)})}
 
         //Restaurant Homepage
         composable("RestaurantHomePage"){ RestaurantHomePage(navController = navController) }

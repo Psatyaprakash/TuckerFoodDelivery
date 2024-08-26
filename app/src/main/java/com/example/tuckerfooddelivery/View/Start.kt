@@ -60,14 +60,12 @@ fun Start(navController: NavHostController) {
     Box(modifier = Modifier
         .fillMaxSize()
         .background(Color.White)
-//        slideOutHorizontally {  }
     ){
         Column(modifier = Modifier
             .padding(40.dp)
-            //.fillMaxSize()
-            //.verticalScroll(rememberScrollState())
+            .fillMaxSize()
             .background(Color.White),
-            verticalArrangement = Arrangement.Bottom,
+            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
@@ -79,8 +77,7 @@ fun Start(navController: NavHostController) {
             )
             Text(text = "All your favorites" , fontSize = 26.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier .height(20.dp) )
-            Text(text = "Get all your loved foods in one once place,\n" +
-                    "you just place the order we do the rest" ,
+            Text(text = "Get all your loved foods in one once place you just place the order we do the rest" ,
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center ,
                 color = Color.Gray ,
@@ -133,10 +130,9 @@ fun Start2(navController: NavHostController) {
     ){
         Column(modifier = Modifier
             .padding(40.dp)
-//            .fillMaxSize()
-//            .verticalScroll(rememberScrollState())
+            .fillMaxSize()
             .background(Color.White),
-            verticalArrangement = Arrangement.Top,
+            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(painter = painterResource(R.drawable.order),
@@ -152,7 +148,7 @@ fun Start2(navController: NavHostController) {
                 color = Color.Gray ,
                 fontWeight = FontWeight.W700
             )
-            Spacer(modifier = Modifier .height(40.dp) )
+            Spacer(modifier = Modifier .height(20.dp) )
             Row{
                 for (i in 1..3) {
                     var col_mus = Mustard_yellow_light
@@ -169,7 +165,6 @@ fun Start2(navController: NavHostController) {
                     Spacer(modifier = Modifier.width(5.dp))
                 }
             }
-            Spacer(modifier = Modifier .height(10.dp) )
             Button(onClick = { navController.navigate("Start3") },
                 Modifier
                     .fillMaxWidth()
@@ -200,7 +195,7 @@ fun Start3(navController: NavHostController) {
         Column(modifier = Modifier
             .padding(40.dp)
             .background(Color.White),
-            verticalArrangement = Arrangement.Top,
+            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(painter = painterResource(R.drawable.delivery),

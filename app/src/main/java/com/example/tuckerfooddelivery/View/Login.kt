@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -54,6 +55,7 @@ import java.util.concurrent.TimeUnit
 //Auth
 
 val auth = FirebaseAuth.getInstance()
+var errorCount = 0
 
 var storedVerificationId: String? = null
 lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
@@ -65,7 +67,7 @@ val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks()
 
     override fun onVerificationFailed(e: FirebaseException) {
         Log.w(TAG, "onVerificationFailed", e)
-
+        errorCount ++
         when (e) {
             is FirebaseAuthInvalidCredentialsException -> {
                 Log.w("Login","Firebase Auth Invalid Credentials" )
@@ -280,9 +282,15 @@ fun LoginScreen(navController: NavHostController) {
                         lineHeight = 10.sp
                     )
                 }
+                if(errorCount > 1){
+                    Toast.makeText(context,"Too many Exception",Toast.LENGTH_SHORT).show()
+                }
 
-                Button(onClick = { navController.navigate("MainScreen") },
-                    colors = ButtonDefaults.buttonColors(Color.LightGray)) {
+                Button(onClick =  { userPhone =  "1023456789" ;
+                    navController.navigate("MainScreen")
+                    },
+                    colors = ButtonDefaults.buttonColors(Color.LightGray),
+                    modifier = Modifier.fillMaxWidth() ) {
                     Text(text = "CONTINUE WITHOUT REGISTRATION")
                 }
             }

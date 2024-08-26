@@ -42,6 +42,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -76,6 +77,8 @@ import com.example.tuckerfooddelivery.ViewModel.totalAmount
 import com.example.tuckerfooddelivery.ViewModel.totalCartPrice_global
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 
 @Composable
@@ -86,6 +89,7 @@ fun AddToCart(navController: NavController) {
     var totalCartPrice by remember { mutableStateOf(0) }
     val context = LocalContext.current
 
+    val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
         modifier = Modifier.background(White),
@@ -294,7 +298,21 @@ fun AddToCart(navController: NavController) {
                                                     context,
                                                     "Order Summary",
                                                     "Order placed \nTotal Amount : ${totalAmount + platformFee}"
-                                                )
+                                                );
+                                                val collectionRef = db.collection("Cart")
+                                                coroutineScope.launch {
+                                                    try {
+                                                        val documents = collectionRef.get().await()
+
+                                                        // Iterate over each document and delete it
+                                                        for (document in documents.documents) {  // Access `documents` list
+                                                            document.reference.delete().await()  // Delete the document
+                                                        }
+                                                    } catch (e: Exception) {
+                                                        // Handle any exceptions
+                                                        e.printStackTrace()
+                                                    }
+                                                }
                                                 ; navController.navigate("Congrats")
                                             },
                                             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.Mustard_yellow))
