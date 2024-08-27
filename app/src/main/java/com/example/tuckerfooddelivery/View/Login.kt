@@ -282,17 +282,22 @@ fun LoginScreen(navController: NavHostController) {
                         lineHeight = 10.sp
                     )
                 }
-                if(errorCount > 1){
+                if(errorCount == 1){
                     Toast.makeText(context,"Too many Exception",Toast.LENGTH_SHORT).show()
                 }
 
-                Button(onClick =  { userPhone =  "1023456789" ;
-                    if (loggedInAs == "Customer") navController.navigate("MainScreen")
-                    else navController.navigate("RestaurantHomePage")
-                    },
-                    colors = ButtonDefaults.buttonColors(Color.LightGray),
-                    modifier = Modifier.fillMaxWidth() ) {
-                    Text(text = "CONTINUE WITHOUT REGISTRATION")
+                if(errorCount > 1 ){
+                    Button(
+                        onClick = {
+                            if (userPhone == "") userPhone = "1023456789";
+                            if (loggedInAs == "Customer") navController.navigate("MainScreen")
+                            else navController.navigate("RestaurantHomePage")
+                        },
+                        colors = ButtonDefaults.buttonColors(Color.LightGray),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(text = "CONTINUE WITHOUT REGISTRATION")
+                    }
                 }
             }
         }

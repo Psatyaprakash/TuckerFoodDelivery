@@ -177,12 +177,12 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
             onFailure = { exception -> loadError = exception },
         )
     }
-    var cardwidth = 1 * ScreenWidth
-    var boxwidth = 0.3 * ScreenWidth
-    var cardheight = 0.18 * ScreenHeight
+    val cardwidth = 1 * ScreenWidth
+    val boxwidth = 0.3 * ScreenWidth
+    val cardheight = 0.18 * ScreenHeight
 
     if (imageUrl != null) {
-        Log.w("ImagePath", "${storageRef.child(imagePath)} \n$imageUrl")
+//        Log.w("ImagePath", "${storageRef.child(imagePath)} \n$imageUrl")
 
         Card(
             modifier = Modifier
@@ -212,7 +212,9 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
                     } else if (loadError != null) {
                         Text(text = "Failed to load image: ${loadError!!.message}")
                     } else {
-                        CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                        Row(Modifier.fillMaxWidth() , verticalAlignment = Alignment.CenterVertically){
+                            CircularProgressIndicator(modifier = Modifier.padding(2.dp))
+                        }
                     }
                 }
                 Column(
