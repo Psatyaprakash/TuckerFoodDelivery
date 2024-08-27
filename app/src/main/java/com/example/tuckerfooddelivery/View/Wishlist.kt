@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -96,9 +97,12 @@ fun Wishlist(navController: NavController){
         },
         bottomBar = {
             BottomAppBar(
-                containerColor = White
+                containerColor = White,
+                modifier = Modifier.height(0.08* ScreenHeight)
             ) {
-                Row(Modifier.fillMaxWidth(),horizontalArrangement = Arrangement.Center){
+                Row(Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center){
                     Button(
                         onClick =
                         {
@@ -139,7 +143,7 @@ fun Wishlist(navController: NavController){
         ){
             Column(
                 Modifier
-                    .fillMaxHeight(.80f)
+                    .fillMaxHeight(1f)
                     .padding(16.dp, 10.dp)
             ) {
                 LazyColumn {
@@ -183,7 +187,8 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .size(height = cardheight, width = cardwidth),
+                .size(height = cardheight, width = cardwidth)
+                .wrapContentHeight(),
             elevation = 8.dp,
             backgroundColor = colorResource(id = R.color.Mustard_yellow),
             shape = RoundedCornerShape(15.dp)
@@ -250,7 +255,7 @@ fun WishlistItem(navController: NavController, wishlist: Wishlist, onQuantityCha
                     ) {
                         Row(
                             modifier = Modifier
-                                .size(height = 30.dp, width = 150.dp)
+                                .size(height = 30.dp, width = boxwidth)
                                 .background(
                                     White,
                                     shape = RoundedCornerShape(30.dp)

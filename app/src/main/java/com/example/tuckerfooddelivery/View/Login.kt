@@ -261,7 +261,7 @@ fun LoginScreen(navController: NavHostController) {
                     onClick = {
                         verifyOTP(context,otp.value)
                         if(check == 1 ){
-                            if (loggedInAs == "Customer") navController.navigate("MainScreen")
+                            if (loggedInAs == "Customer") navController.navigate("PersonalInfoDetails")
                             else navController.navigate("RestaurantHomePage")
                         }
                     },
