@@ -42,7 +42,7 @@ TuckerFoodDelivery is an innovative food delivery app built using Kotlin. Our ap
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Avipsa-Biswal/TuckerFoodDelivery.git
+   git clone https://github.com/Psatyaprakash/TuckerFoodDelivery.git
    cd TuckerFoodDelivery
    ```
 
