@@ -52,10 +52,12 @@ TuckerFoodDelivery is an innovative food delivery app built using Kotlin. Our ap
 
 4. Build and run the project on an Android emulator or device.
 
+   Drive link <a href="https://drive.google.com/drive/folders/1d9RTWRz_jX7hkGf2zexyMFV_CQWRlnCb?usp=sharing" ></a>
+
 ## Acknowledgments
-- Avipsa Avinandita Biswal
+- P Satya Prakash
 - Jagannath Patra
-- P Satyaprakash
+- Avipsa Avinandita Biswal
 - Priyanka Sahoo
 - Tanushree Panda
 
